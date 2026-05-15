@@ -16,7 +16,7 @@ export default function HomePage() {
 
       <HomeClient />
 
-      <footer className="mt-16 text-center text-sub text-sm pb-24">
+      <footer className="mt-16 text-center text-sub text-sm pb-6">
         ※ 費用や入りやすさは目安です。地域・施設により異なります。
       </footer>
     </main>

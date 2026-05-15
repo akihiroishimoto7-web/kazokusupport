@@ -24,6 +24,7 @@ export default function ComparePage({ searchParams }: Props) {
 
   if (options.length < 2) return notFound();
 
+  // スマホでは3択でも2列+スクロールではなく水平スクロールで対応
   const colClass = options.length === 2 ? "grid-cols-2" : "grid-cols-3";
 
   return (
@@ -38,86 +39,82 @@ export default function ComparePage({ searchParams }: Props) {
         比較してみましょう
       </h1>
 
-      {/* ヘッダー行 */}
-      <div className={`grid ${colClass} gap-3 sm:gap-4 mb-4`}>
-        {options.map((opt) => (
-          <div
-            key={opt.slug}
-            className={`rounded-2xl bg-gradient-to-b ${opt.accent} p-5 sm:p-6 text-center
-                        shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_rgba(0,0,0,0.04)]`}
-          >
-            <div className="text-4xl sm:text-5xl mb-2" aria-hidden>{opt.emoji}</div>
-            <h2 className="text-lg sm:text-xl font-semibold text-ink">{opt.title}</h2>
-          </div>
-        ))}
-      </div>
+      {/* スマホ: 水平スクロール / タブレット以上: グリッド */}
+      <div className="overflow-x-auto -mx-4 sm:mx-0 pb-2">
+        <div className={`grid ${colClass} gap-3 sm:gap-4 min-w-[480px] sm:min-w-0 px-4 sm:px-0`}>
 
-      {/* 比較行 */}
-      <div className="space-y-3 sm:space-y-4 mb-8">
-        {ROWS.map((row) => (
-          <div
-            key={row.key}
-            className={`grid ${colClass} gap-3 sm:gap-4`}
-          >
-            {options.map((opt) => (
+          {/* ヘッダー行 */}
+          {options.map((opt) => (
+            <div
+              key={opt.slug}
+              className={`rounded-2xl bg-gradient-to-b ${opt.accent} p-5 text-center
+                          shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_rgba(0,0,0,0.04)]`}
+            >
+              <div className="text-4xl mb-2" aria-hidden>{opt.emoji}</div>
+              <h2 className="text-base sm:text-lg font-semibold text-ink">{opt.title}</h2>
+            </div>
+          ))}
+
+          {/* 比較行 */}
+          {ROWS.map((row) =>
+            options.map((opt) => (
               <div
-                key={opt.slug}
-                className="rounded-2xl bg-white p-5 sm:p-6
+                key={`${row.key}-${opt.slug}`}
+                className="rounded-2xl bg-white p-4 sm:p-5
                            shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_rgba(0,0,0,0.04)]"
               >
-                <div className="text-xs text-sub mb-2 flex items-center gap-1">
+                <div className="text-xs text-sub mb-1.5 flex items-center gap-1">
                   <span aria-hidden>{row.emoji}</span> {row.label}
                 </div>
-                <p className="text-base sm:text-lg text-ink leading-relaxed">{opt[row.key]}</p>
+                <p className="text-sm sm:text-base text-ink leading-relaxed">{opt[row.key]}</p>
               </div>
-            ))}
-          </div>
-        ))}
+            ))
+          )}
+
+          {/* よいところ */}
+          {options.map((opt) => (
+            <div
+              key={`pros-${opt.slug}`}
+              className="rounded-2xl bg-white p-4 sm:p-5
+                         shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_rgba(0,0,0,0.04)]"
+            >
+              <div className="text-xs text-sub mb-2 flex items-center gap-1">
+                <span aria-hidden>✨</span> よいところ
+              </div>
+              <ul className="space-y-1.5">
+                {opt.pros.map((p, i) => (
+                  <li key={i} className="flex gap-2 text-sm text-ink leading-relaxed">
+                    <span className="text-emerald-500 shrink-0 mt-0.5">●</span>{p}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+
+          {/* 気をつけたいこと */}
+          {options.map((opt) => (
+            <div
+              key={`cautions-${opt.slug}`}
+              className="rounded-2xl bg-white p-4 sm:p-5
+                         shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_rgba(0,0,0,0.04)]"
+            >
+              <div className="text-xs text-sub mb-2 flex items-center gap-1">
+                <span aria-hidden>📝</span> 気をつけたいこと
+              </div>
+              <ul className="space-y-1.5">
+                {opt.cautions.map((p, i) => (
+                  <li key={i} className="flex gap-2 text-sm text-ink leading-relaxed">
+                    <span className="text-amber-500 shrink-0 mt-0.5">●</span>{p}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+
+        </div>
       </div>
 
-      {/* よいところ */}
-      <div className={`grid ${colClass} gap-3 sm:gap-4 mb-3 sm:mb-4`}>
-        {options.map((opt) => (
-          <div
-            key={opt.slug}
-            className="rounded-2xl bg-white p-5 sm:p-6
-                       shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_rgba(0,0,0,0.04)]"
-          >
-            <div className="text-xs text-sub mb-3 flex items-center gap-1">
-              <span aria-hidden>✨</span> よいところ
-            </div>
-            <ul className="space-y-2">
-              {opt.pros.map((p, i) => (
-                <li key={i} className="flex gap-2 text-base text-ink leading-relaxed">
-                  <span className="text-emerald-500 shrink-0 mt-0.5">●</span>{p}
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
-      </div>
-
-      {/* 気をつけたいこと */}
-      <div className={`grid ${colClass} gap-3 sm:gap-4 mb-10`}>
-        {options.map((opt) => (
-          <div
-            key={opt.slug}
-            className="rounded-2xl bg-white p-5 sm:p-6
-                       shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_rgba(0,0,0,0.04)]"
-          >
-            <div className="text-xs text-sub mb-3 flex items-center gap-1">
-              <span aria-hidden>📝</span> 気をつけたいこと
-            </div>
-            <ul className="space-y-2">
-              {opt.cautions.map((p, i) => (
-                <li key={i} className="flex gap-2 text-base text-ink leading-relaxed">
-                  <span className="text-amber-500 shrink-0 mt-0.5">●</span>{p}
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
-      </div>
+      <div className="mt-8 mb-10" />
 
       <CompareShareButtons titles={options.map((o) => o.title)} />
 

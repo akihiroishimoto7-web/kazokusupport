@@ -1,8 +1,9 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CHECKLIST } from "@/lib/data";
 
-// カテゴリごとにグループ化
+const STORAGE_KEY = "kazoku-checklist";
+
 const grouped = CHECKLIST.reduce<Record<string, typeof CHECKLIST>>((acc, item) => {
   if (!acc[item.category]) acc[item.category] = [];
   acc[item.category].push(item);
@@ -11,18 +12,40 @@ const grouped = CHECKLIST.reduce<Record<string, typeof CHECKLIST>>((acc, item) =
 
 export default function ChecklistClient() {
   const [checked, setChecked] = useState<Set<string>>(new Set());
+  const [loaded, setLoaded]   = useState(false);
+
+  // ページ表示時に保存済みのチェック状態を復元
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) setChecked(new Set(JSON.parse(saved) as string[]));
+    } catch {
+      // localStorage が使えない環境では無視
+    }
+    setLoaded(true);
+  }, []);
 
   const toggle = (id: string) => {
     setChecked((prev) => {
       const next = new Set(prev);
       next.has(id) ? next.delete(id) : next.add(id);
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify([...next]));
+      } catch { /* ignore */ }
       return next;
     });
+  };
+
+  const resetAll = () => {
+    setChecked(new Set());
+    try { localStorage.removeItem(STORAGE_KEY); } catch { /* ignore */ }
   };
 
   const total = CHECKLIST.length;
   const done  = checked.size;
   const pct   = Math.round((done / total) * 100);
+
+  if (!loaded) return null; // SSR時のハイドレーション不一致を防ぐ
 
   return (
     <div>
@@ -31,7 +54,17 @@ export default function ChecklistClient() {
                       shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_16px_rgba(0,0,0,0.04)]">
         <div className="flex justify-between items-center mb-2">
           <span className="text-base font-medium text-ink">{done} / {total} 完了</span>
-          <span className="text-base font-semibold text-accent">{pct}%</span>
+          <div className="flex items-center gap-3">
+            <span className="text-base font-semibold text-accent">{pct}%</span>
+            {done > 0 && (
+              <button
+                onClick={resetAll}
+                className="text-sm text-sub hover:text-ink transition-colors underline underline-offset-2"
+              >
+                リセット
+              </button>
+            )}
+          </div>
         </div>
         <div className="w-full bg-line rounded-full h-2.5">
           <div
@@ -58,7 +91,7 @@ export default function ChecklistClient() {
                               hover:bg-gray-50 transition-colors`}
                 >
                   <div
-                    className={`w-6 h-6 rounded-full border-2 flex items-center justify-center shrink-0
+                    className={`w-7 h-7 rounded-full border-2 flex items-center justify-center shrink-0
                                 transition-colors ${checked.has(item.id)
                                   ? "bg-accent border-accent"
                                   : "border-line bg-white"}`}
@@ -89,9 +122,7 @@ export default function ChecklistClient() {
       {done === total && (
         <div className="mt-6 rounded-2xl bg-emerald-50 p-6 text-center">
           <div className="text-4xl mb-2">🎉</div>
-          <p className="text-lg font-semibold text-emerald-700">
-            すべての準備が整いました
-          </p>
+          <p className="text-lg font-semibold text-emerald-700">すべての準備が整いました</p>
           <p className="text-sub text-base mt-1">安心して退院を迎えられます。</p>
         </div>
       )}

@@ -130,6 +130,9 @@ export default function HomeClient() {
         </Link>
       </section>
 
+      {/* 比較バーが出た時の下余白 */}
+      {compareSet.size > 0 && <div className="h-24" />}
+
       {/* 比較フローティングバー */}
       {compareSet.size > 0 && (
         <div className="no-print fixed bottom-6 left-0 right-0 flex justify-center z-50 px-4">

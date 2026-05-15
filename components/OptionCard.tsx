@@ -12,12 +12,12 @@ type Props = {
 export default function OptionCard({ option, dimmed, checked, onToggleCompare }: Props) {
   return (
     <div className={`relative transition-opacity duration-300 ${dimmed ? "opacity-30" : "opacity-100"}`}>
-      {/* 比較チェックボックス */}
+      {/* 比較チェックボックス — stopPropagation でカードへの遷移を防ぐ */}
       {onToggleCompare && (
         <button
-          onClick={onToggleCompare}
+          onClick={(e) => { e.preventDefault(); e.stopPropagation(); onToggleCompare(); }}
           aria-label={checked ? "比較から外す" : "比較に追加"}
-          className={`no-print absolute top-4 right-4 z-10 w-7 h-7 rounded-full border-2 flex items-center justify-center
+          className={`no-print absolute top-3 right-3 z-10 w-11 h-11 rounded-full border-2 flex items-center justify-center
                       transition-colors ${checked
                         ? "bg-accent border-accent text-white"
                         : "bg-white border-line text-transparent"}`}

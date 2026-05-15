@@ -1,21 +1,35 @@
 "use client";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
-// 詳細ページ・サービスページ用の共有ボタン（PDF印刷ヘッダー付き）
+// XSS対策: テキストノードで安全に挿入するユーティリティ
+function makePrintHeader(hospital: string, patient: string, date: string): HTMLDivElement {
+  const wrap = document.createElement("div");
+  wrap.style.cssText = "margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid #e5e5ea;";
+
+  const label = document.createElement("div");
+  label.style.cssText = "font-size:11px;color:#6e6e73;margin-bottom:4px;";
+  label.textContent = "退院後の暮らしガイド";
+
+  const info = document.createElement("div");
+  info.style.cssText = "font-size:15px;font-weight:600;color:#1d1d1f;";
+  info.textContent = `${hospital || "〇〇病院"}　患者: ${patient || "―"}　${date}`;
+
+  wrap.appendChild(label);
+  wrap.appendChild(info);
+  return wrap;
+}
+
 export default function ShareButtons({ title }: { title: string }) {
   const [hospital, setHospital] = useState("");
   const [patient, setPatient]   = useState("");
   const [date, setDate]         = useState(() => new Date().toLocaleDateString("ja-JP"));
   const [open, setOpen]         = useState(false);
+  const headerRef               = useRef<HTMLDivElement>(null);
 
   const handlePrint = () => {
-    const el = document.getElementById("print-header");
-    if (el) {
-      el.innerHTML = `
-        <div style="margin-bottom:16px; padding-bottom:12px; border-bottom:1px solid #e5e5ea;">
-          <div style="font-size:11px; color:#6e6e73; margin-bottom:4px;">退院後の暮らしガイド</div>
-          <div style="font-size:15px; font-weight:600; color:#1d1d1f;">${hospital || "〇〇病院"} &nbsp; 患者: ${patient || "―"} &nbsp; ${date}</div>
-        </div>`;
+    if (headerRef.current) {
+      headerRef.current.innerHTML = "";
+      headerRef.current.appendChild(makePrintHeader(hospital, patient, date));
     }
     window.print();
   };
@@ -32,7 +46,8 @@ export default function ShareButtons({ title }: { title: string }) {
 
   return (
     <>
-      <div id="print-header" className="hidden print:block" />
+      {/* 印刷時のみ表示されるヘッダー領域 */}
+      <div ref={headerRef} className="hidden print:block" />
 
       <div className="no-print space-y-3">
         <button

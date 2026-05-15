@@ -46,15 +46,15 @@ export default function GuidePage() {
       </section>
 
       {/* チェックリスト セクション */}
-      <header className="mb-6">
+      <section aria-labelledby="checklist-heading" className="mb-6">
         <div className="text-5xl mb-4" aria-hidden>✅</div>
-        <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-ink">
+        <h2 id="checklist-heading" className="text-3xl sm:text-4xl font-semibold tracking-tight text-ink">
           退院準備チェックリスト
         </h2>
         <p className="mt-2 text-sub text-base sm:text-lg">
-          退院前に確認しておきたいことをリストにしました。
+          退院前に確認しておきたいことをリストにしました。チェックした内容はこの端末に保存されます。
         </p>
-      </header>
+      </section>
 
       <ChecklistClient />
 
