@@ -30,6 +30,23 @@ export default function HomeClient() {
 
   return (
     <>
+      {/* クイック診断への導線 */}
+      <section className="mb-6">
+        <Link
+          href="/quiz"
+          className="flex items-center justify-between gap-4 rounded-2xl
+                     bg-accent text-white px-6 py-5
+                     shadow-[0_4px_20px_rgba(91,156,240,0.35)]
+                     hover:opacity-95 transition-opacity active:scale-[0.99]"
+        >
+          <div>
+            <p className="text-xs font-medium opacity-80 mb-0.5">迷ったらここから</p>
+            <p className="text-lg font-semibold">3つの質問でおすすめを診断 →</p>
+          </div>
+          <span className="text-4xl shrink-0" aria-hidden>🎯</span>
+        </Link>
+      </section>
+
       {/* 要介護度フィルター */}
       <section className="mb-8">
         <p className="text-sub text-sm mb-3 text-center">
