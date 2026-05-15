@@ -14,6 +14,7 @@ export type Option = {
   lead: string;
   forWhom: string;
   cost: string;
+  costLevel: 1 | 2 | 3 | 4 | 5; // 費用感 1=低い 〜 5=高い
   rehab: string;
   medical: string;
   ease: string;
@@ -40,6 +41,7 @@ export const OPTIONS: Option[] = [
     lead: "住み慣れた我が家で、自分らしく暮らす",
     forWhom: "ご家族のサポートや介護サービスを使えば、家での生活が続けられそうな方",
     cost: "介護保険サービスの自己負担分のみ（おおむね月 1〜5万円ほど）",
+    costLevel: 1,
     rehab: "訪問リハビリ・通所リハビリで継続できます",
     medical: "かかりつけ医・訪問診療・訪問看護で支えます",
     ease: "退院日からすぐに開始できます",
@@ -82,6 +84,7 @@ export const OPTIONS: Option[] = [
     lead: "リハビリを続けて、もう一度おうちを目指す",
     forWhom: "もう少しリハビリを続けて、自宅へ戻る準備をしたい方",
     cost: "月およそ 8〜14万円（食費・居住費・介護費を含む）",
+    costLevel: 2,
     rehab: "毎日リハビリあり。在宅復帰を目標にします",
     medical: "施設の医師・看護師が常勤しています",
     ease: "比較的入りやすい（おおむね3〜6か月の利用が目安）",
@@ -125,6 +128,7 @@ export const OPTIONS: Option[] = [
     lead: "ずっと暮らせる、安心の住まい",
     forWhom: "ご自宅での生活が難しく、長く暮らせる場所を探している方（原則 要介護3以上）",
     cost: "月およそ 8〜15万円（所得に応じた負担軽減あり）",
+    costLevel: 2,
     rehab: "機能訓練が中心。リハビリ量は控えめ",
     medical: "看護師が日中常駐。夜間はオンコール対応",
     ease: "人気のため、待機が必要なことがあります",
@@ -169,6 +173,7 @@ export const OPTIONS: Option[] = [
     lead: "ホテルのような暮らしと、手厚いサポート",
     forWhom: "サービスの自由度を大切にしたい方、すぐに入居先を決めたい方",
     cost: "入居一時金 0〜数百万円／月およそ 15〜30万円",
+    costLevel: 5,
     rehab: "施設によって差があります（リハビリ充実型もあり）",
     medical: "施設により幅があります。協力医療機関を確認しましょう",
     ease: "空きがあればすぐに入居できます",
@@ -211,6 +216,7 @@ export const OPTIONS: Option[] = [
     lead: "自分のペースで暮らす、見守りつきの住まい",
     forWhom: "自立した生活ができ、見守りがあると安心という方",
     cost: "月およそ 10〜20万円（家賃＋サービス費）",
+    costLevel: 3,
     rehab: "基本的にはありません。外部サービスを利用",
     medical: "外部の医療機関と連携。施設による差あり",
     ease: "比較的入りやすい",

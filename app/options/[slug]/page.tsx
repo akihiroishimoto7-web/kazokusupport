@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import InfoRow from "@/components/InfoRow";
+import CostBar from "@/components/CostBar";
 import ShareButtons from "@/components/ShareButtons";
 import { OPTIONS } from "@/lib/data";
 
@@ -34,7 +35,15 @@ export default function OptionDetailPage({ params }: { params: { slug: string } 
       <section className="print-page rounded-3xl bg-white p-6 sm:p-8 mb-5
                           shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_24px_rgba(0,0,0,0.04)]">
         <InfoRow emoji="👥" label="どんな人向け？" value={option.forWhom} />
-        <InfoRow emoji="💴" label="費用のめやす"   value={option.cost} />
+        {/* 費用行：テキスト＋バーグラフ */}
+        <div className="flex gap-4 sm:gap-5 py-5 border-b border-line">
+          <div className="text-3xl shrink-0" aria-hidden>💴</div>
+          <div className="w-full">
+            <div className="text-sm text-sub mb-1">費用のめやす</div>
+            <div className="text-lg sm:text-xl text-ink leading-relaxed">{option.cost}</div>
+            <CostBar level={option.costLevel} />
+          </div>
+        </div>
         <InfoRow emoji="💪" label="リハビリ"       value={option.rehab} />
         <InfoRow emoji="🩺" label="医療対応"       value={option.medical} />
         <InfoRow emoji="🚪" label="入りやすさ"     value={option.ease} />

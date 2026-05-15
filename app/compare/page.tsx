@@ -2,13 +2,13 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { OPTIONS } from "@/lib/data";
 import CompareShareButtons from "@/components/CompareShareButtons";
+import CostBar from "@/components/CostBar";
 
 type Props = { searchParams: { a?: string; b?: string; c?: string } };
 
-// 比較テーブルの行定義
+// 費用以外の比較行
 const ROWS = [
   { emoji: "👥", label: "どんな人向け？", key: "forWhom" as const },
-  { emoji: "💴", label: "費用のめやす",   key: "cost"     as const },
   { emoji: "💪", label: "リハビリ",       key: "rehab"    as const },
   { emoji: "🩺", label: "医療対応",       key: "medical"  as const },
   { emoji: "🚪", label: "入りやすさ",     key: "ease"     as const },
@@ -55,7 +55,22 @@ export default function ComparePage({ searchParams }: Props) {
             </div>
           ))}
 
-          {/* 比較行 */}
+          {/* 費用行（バーグラフつき） */}
+          {options.map((opt) => (
+            <div
+              key={`cost-${opt.slug}`}
+              className="rounded-2xl bg-white p-4 sm:p-5
+                         shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_rgba(0,0,0,0.04)]"
+            >
+              <div className="text-xs text-sub mb-1.5 flex items-center gap-1">
+                <span aria-hidden>💴</span> 費用のめやす
+              </div>
+              <p className="text-sm sm:text-base text-ink leading-relaxed">{opt.cost}</p>
+              <CostBar level={opt.costLevel} compact />
+            </div>
+          ))}
+
+          {/* その他の比較行 */}
           {ROWS.map((row) =>
             options.map((opt) => (
               <div
