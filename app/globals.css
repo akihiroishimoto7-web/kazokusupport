@@ -8,9 +8,13 @@ html, body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* やさしい印刷用スタイル（PDF出力に使用） */
+/* print */
 @media print {
-  .no-print { display: none !important; }
-  body { background: #ffffff; }
+  .no-print   { display: none !important; }
+  .print:block { display: block !important; }
+  body        { background: #ffffff; }
   .print-page { box-shadow: none !important; border: none !important; }
+  /* 比較ページ：横並び維持 */
+  .grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+  .grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
 }

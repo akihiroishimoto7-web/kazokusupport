@@ -1,20 +1,23 @@
 "use client";
 import { useState } from "react";
 
-// 詳細ページ・サービスページ用の共有ボタン（PDF印刷ヘッダー付き）
-export default function ShareButtons({ title }: { title: string }) {
+type Props = { titles: string[] };
+
+export default function CompareShareButtons({ titles }: Props) {
   const [hospital, setHospital] = useState("");
   const [patient, setPatient]   = useState("");
   const [date, setDate]         = useState(() => new Date().toLocaleDateString("ja-JP"));
   const [open, setOpen]         = useState(false);
 
   const handlePrint = () => {
+    // print-header の内容をセットしてから印刷
     const el = document.getElementById("print-header");
     if (el) {
       el.innerHTML = `
         <div style="margin-bottom:16px; padding-bottom:12px; border-bottom:1px solid #e5e5ea;">
           <div style="font-size:11px; color:#6e6e73; margin-bottom:4px;">退院後の暮らしガイド</div>
           <div style="font-size:15px; font-weight:600; color:#1d1d1f;">${hospital || "〇〇病院"} &nbsp; 患者: ${patient || "―"} &nbsp; ${date}</div>
+          <div style="font-size:12px; color:#6e6e73; margin-top:4px;">比較: ${titles.join(" vs ")}</div>
         </div>`;
     }
     window.print();
@@ -22,7 +25,7 @@ export default function ShareButtons({ title }: { title: string }) {
 
   const handleLine = () => {
     const url  = window.location.href;
-    const text = `${title}についての説明をご家族と共有します`;
+    const text = `${titles.join("と")}の比較をご共有します`;
     window.open(
       `https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`,
       "_blank",
@@ -32,6 +35,7 @@ export default function ShareButtons({ title }: { title: string }) {
 
   return (
     <>
+      {/* 印刷時のみ表示されるヘッダー領域 */}
       <div id="print-header" className="hidden print:block" />
 
       <div className="no-print space-y-3">
