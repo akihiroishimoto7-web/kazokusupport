@@ -33,7 +33,7 @@ export default function HomeClient() {
       {/* 要介護度フィルター */}
       <section className="mb-8">
         <p className="text-sub text-sm mb-3 text-center">
-          要介護度で絞り込む（任意）
+          要介護度を選ぶと、対象外の選択肢が薄く表示されます
         </p>
         <div className="flex flex-wrap justify-center gap-2">
           <button

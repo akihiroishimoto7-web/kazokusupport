@@ -41,7 +41,7 @@ export default function ComparePage({ searchParams }: Props) {
 
       {/* スマホ: 水平スクロール / タブレット以上: グリッド */}
       <div className="overflow-x-auto -mx-4 sm:mx-0 pb-2">
-        <div className={`grid ${colClass} gap-3 sm:gap-4 min-w-[480px] sm:min-w-0 px-4 sm:px-0`}>
+        <div className={`grid ${colClass} gap-3 sm:gap-4 ${options.length === 3 ? "min-w-[560px]" : ""} sm:min-w-0 px-4 sm:px-0`}>
 
           {/* ヘッダー行 */}
           {options.map((opt) => (
