@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
+import BottomNav from "@/components/BottomNav";
 
 export const metadata: Metadata = {
   title: "退院後の暮らしガイド",
@@ -15,7 +16,11 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ja">
-      <body className="font-sans">{children}</body>
+      {/* pb-20 でタブバー分の余白を確保 */}
+      <body className="font-sans pb-20">
+        {children}
+        <BottomNav />
+      </body>
     </html>
   );
 }
