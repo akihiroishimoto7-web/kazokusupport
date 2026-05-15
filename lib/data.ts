@@ -4,6 +4,8 @@
 export type DayFlowItem = { time: string; activity: string };
 export type Step        = { label: string; detail: string };
 export type LocalFaq    = { q: string; a: string };
+export type BadgeColor  = "sky" | "emerald" | "amber" | "rose" | "violet";
+export type Badge       = { label: string; color: BadgeColor };
 
 export type Option = {
   slug: string;
@@ -19,6 +21,7 @@ export type Option = {
   cautions: string[];
   accent: string;
   careLevels: number[];   // 0=要支援1 〜 6=要介護5
+  badges: Badge[];        // カードに表示するバッジ
   dayFlow: DayFlowItem[]; // 一日の流れ
   steps: Step[];          // 利用までの流れ
   localFaqs: LocalFaq[];  // この選択肢によく聞かれる質問
@@ -44,6 +47,10 @@ export const OPTIONS: Option[] = [
     cautions: ["ご家族の介護負担が増えることがある", "段差や手すりなど、住まいの工夫が必要な場合がある"],
     accent: "from-sky-100 to-white",
     careLevels: [0, 1, 2, 3, 4, 5, 6],
+    badges: [
+      { label: "今すぐ開始できる", color: "sky" },
+      { label: "費用おさえめ",     color: "emerald" },
+    ],
     dayFlow: [
       { time: "7:00",  activity: "起床・服薬・朝食" },
       { time: "9:00",  activity: "ヘルパー訪問（週3〜5回）または通所リハビリへ出発" },
@@ -82,6 +89,10 @@ export const OPTIONS: Option[] = [
     cautions: ["長期の入所には向きません", "数か月ごとに継続を判定します"],
     accent: "from-emerald-100 to-white",
     careLevels: [2, 3, 4, 5, 6],
+    badges: [
+      { label: "リハビリ毎日あり", color: "emerald" },
+      { label: "医療サポート充実", color: "sky" },
+    ],
     dayFlow: [
       { time: "7:00",  activity: "起床・体調確認・朝食" },
       { time: "9:30",  activity: "リハビリ（理学療法・作業療法・言語療法など）" },
@@ -121,6 +132,11 @@ export const OPTIONS: Option[] = [
     cautions: ["要介護3以上が原則です", "入所まで時間がかかることがあります"],
     accent: "from-rose-100 to-white",
     careLevels: [4, 5, 6],
+    badges: [
+      { label: "長期入居OK",   color: "rose" },
+      { label: "費用おさえめ", color: "emerald" },
+      { label: "待機あり",     color: "amber" },
+    ],
     dayFlow: [
       { time: "7:00",  activity: "起床・洗面・着替え介助" },
       { time: "8:00",  activity: "朝食" },
@@ -160,6 +176,10 @@ export const OPTIONS: Option[] = [
     cautions: ["費用が高めになりやすい", "施設ごとにサービス内容の差が大きい"],
     accent: "from-amber-100 to-white",
     careLevels: [1, 2, 3, 4, 5, 6],
+    badges: [
+      { label: "即入居可",   color: "sky" },
+      { label: "設備・サービス充実", color: "amber" },
+    ],
     dayFlow: [
       { time: "7:30",  activity: "起床・朝食（食堂またはお部屋で）" },
       { time: "9:30",  activity: "サークル活動・体操・個別の時間" },
@@ -198,6 +218,10 @@ export const OPTIONS: Option[] = [
     cautions: ["介護度が重くなると住み続けが難しい場合がある", "介護サービスは別契約になります"],
     accent: "from-violet-100 to-white",
     careLevels: [0, 1, 2, 3],
+    badges: [
+      { label: "即入居可",       color: "sky" },
+      { label: "自分らしい暮らし", color: "violet" },
+    ],
     dayFlow: [
       { time: "8:00",  activity: "起床・朝食（スタッフが安否確認）" },
       { time: "10:00", activity: "外出・買い物・通院・趣味" },
