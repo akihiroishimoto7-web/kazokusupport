@@ -99,8 +99,32 @@ export default function HomeClient() {
         })}
       </section>
 
-      {/* 介護保険サービスへの導線 */}
+      {/* 費用シミュレーターへの導線 */}
       <section className="mt-8 sm:mt-10">
+        <Link
+          href="/simulate"
+          className="block rounded-3xl bg-white p-7 sm:p-8
+                     shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_24px_rgba(0,0,0,0.04)]
+                     hover:shadow-[0_2px_4px_rgba(0,0,0,0.06),0_16px_40px_rgba(0,0,0,0.08)]
+                     transition-shadow"
+        >
+          <div className="flex items-center justify-between gap-4">
+            <div>
+              <div className="text-3xl mb-2" aria-hidden>💴</div>
+              <h2 className="text-xl sm:text-2xl font-semibold text-ink">
+                月額費用シミュレーター
+              </h2>
+              <p className="mt-1 text-sub text-base">
+                要介護度・負担割合を選ぶと各選択肢の費用目安がわかります
+              </p>
+            </div>
+            <span className="text-accent text-2xl shrink-0">→</span>
+          </div>
+        </Link>
+      </section>
+
+      {/* 介護保険サービスへの導線 */}
+      <section className="mt-4">
         <Link
           href="/services"
           className="block rounded-3xl bg-white p-7 sm:p-8
