@@ -1,5 +1,5 @@
 import Link from "next/link";
-import ChecklistClient from "@/components/ChecklistClient";
+import ChecklistWithTabs from "@/components/ChecklistWithTabs";
 import { FAQS } from "@/lib/data";
 
 export default function GuidePage() {
@@ -56,7 +56,7 @@ export default function GuidePage() {
         </p>
       </section>
 
-      <ChecklistClient />
+      <ChecklistWithTabs />
 
       <p className="no-print mt-10 text-center text-sub text-sm">
         ※ ご不明な点は、病棟の相談員までお声がけください。

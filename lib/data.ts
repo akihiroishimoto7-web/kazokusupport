@@ -18,6 +18,9 @@ export type Option = {
   rehab: string;
   medical: string;
   ease: string;
+  dementia: string;  // 認知症対応
+  roomType: string;  // 居室タイプ
+  looking: string;   // 看取り対応
   pros: string[];
   cautions: string[];
   accent: string;
@@ -45,6 +48,9 @@ export const OPTIONS: Option[] = [
     rehab: "訪問リハビリ・通所リハビリで継続できます",
     medical: "かかりつけ医・訪問診療・訪問看護で支えます",
     ease: "退院日からすぐに開始できます",
+    dementia: "○ 訪問・通所サービスで対応可",
+    roomType: "自室（プライバシー確保）",
+    looking: "○ 訪問診療・訪問看護で対応可",
     pros: ["住み慣れた環境で安心できる", "ご家族との時間が増える", "費用をおさえやすい"],
     cautions: ["ご家族の介護負担が増えることがある", "段差や手すりなど、住まいの工夫が必要な場合がある"],
     accent: "from-sky-100 to-white",
@@ -88,6 +94,9 @@ export const OPTIONS: Option[] = [
     rehab: "毎日リハビリあり。在宅復帰を目標にします",
     medical: "施設の医師・看護師が常勤しています",
     ease: "比較的入りやすい（おおむね3〜6か月の利用が目安）",
+    dementia: "○ 対応可（重度の場合は要相談）",
+    roomType: "相部屋が中心（個室あり）",
+    looking: "△ 原則、入院での対応となります",
     pros: ["リハビリをしっかり続けられる", "医療面のサポートがある", "費用がわかりやすい"],
     cautions: ["長期の入所には向きません", "数か月ごとに継続を判定します"],
     accent: "from-emerald-100 to-white",
@@ -132,6 +141,9 @@ export const OPTIONS: Option[] = [
     rehab: "機能訓練が中心。リハビリ量は控えめ",
     medical: "看護師が日中常駐。夜間はオンコール対応",
     ease: "人気のため、待機が必要なことがあります",
+    dementia: "◎ 認知症専門ケアに対応",
+    roomType: "個室または相部屋（施設による）",
+    looking: "◎ 看取り介護に積極的な施設が多い",
     pros: ["終のすみかとして長く暮らせる", "費用負担をおさえやすい", "24時間の介護体制"],
     cautions: ["要介護3以上が原則です", "入所まで時間がかかることがあります"],
     accent: "from-rose-100 to-white",
@@ -177,6 +189,9 @@ export const OPTIONS: Option[] = [
     rehab: "施設によって差があります（リハビリ充実型もあり）",
     medical: "施設により幅があります。協力医療機関を確認しましょう",
     ease: "空きがあればすぐに入居できます",
+    dementia: "○〜◎ 認知症専門型もあり（施設による）",
+    roomType: "個室が基本",
+    looking: "○ 施設によって対応が異なります",
     pros: ["サービスや設備が充実している", "比較的すぐに入居できる", "選択肢が豊富"],
     cautions: ["費用が高めになりやすい", "施設ごとにサービス内容の差が大きい"],
     accent: "from-amber-100 to-white",
@@ -220,6 +235,9 @@ export const OPTIONS: Option[] = [
     rehab: "基本的にはありません。外部サービスを利用",
     medical: "外部の医療機関と連携。施設による差あり",
     ease: "比較的入りやすい",
+    dementia: "△ 軽度の方が中心（施設による）",
+    roomType: "個室（独立した居室）",
+    looking: "△ 施設による。外部の医療機関と連携",
     pros: ["プライバシーが保たれる", "安否確認・生活相談つき", "自分らしい暮らしを続けやすい"],
     cautions: ["介護度が重くなると住み続けが難しい場合がある", "介護サービスは別契約になります"],
     accent: "from-violet-100 to-white",
@@ -459,17 +477,32 @@ export const FAQS: FAQ[] = [
 ];
 
 // 退院準備チェックリスト
-export type CheckItem = { id: string; category: string; text: string };
+export type CheckItem = {
+  id: string;
+  category: string;
+  text: string;
+  target: "home" | "facility" | "both";
+};
 
 export const CHECKLIST: CheckItem[] = [
-  { id: "c1",  category: "介護保険",  text: "要介護認定の申請はできていますか？" },
-  { id: "c2",  category: "介護保険",  text: "ケアマネジャーは決まりましたか？" },
-  { id: "c3",  category: "退院先",    text: "退院後の行き先（施設・自宅）は決まりましたか？" },
-  { id: "c4",  category: "退院先",    text: "施設の見学・申込みは済んでいますか？" },
-  { id: "c5",  category: "医療",      text: "退院後のかかりつけ医（通院先）は決まりましたか？" },
-  { id: "c6",  category: "医療",      text: "お薬の管理方法は確認できていますか？" },
-  { id: "c7",  category: "住まい",    text: "自宅の環境整備（手すり・段差解消）はできていますか？" },
-  { id: "c8",  category: "住まい",    text: "福祉用具（ベッド・車いす等）の手配は済んでいますか？" },
-  { id: "c9",  category: "生活",      text: "緊急時の連絡先リストを作りましたか？" },
-  { id: "c10", category: "生活",      text: "退院後の生活費・費用の見通しはつきましたか？" },
+  // 共通
+  { id: "c1",  category: "介護保険",   text: "要介護認定の申請はできていますか？",                     target: "both" },
+  { id: "c2",  category: "介護保険",   text: "ケアマネジャーは決まりましたか？",                       target: "both" },
+  { id: "c3",  category: "退院先",     text: "退院後の行き先（施設・自宅）は決まりましたか？",         target: "both" },
+  { id: "c5",  category: "医療",       text: "退院後のかかりつけ医（通院先）は決まりましたか？",       target: "both" },
+  { id: "c6",  category: "医療",       text: "お薬の管理方法は確認できていますか？",                   target: "both" },
+  { id: "c9",  category: "生活",       text: "緊急時の連絡先リストを作りましたか？",                   target: "both" },
+  { id: "c10", category: "生活",       text: "退院後の生活費・費用の見通しはつきましたか？",           target: "both" },
+  // 自宅向け
+  { id: "c7",  category: "住まい",     text: "自宅の環境整備（手すり・段差解消）はできていますか？",   target: "home" },
+  { id: "c8",  category: "住まい",     text: "福祉用具（ベッド・車いす等）の手配は済んでいますか？",   target: "home" },
+  { id: "c11", category: "在宅サービス", text: "ヘルパーや訪問看護などの手配はできましたか？",         target: "home" },
+  { id: "c12", category: "在宅サービス", text: "デイサービス・デイケアの手配はできましたか？",         target: "home" },
+  { id: "c13", category: "退院当日",   text: "退院当日の迎えや移動の手配はできていますか？",           target: "home" },
+  // 施設向け
+  { id: "c4",  category: "施設準備",   text: "施設の見学・申込みは済んでいますか？",                   target: "facility" },
+  { id: "c14", category: "施設準備",   text: "施設との面談・契約は完了しましたか？",                   target: "facility" },
+  { id: "c15", category: "施設準備",   text: "入所に必要な書類（診断書・健康診断書等）は揃いましたか？", target: "facility" },
+  { id: "c16", category: "施設準備",   text: "施設への引越し・荷物の準備はできていますか？",           target: "facility" },
+  { id: "c17", category: "施設準備",   text: "名前入りの衣類・日用品の準備はできましたか？",           target: "facility" },
 ];

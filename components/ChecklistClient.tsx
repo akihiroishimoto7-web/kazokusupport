@@ -1,16 +1,21 @@
 "use client";
 import { useEffect, useState } from "react";
-import { CHECKLIST } from "@/lib/data";
+import { CHECKLIST, type CheckItem } from "@/lib/data";
 
 const STORAGE_KEY = "kazoku-checklist";
 
-const grouped = CHECKLIST.reduce<Record<string, typeof CHECKLIST>>((acc, item) => {
-  if (!acc[item.category]) acc[item.category] = [];
-  acc[item.category].push(item);
-  return acc;
-}, {});
+function group(items: CheckItem[]) {
+  return items.reduce<Record<string, CheckItem[]>>((acc, item) => {
+    if (!acc[item.category]) acc[item.category] = [];
+    acc[item.category].push(item);
+    return acc;
+  }, {});
+}
 
-export default function ChecklistClient() {
+export default function ChecklistClient({ items }: { items?: CheckItem[] }) {
+  const activeItems = items ?? CHECKLIST;
+  const grouped = group(activeItems);
+
   const [checked, setChecked] = useState<Set<string>>(new Set());
   const [loaded, setLoaded]   = useState(false);
 
@@ -41,8 +46,8 @@ export default function ChecklistClient() {
     try { localStorage.removeItem(STORAGE_KEY); } catch { /* ignore */ }
   };
 
-  const total = CHECKLIST.length;
-  const done  = checked.size;
+  const total = activeItems.length;
+  const done  = activeItems.filter((i) => checked.has(i.id)).length;
   const pct   = Math.round((done / total) * 100);
 
   if (!loaded) return null; // SSR時のハイドレーション不一致を防ぐ

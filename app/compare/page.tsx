@@ -8,10 +8,13 @@ type Props = { searchParams: { a?: string; b?: string; c?: string } };
 
 // 費用以外の比較行
 const ROWS = [
-  { emoji: "👥", label: "どんな人向け？", key: "forWhom" as const },
+  { emoji: "👥", label: "どんな人向け？", key: "forWhom"  as const },
   { emoji: "💪", label: "リハビリ",       key: "rehab"    as const },
   { emoji: "🩺", label: "医療対応",       key: "medical"  as const },
   { emoji: "🚪", label: "入りやすさ",     key: "ease"     as const },
+  { emoji: "🧠", label: "認知症対応",     key: "dementia" as const },
+  { emoji: "🛏️", label: "居室タイプ",    key: "roomType" as const },
+  { emoji: "🕊️", label: "看取り対応",    key: "looking"  as const },
 ];
 
 export default function ComparePage({ searchParams }: Props) {

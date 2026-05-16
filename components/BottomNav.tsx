@@ -3,11 +3,11 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const TABS = [
-  { href: "/",             label: "選択肢", icon: HomeIcon },
-  { href: "/quiz",         label: "診断",   icon: QuizIcon },
-  { href: "/compare-entry",label: "比較",   icon: CompareIcon },
-  { href: "/services",     label: "サービス",icon: ServiceIcon },
-  { href: "/guide",        label: "ガイド", icon: GuideIcon },
+  { href: "/",              label: "選択肢",   icon: HomeIcon },
+  { href: "/quiz",          label: "診断",     icon: QuizIcon },
+  { href: "/compare-entry", label: "比較",     icon: CompareIcon },
+  { href: "/services",      label: "サービス", icon: ServiceIcon },
+  { href: "/simulate",      label: "費用",     icon: SimulateIcon },
 ];
 
 export default function BottomNav() {
@@ -89,13 +89,14 @@ function ServiceIcon({ active }: { active: boolean }) {
   );
 }
 
-function GuideIcon({ active }: { active: boolean }) {
+function SimulateIcon({ active }: { active: boolean }) {
   const c = active ? "#5b9cf0" : "currentColor";
   return (
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none"
          stroke={c} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M9 11l3 3L22 4"/>
-      <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
+      <rect x="2" y="5" width="20" height="14" rx="2"/>
+      <path d="M2 10h20"/>
+      <path d="M6 15h4M14 15h4"/>
     </svg>
   );
 }
