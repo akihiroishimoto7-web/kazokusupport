@@ -8,16 +8,68 @@ html, body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* iOS Safari のホームインジケーター分の余白 */
+/* iOS Safari ホームインジケーター対応 */
 .safe-area-pb {
   padding-bottom: env(safe-area-inset-bottom, 0px);
 }
 
+/* ━━━ 印刷・PDF スタイル ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 @media print {
-  .no-print   { display: none !important; }
-  body        { background: #ffffff; padding-bottom: 0 !important; }
-  .print-page { box-shadow: none !important; }
+
+  /* ページ設定：A4縦・余白12mm */
+  @page {
+    size: A4 portrait;
+    margin: 12mm 12mm 15mm 12mm;
+  }
+
+  /* 背景色・グラデーションを必ず印刷する */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* 非表示にする要素 */
+  .no-print { display: none !important; }
+
+  /* body リセット */
+  body {
+    background: #ffffff !important;
+    padding-bottom: 0 !important;
+    font-size: 10pt;
+    color: #1d1d1f;
+  }
+
+  /* 見出しの直後でページ切れしないよう制御 */
+  h1, h2 { break-after: avoid; }
+
+  /* カードセクションは途中でページが切れないように */
+  .print-page {
+    box-shadow: none !important;
+    break-inside: avoid;
+    margin-bottom: 6pt !important;
+  }
+
+  /* シャドウ全消し */
+  * { box-shadow: none !important; }
+
+  /* details の中身を印刷時に全展開 */
+  details > *:not(summary) { display: block !important; }
+  /* アコーディオンの矢印は非表示 */
+  details summary span:last-child { display: none !important; }
+
+  /* 比較ページの横並び維持 */
   .grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
   .grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
-  .overflow-x-auto { overflow: visible !important; }
+
+  /* 比較ページの横スクロール解除 */
+  .overflow-x-auto {
+    overflow: visible !important;
+    margin: 0 !important;
+  }
+
+  /* 印刷ヘッダー領域を表示 */
+  .print-header-area { display: block !important; }
+
+  /* タイムライン・ステップの文字サイズを少し下げて収める */
+  main { max-width: 100% !important; padding: 0 !important; }
 }
