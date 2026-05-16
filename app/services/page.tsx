@@ -23,21 +23,25 @@ export default function ServicesPage() {
       </header>
 
       <section className="grid grid-cols-1 gap-4 mb-10">
-        {SERVICES.map((s, i) => (
-          <article
-            key={i}
-            className="print-page rounded-3xl bg-white p-6 sm:p-7
-                       shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_24px_rgba(0,0,0,0.04)]"
+        {SERVICES.map((s) => (
+          <Link
+            key={s.slug}
+            href={`/services/${s.slug}`}
+            className="print-page block rounded-3xl bg-white p-6 sm:p-7
+                       shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_24px_rgba(0,0,0,0.04)]
+                       hover:shadow-[0_2px_4px_rgba(0,0,0,0.06),0_16px_40px_rgba(0,0,0,0.08)]
+                       transition-shadow"
           >
             <div className="flex gap-4 sm:gap-5 items-start">
               <div className="text-4xl shrink-0" aria-hidden>{s.emoji}</div>
-              <div>
+              <div className="flex-1">
                 <h2 className="text-xl sm:text-2xl font-semibold text-ink">{s.name}</h2>
                 <p className="mt-1 text-accent text-base">{s.summary}</p>
                 <p className="mt-3 text-sub text-base leading-relaxed">{s.detail}</p>
               </div>
+              <span className="text-accent text-xl shrink-0 self-center">→</span>
             </div>
-          </article>
+          </Link>
         ))}
       </section>
 
