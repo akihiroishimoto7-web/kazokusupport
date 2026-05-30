@@ -488,27 +488,28 @@ export type CheckItem = {
   category: string;
   text: string;
   target: "home" | "facility" | "both";
+  daysBefore: number; // 退院の何日前までに済ませたいかの目安
 };
 
 export const CHECKLIST: CheckItem[] = [
   // 共通
-  { id: "c1",  category: "介護保険",   text: "要介護認定の申請はできていますか？",                     target: "both" },
-  { id: "c2",  category: "介護保険",   text: "ケアマネジャーは決まりましたか？",                       target: "both" },
-  { id: "c3",  category: "退院先",     text: "退院後の行き先（施設・自宅）は決まりましたか？",         target: "both" },
-  { id: "c5",  category: "医療",       text: "退院後のかかりつけ医（通院先）は決まりましたか？",       target: "both" },
-  { id: "c6",  category: "医療",       text: "お薬の管理方法は確認できていますか？",                   target: "both" },
-  { id: "c9",  category: "生活",       text: "緊急時の連絡先リストを作りましたか？",                   target: "both" },
-  { id: "c10", category: "生活",       text: "退院後の生活費・費用の見通しはつきましたか？",           target: "both" },
+  { id: "c1",  category: "介護保険",   text: "要介護認定の申請はできていますか？",                     target: "both", daysBefore: 30 },
+  { id: "c2",  category: "介護保険",   text: "ケアマネジャーは決まりましたか？",                       target: "both", daysBefore: 21 },
+  { id: "c3",  category: "退院先",     text: "退院後の行き先（施設・自宅）は決まりましたか？",         target: "both", daysBefore: 21 },
+  { id: "c5",  category: "医療",       text: "退院後のかかりつけ医（通院先）は決まりましたか？",       target: "both", daysBefore: 14 },
+  { id: "c6",  category: "医療",       text: "お薬の管理方法は確認できていますか？",                   target: "both", daysBefore: 7 },
+  { id: "c9",  category: "生活",       text: "緊急時の連絡先リストを作りましたか？",                   target: "both", daysBefore: 7 },
+  { id: "c10", category: "生活",       text: "退院後の生活費・費用の見通しはつきましたか？",           target: "both", daysBefore: 14 },
   // 自宅向け
-  { id: "c7",  category: "住まい",     text: "自宅の環境整備（手すり・段差解消）はできていますか？",   target: "home" },
-  { id: "c8",  category: "住まい",     text: "福祉用具（ベッド・車いす等）の手配は済んでいますか？",   target: "home" },
-  { id: "c11", category: "在宅サービス", text: "ヘルパーや訪問看護などの手配はできましたか？",         target: "home" },
-  { id: "c12", category: "在宅サービス", text: "デイサービス・デイケアの手配はできましたか？",         target: "home" },
-  { id: "c13", category: "退院当日",   text: "退院当日の迎えや移動の手配はできていますか？",           target: "home" },
+  { id: "c7",  category: "住まい",     text: "自宅の環境整備（手すり・段差解消）はできていますか？",   target: "home", daysBefore: 7 },
+  { id: "c8",  category: "住まい",     text: "福祉用具（ベッド・車いす等）の手配は済んでいますか？",   target: "home", daysBefore: 7 },
+  { id: "c11", category: "在宅サービス", text: "ヘルパーや訪問看護などの手配はできましたか？",         target: "home", daysBefore: 7 },
+  { id: "c12", category: "在宅サービス", text: "デイサービス・デイケアの手配はできましたか？",         target: "home", daysBefore: 7 },
+  { id: "c13", category: "退院当日",   text: "退院当日の迎えや移動の手配はできていますか？",           target: "home", daysBefore: 3 },
   // 施設向け
-  { id: "c4",  category: "施設準備",   text: "施設の見学・申込みは済んでいますか？",                   target: "facility" },
-  { id: "c14", category: "施設準備",   text: "施設との面談・契約は完了しましたか？",                   target: "facility" },
-  { id: "c15", category: "施設準備",   text: "入所に必要な書類（診断書・健康診断書等）は揃いましたか？", target: "facility" },
-  { id: "c16", category: "施設準備",   text: "施設への引越し・荷物の準備はできていますか？",           target: "facility" },
-  { id: "c17", category: "施設準備",   text: "名前入りの衣類・日用品の準備はできましたか？",           target: "facility" },
+  { id: "c4",  category: "施設準備",   text: "施設の見学・申込みは済んでいますか？",                   target: "facility", daysBefore: 21 },
+  { id: "c14", category: "施設準備",   text: "施設との面談・契約は完了しましたか？",                   target: "facility", daysBefore: 10 },
+  { id: "c15", category: "施設準備",   text: "入所に必要な書類（診断書・健康診断書等）は揃いましたか？", target: "facility", daysBefore: 10 },
+  { id: "c16", category: "施設準備",   text: "施設への引越し・荷物の準備はできていますか？",           target: "facility", daysBefore: 3 },
+  { id: "c17", category: "施設準備",   text: "名前入りの衣類・日用品の準備はできましたか？",           target: "facility", daysBefore: 3 },
 ];

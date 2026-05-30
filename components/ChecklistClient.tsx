@@ -2,7 +2,8 @@
 import { useEffect, useState } from "react";
 import { CHECKLIST, type CheckItem } from "@/lib/data";
 
-const STORAGE_KEY = "kazoku-checklist";
+const STORAGE_KEY  = "kazoku-checklist";
+const DISCHARGE_KEY = "kazoku-discharge-date";
 
 function group(items: CheckItem[]) {
   return items.reduce<Record<string, CheckItem[]>>((acc, item) => {
@@ -12,23 +13,54 @@ function group(items: CheckItem[]) {
   }, {});
 }
 
+// 退院予定日(YYYY-MM-DD)と「退院の何日前」から、期限の表示情報を作る
+function dueInfo(dischargeISO: string, daysBefore: number) {
+  const discharge = new Date(dischargeISO + "T00:00:00");
+  if (isNaN(discharge.getTime())) return null;
+
+  const due = new Date(discharge);
+  due.setDate(due.getDate() - daysBefore);
+
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const daysLeft = Math.round((due.getTime() - today.getTime()) / 86400000);
+
+  const label = `${due.getMonth() + 1}/${due.getDate()}まで`;
+  let tone: "overdue" | "soon" | "normal" = "normal";
+  if (daysLeft < 0) tone = "overdue";
+  else if (daysLeft <= 3) tone = "soon";
+
+  return { label, tone, daysLeft };
+}
+
 export default function ChecklistClient({ items }: { items?: CheckItem[] }) {
   const activeItems = items ?? CHECKLIST;
   const grouped = group(activeItems);
 
-  const [checked, setChecked] = useState<Set<string>>(new Set());
-  const [loaded, setLoaded]   = useState(false);
+  const [checked, setChecked]       = useState<Set<string>>(new Set());
+  const [discharge, setDischarge]   = useState("");
+  const [loaded, setLoaded]         = useState(false);
 
-  // ページ表示時に保存済みのチェック状態を復元
+  // ページ表示時に保存済みの状態を復元
   useEffect(() => {
     try {
       const saved = localStorage.getItem(STORAGE_KEY);
       if (saved) setChecked(new Set(JSON.parse(saved) as string[]));
+      const savedDate = localStorage.getItem(DISCHARGE_KEY);
+      if (savedDate) setDischarge(savedDate);
     } catch {
       // localStorage が使えない環境では無視
     }
     setLoaded(true);
   }, []);
+
+  const changeDischarge = (value: string) => {
+    setDischarge(value);
+    try {
+      if (value) localStorage.setItem(DISCHARGE_KEY, value);
+      else localStorage.removeItem(DISCHARGE_KEY);
+    } catch { /* ignore */ }
+  };
 
   const toggle = (id: string) => {
     setChecked((prev) => {
@@ -54,6 +86,31 @@ export default function ChecklistClient({ items }: { items?: CheckItem[] }) {
 
   return (
     <div>
+      {/* 退院予定日の入力 */}
+      <div className="no-print mb-4 rounded-2xl bg-white p-5
+                      shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_16px_rgba(0,0,0,0.04)]">
+        <label className="text-base font-medium text-ink block mb-2">
+          📅 退院予定日（入力すると目安の期限が出ます）
+        </label>
+        <div className="flex items-center gap-3">
+          <input
+            type="date"
+            value={discharge}
+            onChange={(e) => changeDischarge(e.target.value)}
+            className="border border-line rounded-xl px-4 py-3 text-base text-ink
+                       focus:outline-none focus:ring-2 focus:ring-accent/40"
+          />
+          {discharge && (
+            <button
+              onClick={() => changeDischarge("")}
+              className="text-sm text-sub hover:text-ink transition-colors underline underline-offset-2"
+            >
+              クリア
+            </button>
+          )}
+        </div>
+      </div>
+
       {/* 進捗バー */}
       <div className="mb-6 rounded-2xl bg-white p-5
                       shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_16px_rgba(0,0,0,0.04)]">
@@ -113,10 +170,23 @@ export default function ChecklistClient({ items }: { items?: CheckItem[] }) {
                     onChange={() => toggle(item.id)}
                     className="sr-only"
                   />
-                  <span className={`text-lg leading-relaxed transition-colors
+                  <span className={`flex-1 text-lg leading-relaxed transition-colors
                                     ${checked.has(item.id) ? "text-sub line-through" : "text-ink"}`}>
                     {item.text}
                   </span>
+                  {discharge && !checked.has(item.id) && (() => {
+                    const info = dueInfo(discharge, item.daysBefore);
+                    if (!info) return null;
+                    const tone =
+                      info.tone === "overdue" ? "bg-rose-100 text-rose-600"
+                      : info.tone === "soon"  ? "bg-amber-100 text-amber-700"
+                      : "bg-gray-100 text-sub";
+                    return (
+                      <span className={`shrink-0 text-xs font-medium px-2 py-1 rounded-full whitespace-nowrap ${tone}`}>
+                        {info.tone === "overdue" ? "⚠ " : ""}{info.label}
+                      </span>
+                    );
+                  })()}
                 </label>
               ))}
             </div>
