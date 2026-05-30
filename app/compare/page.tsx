@@ -6,7 +6,7 @@ import CostBar from "@/components/CostBar";
 
 type Props = { searchParams: { a?: string; b?: string; c?: string } };
 
-// 費用以外の比較行
+// テキスト1行で表せる比較行
 const ROWS = [
   { emoji: "👥", label: "どんな人向け？", key: "forWhom"  as const },
   { emoji: "💪", label: "リハビリ",       key: "rehab"    as const },
@@ -16,6 +16,14 @@ const ROWS = [
   { emoji: "🛏️", label: "居室タイプ",    key: "roomType" as const },
   { emoji: "🕊️", label: "看取り対応",    key: "looking"  as const },
 ];
+
+// 左端の項目名セル（横スクロール時も固定）
+const labelCell =
+  "sticky left-0 z-10 bg-[#f5f5f7] align-top px-3 py-3 w-28 sm:w-36 " +
+  "text-xs sm:text-sm text-sub font-medium";
+
+// データセル
+const dataCell = "align-top px-3 py-3 min-w-[140px] sm:min-w-0";
 
 export default function ComparePage({ searchParams }: Props) {
   const slugs = [searchParams.a, searchParams.b, searchParams.c].filter(Boolean) as string[];
@@ -27,9 +35,6 @@ export default function ComparePage({ searchParams }: Props) {
 
   if (options.length < 2) return notFound();
 
-  // スマホでは3択でも2列+スクロールではなく水平スクロールで対応
-  const colClass = options.length === 2 ? "grid-cols-2" : "grid-cols-3";
-
   return (
     <main className="min-h-screen px-4 sm:px-8 py-8 sm:py-12 max-w-5xl mx-auto">
       <nav className="no-print mb-6">
@@ -38,98 +43,97 @@ export default function ComparePage({ searchParams }: Props) {
         </Link>
       </nav>
 
-      <h1 className="text-2xl sm:text-3xl font-semibold text-ink mb-8 tracking-tight">
+      <h1 className="text-2xl sm:text-3xl font-semibold text-ink mb-3 tracking-tight">
         比較してみましょう
       </h1>
+      <p className="no-print text-sub text-sm mb-6">
+        横にスクロールすると、項目名は左に固定されたままご覧いただけます。
+      </p>
 
-      {/* スマホ: 水平スクロール / タブレット以上: グリッド */}
       <div className="overflow-x-auto -mx-4 sm:mx-0 pb-2">
-        <div className={`grid ${colClass} gap-3 sm:gap-4 ${options.length === 3 ? "min-w-[560px]" : ""} sm:min-w-0 px-4 sm:px-0`}>
+        <table className="border-separate border-spacing-2 sm:border-spacing-3 w-full">
+          <tbody>
 
-          {/* ヘッダー行 */}
-          {options.map((opt) => (
-            <div
-              key={opt.slug}
-              className={`rounded-2xl bg-gradient-to-b ${opt.accent} p-5 text-center
-                          shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_rgba(0,0,0,0.04)]`}
-            >
-              <div className="text-4xl mb-2" aria-hidden>{opt.emoji}</div>
-              <h2 className="text-base sm:text-lg font-semibold text-ink">{opt.title}</h2>
-            </div>
-          ))}
+            {/* ヘッダー行（選択肢名） */}
+            <tr>
+              <th className={`${labelCell} bg-[#f5f5f7]`} />
+              {options.map((opt) => (
+                <th
+                  key={opt.slug}
+                  scope="col"
+                  className={`${dataCell} rounded-2xl bg-gradient-to-b ${opt.accent} text-center`}
+                >
+                  <div className="text-3xl sm:text-4xl mb-1" aria-hidden>{opt.emoji}</div>
+                  <div className="text-base sm:text-lg font-semibold text-ink">{opt.title}</div>
+                </th>
+              ))}
+            </tr>
 
-          {/* 費用行（バーグラフつき） */}
-          {options.map((opt) => (
-            <div
-              key={`cost-${opt.slug}`}
-              className="rounded-2xl bg-white p-4 sm:p-5
-                         shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_rgba(0,0,0,0.04)]"
-            >
-              <div className="text-xs text-sub mb-1.5 flex items-center gap-1">
-                <span aria-hidden>💴</span> 費用のめやす
-              </div>
-              <p className="text-sm sm:text-base text-ink leading-relaxed">{opt.cost}</p>
-              <CostBar level={opt.costLevel} compact />
-            </div>
-          ))}
+            {/* 費用行（バーグラフつき） */}
+            <tr>
+              <th scope="row" className={labelCell}>
+                <span aria-hidden>💴</span><br />費用のめやす
+              </th>
+              {options.map((opt) => (
+                <td key={`cost-${opt.slug}`} className={`${dataCell} rounded-2xl bg-white`}>
+                  <p className="text-sm sm:text-base text-ink leading-relaxed">{opt.cost}</p>
+                  <CostBar level={opt.costLevel} compact />
+                </td>
+              ))}
+            </tr>
 
-          {/* その他の比較行 */}
-          {ROWS.map((row) =>
-            options.map((opt) => (
-              <div
-                key={`${row.key}-${opt.slug}`}
-                className="rounded-2xl bg-white p-4 sm:p-5
-                           shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_rgba(0,0,0,0.04)]"
-              >
-                <div className="text-xs text-sub mb-1.5 flex items-center gap-1">
-                  <span aria-hidden>{row.emoji}</span> {row.label}
-                </div>
-                <p className="text-sm sm:text-base text-ink leading-relaxed">{opt[row.key]}</p>
-              </div>
-            ))
-          )}
-
-          {/* よいところ */}
-          {options.map((opt) => (
-            <div
-              key={`pros-${opt.slug}`}
-              className="rounded-2xl bg-white p-4 sm:p-5
-                         shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_rgba(0,0,0,0.04)]"
-            >
-              <div className="text-xs text-sub mb-2 flex items-center gap-1">
-                <span aria-hidden>✨</span> よいところ
-              </div>
-              <ul className="space-y-1.5">
-                {opt.pros.map((p, i) => (
-                  <li key={i} className="flex gap-2 text-sm text-ink leading-relaxed">
-                    <span className="text-emerald-500 shrink-0 mt-0.5">●</span>{p}
-                  </li>
+            {/* テキスト比較行 */}
+            {ROWS.map((row) => (
+              <tr key={row.key}>
+                <th scope="row" className={labelCell}>
+                  <span aria-hidden>{row.emoji}</span><br />{row.label}
+                </th>
+                {options.map((opt) => (
+                  <td key={`${row.key}-${opt.slug}`} className={`${dataCell} rounded-2xl bg-white`}>
+                    <p className="text-sm sm:text-base text-ink leading-relaxed">{opt[row.key]}</p>
+                  </td>
                 ))}
-              </ul>
-            </div>
-          ))}
+              </tr>
+            ))}
 
-          {/* 気をつけたいこと */}
-          {options.map((opt) => (
-            <div
-              key={`cautions-${opt.slug}`}
-              className="rounded-2xl bg-white p-4 sm:p-5
-                         shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_rgba(0,0,0,0.04)]"
-            >
-              <div className="text-xs text-sub mb-2 flex items-center gap-1">
-                <span aria-hidden>📝</span> 気をつけたいこと
-              </div>
-              <ul className="space-y-1.5">
-                {opt.cautions.map((p, i) => (
-                  <li key={i} className="flex gap-2 text-sm text-ink leading-relaxed">
-                    <span className="text-amber-500 shrink-0 mt-0.5">●</span>{p}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+            {/* よいところ */}
+            <tr>
+              <th scope="row" className={labelCell}>
+                <span aria-hidden>✨</span><br />よいところ
+              </th>
+              {options.map((opt) => (
+                <td key={`pros-${opt.slug}`} className={`${dataCell} rounded-2xl bg-white`}>
+                  <ul className="space-y-1.5">
+                    {opt.pros.map((p, i) => (
+                      <li key={i} className="flex gap-2 text-sm text-ink leading-relaxed">
+                        <span className="text-emerald-500 shrink-0 mt-0.5">●</span>{p}
+                      </li>
+                    ))}
+                  </ul>
+                </td>
+              ))}
+            </tr>
 
-        </div>
+            {/* 気をつけたいこと */}
+            <tr>
+              <th scope="row" className={labelCell}>
+                <span aria-hidden>📝</span><br />気をつけたいこと
+              </th>
+              {options.map((opt) => (
+                <td key={`cautions-${opt.slug}`} className={`${dataCell} rounded-2xl bg-white`}>
+                  <ul className="space-y-1.5">
+                    {opt.cautions.map((p, i) => (
+                      <li key={i} className="flex gap-2 text-sm text-ink leading-relaxed">
+                        <span className="text-amber-500 shrink-0 mt-0.5">●</span>{p}
+                      </li>
+                    ))}
+                  </ul>
+                </td>
+              ))}
+            </tr>
+
+          </tbody>
+        </table>
       </div>
 
       <div className="mt-8 mb-10" />
@@ -137,7 +141,7 @@ export default function ComparePage({ searchParams }: Props) {
       <CompareShareButtons titles={options.map((o) => o.title)} />
 
       <p className="no-print mt-8 text-center text-sub text-sm">
-        ※ 内容は一般的な目安です。実際の費用・条件は施設にご確認ください。
+        ※ 内容は広島県内の一般的な目安です。実際の費用・条件は施設にご確認ください。
       </p>
     </main>
   );
