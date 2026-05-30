@@ -1,5 +1,6 @@
 import HomeClient from "@/components/HomeClient";
 import HospitalEyebrow from "@/components/HospitalEyebrow";
+import HospitalSetupBanner from "@/components/HospitalSetupBanner";
 
 export default function HomePage() {
   return (
@@ -14,6 +15,8 @@ export default function HomePage() {
           ご本人とご家族にとって、いちばん安心できる暮らし方を見つけるためのガイドです。
         </p>
       </header>
+
+      <HospitalSetupBanner />
 
       <HomeClient />
 
