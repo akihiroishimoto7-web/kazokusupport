@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import InfoRow from "@/components/InfoRow";
 import CostBar from "@/components/CostBar";
 import ShareButtons from "@/components/ShareButtons";
+import QuickShareBar from "@/components/QuickShareBar";
 import { OPTIONS } from "@/lib/data";
 
 export function generateStaticParams() {
@@ -17,11 +18,14 @@ export default function OptionDetailPage({ params }: { params: { slug: string } 
     <main className="min-h-screen px-5 sm:px-8 py-8 sm:py-12 max-w-3xl mx-auto">
 
       {/* 戻る（印刷非表示） */}
-      <nav className="no-print mb-6">
+      <nav className="no-print mb-4">
         <Link href="/" className="text-accent text-base inline-flex items-center">
           <span className="mr-1">←</span> もどる
         </Link>
       </nav>
+
+      {/* 上部クイック共有バー */}
+      <QuickShareBar title={option.title} />
 
       {/* タイトルカード */}
       <header className={`print-page rounded-3xl bg-gradient-to-b ${option.accent}

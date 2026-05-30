@@ -36,6 +36,13 @@ export default function ShareButtons({ title }: { title: string }) {
     } catch { /* ignore */ }
   }, []);
 
+  // 上部クイックバーからの「印刷パネルを開く」要求を受け取る
+  useEffect(() => {
+    const openPanel = () => setOpen(true);
+    window.addEventListener("kazoku-open-share", openPanel);
+    return () => window.removeEventListener("kazoku-open-share", openPanel);
+  }, []);
+
   // 病院名が変わるたびに保存
   const handleHospitalChange = (value: string) => {
     setHospital(value);
@@ -68,7 +75,7 @@ export default function ShareButtons({ title }: { title: string }) {
     <>
       <div ref={headerRef} className="hidden print:block" />
 
-      <div className="no-print space-y-3">
+      <div id="kazoku-share" className="no-print space-y-3 scroll-mt-6">
         <button
           onClick={() => setOpen(!open)}
           className="w-full rounded-full border border-line bg-white text-ink py-4 text-base font-medium

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import CostBar from "@/components/CostBar";
 import ShareButtons from "@/components/ShareButtons";
+import QuickShareBar from "@/components/QuickShareBar";
 import { SERVICES } from "@/lib/data";
 
 export function generateStaticParams() {
@@ -16,11 +17,14 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
     <main className="min-h-screen px-5 sm:px-8 py-8 sm:py-12 max-w-3xl mx-auto">
 
       {/* 戻る */}
-      <nav className="no-print mb-6">
+      <nav className="no-print mb-4">
         <Link href="/services" className="text-accent text-base inline-flex items-center">
           <span className="mr-1">←</span> サービス一覧へ
         </Link>
       </nav>
+
+      {/* 上部クイック共有バー */}
+      <QuickShareBar title={service.name} />
 
       {/* タイトルカード */}
       <header className={`print-page rounded-3xl bg-gradient-to-b ${service.accent}
