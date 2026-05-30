@@ -132,7 +132,15 @@ export default function OptionDetailPage({ params }: { params: { slug: string } 
                 {i + 1}
               </div>
               <div className="pt-0.5">
-                <p className="text-base font-semibold text-ink print:text-sm">{step.label}</p>
+                <div className="flex items-center gap-2 flex-wrap">
+                  <p className="text-base font-semibold text-ink print:text-sm">{step.label}</p>
+                  {step.duration && (
+                    <span className="text-xs font-medium text-accent bg-accent/10
+                                     px-2 py-0.5 rounded-full whitespace-nowrap">
+                      めやす {step.duration}
+                    </span>
+                  )}
+                </div>
                 <p className="text-base text-sub leading-relaxed mt-1 print:text-xs">{step.detail}</p>
               </div>
             </li>
