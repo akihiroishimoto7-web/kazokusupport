@@ -212,13 +212,30 @@ export default function SimulatePage() {
           ))}
         </div>
 
-        {/* 負担限度額の補足説明 */}
-        <div className="rounded-2xl bg-white p-5 mb-8
-                        shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_16px_rgba(0,0,0,0.04)]">
-          <p className="font-semibold text-ink mb-2 text-sm">📌 負担限度額認定制度とは？</p>
-          <p className="text-sm text-sub leading-relaxed">
-            施設入所時の食費・居住費を軽減する制度です。住民税非課税世帯で、
-            預貯金が一定額以下の方が対象です。市区町村の窓口で申請できます。
+        {/* 費用をおさえる制度の補足説明 */}
+        <div className="space-y-3 mb-8">
+          <div className="rounded-2xl bg-white p-5
+                          shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_16px_rgba(0,0,0,0.04)]">
+            <p className="font-semibold text-ink mb-2 text-sm">💰 高額介護サービス費とは？</p>
+            <p className="text-sm text-sub leading-relaxed">
+              ひと月に支払った介護サービスの自己負担額が上限を超えると、超えた分が
+              あとから払い戻される制度です（一般的な世帯で月44,400円が上限の目安）。
+              申請すると、在宅サービスや施設の介護費の負担が軽くなります。市区町村の窓口で手続きできます。
+            </p>
+          </div>
+
+          <div className="rounded-2xl bg-white p-5
+                          shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_16px_rgba(0,0,0,0.04)]">
+            <p className="font-semibold text-ink mb-2 text-sm">📌 負担限度額認定制度とは？</p>
+            <p className="text-sm text-sub leading-relaxed">
+              施設入所時の食費・居住費を軽減する制度です。住民税非課税世帯で、
+              預貯金が一定額以下の方が対象です。市区町村の窓口で申請できます。
+            </p>
+          </div>
+
+          <p className="text-xs text-sub leading-relaxed px-1">
+            ※ これらの制度の対象になるかどうかは、世帯の所得や状況によって異なります。
+            くわしくは病院の相談員（MSW）やケアマネジャーにご相談ください。
           </p>
         </div>
 
