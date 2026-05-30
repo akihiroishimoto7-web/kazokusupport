@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import BottomNav from "@/components/BottomNav";
+import FontSizeControl from "@/components/FontSizeControl";
 
 export const metadata: Metadata = {
   title: "退院後の暮らしガイド",
@@ -18,6 +19,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="ja">
       {/* pb-20 でタブバー分の余白を確保 */}
       <body className="font-sans pb-20">
+        <FontSizeControl />
         {children}
         <BottomNav />
       </body>
