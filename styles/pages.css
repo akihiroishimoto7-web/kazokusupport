@@ -24,11 +24,11 @@
   display: flex;
   gap: 0.2em;
   padding: var(--space-6) 0 0 clamp(0.85rem, 3.4vw, 2.5rem);
-  font-family: var(--font-serif);
+  font-family: var(--font-display);
   font-size: clamp(1.75rem, 7.6vw, 4.25rem);
   font-weight: 600;
   line-height: 1.25;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.04em;
   font-feature-settings: normal;
   text-wrap: nowrap;
   white-space: nowrap;
@@ -46,7 +46,7 @@
 .hero__sub {
   font-size: var(--fs-md);
   line-height: 2.05;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.01em;
   color: var(--ink-soft);
 }
 .hero__actions {
@@ -56,7 +56,7 @@
 .hero__caption {
   font-size: var(--fs-xs);
   color: var(--ink-mute);
-  letter-spacing: 0.04em;
+  letter-spacing: 0.01em;
 }
 .hero__caption a {
   color: inherit;
@@ -130,11 +130,11 @@
   gap: 0.3rem;
 }
 .q-item__q {
-  font-family: var(--font-serif);
+  font-family: var(--font-display);
   font-size: var(--fs-lg);
   font-weight: 600;
   line-height: 1.55;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.01em;
   font-feature-settings: "palt";
   word-break: auto-phrase;
 }
@@ -221,15 +221,15 @@ a.q-item:hover .q-item__q {
 }
 .course-card__area {
   font-size: var(--fs-xs);
-  letter-spacing: 0.14em;
+  letter-spacing: 0.04em;
   color: var(--river);
 }
 .course-card__name {
-  font-family: var(--font-serif);
+  font-family: var(--font-display);
   font-size: var(--fs-md);
   font-weight: 600;
   line-height: 1.5;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.01em;
   word-break: auto-phrase;
 }
 .course-card__catch {
@@ -252,10 +252,10 @@ a.q-item:hover .q-item__q {
   border-top: 2px solid var(--moss);
 }
 .finder-invite__title {
-  font-family: var(--font-serif);
+  font-family: var(--font-display);
   font-size: var(--fs-lg);
   font-weight: 600;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.01em;
 }
 .finder-invite__text {
   font-size: var(--fs-sm);
@@ -294,7 +294,7 @@ a.q-item:hover .q-item__q {
 .worry-item__t {
   grid-row: 2;
   font-size: var(--fs-xs);
-  letter-spacing: 0.1em;
+  letter-spacing: 0.04em;
   color: var(--moss);
 }
 .worry-item__arrow {
@@ -315,11 +315,11 @@ a.worry-item:hover .worry-item__q {
   text-decoration: none;
 }
 .scene-item__t {
-  font-family: var(--font-serif);
+  font-family: var(--font-display);
   font-size: var(--fs-md);
   font-weight: 600;
   line-height: 1.6;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.01em;
   word-break: auto-phrase;
 }
 .scene-item__t::before {
@@ -358,11 +358,11 @@ a.worry-item:hover .worry-item__q {
   gap: var(--space-6);
 }
 .essay-band__quote blockquote p {
-  font-family: var(--font-serif);
+  font-family: var(--font-display);
   font-size: var(--fs-lg);
   font-weight: 500;
   line-height: 2.1;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.01em;
 }
 .essay-band__quote figcaption {
   margin-top: var(--space-5);
@@ -422,16 +422,16 @@ a.worry-item:hover .worry-item__q {
 }
 .hub__catch {
   font-size: var(--fs-sm);
-  letter-spacing: 0.14em;
+  letter-spacing: 0.04em;
   color: var(--moss);
 }
 .hub__title {
   margin-top: 0.5rem;
-  font-family: var(--font-serif);
+  font-family: var(--font-display);
   font-size: var(--fs-2xl);
   font-weight: 600;
   line-height: 1.45;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.01em;
 }
 .hub__intro {
   margin-top: var(--space-4);
@@ -446,7 +446,7 @@ a.worry-item:hover .worry-item__q {
   margin-bottom: var(--space-4);
   font-size: var(--fs-sm);
   font-weight: 600;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.04em;
   color: var(--ink-soft);
 }
 .hub__note {
@@ -486,11 +486,11 @@ a.worry-item:hover .worry-item__q {
   gap: 0.15rem;
 }
 .topic__title {
-  font-family: var(--font-serif);
+  font-family: var(--font-display);
   font-size: var(--fs-md);
   font-weight: 600;
   line-height: 1.6;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.01em;
 }
 .topic__note {
   font-size: var(--fs-sm);
@@ -508,7 +508,7 @@ a.topic:hover .topic__title {
 }
 .topic__soon {
   font-size: var(--fs-xs);
-  letter-spacing: 0.08em;
+  letter-spacing: 0.01em;
   color: var(--ink-mute);
 }
 
@@ -519,7 +519,7 @@ a.topic:hover .topic__title {
 .promise__title {
   font-size: var(--fs-lg);
   font-weight: 600;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.01em;
 }
 .promise__list {
   margin: var(--space-4) 0;
@@ -584,10 +584,10 @@ a.topic:hover .topic__title {
   gap: 0.3rem;
 }
 .tool-row__t {
-  font-family: var(--font-serif);
+  font-family: var(--font-display);
   font-size: var(--fs-lg);
   font-weight: 600;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.01em;
 }
 .tool-row__d {
   font-size: var(--fs-sm);
@@ -596,7 +596,7 @@ a.topic:hover .topic__title {
 }
 .tool-row__m {
   font-size: var(--fs-xs);
-  letter-spacing: 0.08em;
+  letter-spacing: 0.01em;
   color: var(--moss);
 }
 .tool-row__arrow {
@@ -647,11 +647,11 @@ a.topic:hover .topic__title {
   text-decoration: none;
 }
 .purpose-item__q {
-  font-family: var(--font-serif);
+  font-family: var(--font-display);
   font-size: var(--fs-md);
   font-weight: 600;
   line-height: 1.6;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.01em;
   word-break: auto-phrase;
 }
 .purpose-item__q::before {
@@ -666,7 +666,7 @@ a.topic:hover .topic__title {
   align-items: center;
   gap: 0.5rem;
   font-size: var(--fs-xs);
-  letter-spacing: 0.12em;
+  letter-spacing: 0.04em;
   color: var(--moss);
 }
 a.purpose-item:hover .purpose-item__q {
@@ -730,7 +730,7 @@ a.purpose-item:hover .purpose-item__q {
 }
 .shoe-row__brand {
   font-size: var(--fs-xs);
-  letter-spacing: 0.1em;
+  letter-spacing: 0.04em;
   color: var(--ink-mute);
 }
 .shoe-row__name {
@@ -788,7 +788,7 @@ a.shoe-row:hover .shoe-row__name {
   gap: 0.75rem;
   align-items: baseline;
   font-size: var(--fs-sm);
-  letter-spacing: 0.12em;
+  letter-spacing: 0.04em;
   color: var(--ink-mute);
 }
 .shoe__brand a {
@@ -811,7 +811,7 @@ a.shoe-row:hover .shoe-row__name {
   font-family: var(--font-sans);
   font-size: var(--fs-sm);
   font-weight: 400;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.04em;
   color: var(--ink-mute);
   vertical-align: middle;
 }
@@ -820,7 +820,7 @@ a.shoe-row:hover .shoe-row__name {
   font-size: var(--fs-lg);
   font-weight: 600;
   line-height: 1.6;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.01em;
 }
 .shoe__status {
   display: flex;
@@ -846,7 +846,7 @@ a.shoe-row:hover .shoe-row__name {
 }
 .shoe__photo .plate__sub {
   font-family: var(--font-latin);
-  letter-spacing: 0.2em;
+  letter-spacing: 0.04em;
   color: var(--ink-mute);
 }
 .shoe__grid {
@@ -876,9 +876,9 @@ a.shoe-row:hover .shoe-row__name {
 }
 .shoe__section > h2 {
   margin-bottom: var(--space-4);
-  font-family: var(--font-serif);
+  font-family: var(--font-display);
   font-size: var(--fs-lg);
-  letter-spacing: 0.06em;
+  letter-spacing: 0.01em;
 }
 .shoe__section > ul,
 .shoe__section > ol {
@@ -922,7 +922,7 @@ a.shoe-row:hover .shoe-row__name {
 .fit-col h3 {
   margin-bottom: 0.5rem;
   font-size: var(--fs-sm);
-  letter-spacing: 0.12em;
+  letter-spacing: 0.04em;
 }
 .fit-col ul {
   margin: 0;
@@ -979,11 +979,11 @@ a.shoe-row:hover .shoe-row__name {
   gap: 0.3rem;
 }
 .scene-row__t {
-  font-family: var(--font-serif);
+  font-family: var(--font-display);
   font-size: var(--fs-lg);
   font-weight: 600;
   line-height: 1.55;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.01em;
   word-break: auto-phrase;
 }
 .scene-row__d {
@@ -1016,10 +1016,10 @@ a.scene-row:hover .scene-row__t {
   border-bottom: 1px solid var(--ink);
 }
 .need-col__label {
-  font-family: var(--font-serif);
+  font-family: var(--font-display);
   font-size: var(--fs-md);
   font-weight: 600;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.01em;
 }
 .need-col__note {
   font-size: var(--fs-xs);
@@ -1085,7 +1085,7 @@ a.gear-row:hover .gear-row__name {
 .need-pair__col h2 {
   margin-bottom: 0.5rem;
   font-size: var(--fs-sm);
-  letter-spacing: 0.12em;
+  letter-spacing: 0.04em;
 }
 .need-pair__col ul {
   margin: 0;
@@ -1117,10 +1117,10 @@ a.gear-row:hover .gear-row__name {
   gap: 0.35rem;
 }
 .pick__name {
-  font-family: var(--font-serif);
+  font-family: var(--font-display);
   font-size: var(--fs-lg);
   font-weight: 600;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.01em;
 }
 .pick__why {
   color: var(--ink-soft);
@@ -1142,11 +1142,11 @@ a.gear-row:hover .gear-row__name {
 }
 .courses__title {
   margin-top: 0.5rem;
-  font-family: var(--font-serif);
+  font-family: var(--font-display);
   font-size: var(--fs-display);
   font-weight: 600;
   line-height: 1.3;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.01em;
 }
 .course-feature {
   margin-top: var(--space-6);
@@ -1167,10 +1167,10 @@ a.gear-row:hover .gear-row__name {
   }
 }
 .course-feature__name {
-  font-family: var(--font-serif);
+  font-family: var(--font-display);
   font-size: var(--fs-2xl);
   font-weight: 600;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.01em;
   line-height: 1.4;
 }
 .course-feature__catch {
@@ -1201,28 +1201,28 @@ a.gear-row:hover .gear-row__name {
 }
 .course__area {
   font-size: var(--fs-xs);
-  letter-spacing: 0.16em;
+  letter-spacing: 0.04em;
   color: var(--river);
 }
 .course__name {
   margin-top: 0.4rem;
-  font-family: var(--font-serif);
+  font-family: var(--font-display);
   font-size: var(--fs-display);
   font-weight: 600;
   line-height: 1.3;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.01em;
 }
 .course__kana {
   margin-top: 0.25rem;
   font-size: var(--fs-xs);
-  letter-spacing: 0.2em;
+  letter-spacing: 0.04em;
   color: var(--ink-mute);
 }
 .course__catch {
   margin-top: var(--space-4);
   font-size: var(--fs-lg);
   font-weight: 600;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.01em;
 }
 .course__hero {
   max-width: var(--wide);
@@ -1251,9 +1251,9 @@ a.gear-row:hover .gear-row__name {
 }
 .course__section > h2 {
   margin-bottom: var(--space-4);
-  font-family: var(--font-serif);
+  font-family: var(--font-display);
   font-size: var(--fs-lg);
-  letter-spacing: 0.06em;
+  letter-spacing: 0.01em;
 }
 .course__section > ul {
   padding-left: 1.2em;
@@ -1287,7 +1287,7 @@ a.gear-row:hover .gear-row__name {
   text-decoration: none;
 }
 .other-course__name {
-  font-family: var(--font-serif);
+  font-family: var(--font-display);
   font-weight: 600;
   font-size: var(--fs-md);
 }
@@ -1346,18 +1346,18 @@ a.gear-row:hover .gear-row__name {
   max-width: 44rem;
 }
 .essays__title {
-  font-family: var(--font-serif);
+  font-family: var(--font-display);
   font-size: var(--fs-display);
   font-weight: 600;
   line-height: 1.35;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.01em;
 }
 .essays__intro {
   margin-top: var(--space-5);
-  font-family: var(--font-serif);
+  font-family: var(--font-display);
   font-weight: 500;
   line-height: 2.1;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.01em;
   color: var(--ink-soft);
 }
 .essays__list {
@@ -1382,14 +1382,14 @@ a.gear-row:hover .gear-row__name {
   gap: 0.6rem;
 }
 .essay-entry__title {
-  font-family: var(--font-serif);
+  font-family: var(--font-display);
   font-size: var(--fs-xl);
   font-weight: 600;
   line-height: 1.55;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.01em;
 }
 .essay-entry__lede {
-  font-family: var(--font-serif);
+  font-family: var(--font-display);
   font-weight: 500;
   line-height: 2.05;
   color: var(--ink-soft);
@@ -1397,7 +1397,7 @@ a.gear-row:hover .gear-row__name {
 .essay-entry__date {
   font-size: var(--fs-xs);
   color: var(--ink-mute);
-  letter-spacing: 0.08em;
+  letter-spacing: 0.01em;
 }
 
 /* ------------------------------------------------------------ 運営者 */
@@ -1407,11 +1407,11 @@ a.gear-row:hover .gear-row__name {
 }
 .about__title {
   margin-top: 0.5rem;
-  font-family: var(--font-serif);
+  font-family: var(--font-display);
   font-size: var(--fs-display);
   font-weight: 600;
   line-height: 1.35;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.01em;
 }
 .about__grid {
   display: grid;
@@ -1430,7 +1430,7 @@ a.gear-row:hover .gear-row__name {
   max-width: 34em;
 }
 .about__name {
-  font-family: var(--font-serif);
+  font-family: var(--font-display);
   font-size: var(--fs-lg);
   font-weight: 600;
 }
@@ -1459,7 +1459,7 @@ a.gear-row:hover .gear-row__name {
 .values__b {
   font-size: var(--fs-lg);
   font-weight: 600;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.01em;
   text-align: right;
 }
 .values__row--last {
@@ -1476,9 +1476,9 @@ a.gear-row:hover .gear-row__name {
 }
 .notfound__title {
   margin: 0.5rem 0 var(--space-4);
-  font-family: var(--font-serif);
+  font-family: var(--font-display);
   font-size: var(--fs-2xl);
-  letter-spacing: 0.06em;
+  letter-spacing: 0.01em;
 }
 .notfound .index-list {
   margin-top: var(--space-6);

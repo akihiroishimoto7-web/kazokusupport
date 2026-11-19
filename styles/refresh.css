@@ -1,0 +1,357 @@
+/* =====================================================================
+   Refresh — 野暮ったさを削る
+   - 見出しはゴシックで太く、字間を詰める（明朝はエッセイだけに残す）
+   - 写真を大きく、飾りの罫線・番号・ダッシュを減らす
+   ===================================================================== */
+
+body {
+  letter-spacing: 0.02em;
+}
+
+h1,
+h2,
+h3,
+.sec-head__title,
+.hub__title,
+.article__title,
+.course__name,
+.courses__title,
+.essays__title,
+.about__title,
+.lead-story__title,
+.course-feature__name,
+.result__title,
+.finder__q,
+.notfound__title {
+  font-weight: 700;
+  letter-spacing: -0.005em;
+  font-feature-settings: "palt";
+  line-height: 1.38;
+}
+
+/* 一覧の見出しも、ゴシックの太字で引き締める */
+.index-item__title,
+.q-item__q,
+.topic__title,
+.scene-row__t,
+.scene-item__t,
+.purpose-item__q,
+.course-card__name,
+.other-course__name,
+.pick__name,
+.tool-row__t,
+.series-nav__title,
+.embed__title,
+.menu-sheet__label,
+.need-col__label,
+.values__b,
+.finder-invite__title,
+.promise__title,
+.checklist__group legend,
+.shoe__section > h2,
+.course__section > h2,
+.essay-entry__title {
+  font-weight: 700;
+  letter-spacing: 0;
+  font-feature-settings: "palt";
+}
+
+/* ------------------------------------------------------------ 見出しの小ラベル */
+.sec-head__label::after {
+  display: none;
+}
+.sec-head__no {
+  display: none;
+}
+.sec-head__label {
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+.sec-head__title {
+  font-size: clamp(1.875rem, 1.4rem + 2.6vw, 3.25rem);
+}
+.sec-head__lead {
+  font-size: 1rem;
+  color: var(--ink-soft);
+}
+
+/* 罫線を細く、少なく */
+.q-list,
+.index-list,
+.topic-list,
+.worry-list,
+.scene-list,
+.scene-index,
+.purpose-grid,
+.brand-list,
+.shoe-list,
+.pick-list,
+.tool-links,
+.tool-index,
+.result__list,
+.other-courses__list,
+.menu-sheet__list,
+.point-list,
+.spec-table,
+.ratings,
+.values,
+.checklist__group ul,
+.pace__main,
+.need-col__head,
+.toc {
+  border-top-color: var(--rule);
+}
+.q-item__no,
+.topic__no,
+.scene-row__no,
+.pick__no,
+.result-shoe__no,
+.index-item__no,
+.menu-sheet__no {
+  color: var(--moss);
+  font-weight: 600;
+}
+
+/* ------------------------------------------------------------ ヒーロー：写真を主役に */
+.hero {
+  padding-bottom: var(--space-7);
+}
+.hero__stage {
+  position: relative;
+  display: block;
+  padding: 0;
+}
+.hero__photo .photo__frame {
+  height: min(78svh, 720px) !important;
+  min-height: 460px;
+  border-radius: 0;
+}
+.hero__photo .photo__frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  /* 文字を読ませるための影（装飾ではなく可読性のため） */
+  background: linear-gradient(to top, rgb(0 0 0 / 0.55) 0%, rgb(0 0 0 / 0.15) 38%, transparent 60%);
+  pointer-events: none;
+}
+.hero__copy {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  writing-mode: horizontal-tb;
+  text-orientation: mixed;
+  display: block;
+  padding: 0 max(var(--gutter), env(safe-area-inset-left)) clamp(1.75rem, 6vw, 3.5rem);
+  font-family: var(--font-display);
+  font-size: clamp(2.125rem, 1.2rem + 5.2vw, 5rem);
+  font-weight: 700;
+  line-height: 1.22;
+  letter-spacing: -0.01em;
+  white-space: normal;
+  color: #fff;
+  text-shadow: 0 1px 24px rgb(0 0 0 / 0.25);
+}
+.hero__copy span {
+  display: inline-block;
+  padding: 0 !important;
+}
+.hero__body {
+  gap: var(--space-5);
+  padding-top: var(--space-6);
+}
+.hero__sub {
+  font-size: 1.0625rem;
+  line-height: 1.9;
+  letter-spacing: 0.02em;
+  color: var(--ink-soft);
+}
+@media (min-width: 960px) {
+  .hero {
+    display: block;
+    max-width: none;
+  }
+  .hero__stage {
+    display: block;
+  }
+  .hero__photo .photo__frame {
+    height: min(86svh, 900px) !important;
+  }
+  .hero__copy {
+    max-width: var(--wide);
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+    font-size: clamp(3rem, 4.6vw, 5rem);
+  }
+  .hero__body {
+    max-width: var(--wide);
+    margin-inline: auto;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
+    padding-inline: var(--gutter);
+  }
+  .hero__actions {
+    grid-template-columns: repeat(2, minmax(0, 17rem));
+  }
+  .hero__caption {
+    grid-column: 1 / -1;
+  }
+}
+
+/* ------------------------------------------------------------ ボタン */
+.button {
+  border-radius: 8px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+.button--quiet {
+  background: var(--paper-raised);
+  border-color: var(--rule-strong);
+}
+
+/* ------------------------------------------------------------ 写真の角を少しだけ */
+.lead-story .photo__frame,
+.course-card .photo__frame,
+.course-feature .photo__frame,
+.essay-entry .photo__frame,
+.hub__photo .photo__frame,
+.shoe__photo .photo__frame,
+.essay-band__photo .photo__frame,
+.embed__thumb .photo__frame,
+.article__hero:not(.article__hero--bleed) .photo__frame {
+  border-radius: 10px;
+}
+
+/* ------------------------------------------------------------ 面の色 */
+.section--tint {
+  background: var(--paper-deep);
+}
+.finder-invite {
+  border-top: 0;
+  border-radius: 12px;
+  background: var(--moss);
+  color: #fff;
+}
+.finder-invite__text {
+  color: rgb(255 255 255 / 0.82);
+}
+.finder-invite .button--primary {
+  background: #fff;
+  border-color: #fff;
+  color: var(--moss);
+}
+.finder-invite .button--primary:hover {
+  background: var(--moss-tint);
+  color: var(--moss-deep);
+}
+
+.callout,
+.shop-links,
+.embed,
+.state-note,
+.medical-note,
+.promise,
+.not-buy,
+.voice,
+.fit-col,
+.need-pair__col,
+.option,
+.input,
+.segmented,
+.chip span {
+  border-radius: 10px;
+}
+.callout {
+  border-left-width: 1px;
+}
+.voice {
+  border-left-width: 0;
+  border: 1px solid var(--rule);
+}
+.fit-col,
+.need-pair__col {
+  border-top-width: 0;
+  border: 1px solid var(--rule);
+}
+.fit-col h3,
+.need-pair__col h2 {
+  color: var(--moss);
+}
+.fit-col--no h3 {
+  color: var(--ink-soft);
+}
+.need-pair__col--skip h2 {
+  color: var(--sun);
+}
+
+/* ------------------------------------------------------------ エッセイだけは明朝で静かに */
+.prose--essay,
+.essay-band__quote blockquote p,
+.essays__intro,
+.essay-entry__lede,
+.article--essay .article__title,
+.essays__title,
+.essay-entry__title,
+.menu-sheet__message,
+.site-footer__message {
+  font-family: var(--font-serif);
+}
+.essay-band__quote blockquote p {
+  font-size: clamp(1.25rem, 1.05rem + 1vw, 1.75rem);
+  letter-spacing: 0.04em;
+}
+
+/* ------------------------------------------------------------ 細部 */
+.wordmark {
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+.wordmark__place {
+  font-weight: 500;
+  letter-spacing: 0.08em;
+}
+.site-footer__mark {
+  letter-spacing: 0.06em;
+}
+.hub__catch,
+.article__cat,
+.lead-story__cat,
+.index-item__cat,
+.course-card__area,
+.course__area,
+.embed__kind {
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+.prose__flow h2 {
+  border-top: 0;
+  padding-top: 0;
+  font-size: clamp(1.375rem, 1.2rem + 0.9vw, 1.75rem);
+}
+.prose__flow strong {
+  background: none;
+  color: var(--ink);
+}
+.prose {
+  letter-spacing: 0.02em;
+  line-height: 1.95;
+}
+.shoe__catch,
+.course__catch {
+  font-family: var(--font-sans);
+  font-weight: 600;
+}
+
+.hero__copy {
+  text-align: left;
+}
+@media (min-width: 960px) {
+  .hero__copy {
+    left: 50%;
+    right: auto;
+    width: min(100%, var(--wide));
+    transform: translateX(-50%);
+    margin: 0;
+  }
+}

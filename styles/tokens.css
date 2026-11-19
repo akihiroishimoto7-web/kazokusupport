@@ -7,17 +7,17 @@
 
 :root {
   /* 色 */
-  --paper: #f4f1ea;
-  --paper-deep: #ebe6da;
-  --paper-raised: #faf8f3;
-  --ink: #1e221d;
-  --ink-soft: #464b43;
-  --ink-mute: #6f746a;
-  --rule: #d9d2c3;
-  --rule-strong: #b9b1a0;
-  --moss: #2e4a3a;
-  --moss-deep: #22382b;
-  --moss-tint: #dfe5dc;
+  --paper: #fbfaf7;
+  --paper-deep: #f1efea;
+  --paper-raised: #ffffff;
+  --ink: #141614;
+  --ink-soft: #3d413c;
+  --ink-mute: #6b6f69;
+  --rule: #e4e2dc;
+  --rule-strong: #c9c6be;
+  --moss: #1f5a43;
+  --moss-deep: #16231c;
+  --moss-tint: #e6efe9;
   --river: #3f6668;
   --river-tint: #dce6e4;
   --sun: #a8592a;
@@ -30,6 +30,7 @@
   --font-sans: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", "BIZ UDPGothic", "Yu Gothic UI", Meiryo,
     system-ui, sans-serif;
   --font-serif: var(--font-shippori), "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif;
+  --font-display: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic UI", Meiryo, system-ui, sans-serif;
   --font-latin: var(--font-instrument), "Helvetica Neue", Arial, var(--font-sans);
 
   /* 文字サイズ（スマートフォン基準で、画面に応じてゆるやかに拡大） */
@@ -56,7 +57,7 @@
 
   --measure: 34em;
   --wide: 1240px;
-  --radius: 2px;
+  --radius: 6px;
   --header-h: 56px;
 
   --ease: cubic-bezier(0.2, 0.7, 0.2, 1);

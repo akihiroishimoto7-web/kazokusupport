@@ -35,9 +35,6 @@ export default function ShoesPage() {
           </h1>
           <p className="hub__intro">{cat.intro}</p>
         </div>
-        <div className="lab-plate" aria-hidden="true">
-          <span className="latin">LAB</span>
-        </div>
       </header>
 
       <section className="wrap hub__section">

@@ -17,7 +17,7 @@
 }
 .article__cat {
   font-size: var(--fs-xs);
-  letter-spacing: 0.16em;
+  letter-spacing: 0.04em;
   color: var(--moss);
 }
 .article__cat a {
@@ -28,11 +28,11 @@
 }
 .article__title {
   margin-top: 0.75rem;
-  font-family: var(--font-serif);
+  font-family: var(--font-display);
   font-size: var(--fs-2xl);
   font-weight: 600;
   line-height: 1.5;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.01em;
 }
 .article__lede {
   margin-top: var(--space-5);
@@ -47,7 +47,7 @@
   gap: 0.25rem 1.25rem;
   margin-top: var(--space-5);
   font-size: var(--fs-xs);
-  letter-spacing: 0.08em;
+  letter-spacing: 0.01em;
   color: var(--ink-mute);
 }
 
@@ -91,7 +91,7 @@
 .toc__title {
   font-size: var(--fs-xs);
   font-weight: 600;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.04em;
   color: var(--ink-mute);
 }
 .toc ol {
@@ -120,7 +120,7 @@
 .prose {
   font-size: var(--fs-base);
   line-height: 2;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.01em;
 }
 .prose__flow > * + * {
   margin-top: 1.4em;
@@ -132,10 +132,10 @@
   margin-top: 3em;
   padding-top: 1.25em;
   border-top: 1px solid var(--rule);
-  font-family: var(--font-serif);
+  font-family: var(--font-display);
   font-size: var(--fs-xl);
   line-height: 1.55;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.01em;
 }
 .prose__flow > h2:first-child {
   margin-top: 0;
@@ -144,7 +144,7 @@
   margin-top: 2.25em;
   font-size: var(--fs-md);
   line-height: 1.6;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.01em;
 }
 .prose__flow h3 + * {
   margin-top: 0.6em;
@@ -204,7 +204,7 @@
 }
 .article--essay .article__title {
   font-size: var(--fs-2xl);
-  letter-spacing: 0.08em;
+  letter-spacing: 0.01em;
 }
 @media (min-width: 960px) {
   .article--essay .article__head,
@@ -216,11 +216,11 @@
   }
 }
 .prose--essay {
-  font-family: var(--font-serif);
+  font-family: var(--font-display);
   font-size: 1.0625rem;
   font-weight: 500;
   line-height: 2.15;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.01em;
 }
 .prose--essay .prose__flow > * + * {
   margin-top: 1.7em;
@@ -250,7 +250,7 @@
 }
 .sources__title {
   font-size: var(--fs-sm);
-  letter-spacing: 0.12em;
+  letter-spacing: 0.04em;
   color: var(--ink-soft);
 }
 .sources ol {
@@ -293,11 +293,11 @@
   align-items: center;
   gap: 0.5rem;
   font-size: var(--fs-xs);
-  letter-spacing: 0.14em;
+  letter-spacing: 0.04em;
   color: var(--moss);
 }
 .series-nav__title {
-  font-family: var(--font-serif);
+  font-family: var(--font-display);
   font-size: var(--fs-md);
   font-weight: 600;
   line-height: 1.6;
@@ -314,6 +314,6 @@
 .related__title {
   margin-bottom: var(--space-4);
   font-size: var(--fs-sm);
-  letter-spacing: 0.14em;
+  letter-spacing: 0.04em;
   color: var(--ink-soft);
 }
