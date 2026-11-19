@@ -1,0 +1,108 @@
+/* =====================================================================
+   RUN LIFE HIROSHIMA — Design tokens
+   テーマ「静かな躍動感」
+   紙のようなオフホワイト、川と朝の苔のグリーン、墨に近いチャコール、
+   そして朝日の色をほんの少しだけ。
+   ===================================================================== */
+
+:root {
+  /* 色 */
+  --paper: #f4f1ea;
+  --paper-deep: #ebe6da;
+  --paper-raised: #faf8f3;
+  --ink: #1e221d;
+  --ink-soft: #464b43;
+  --ink-mute: #6f746a;
+  --rule: #d9d2c3;
+  --rule-strong: #b9b1a0;
+  --moss: #2e4a3a;
+  --moss-deep: #22382b;
+  --moss-tint: #dfe5dc;
+  --river: #3f6668;
+  --river-tint: #dce6e4;
+  --sun: #a8592a;
+  --sun-tint: #f2e2d4;
+  --on-dark: #f1ede3;
+  --on-dark-soft: #c9c8bb;
+  --focus: #b4642f;
+
+  /* 書体 */
+  --font-sans: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", "BIZ UDPGothic", "Yu Gothic UI", Meiryo,
+    system-ui, sans-serif;
+  --font-serif: var(--font-shippori), "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif;
+  --font-latin: var(--font-instrument), "Helvetica Neue", Arial, var(--font-sans);
+
+  /* 文字サイズ（スマートフォン基準で、画面に応じてゆるやかに拡大） */
+  --fs-xs: 0.75rem;
+  --fs-sm: 0.8125rem;
+  --fs-base: 1.0625rem; /* 17px 本文 */
+  --fs-md: 1.125rem;
+  --fs-lg: clamp(1.25rem, 1.1rem + 0.7vw, 1.5rem);
+  --fs-xl: clamp(1.5rem, 1.25rem + 1.3vw, 2.125rem);
+  --fs-2xl: clamp(1.75rem, 1.35rem + 2.2vw, 2.875rem);
+  --fs-display: clamp(2rem, 1.2rem + 4.6vw, 4.5rem);
+
+  /* 余白 */
+  --gutter: clamp(20px, 5.4vw, 56px);
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: clamp(3.5rem, 2.5rem + 4vw, 6rem);
+  --space-9: clamp(4.5rem, 3rem + 6vw, 9rem);
+
+  --measure: 34em;
+  --wide: 1240px;
+  --radius: 2px;
+  --header-h: 56px;
+
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  color-scheme: light;
+}
+
+/* ダークモード（夜にスマートフォンで読む人のために） */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #161814;
+    --paper-deep: #1e211c;
+    --paper-raised: #1b1e19;
+    --ink: #ebe7dc;
+    --ink-soft: #c2bfb2;
+    --ink-mute: #9a9a8d;
+    --rule: #33372f;
+    --rule-strong: #4c5145;
+    --moss: #9cc0a4;
+    --moss-deep: #1f3327;
+    --moss-tint: #24342a;
+    --river: #94bcbc;
+    --river-tint: #1f2e2d;
+    --sun: #e0a172;
+    --sun-tint: #3a2a1f;
+    --on-dark: #f1ede3;
+    --on-dark-soft: #c9c8bb;
+    --focus: #e0a172;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #161814;
+  --paper-deep: #1e211c;
+  --paper-raised: #1b1e19;
+  --ink: #ebe7dc;
+  --ink-soft: #c2bfb2;
+  --ink-mute: #9a9a8d;
+  --rule: #33372f;
+  --rule-strong: #4c5145;
+  --moss: #9cc0a4;
+  --moss-deep: #1f3327;
+  --moss-tint: #24342a;
+  --river: #94bcbc;
+  --river-tint: #1f2e2d;
+  --sun: #e0a172;
+  --sun-tint: #3a2a1f;
+  --focus: #e0a172;
+  color-scheme: dark;
+}
