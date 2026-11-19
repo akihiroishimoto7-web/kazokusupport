@@ -14,7 +14,7 @@
   align-items: center;
   gap: 0.75rem;
   font-size: var(--fs-sm);
-  letter-spacing: 0.14em;
+  letter-spacing: 0.04em;
   color: var(--moss);
 }
 .sec-head__label::after {
@@ -29,11 +29,11 @@
   color: var(--ink-mute);
 }
 .sec-head__title {
-  font-family: var(--font-serif);
+  font-family: var(--font-display);
   font-size: var(--fs-2xl);
   font-weight: 600;
   line-height: 1.45;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.01em;
 }
 .sec-head__lead {
   max-width: 30em;
@@ -71,7 +71,7 @@
   border-radius: var(--radius);
   font-size: 0.9375rem;
   font-weight: 600;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.01em;
   line-height: 1.5;
   text-decoration: none;
   text-align: left;
@@ -112,7 +112,7 @@ a:hover > .arrow {
   min-height: 44px;
   font-size: 0.9375rem;
   font-weight: 600;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.01em;
   color: var(--moss);
   text-decoration: none;
   border-bottom: 1px solid color-mix(in srgb, var(--moss) 35%, transparent);
@@ -143,7 +143,7 @@ a:hover > .arrow {
 .list-caption {
   margin-bottom: var(--space-3);
   font-size: var(--fs-xs);
-  letter-spacing: 0.16em;
+  letter-spacing: 0.04em;
   color: var(--ink-mute);
 }
 
@@ -169,7 +169,7 @@ a:hover > .arrow {
   border-radius: var(--radius);
   font-size: 0.6875rem;
   font-weight: 600;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.01em;
   line-height: 1.6;
   white-space: nowrap;
 }
@@ -234,7 +234,7 @@ a:hover > .arrow {
   font-size: var(--fs-xs);
   line-height: 1.7;
   color: var(--ink-mute);
-  letter-spacing: 0.04em;
+  letter-spacing: 0.01em;
 }
 .photo__caption a {
   color: inherit;
@@ -263,18 +263,18 @@ a:hover > .arrow {
 }
 .plate__title {
   position: relative;
-  font-family: var(--font-serif);
+  font-family: var(--font-display);
   font-size: clamp(1.25rem, 5vw, 2rem);
   font-weight: 600;
   line-height: 1.4;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.01em;
   color: var(--ink);
   word-break: auto-phrase;
 }
 .plate__sub {
   position: relative;
   font-size: var(--fs-xs);
-  letter-spacing: 0.1em;
+  letter-spacing: 0.04em;
   color: var(--river);
 }
 
@@ -346,15 +346,15 @@ a:hover > .arrow {
 }
 .index-item__cat {
   font-size: var(--fs-xs);
-  letter-spacing: 0.12em;
+  letter-spacing: 0.04em;
   color: var(--moss);
 }
 .index-item__title {
-  font-family: var(--font-serif);
+  font-family: var(--font-display);
   font-size: var(--fs-md);
   font-weight: 600;
   line-height: 1.6;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.01em;
   font-feature-settings: "palt";
   word-break: auto-phrase;
 }
@@ -385,15 +385,15 @@ a.index-item:hover .index-item__title {
 }
 .lead-story__cat {
   font-size: var(--fs-xs);
-  letter-spacing: 0.14em;
+  letter-spacing: 0.04em;
   color: var(--moss);
 }
 .lead-story__title {
   margin-top: 0.35rem;
-  font-family: var(--font-serif);
+  font-family: var(--font-display);
   font-size: var(--fs-xl);
   line-height: 1.5;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.01em;
 }
 .lead-story__desc {
   margin-top: 0.6rem;
@@ -407,7 +407,7 @@ a.index-item:hover .index-item__title {
   margin-top: 0.75rem;
   font-size: var(--fs-sm);
   font-weight: 600;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.04em;
   color: var(--moss);
 }
 
@@ -428,11 +428,11 @@ a.index-item:hover .index-item__title {
   margin-bottom: 0.5rem;
   font-size: var(--fs-xs);
   font-weight: 600;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.04em;
 }
 .callout__title {
   font-size: var(--fs-md);
-  letter-spacing: 0.04em;
+  letter-spacing: 0.01em;
   color: var(--ink);
 }
 .callout__body {
@@ -530,7 +530,7 @@ a.index-item:hover .index-item__title {
 .shop-links__title {
   font-size: var(--fs-sm);
   font-weight: 600;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.04em;
 }
 .shop-links__list {
   margin: 0;
@@ -556,7 +556,7 @@ a.index-item:hover .index-item__title {
   align-items: center;
   gap: 0.4rem;
   font-size: var(--fs-xs);
-  letter-spacing: 0.06em;
+  letter-spacing: 0.01em;
   color: var(--moss);
 }
 .shop-links__note {
@@ -583,11 +583,11 @@ a.index-item:hover .index-item__title {
 }
 .embed__kind {
   font-size: var(--fs-xs);
-  letter-spacing: 0.14em;
+  letter-spacing: 0.04em;
   color: var(--moss);
 }
 .embed__title {
-  font-family: var(--font-serif);
+  font-family: var(--font-display);
   font-size: var(--fs-md);
   font-weight: 600;
   line-height: 1.55;
@@ -651,7 +651,7 @@ a.index-item:hover .index-item__title {
 .table-wrap thead th {
   font-size: var(--fs-xs);
   font-weight: 600;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.04em;
   color: var(--ink-mute);
   white-space: nowrap;
 }
@@ -781,9 +781,9 @@ a.index-item:hover .index-item__title {
 }
 .not-buy h2 {
   margin-bottom: 0.5rem;
-  font-family: var(--font-serif);
+  font-family: var(--font-display);
   font-size: var(--fs-lg);
-  letter-spacing: 0.06em;
+  letter-spacing: 0.01em;
   color: var(--sun);
 }
 .not-buy ul {
@@ -810,7 +810,7 @@ a.index-item:hover .index-item__title {
   margin-bottom: 0.35rem;
   font-size: var(--fs-xs);
   font-weight: 600;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.04em;
   color: var(--moss);
 }
 .voice--research .voice__label {

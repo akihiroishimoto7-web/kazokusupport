@@ -13,6 +13,7 @@ import "@/styles/components.css";
 import "@/styles/prose.css";
 import "@/styles/pages.css";
 import "@/styles/tools.css";
+import "@/styles/refresh.css";
 
 // 見出し用の明朝体。日本語の字形はGoogle Fontsの分割配信で必要な文字だけ読み込まれます
 const shippori = Shippori_Mincho({
