@@ -96,14 +96,8 @@ export default async function ShoePage({ params }: Params) {
             <span>更新 {formatDate(shoe.updatedAt)}</span>
           </p>
         </div>
-        <Photo
-          id={shoe.photo}
-          ratio="4/3"
-          sizes="(min-width: 960px) 45vw, 100vw"
-          priority
-          className="shoe__photo"
-          fallback={{ title: name, sub: brand.name }}
-        />
+        {/* 商品写真が登録されるまでは、名前を繰り返すだけの代替面は出さない */}
+        <Photo id={shoe.photo} ratio="4/3" sizes="(min-width: 960px) 45vw, 100vw" priority className="shoe__photo" />
       </header>
 
       <div className="wrap shoe__grid">
