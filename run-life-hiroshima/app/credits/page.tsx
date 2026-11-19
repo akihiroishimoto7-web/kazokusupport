@@ -19,7 +19,7 @@ export default function CreditsPage() {
         <div className="hub__title-block">
           <h1 className="hub__title">写真のクレジット</h1>
           <p className="hub__intro">
-            このサイトで使用している写真の撮影地・撮影者・ライセンスです。Wikimedia Commons の写真は、サイズを変更して掲載しています。
+            このサイトで使用している写真の撮影地・撮影者・ライセンスです。Wikimedia Commons の写真は、サイズと色調を調整して掲載しています。
           </p>
         </div>
       </header>

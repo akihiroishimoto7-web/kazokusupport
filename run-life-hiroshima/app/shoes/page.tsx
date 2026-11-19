@@ -7,6 +7,7 @@ import { categories } from "@/content/categories";
 import { brands, shoePurposes } from "@/content/brands";
 import { publicShoes } from "@/content/shoes";
 import { sales } from "@/content/sales";
+import { labPromises } from "@/content/lab";
 import { getArticlesByCategory } from "@/lib/articles";
 import { formatDate } from "@/lib/format";
 import { buildMetadata } from "@/lib/seo";
@@ -47,6 +48,20 @@ export default function ShoesPage() {
             ランニングシューズ診断 <Arrow />
           </Link>
         </div>
+      </section>
+
+      <section className="wrap hub__section" aria-labelledby="promise">
+        <h2 className="hub__h2" id="promise">
+          研究所の約束
+        </h2>
+        <ul role="list" className="promises-inline">
+          {labPromises.map((p) => (
+            <li key={p.title}>
+              <p className="promises__title">{p.title}</p>
+              <p className="promises__text">{p.text}</p>
+            </li>
+          ))}
+        </ul>
       </section>
 
       <section className="wrap hub__section" aria-labelledby="by-worry">

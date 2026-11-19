@@ -25,7 +25,11 @@ export function ShoeFinder({ shoes, brandNames }: Props) {
   const pathname = usePathname();
   const initial = useMemo(() => answersFromParams(new URLSearchParams(params.toString())), [params]);
   const [answers, setAnswers] = useState<Partial<Answers>>(initial);
-  const [step, setStep] = useState(() => (isComplete(initial) ? QUESTIONS.length : 0));
+  // トップページなどから途中まで答えた状態で来た場合は、続きの質問から始める
+  const [step, setStep] = useState(() => {
+    const i = QUESTIONS.findIndex((q) => initial[q.key] === undefined);
+    return i === -1 ? QUESTIONS.length : i;
+  });
   const headingRef = useRef<HTMLHeadingElement>(null);
   const first = useRef(true);
 

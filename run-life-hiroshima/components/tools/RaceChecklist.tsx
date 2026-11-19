@@ -38,7 +38,9 @@ export function RaceChecklist() {
   return (
     <div className="checklist">
       <p className="checklist__progress" aria-live="polite">
-        <span className="num">{done}</span> / <span className="num">{total}</span> 確認済み
+        <span>
+          <span className="num">{done}</span> / <span className="num">{total}</span> 確認済み
+        </span>
         <span className="checklist__bar" aria-hidden="true">
           <span style={{ width: `${(done / total) * 100}%` }} />
         </span>

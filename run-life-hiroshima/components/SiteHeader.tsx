@@ -18,6 +18,13 @@ export function Wordmark() {
   );
 }
 
+const TABS = [
+  { href: "/", label: "ホーム" },
+  { href: "/start", label: "はじめる" },
+  { href: "/shoes", label: "シューズ" },
+  { href: "/courses", label: "コース" },
+] as const;
+
 export function SiteHeader() {
   const pathname = usePathname();
   const dialogRef = useRef<HTMLDialogElement>(null);
@@ -73,6 +80,24 @@ export function SiteHeader() {
         </div>
       </header>
 
+      {/* スマートフォン用：親指で届く下部ナビゲーション */}
+      <nav className="tabbar" aria-label="主なページ">
+        <ul role="list">
+          {TABS.map((t) => (
+            <li key={t.href}>
+              <Link href={t.href} aria-current={(t.href === "/" ? pathname === "/" : isCurrent(t.href)) ? "page" : undefined}>
+                {t.label}
+              </Link>
+            </li>
+          ))}
+          <li>
+            <button type="button" onClick={open} aria-haspopup="dialog">
+              メニュー
+            </button>
+          </li>
+        </ul>
+      </nav>
+
       <dialog
         ref={dialogRef}
         className="menu-sheet"
@@ -93,10 +118,9 @@ export function SiteHeader() {
           </div>
           <nav aria-label="サイトメニュー">
             <ol role="list" className="menu-sheet__list">
-              {mainNav.map((n, i) => (
+              {mainNav.map((n) => (
                 <li key={n.href}>
                   <Link href={n.href} onClick={close} aria-current={isCurrent(n.href) ? "page" : undefined}>
-                    <span className="menu-sheet__no num">{String(i + 1).padStart(2, "0")}</span>
                     <span className="menu-sheet__label">{n.label}</span>
                     <span className="menu-sheet__note">{n.note}</span>
                   </Link>
