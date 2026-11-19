@@ -1,0 +1,319 @@
+/* =====================================================================
+   Prose — 長文を、スマートフォンで心地よく読むための組版
+   ===================================================================== */
+
+.article__head {
+  padding-top: var(--space-6);
+  max-width: calc(var(--measure) + var(--gutter) * 2 + 4rem);
+}
+@media (min-width: 960px) {
+  .article__head {
+    max-width: var(--wide);
+    padding-top: var(--space-7);
+  }
+  .article__head > * {
+    max-width: 46rem;
+  }
+}
+.article__cat {
+  font-size: var(--fs-xs);
+  letter-spacing: 0.16em;
+  color: var(--moss);
+}
+.article__cat a {
+  text-decoration: none;
+}
+.article__step {
+  color: var(--ink-mute);
+}
+.article__title {
+  margin-top: 0.75rem;
+  font-family: var(--font-serif);
+  font-size: var(--fs-2xl);
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: 0.05em;
+}
+.article__lede {
+  margin-top: var(--space-5);
+  font-size: var(--fs-md);
+  line-height: 2;
+  color: var(--ink-soft);
+}
+.article__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem 1.25rem;
+  margin-top: var(--space-5);
+  font-size: var(--fs-xs);
+  letter-spacing: 0.08em;
+  color: var(--ink-mute);
+}
+
+.article__hero {
+  margin-top: var(--space-6);
+}
+.article__hero--bleed {
+  max-width: 1080px;
+  margin-inline: auto;
+}
+.article__hero--bleed .photo__caption {
+  padding-inline: var(--gutter);
+}
+
+.article__layout {
+  display: grid;
+  gap: var(--space-6);
+  margin-top: var(--space-6);
+}
+@media (min-width: 960px) {
+  .article__layout:has(.toc) {
+    grid-template-columns: 15rem minmax(0, 1fr);
+    gap: var(--space-8);
+  }
+  .toc {
+    position: sticky;
+    top: calc(var(--header-h) + 32px);
+    align-self: start;
+  }
+}
+.article__body {
+  min-width: 0;
+  max-width: var(--measure);
+}
+
+/* 目次 */
+.toc {
+  padding: 1rem 0 0.25rem;
+  border-top: 1px solid var(--ink);
+}
+.toc__title {
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  color: var(--ink-mute);
+}
+.toc ol {
+  margin: 0.5rem 0 0;
+}
+.toc a {
+  display: grid;
+  grid-template-columns: 1.75rem 1fr;
+  gap: 0.25rem;
+  padding-block: 0.55rem;
+  font-size: var(--fs-sm);
+  line-height: 1.65;
+  text-decoration: none;
+  color: var(--ink-soft);
+}
+.toc a .num {
+  font-size: var(--fs-xs);
+  color: var(--ink-mute);
+  padding-top: 0.1rem;
+}
+.toc a:hover {
+  color: var(--moss);
+}
+
+/* 本文 */
+.prose {
+  font-size: var(--fs-base);
+  line-height: 2;
+  letter-spacing: 0.04em;
+}
+.prose__flow > * + * {
+  margin-top: 1.4em;
+}
+.prose__flow p {
+  hanging-punctuation: allow-end;
+}
+.prose__flow h2 {
+  margin-top: 3em;
+  padding-top: 1.25em;
+  border-top: 1px solid var(--rule);
+  font-family: var(--font-serif);
+  font-size: var(--fs-xl);
+  line-height: 1.55;
+  letter-spacing: 0.05em;
+}
+.prose__flow > h2:first-child {
+  margin-top: 0;
+}
+.prose__flow h3 {
+  margin-top: 2.25em;
+  font-size: var(--fs-md);
+  line-height: 1.6;
+  letter-spacing: 0.05em;
+}
+.prose__flow h3 + * {
+  margin-top: 0.6em;
+}
+.prose__flow h2 + * {
+  margin-top: 1em;
+}
+.prose__flow ul,
+.prose__flow ol {
+  padding-left: 1.25em;
+}
+.prose__flow li + li {
+  margin-top: 0.4em;
+}
+.prose__flow li::marker {
+  color: var(--moss);
+}
+.prose__flow strong {
+  font-weight: 600;
+  background: linear-gradient(transparent 62%, color-mix(in srgb, var(--moss-tint) 90%, transparent) 62%);
+}
+.prose__flow a {
+  color: var(--moss);
+}
+.prose__flow .ext {
+  display: inline-block;
+  margin-left: 0.15em;
+  font-size: 0.8em;
+}
+.prose__flow blockquote {
+  padding-left: 1.25em;
+  border-left: 2px solid var(--rule-strong);
+  color: var(--ink-soft);
+}
+.prose__flow hr {
+  width: 3rem;
+  margin: 3em auto;
+  border-top-color: var(--rule-strong);
+}
+.prose__flow code {
+  padding: 0.1em 0.35em;
+  background: var(--paper-deep);
+  font-size: 0.9em;
+}
+.prose-figure img {
+  width: 100%;
+}
+.prose-figure figcaption {
+  margin-top: 0.5rem;
+  font-size: var(--fs-xs);
+  color: var(--ink-mute);
+}
+
+/* エッセイ：明朝の本文、静かな余白 */
+.article--essay .article__head {
+  text-align: left;
+}
+.article--essay .article__title {
+  font-size: var(--fs-2xl);
+  letter-spacing: 0.08em;
+}
+@media (min-width: 960px) {
+  .article--essay .article__head,
+  .article--essay .article__layout {
+    max-width: calc(32em + var(--gutter) * 2);
+  }
+  .article--essay .article__head > * {
+    max-width: none;
+  }
+}
+.prose--essay {
+  font-family: var(--font-serif);
+  font-size: 1.0625rem;
+  font-weight: 500;
+  line-height: 2.15;
+  letter-spacing: 0.06em;
+}
+.prose--essay .prose__flow > * + * {
+  margin-top: 1.7em;
+}
+.prose--essay .prose__flow h2 {
+  border-top: 0;
+  padding-top: 0;
+  margin-top: 3.5em;
+  font-size: var(--fs-lg);
+  text-align: left;
+}
+.prose--essay .prose__flow strong {
+  background: none;
+}
+.essay-end {
+  width: 2.5rem;
+  height: 1px;
+  margin: var(--space-7) 0 0;
+  background: var(--ink-mute);
+}
+
+/* 出典 */
+.sources {
+  margin-top: var(--space-7);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--rule);
+}
+.sources__title {
+  font-size: var(--fs-sm);
+  letter-spacing: 0.12em;
+  color: var(--ink-soft);
+}
+.sources ol {
+  margin: 0.5rem 0 0;
+  padding-left: 1.25em;
+  font-size: var(--fs-sm);
+  line-height: 1.85;
+  color: var(--ink-soft);
+}
+.sources__date {
+  margin-left: 0.5em;
+  color: var(--ink-mute);
+  font-size: var(--fs-xs);
+}
+
+/* シリーズの前後 */
+.series-nav {
+  display: grid;
+  gap: var(--space-4);
+  margin-top: var(--space-8);
+}
+@media (min-width: 720px) {
+  .series-nav {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+.series-nav__item {
+  display: grid;
+  gap: 0.3rem;
+  padding: 1.1rem 0;
+  border-top: 1px solid var(--ink);
+  text-decoration: none;
+}
+.series-nav__item--next {
+  text-align: right;
+  justify-items: end;
+}
+.series-nav__dir {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: var(--fs-xs);
+  letter-spacing: 0.14em;
+  color: var(--moss);
+}
+.series-nav__title {
+  font-family: var(--font-serif);
+  font-size: var(--fs-md);
+  font-weight: 600;
+  line-height: 1.6;
+}
+.series-nav__item--next {
+  background: var(--moss-tint);
+  padding: 1.1rem 1.1rem;
+  border-top-color: var(--moss);
+}
+
+.related {
+  margin-top: var(--space-8);
+}
+.related__title {
+  margin-bottom: var(--space-4);
+  font-size: var(--fs-sm);
+  letter-spacing: 0.14em;
+  color: var(--ink-soft);
+}
