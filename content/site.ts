@@ -11,7 +11,7 @@ export const site = {
   description:
     "広島在住の市民ランナーが運営する、はじめてのランニングから長く走り続けるためのシューズ選び、広島のランニングコースまでを扱う個人メディア。速さより継続を、記録より健康を大切にしています。",
   /** 本番のURL。Vercel の環境変数 NEXT_PUBLIC_SITE_URL で上書きできます */
-  url: (process.env.NEXT_PUBLIC_SITE_URL ?? "https://run-life-hiroshima.vercel.app").replace(/\/$/, ""),
+  url: (process.env.NEXT_PUBLIC_SITE_URL ?? "https://kazokusupport-u8zk.vercel.app").replace(/\/$/, ""),
   locale: "ja_JP",
   /** 検索エンジンに登録するか。公開準備が整うまで false にしておけます */
   indexable: process.env.NEXT_PUBLIC_NOINDEX !== "1",
