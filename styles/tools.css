@@ -1,0 +1,525 @@
+/* =====================================================================
+   Tools — 診断・計算機・チェックリスト
+   片手で、親指で、迷わず押せること。
+   ===================================================================== */
+
+.tool-page__inner {
+  max-width: 40rem;
+}
+.tool-page__head {
+  padding-block: var(--space-6) var(--space-6);
+}
+.tool-page__foot {
+  margin-top: var(--space-7);
+}
+
+/* ------------------------------------------------------------ シューズ診断 */
+
+.finder {
+  max-width: 40rem;
+  padding-top: var(--space-6);
+  padding-bottom: var(--space-6);
+}
+.finder--loading {
+  color: var(--ink-mute);
+  min-height: 60svh;
+}
+.finder__intro {
+  margin-bottom: var(--space-6);
+}
+.finder__lead {
+  margin-top: 0.5rem;
+  font-size: var(--fs-md);
+  line-height: 1.95;
+  color: var(--ink-soft);
+}
+.finder__lead strong {
+  color: var(--ink);
+}
+.finder__progress {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 4px;
+}
+.finder__progress span {
+  height: 3px;
+  background: var(--rule);
+  transition: background-color 0.3s var(--ease);
+}
+.finder__progress .done {
+  background: var(--moss);
+}
+.finder__progress .now {
+  background: color-mix(in srgb, var(--moss) 45%, var(--rule));
+}
+.finder__count {
+  margin-top: var(--space-4);
+  font-size: var(--fs-xs);
+  color: var(--ink-mute);
+}
+.finder__q {
+  margin-top: 0.25rem;
+  font-family: var(--font-display);
+  font-size: var(--fs-xl);
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+  scroll-margin-top: calc(var(--header-h) + 80px);
+}
+.finder__q:focus {
+  outline: none;
+}
+.finder__hint {
+  margin-top: 0.4rem;
+  font-size: var(--fs-sm);
+  color: var(--ink-mute);
+}
+.finder__options {
+  display: grid;
+  gap: 0.6rem;
+  margin: var(--space-5) 0 0;
+}
+.option {
+  display: grid;
+  gap: 0.15rem;
+  width: 100%;
+  min-height: 64px;
+  padding: 0.95rem 1.1rem;
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--radius);
+  background: var(--paper-raised);
+  text-align: left;
+  transition: border-color 0.15s var(--ease), background-color 0.15s var(--ease);
+  touch-action: manipulation;
+}
+.option:hover {
+  border-color: var(--moss);
+}
+.option:active {
+  background: var(--moss-tint);
+}
+.option.is-selected {
+  border-color: var(--moss);
+  background: var(--moss-tint);
+  box-shadow: inset 3px 0 0 var(--moss);
+}
+.option__label {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+.option__detail {
+  font-size: var(--fs-sm);
+  color: var(--ink-mute);
+  line-height: 1.6;
+}
+.finder__back {
+  display: inline-flex;
+  align-items: center;
+  min-height: 48px;
+  margin-top: var(--space-4);
+  padding: 0;
+  border: 0;
+  background: none;
+  font-size: var(--fs-sm);
+  color: var(--ink-soft);
+  text-decoration: underline;
+  text-underline-offset: 0.3em;
+  text-decoration-color: var(--rule-strong);
+}
+
+.result__title {
+  margin-top: 0.5rem;
+  font-family: var(--font-display);
+  font-size: var(--fs-xl);
+  font-weight: 600;
+  line-height: 1.6;
+  letter-spacing: 0.01em;
+  scroll-margin-top: calc(var(--header-h) + 80px);
+}
+.result__title:focus {
+  outline: none;
+}
+.result__type {
+  font-size: 1.25em;
+  color: var(--moss);
+}
+.result__why,
+.result__picks,
+.result__advice,
+.result__next {
+  margin-top: var(--space-7);
+}
+.finder--result h2 {
+  margin-bottom: var(--space-3);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--ink-soft);
+}
+.result__why > p {
+  line-height: 2;
+}
+.result__answers {
+  margin: var(--space-5) 0 0;
+  border-top: 1px solid var(--rule);
+  font-size: var(--fs-sm);
+}
+.result__answers > div {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0 1rem;
+  padding-block: 0.5rem;
+  border-bottom: 1px solid var(--rule);
+}
+.result__answers dt {
+  grid-column: 1 / -1;
+  font-size: var(--fs-xs);
+  color: var(--ink-mute);
+}
+.result__answers dd {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  grid-column: 1 / -1;
+  font-weight: 600;
+}
+.result__answers .link-button {
+  min-height: 36px;
+  font-weight: 400;
+}
+.result__note {
+  font-size: var(--fs-sm);
+  color: var(--ink-mute);
+  line-height: 1.85;
+}
+.result__list {
+  margin: var(--space-4) 0 0;
+  border-top: 1px solid var(--ink);
+}
+.result__list > li {
+  border-bottom: 1px solid var(--rule);
+}
+.result-shoe {
+  display: grid;
+  grid-template-columns: 2rem 1fr;
+  gap: 0.75rem;
+  padding-block: 1.25rem;
+  text-decoration: none;
+}
+.result-shoe__no {
+  padding-top: 0.35rem;
+  font-size: var(--fs-xs);
+  color: var(--ink-mute);
+}
+.result-shoe__body {
+  display: grid;
+  gap: 0.3rem;
+}
+.result-shoe__name {
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.35;
+}
+.result-shoe__brand {
+  font-size: 0.8em;
+  font-weight: 500;
+  color: var(--ink-mute);
+}
+.result-shoe__catch {
+  font-size: 0.9375rem;
+  color: var(--ink-soft);
+}
+.result-shoe__reasons {
+  margin: 0.25rem 0 0;
+  padding-left: 1.1em;
+  font-size: var(--fs-sm);
+  color: var(--ink-soft);
+  line-height: 1.75;
+}
+.result-shoe__reasons li::marker {
+  color: var(--moss);
+}
+.result-shoe__more {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--moss);
+}
+.result__advice ul {
+  margin: 0 0 var(--space-4);
+  padding-left: 1.1em;
+}
+.result__advice li + li {
+  margin-top: 0.5rem;
+}
+.result__advice li,
+.result__advice p {
+  line-height: 1.9;
+}
+.result__next {
+  display: grid;
+  gap: 0.75rem;
+}
+.result__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 1.5rem;
+  margin-top: var(--space-3);
+}
+
+/* ------------------------------------------------------------ 入力部品 */
+
+.field {
+  display: grid;
+  gap: 0.5rem;
+  margin: var(--space-5) 0 0;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+}
+.field__label {
+  padding: 0;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--ink-soft);
+}
+.field__inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.input {
+  width: 100%;
+  min-height: 52px;
+  padding: 0.6rem 0.9rem;
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--radius);
+  background: var(--paper-raised);
+  font-size: 1.0625rem; /* iOSで入力時に拡大されないよう16px以上 */
+}
+.field__inline .input {
+  width: 7rem;
+}
+.input--big {
+  font-size: 1.75rem;
+  letter-spacing: 0.01em;
+}
+.input:focus {
+  border-color: var(--moss);
+  outline: 2px solid color-mix(in srgb, var(--moss) 30%, transparent);
+  outline-offset: 0;
+}
+
+.segmented {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.segmented button {
+  min-height: 48px;
+  border: 0;
+  background: transparent;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--ink-soft);
+}
+.segmented button + button {
+  border-left: 1px solid var(--rule-strong);
+}
+.segmented button[aria-checked="true"] {
+  background: var(--moss);
+  color: var(--on-moss);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.chip {
+  position: relative;
+}
+.chip input {
+  position: absolute;
+  opacity: 0;
+  inset: 0;
+  margin: 0;
+  cursor: pointer;
+}
+.chip span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 1rem;
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--radius);
+  font-size: var(--fs-sm);
+  background: var(--paper-raised);
+}
+.chip input:checked + span {
+  border-color: var(--moss);
+  background: var(--moss-tint);
+  font-weight: 600;
+}
+.chip input:focus-visible + span {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+/* ------------------------------------------------------------ ペース計算機 */
+
+.pace__result {
+  margin-top: var(--space-6);
+}
+.pace__main {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin: 0;
+  border-top: 1px solid var(--ink);
+}
+.pace__main > div {
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+.pace__main dt {
+  font-size: var(--fs-xs);
+  letter-spacing: 0.04em;
+  color: var(--ink-mute);
+}
+.pace__main dd {
+  margin-top: 0.25rem;
+  font-size: clamp(1.75rem, 8vw, 2.5rem);
+  font-weight: 500;
+  line-height: 1.2;
+}
+.pace__sub {
+  margin-top: 0.75rem;
+  font-size: var(--fs-sm);
+  color: var(--ink-soft);
+}
+.pace__error {
+  padding: 1rem;
+  border: 1px solid var(--sun);
+  color: var(--sun);
+  font-size: var(--fs-sm);
+}
+.splits {
+  min-width: 0 !important;
+}
+.splits caption {
+  padding-block: 0.75rem;
+  text-align: left;
+  font-size: var(--fs-xs);
+  letter-spacing: 0.04em;
+  color: var(--ink-mute);
+}
+.splits td,
+.splits th {
+  font-size: 0.9375rem;
+}
+
+/* ------------------------------------------------------------ チェックリスト */
+
+.checklist__progress {
+  display: grid;
+  gap: 0.5rem;
+  font-size: var(--fs-sm);
+  color: var(--ink-soft);
+}
+.checklist__bar {
+  display: block;
+  height: 3px;
+  background: var(--rule);
+}
+.checklist__bar span {
+  display: block;
+  height: 100%;
+  background: var(--moss);
+  transition: width 0.3s var(--ease);
+}
+.checklist__group {
+  margin: var(--space-6) 0 0;
+  padding: 0;
+  border: 0;
+}
+.checklist__group legend {
+  padding: 0;
+  margin-bottom: 0.5rem;
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+.checklist__group ul {
+  margin: 0;
+  border-top: 1px solid var(--ink);
+}
+.checklist__group li {
+  border-bottom: 1px solid var(--rule);
+}
+.check {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.5rem 1fr;
+  gap: 0.9rem;
+  align-items: start;
+  min-height: 56px;
+  padding-block: 0.9rem;
+  cursor: pointer;
+}
+.check input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}
+.check__box {
+  width: 1.375rem;
+  height: 1.375rem;
+  margin-top: 0.15rem;
+  border: 1.5px solid var(--rule-strong);
+  border-radius: var(--radius);
+  background: var(--paper-raised);
+  transition: background-color 0.15s var(--ease), border-color 0.15s var(--ease);
+}
+.check input:checked + .check__box {
+  border-color: var(--moss);
+  background: var(--moss)
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3.5 8.5l3 3 6-7' fill='none' stroke='%23f6f3ec' stroke-width='1.8'/%3E%3C/svg%3E")
+    center / 80% no-repeat;
+}
+.check input:focus-visible + .check__box {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+.check__text {
+  display: grid;
+  gap: 0.1rem;
+}
+.check__label {
+  line-height: 1.65;
+}
+.check input:checked ~ .check__text .check__label {
+  color: var(--ink-mute);
+  text-decoration: line-through;
+  text-decoration-color: var(--rule-strong);
+}
+.check__note {
+  font-size: var(--fs-sm);
+  color: var(--ink-mute);
+  line-height: 1.7;
+}
+.checklist__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 1.5rem;
+  margin-top: var(--space-5);
+}
