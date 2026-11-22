@@ -20,3 +20,9 @@ export function jogMinutes(km: number): [number, number] {
 }
 
 export const ROUTE_KIND_LABEL = { loop: "周回", "out-and-back": "往復", "one-way": "片道" } as const;
+
+/** 山道など上りの多いルートの歩行時間の目安（ネイスミスの法則：時速5km＋上り600mごとに1時間） */
+export function hikeMinutes(km: number, gainM: number): [number, number] {
+  const base = (km / 5) * 60 + (gainM / 600) * 60;
+  return [Math.max(5, Math.floor(base / 5) * 5), Math.ceil((base * 1.25) / 5) * 5];
+}

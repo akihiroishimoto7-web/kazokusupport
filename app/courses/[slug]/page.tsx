@@ -10,7 +10,7 @@ import { courses, getCourse, indexableCourse, publicCourses } from "@/content/co
 import { getPurpose } from "@/content/brands";
 import { getPhoto } from "@/content/photos";
 import { getArticle } from "@/lib/articles";
-import { courseStats, jogMinutes, ROUTE_KIND_LABEL } from "@/lib/course-stats";
+import { courseStats, hikeMinutes, jogMinutes, ROUTE_KIND_LABEL } from "@/lib/course-stats";
 import { formatDate } from "@/lib/format";
 import { buildMetadata, placeJsonLd } from "@/lib/seo";
 import type { Course } from "@/lib/types";
@@ -57,7 +57,8 @@ export default async function CoursePage({ params }: Params) {
   const mapUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(c.mapQuery)}`;
   const related = c.relatedArticles.map((s) => getArticle(s)).filter(Boolean);
   const others = courses.filter((x) => x.slug !== c.slug && x.status !== "draft");
-  const [minA, minB] = stats ? jogMinutes(stats.distanceKm) : [0, 0];
+  const hilly = Boolean(stats && (stats.elevationGainM ?? 0) >= 100);
+  const [minA, minB] = stats ? (hilly ? hikeMinutes(stats.distanceKm, stats.elevationGainM ?? 0) : jogMinutes(stats.distanceKm)) : [0, 0];
 
   return (
     <article className="cg">
@@ -105,7 +106,7 @@ export default async function CoursePage({ params }: Params) {
               </dd>
             </div>
             <div>
-              <dt>ゆっくり走ると</dt>
+              <dt>{hilly ? "歩いて上ると" : "ゆっくり走ると"}</dt>
               <dd>
                 <span className="num">
                   {minA}〜{minB}
@@ -121,7 +122,7 @@ export default async function CoursePage({ params }: Params) {
         ) : null}
         {stats ? (
           <p className="cg-stats__note">
-            OpenStreetMap の道路データと国土地理院の標高データから計算した値です。所要時間は1kmあたり7〜8分で計算しています。運営者はまだ走っていません。
+            OpenStreetMap の道路データと国土地理院の標高データから計算した値です。{hilly ? "上りの多いルートのため、所要時間は歩く場合の目安（時速5km＋上り600mごとに1時間）で計算しています。" : "所要時間は1kmあたり7〜8分で計算しています。"}運営者はまだ走っていません。
           </p>
         ) : null}
 
