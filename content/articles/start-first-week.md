@@ -7,7 +7,7 @@ tags: [初心者, ウォーキング, 習慣]
 status: published
 publishedAt: 2026-11-18
 updatedAt: 2026-11-18
-hero: motomachi-riverside-path
+hero: own-riverside-benches
 seasons: [spring, summer, autumn, winter]
 levels: [first]
 series: { id: start-guide, order: 2 }

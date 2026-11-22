@@ -14,10 +14,10 @@ export const metadata = buildMetadata({
   description:
     "太田川の川沿い、広島城、平和記念公園、宇品の海辺、牛田山、比治山。広島のランニングコースを、地図データから計算した距離と高低差、アクセスとともに紹介します。",
   path: cat.path,
-  photo: "ota-floodway-embankment",
+  photo: "own-river-evening",
 });
 
-const COVER = "ota-floodway-embankment";
+const COVER = "own-river-evening";
 
 export default function CoursesPage() {
   const list = publicCourses();

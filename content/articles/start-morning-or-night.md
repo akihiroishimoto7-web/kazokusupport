@@ -7,7 +7,7 @@ tags: [初心者, 習慣, 安全]
 status: published
 publishedAt: 2026-11-15
 updatedAt: 2026-11-18
-hero: motoyasu-river-peace-bridge
+hero: own-park-evening
 seasons: [autumn, winter]
 levels: [first, beginner]
 series: { id: start-guide, order: 6 }

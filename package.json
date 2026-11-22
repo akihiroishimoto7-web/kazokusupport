@@ -10,7 +10,8 @@
     "typecheck": "tsc --noEmit",
     "validate": "node scripts/validate-content.mjs",
     "test": "node --test tests/*.test.mjs",
-    "check": "npm run typecheck && npm run validate && npm test"
+    "check": "npm run typecheck && npm run validate && npm test",
+    "channels": "node scripts/channels.mjs"
   },
   "engines": {
     "node": ">=20.9"

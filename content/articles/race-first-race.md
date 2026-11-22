@@ -7,7 +7,7 @@ tags: [大会, 初心者, 持ち物, 5km, 10km]
 status: published
 publishedAt: 2026-11-18
 updatedAt: 2026-11-18
-hero: ota-river-shin-koi
+hero: own-tree-backlit
 seasons: [autumn, winter]
 levels: [beginner]
 related: [start-what-to-wear, start-easy-pace]

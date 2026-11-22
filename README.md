@@ -39,7 +39,9 @@ npm run build
 | 写真の差し替え | `public/photos/` と `content/photos.ts` |
 | アフィリエイトID | `content/affiliate.ts` |
 | セール情報 | `content/sales.ts` |
-| プロフィール・SNS・アメブロのURL | `content/site.ts` |
+| プロフィール | `content/site.ts` |
+| Instagram・アメブロ連携 | `content/social.ts`（手順は `docs/SOCIAL-SETUP.md`） |
+| 媒体の振り分け（Instagram／アメブロ／HP） | `content/editorial.ts`（方針は `docs/EDITORIAL.md`、一覧は `npm run channels`） |
 | トップの「何から始めよう？」 | `content/home.ts` |
 | カテゴリーの説明・扱うテーマ | `content/categories.ts` |
 | 診断・ツールの一覧 | `content/tools.ts` |

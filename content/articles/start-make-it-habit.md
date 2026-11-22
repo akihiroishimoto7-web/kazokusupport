@@ -7,7 +7,7 @@ tags: [初心者, 習慣, 継続]
 status: published
 publishedAt: 2026-11-14
 updatedAt: 2026-11-18
-hero: kyobashi-river-inari
+hero: own-river-sparkle
 seasons: [spring, summer, autumn, winter]
 levels: [first, beginner]
 series: { id: start-guide, order: 7 }

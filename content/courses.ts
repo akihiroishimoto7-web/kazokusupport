@@ -272,7 +272,7 @@ export const courses: Course[] = [
     description:
       "元安川と本川にはさまれた平和記念公園のまわりを、川沿いと平和大通りでつなぐ約2kmの周回です。ここは慰霊の場でもあります。公園内では周囲の方への配慮を忘れず、式典や行事のある日は走るのを控えるなど、場所への敬意を大切にしてください。",
     status: "routed",
-    photo: "motoyasu-river-peace-bridge",
+    photo: "own-dome-night",
     route: {
       gpx: "peace-park.gpx",
       map: map("peace-park"),
@@ -450,7 +450,7 @@ export const courses: Course[] = [
     description:
       "中央公園の一角にあるサッカースタジアムの周辺です。すぐそばを川が流れ、川沿いの道とあわせて走ることができます。広島城・中央公園の周回や、太田川の川沿いのルートと組み合わせるのもおすすめです。試合やイベントのある日は人が多くなります。",
     status: "outline",
-    photo: "peace-wing-from-sorazaya",
+    photo: "own-stadium-lawn",
     features: ["広島城・中央公園、太田川の川沿いのルートと組み合わせやすい"],
     cautions: ["試合・イベント開催日は混雑します。開催日程は公式情報で確認してください。"],
     shoes: [],

@@ -8,6 +8,9 @@ import { brands, shoePurposes } from "@/content/brands";
 import { modelsInResearch, publicShoes } from "@/content/shoes";
 import { sales } from "@/content/sales";
 import { labPromises } from "@/content/lab";
+import { AmebloList } from "@/components/SocialSections";
+import { getAmebloEntries } from "@/lib/ameblo";
+import { social, amebloUrl } from "@/content/social";
 import { getArticlesByCategory } from "@/lib/articles";
 import { formatDate } from "@/lib/format";
 import { buildMetadata } from "@/lib/seo";
@@ -15,7 +18,10 @@ import { buildMetadata } from "@/lib/seo";
 const cat = categories.shoes;
 export const metadata = buildMetadata({ title: cat.name, description: cat.intro, path: cat.path });
 
-export default function ShoesPage() {
+export const revalidate = 3600;
+
+export default async function ShoesPage() {
+  const amebloEntries = await getAmebloEntries();
   const all = publicShoes();
   const reviews = all.filter((s) => s.status === "review");
   const articles = getArticlesByCategory("shoes");
@@ -63,6 +69,12 @@ export default function ShoesPage() {
           ))}
         </ul>
       </section>
+
+      {amebloEntries.length ? (
+        <section className="wrap hub__section" aria-label="アメブロの新しい記事">
+          <AmebloList entries={amebloEntries} blogUrl={amebloUrl()} blogTitle={social.ameblo.title} heading="レビューと比較の新しい記事" />
+        </section>
+      ) : null}
 
       <section className="wrap hub__section" aria-labelledby="research">
         <h2 className="hub__h2" id="research">

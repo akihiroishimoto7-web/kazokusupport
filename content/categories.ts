@@ -13,7 +13,7 @@ export const categories: Record<CategoryId, CategoryInfo> = {
     catch: "最初の一歩を、無理なく。",
     intro:
       "走ったことがない人、しばらく運動から離れていた人のための入門ガイドです。上から順番に読めば、最初の1か月の過ごし方がわかるように並べています。高価な道具は、まだ必要ありません。",
-    photo: "motomachi-riverside-trees",
+    photo: "own-riverside-lawn",
     topics: [
       { title: "最初に必要なもの", article: "start-what-you-need" },
       { title: "買わなくてもよいもの", article: "start-what-you-need", note: "上の記事の後半で扱っています" },

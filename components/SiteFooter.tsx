@@ -1,10 +1,14 @@
 import Link from "next/link";
 import { mainNav, subNav } from "@/lib/nav";
 import { channels, site } from "@/content/site";
+import { amebloUrl, instagramUrl, social } from "@/content/social";
 import { affiliateActive } from "@/lib/shop";
 
 export function SiteFooter() {
-  const live = channels.filter((c) => c.url);
+  // Instagram・アメブロの設定（content/social.ts）があれば、それを優先して表示
+  const live = channels
+    .map((c) => (c.id === "ameblo" ? { ...c, url: c.url ?? amebloUrl() } : c.id === "instagram" ? { ...c, url: c.url ?? instagramUrl(), name: social.instagram.username ? `Instagram @${social.instagram.username}` : c.name } : c))
+    .filter((c) => c.url);
   return (
     <footer className="site-footer">
       <div className="wrap site-footer__inner">
