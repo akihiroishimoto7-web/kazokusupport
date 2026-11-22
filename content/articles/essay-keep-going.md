@@ -7,7 +7,7 @@ tags: [エッセイ, 継続]
 status: published
 publishedAt: 2026-11-18
 updatedAt: 2026-11-18
-hero: kyobashi-river-inari
+hero: own-river-trees
 seasons: [spring, summer, autumn, winter]
 levels: [first, beginner, intermediate]
 related: [start-make-it-habit]

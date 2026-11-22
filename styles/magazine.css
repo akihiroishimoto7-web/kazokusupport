@@ -969,3 +969,13 @@ h3,
   font-size: 0.6875rem;
   color: var(--ink-mute);
 }
+
+/* 写真だけの間（ページの呼吸） */
+.m-interlude {
+  margin-top: var(--section);
+}
+.m-interlude__photo .photo__frame {
+  aspect-ratio: auto !important;
+  height: min(92svh, 960px);
+  min-height: 480px;
+}

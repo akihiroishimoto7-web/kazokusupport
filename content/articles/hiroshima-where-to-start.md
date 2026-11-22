@@ -7,7 +7,7 @@ tags: [広島, コース, 初心者]
 status: published
 publishedAt: 2026-11-18
 updatedAt: 2026-11-18
-hero: ota-river-shin-koi
+hero: own-museum-night
 seasons: [spring, summer, autumn, winter]
 levels: [first, beginner]
 related: [start-first-week]

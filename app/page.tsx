@@ -42,7 +42,7 @@ export default async function HomePage() {
   const [igPosts, amebloEntries] = await Promise.all([getInstagramPosts(), getAmebloEntries()]);
   const today = new Date().toISOString().slice(0, 10);
   const cover = getPhoto("own-seto-dusk");
-  const story = getPhoto("own-river-trees");
+  const story = getPhoto("own-river-sunlight");
   const city = getPhoto("own-dome-night");
   const everyday = getPhoto("own-seaside-path");
   const essay = getArticle(featuredEssay);
@@ -97,7 +97,7 @@ export default async function HomePage() {
           </p>
         </div>
         <Link href={essay ? `/articles/${essay.slug}` : "/essays"} className="m-feature" data-reveal>
-          <Photo id="own-river-trees" ratio="3/2" sizes="100vw" caption={false} className="m-feature__photo" />
+          <Photo id="own-river-sunlight" ratio="3/2" sizes="100vw" caption={false} className="m-feature__photo" />
           <span className="m-feature__text wrap">
             <span className="m-feature__title">{essay?.title ?? "走ること、生きること"}</span>
             <span className="m-feature__lede">{essay?.description}</span>
@@ -304,6 +304,12 @@ export default async function HomePage() {
             長く走るための記事 <Arrow />
           </Link>
         </p>
+      </section>
+
+      {/* ================================================ 間（写真だけ） */}
+      <section className="m-interlude" aria-label="写真：夜の遊歩道">
+        <Photo id="own-park-night" ratio="4/5" sizes="100vw" caption={false} className="m-interlude__photo" />
+        <Credit p={getPhoto("own-park-night")} className="wrap" />
       </section>
 
       {/* ================================================ 新着 */}
