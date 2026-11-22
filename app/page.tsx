@@ -15,7 +15,7 @@ import { formatDate, formatYen } from "@/lib/format";
 import { buildMetadata } from "@/lib/seo";
 import type { Photo as PhotoT } from "@/lib/types";
 
-export const metadata = buildMetadata({ path: "/", photo: "runner-levee-dusk" });
+export const metadata = buildMetadata({ path: "/" });
 
 // 新着とセールを更新するため、1日に1回つくり直します
 export const revalidate = 86400;

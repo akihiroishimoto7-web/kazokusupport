@@ -1,6 +1,6 @@
 # RUN LIFE HIROSHIMA
 
-「走ると、日常が少し変わる。」
+「ただ、走る。」
 広島在住の市民ランナーが運営する、個人ランニングメディアです。
 
 - Next.js 15（App Router）／TypeScript／素のCSS（Tailwind等は不使用）
