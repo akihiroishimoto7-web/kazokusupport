@@ -25,7 +25,8 @@ export const metadata = buildMetadata({ path: "/" });
 export const revalidate = 3600;
 
 function Credit({ p, className = "" }: { p?: PhotoT; className?: string }) {
-  if (!p || p.credit.kind !== "licensed") return null;
+  if (!p) return null;
+  if (p.credit.kind === "self") return <p className={`credit ${className}`}>{p.caption}　写真：運営者撮影</p>;
   return (
     <p className={`credit ${className}`}>
       {p.isHiroshima ? p.caption : p.place.replace("（広島ではありません）", "")}
@@ -40,10 +41,10 @@ function Credit({ p, className = "" }: { p?: PhotoT; className?: string }) {
 export default async function HomePage() {
   const [igPosts, amebloEntries] = await Promise.all([getInstagramPosts(), getAmebloEntries()]);
   const today = new Date().toISOString().slice(0, 10);
-  const cover = getPhoto("runner-levee-dusk");
-  const story = getPhoto("runner-riverside-mukogawa");
-  const city = getPhoto("castle-west-moat");
-  const everyday = getPhoto("runner-city-morning");
+  const cover = getPhoto("own-seto-dusk");
+  const story = getPhoto("own-river-trees");
+  const city = getPhoto("own-dome-night");
+  const everyday = getPhoto("own-seaside-path");
   const essay = getArticle(featuredEssay);
   const latest = getArticles().slice(0, 5);
   const routed = courses.filter((c) => c.route);
@@ -58,7 +59,7 @@ export default async function HomePage() {
     <div className="mag">
       {/* ================================================ 表紙 */}
       <section className="m-cover" aria-labelledby="cover-title">
-        <Photo id="runner-levee-dusk" ratio="4/5" sizes="100vw" priority caption={false} className="m-cover__photo" />
+        <Photo id="own-seto-dusk" ratio="4/5" sizes="100vw" priority caption={false} className="m-cover__photo" />
         <div className="m-cover__text">
           <h1 className="m-cover__title" id="cover-title">
             ただ、走る。
@@ -96,7 +97,7 @@ export default async function HomePage() {
           </p>
         </div>
         <Link href={essay ? `/articles/${essay.slug}` : "/essays"} className="m-feature" data-reveal>
-          <Photo id="runner-riverside-mukogawa" ratio="3/2" sizes="100vw" caption={false} className="m-feature__photo" />
+          <Photo id="own-river-trees" ratio="3/2" sizes="100vw" caption={false} className="m-feature__photo" />
           <span className="m-feature__text wrap">
             <span className="m-feature__title">{essay?.title ?? "走ること、生きること"}</span>
             <span className="m-feature__lede">{essay?.description}</span>
@@ -120,7 +121,7 @@ export default async function HomePage() {
       {/* ================================================ 広島 */}
       <section className="m-city" aria-labelledby="city-title">
         <div className="m-city__media">
-          <Photo id="castle-west-moat" ratio="4/5" sizes="100vw" caption={false} className="m-city__photo" />
+          <Photo id="own-dome-night" ratio="4/5" sizes="100vw" caption={false} className="m-city__photo" />
           <div className="m-city__text wrap">
             <p className="m-kicker m-kicker--light">広島を走る</p>
             <h2 className="m-city__title" id="city-title">
@@ -243,7 +244,7 @@ export default async function HomePage() {
       <section className="m-gear" aria-labelledby="gear-title">
         <div className="wrap m-gear__grid">
           <div className="m-gear__media" data-reveal>
-            <Photo id="runner-city-morning" ratio="3/4" sizes="(min-width: 960px) 40vw, 100vw" caption={false} />
+            <Photo id="own-seaside-path" ratio="3/4" sizes="(min-width: 960px) 40vw, 100vw" caption={false} />
             <Credit p={everyday} />
           </div>
           <div data-reveal>
