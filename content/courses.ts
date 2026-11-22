@@ -61,7 +61,17 @@ const NIGHT_RIVER = "夜は川沿いの暗い区間に注意。明るい色の�
 const ROUTE_NOTE =
   "OpenStreetMap の道路データで作った想定ルートです。運営者はまだこのルートを走っていません。工事や通行止めで通れないことがあります。";
 
-const map = (slug: string) => ({ src: `/maps/${slug}.webp`, width: 1600, height: 1200 });
+/** 地図画像の作成条件（scripts/routes/routes.py の出力）。ルートを地図に正確に重ねるために使います */
+const MAPS: Record<string, { zoom: number; bbox: [number, number, number, number] }> = {
+  "chuo-park": { zoom: 17, bbox: [34.39923, 132.455774, 34.405146, 132.462123] },
+  hijiyama: { zoom: 17, bbox: [34.382004, 132.470365, 34.387027, 132.473389] },
+  "otagawa-riverside": { zoom: 16, bbox: [34.396248, 132.450838, 34.40774, 132.458268] },
+  "peace-park": { zoom: 17, bbox: [34.390227, 132.448608, 34.396298, 132.454882] },
+  "terayama-park": { zoom: 17, bbox: [34.511146, 132.510123, 34.515491, 132.517135] },
+  "ujina-minato-park": { zoom: 17, bbox: [34.351842, 132.45346, 34.35434, 132.460358] },
+  ushitayama: { zoom: 16, bbox: [34.416448, 132.464507, 34.423217, 132.48553] },
+};
+const map = (slug: string) => ({ src: `/maps/${slug}.webp`, width: 1600, height: 1200, ...MAPS[slug]! });
 
 export const courses: Course[] = [
   /* ------------------------------------------------------------ 1. 太田川 */
