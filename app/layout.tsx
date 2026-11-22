@@ -3,6 +3,7 @@ import { Shippori_Mincho, Instrument_Sans } from "next/font/google";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { JsonLd } from "@/components/JsonLd";
+import { RevealScript } from "@/components/RevealScript";
 import { site } from "@/content/site";
 import { buildMetadata, websiteJsonLd } from "@/lib/seo";
 
@@ -14,6 +15,7 @@ import "@/styles/prose.css";
 import "@/styles/pages.css";
 import "@/styles/tools.css";
 import "@/styles/refresh.css";
+import "@/styles/magazine.css";
 
 // 見出し用の明朝体。日本語の字形はGoogle Fontsの分割配信で必要な文字だけ読み込まれます
 const shippori = Shippori_Mincho({
@@ -60,6 +62,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <SiteHeader />
         <main id="main">{children}</main>
         <SiteFooter />
+        <RevealScript />
         <JsonLd data={websiteJsonLd()} />
       </body>
     </html>

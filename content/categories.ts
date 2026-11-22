@@ -40,11 +40,11 @@ export const categories: Record<CategoryId, CategoryInfo> = {
   },
   gear: {
     id: "gear",
-    name: "ランニングの道具箱",
+    name: "補給と道具",
     path: "/gear",
-    catch: "道具は、暮らしに合わせて。",
+    catch: "持ち物は、少なくていい。",
     intro:
-      "ランキングではなく、あなたの走り方から必要な道具を考えます。最初に買うべきものは、実はほとんどありません。必要になったときに、必要なものだけを。",
+      "ポーチ、リュック、ウェア、補給食。ランキングではなく、あなたの走り方から必要な道具を考えます。最初に買うべきものは、実はほとんどありません。必要になったときに、必要なものだけを。",
     topics: [],
   },
   hiroshima: {
@@ -62,9 +62,9 @@ export const categories: Record<CategoryId, CategoryInfo> = {
   },
   care: {
     id: "care",
-    name: "壊れず、強くなる",
+    name: "長く走る",
     path: "/care",
-    catch: "長く走るための、からだの話。",
+    catch: "壊れず、少しずつ強くなる。",
     intro:
       "ランニングを長く続けるための、からだのケアと健康についてのカテゴリーです。医学的な根拠と、市民ランナーとしての個人的な経験は、はっきり分けて書きます。診断や治療の代わりにはなりません。痛みが続くときは、医療機関に相談してください。",
     topics: [
@@ -76,8 +76,9 @@ export const categories: Record<CategoryId, CategoryInfo> = {
       { title: "体幹" },
       { title: "睡眠" },
       { title: "栄養" },
-      { title: "VO2max" },
+      { title: "VO2maxとは何か" },
       { title: "健康寿命とランニング" },
+      { title: "ランニングの科学（研究の読み方）" },
     ],
   },
   race: {

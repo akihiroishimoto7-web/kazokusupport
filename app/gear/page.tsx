@@ -4,7 +4,6 @@ import { Arrow } from "@/components/Arrow";
 import { categories } from "@/content/categories";
 import { gearCategories, gearScenes } from "@/content/gear";
 import { buildMetadata } from "@/lib/seo";
-import { pad2 } from "@/lib/format";
 
 const cat = categories.gear;
 export const metadata = buildMetadata({ title: cat.name, description: cat.intro, path: cat.path });
@@ -38,10 +37,9 @@ export default function GearPage() {
           こんなとき、何を持てばいい？
         </h2>
         <ol role="list" className="scene-index">
-          {gearScenes.map((s, i) => (
+          {gearScenes.map((s) => (
             <li key={s.slug}>
               <Link href={`/gear/scene/${s.slug}`} className="scene-row">
-                <span className="scene-row__no num">{pad2(i + 1)}</span>
                 <span className="scene-row__body">
                   <span className="scene-row__t">{s.title}</span>
                   <span className="scene-row__d">{s.summary}</span>

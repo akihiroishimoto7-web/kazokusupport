@@ -11,7 +11,7 @@ import { tools } from "@/content/tools";
 export default function sitemap(): MetadataRoute.Sitemap {
   const u = (p: string) => `${site.url}${p}`;
   const now = new Date().toISOString().slice(0, 10);
-  const statics = ["/", "/start", "/shoes", "/gear", "/courses", "/care", "/race", "/essays", "/tools", "/about", "/policy", "/credits"];
+  const statics = ["/", "/start", "/shoes", "/gear", "/courses", "/care", "/race", "/essays", "/tools", "/deals", "/about", "/policy", "/credits"];
   return [
     ...statics.map((p) => ({ url: u(p), lastModified: now })),
     ...getArticles()

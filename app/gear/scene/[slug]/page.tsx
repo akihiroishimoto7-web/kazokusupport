@@ -28,7 +28,7 @@ export default async function ScenePage({ params }: Params) {
       <div className="wrap">
         <Breadcrumbs
           items={[
-            { name: "ランニングの道具箱", path: "/gear" },
+            { name: "補給と道具", path: "/gear" },
             { name: s.title, path: `/gear/scene/${s.slug}` },
           ]}
         />

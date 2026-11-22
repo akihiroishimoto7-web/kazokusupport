@@ -1,0 +1,848 @@
+/* =====================================================================
+   RUN LIFE HIROSHIMA — Design system v3「ただ、走る。」
+
+   色     オフホワイト・チャコール・グレー。色ではなく写真と余白と文字で見せる。
+          アクセントは、ほぼ使わない（リンクの下線とラベルの墨色だけ）。
+   文字   大きな言葉は細く（力まない）。読ませる見出しは中くらいの太さ。
+          本文は17px・行間1.95。英語の飾り見出しは使わない。
+   写真   画面いっぱいに。写真の上に置く文字は、暗い部分にだけ。
+   動き   画面に入ったときに、ほんの少し浮かぶだけ。
+   ===================================================================== */
+
+:root {
+  --paper: #f7f6f3;
+  --paper-deep: #eeede9;
+  --paper-raised: #ffffff;
+  --ink: #161616;
+  --ink-soft: #3c3c3a;
+  --ink-mute: #77776f;
+  --rule: #dddcd6;
+  --rule-strong: #bdbcb5;
+  /* 旧来の「緑」は墨に近い深い色へ。ラベルとリンクの下線にだけ */
+  --moss: #2b3a33;
+  --moss-deep: #1b1c1b;
+  --moss-tint: #e6e7e2;
+  --on-moss: #ffffff;
+  --on-dark: #f2f1ed;
+  --on-dark-soft: #a9a9a2;
+  --sun: #8a4b25;
+
+  --t-cover: clamp(3.25rem, 1.4rem + 9.5vw, 9.5rem);
+  --t-statement: clamp(2rem, 1.3rem + 3.4vw, 4.25rem);
+  --t-headline: clamp(1.5rem, 1.25rem + 1.3vw, 2.375rem);
+  --section: clamp(5.5rem, 3.5rem + 9vw, 12rem);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #111111;
+    --paper-deep: #1a1a19;
+    --paper-raised: #1a1a19;
+    --ink: #efeee9;
+    --ink-soft: #c9c8c2;
+    --ink-mute: #92918a;
+    --rule: #2c2c2a;
+    --rule-strong: #43433f;
+    --moss: #c9c8c2;
+    --moss-deep: #0b0b0b;
+    --moss-tint: #222220;
+    --on-moss: #111111;
+  }
+}
+
+body {
+  background: var(--paper);
+}
+.site-header {
+  background: var(--paper);
+}
+.wordmark__place,
+.eyebrow,
+.hub__catch,
+.article__cat,
+.lead-story__cat,
+.index-item__cat,
+.course-card__area,
+.course__area,
+.embed__kind,
+.hub__h2,
+.related__title,
+.sources__title,
+.toc__title,
+.list-caption,
+.read__cat,
+.feature__cat,
+.cx-item__area,
+.cg-cover__area {
+  color: var(--ink-mute);
+}
+.wordmark__place {
+  color: var(--ink-mute);
+}
+
+/* 大きな言葉は細く、読ませる見出しは中くらい */
+h1,
+h2,
+h3,
+.hub__title,
+.article__title,
+.cg-h2,
+.cg-cover__name,
+.cx-item__name,
+.course__name,
+.courses__title {
+  font-weight: 600;
+}
+.statement,
+.hub__title,
+.page-title,
+.article__title {
+  font-weight: 500;
+  letter-spacing: -0.025em;
+}
+
+/* 表示の動き（JSが動いたときだけ） */
+.is-pending {
+  opacity: 0;
+  transform: translateY(18px);
+}
+.is-in {
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.9s cubic-bezier(0.2, 0.6, 0.2, 1), transform 0.9s cubic-bezier(0.2, 0.6, 0.2, 1);
+}
+.photo__frame img {
+  transition: transform 1.4s cubic-bezier(0.2, 0.6, 0.2, 1);
+}
+@media (prefers-reduced-motion: reduce) {
+  .is-pending {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ------------------------------------------------------------ 共通の部品 */
+.m-kicker {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--ink-mute);
+}
+.m-kicker--light {
+  color: rgb(255 255 255 / 0.78);
+}
+.m-statement {
+  margin-top: 1rem;
+  font-size: var(--t-statement);
+  font-weight: 400;
+  line-height: 1.22;
+  letter-spacing: -0.035em;
+}
+.m-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: 44px;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.45em;
+  text-decoration-color: var(--rule-strong);
+}
+.m-link:hover {
+  text-decoration-color: var(--ink);
+}
+.m-link:hover .arrow {
+  transform: translateX(3px);
+}
+.m-more {
+  margin-top: 2.5rem;
+}
+.m-small-head {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--ink-mute);
+}
+.m-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 54px;
+  padding: 0 1.75rem;
+  border-radius: 999px;
+  background: var(--paper);
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 0.9375rem;
+  text-decoration: none;
+}
+.credit {
+  margin-top: 0.6rem;
+  font-size: 0.6875rem;
+  color: var(--ink-mute);
+}
+
+/* ------------------------------------------------------------ 表紙 */
+.m-cover {
+  position: relative;
+  background: #0d0d0c;
+}
+.m-cover__photo .photo__frame {
+  aspect-ratio: auto !important;
+  height: calc(100svh - var(--header-h) - var(--tabbar-h));
+  min-height: 520px;
+  max-height: 980px;
+  background: #0d0d0c;
+}
+@media (min-width: 1080px) {
+  .m-cover__photo .photo__frame {
+    height: calc(100svh - var(--header-h));
+  }
+}
+.m-cover__text {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 max(var(--gutter), env(safe-area-inset-left)) clamp(2.25rem, 7vw, 5.5rem);
+  color: #f4f3ef;
+}
+.m-cover__title {
+  font-size: var(--t-cover);
+  font-weight: 300;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  color: #f4f3ef;
+  text-wrap: nowrap;
+}
+.m-cover__sub {
+  margin-top: 1.1rem;
+  font-size: clamp(0.9375rem, 0.85rem + 0.4vw, 1.125rem);
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  color: rgb(244 243 239 / 0.82);
+}
+
+/* ------------------------------------------------------------ 宣言 */
+.m-manifesto {
+  padding-block: var(--section) calc(var(--section) * 0.8);
+  max-width: 1080px;
+}
+.m-manifesto__lead {
+  font-size: clamp(1.625rem, 1.1rem + 2.6vw, 3.25rem);
+  font-weight: 300;
+  line-height: 1.5;
+  letter-spacing: -0.02em;
+}
+.m-manifesto__lead .wb {
+  margin-right: 0.35em;
+}
+.m-manifesto__body {
+  margin-top: 2rem;
+  max-width: 30em;
+  font-size: clamp(1.0625rem, 0.98rem + 0.4vw, 1.25rem);
+  line-height: 2.05;
+  color: var(--ink-soft);
+}
+.m-manifesto__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 2rem;
+  margin-top: 2.25rem;
+}
+
+/* ------------------------------------------------------------ 走るということ */
+.m-stories .m-kicker {
+  margin-bottom: 1.25rem;
+}
+.m-feature {
+  display: block;
+  position: relative;
+  text-decoration: none;
+  color: #fff;
+}
+.m-feature__photo .photo__frame {
+  aspect-ratio: auto !important;
+  height: min(86svh, 860px);
+  min-height: 480px;
+}
+.m-feature__photo .photo__frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgb(10 10 10 / 0.62), rgb(10 10 10 / 0) 50%);
+}
+.m-feature:hover img {
+  transform: scale(1.015);
+}
+.m-feature__text {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: grid;
+  gap: 0.75rem;
+  max-width: 1320px !important;
+  padding-bottom: clamp(2rem, 5vw, 4.5rem);
+}
+.m-feature__title {
+  max-width: 13em;
+  font-size: clamp(1.875rem, 1.2rem + 3vw, 3.75rem);
+  font-weight: 400;
+  line-height: 1.25;
+  letter-spacing: -0.03em;
+}
+.m-feature__lede {
+  max-width: 28em;
+  font-size: 0.9375rem;
+  line-height: 1.9;
+  color: rgb(255 255 255 / 0.85);
+}
+.m-pair {
+  display: grid;
+  gap: 2.75rem;
+  margin-top: clamp(3rem, 7vw, 5.5rem);
+}
+@media (min-width: 840px) {
+  .m-pair {
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    padding-left: 8.333%;
+  }
+}
+.m-story {
+  display: grid;
+  gap: 0.5rem;
+  text-decoration: none;
+}
+.m-story__cat {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--ink-mute);
+}
+.m-story__title {
+  font-size: clamp(1.375rem, 1.2rem + 0.8vw, 1.75rem);
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: -0.015em;
+}
+.m-story__desc {
+  font-size: 0.9375rem;
+  line-height: 1.9;
+  color: var(--ink-soft);
+}
+.m-story:hover .m-story__title {
+  text-decoration: underline;
+  text-underline-offset: 0.3em;
+  text-decoration-thickness: 1px;
+}
+
+/* ------------------------------------------------------------ 広島 */
+.m-city {
+  margin-top: var(--section);
+}
+.m-city__media {
+  position: relative;
+}
+.m-city__photo .photo__frame {
+  aspect-ratio: auto !important;
+  height: min(80svh, 820px);
+  min-height: 440px;
+}
+.m-city__photo .photo__frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgb(10 10 10 / 0.6), rgb(10 10 10 / 0) 50%);
+}
+.m-city__text {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  max-width: 1320px !important;
+  padding-bottom: clamp(2rem, 5vw, 4.5rem);
+}
+.m-city__title {
+  margin-top: 0.75rem;
+  font-size: var(--t-statement);
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.035em;
+  color: #fff;
+}
+.m-courses {
+  display: grid;
+  gap: 2.5rem;
+  margin-top: clamp(3rem, 6vw, 5rem);
+}
+@media (min-width: 960px) {
+  .m-courses {
+    grid-template-columns: 7fr 5fr;
+    gap: 4.5rem;
+    align-items: end;
+  }
+}
+.m-course {
+  display: block;
+  text-decoration: none;
+}
+.m-course .photo__frame {
+  border-radius: 2px;
+}
+.m-course--big .m-course__line {
+  margin-top: 1rem;
+}
+.m-course__line {
+  display: grid;
+  gap: 0.15rem;
+}
+.m-course__name {
+  font-size: 1.1875rem;
+  font-weight: 500;
+  line-height: 1.45;
+}
+.m-course--big .m-course__name {
+  font-size: clamp(1.375rem, 1.2rem + 0.8vw, 1.75rem);
+}
+.m-course__nums {
+  font-size: 0.8125rem;
+  color: var(--ink-mute);
+}
+.m-course-list {
+  margin: 0;
+  border-top: 1px solid var(--rule);
+}
+.m-course-list .m-course {
+  padding: 1.1rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+.m-course:hover .m-course__name {
+  text-decoration: underline;
+  text-underline-offset: 0.3em;
+  text-decoration-thickness: 1px;
+}
+
+/* ------------------------------------------------------------ シューズ */
+.m-shoes {
+  padding-top: var(--section);
+}
+.m-shoes__grid {
+  display: grid;
+  gap: 2.5rem;
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+}
+@media (min-width: 960px) {
+  .m-shoes__grid {
+    grid-template-columns: 5fr 7fr;
+    gap: 4.5rem;
+    align-items: start;
+  }
+}
+.m-finder {
+  display: grid;
+  gap: 0.75rem;
+  justify-items: start;
+  padding: clamp(1.75rem, 4vw, 2.75rem);
+  background: #1b1b1a;
+  color: #f2f1ed;
+  border-radius: 2px;
+}
+.m-finder__title {
+  font-size: clamp(1.375rem, 1.2rem + 0.9vw, 1.875rem);
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+}
+.m-finder__text {
+  font-size: 0.875rem;
+  color: rgb(242 241 237 / 0.7);
+  margin-bottom: 0.75rem;
+}
+.m-worries {
+  display: grid;
+  margin: 0;
+  border-top: 1px solid var(--rule);
+}
+@media (min-width: 600px) {
+  .m-worries {
+    grid-template-columns: 1fr 1fr;
+    column-gap: 2rem;
+  }
+}
+.m-worries a {
+  display: grid;
+  gap: 0.15rem;
+  padding: 1.1rem 0;
+  border-bottom: 1px solid var(--rule);
+  text-decoration: none;
+}
+.m-worries__q {
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.6;
+}
+.m-worries__t {
+  font-size: 0.75rem;
+  color: var(--ink-mute);
+}
+.m-worries a:hover .m-worries__q {
+  text-decoration: underline;
+  text-underline-offset: 0.3em;
+  text-decoration-thickness: 1px;
+}
+.m-models {
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+}
+.m-models ul {
+  margin: 0.75rem 0 0;
+  border-top: 1px solid var(--rule);
+}
+.m-model {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--rule);
+  text-decoration: none;
+}
+.m-model__name {
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+.m-model__price {
+  font-size: 0.8125rem;
+  color: var(--ink-mute);
+  white-space: nowrap;
+}
+
+/* ------------------------------------------------------------ セール */
+.m-deals {
+  margin-top: var(--section);
+  padding-block: 2.25rem;
+  border-block: 1px solid var(--rule);
+  display: grid;
+  gap: 1rem;
+}
+@media (min-width: 840px) {
+  .m-deals {
+    grid-template-columns: 3fr 6fr auto;
+    align-items: center;
+    gap: 3rem;
+  }
+  .m-deals .reads {
+    grid-column: 1 / -1;
+  }
+}
+.m-deals__head {
+  display: contents;
+}
+.m-deals__text {
+  font-size: 0.9375rem;
+  line-height: 1.85;
+  color: var(--ink-soft);
+}
+
+/* ------------------------------------------------------------ 補給と道具 */
+.m-gear {
+  padding-top: var(--section);
+}
+.m-gear__grid {
+  display: grid;
+  gap: 2.5rem;
+}
+@media (min-width: 960px) {
+  .m-gear__grid {
+    grid-template-columns: 5fr 7fr;
+    gap: 5rem;
+    align-items: center;
+  }
+}
+.m-gear__media .photo__frame {
+  border-radius: 2px;
+}
+.m-scenes {
+  margin: clamp(2rem, 4vw, 3rem) 0 0;
+  border-top: 1px solid var(--rule);
+}
+.m-scenes a {
+  display: grid;
+  gap: 0.2rem;
+  padding: 1.1rem 0;
+  border-bottom: 1px solid var(--rule);
+  text-decoration: none;
+}
+.m-scenes__q {
+  font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem);
+  font-weight: 500;
+  line-height: 1.5;
+}
+.m-scenes__g {
+  font-size: 0.75rem;
+  color: var(--ink-mute);
+}
+.m-scenes a:hover .m-scenes__q {
+  text-decoration: underline;
+  text-underline-offset: 0.3em;
+  text-decoration-thickness: 1px;
+}
+
+/* ------------------------------------------------------------ 長く走る */
+.m-long {
+  margin-top: var(--section);
+  padding-block: clamp(4rem, 3rem + 5vw, 8rem);
+  border-top: 1px solid var(--rule);
+}
+.m-quote {
+  margin-top: 1.25rem;
+  font-size: var(--t-cover);
+  font-weight: 300;
+  line-height: 1.12;
+  letter-spacing: -0.045em;
+}
+.m-long__grid {
+  display: grid;
+  gap: 2.5rem;
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+}
+@media (min-width: 960px) {
+  .m-long__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+  }
+}
+.m-long__text {
+  font-size: 1rem;
+  line-height: 2;
+  color: var(--ink-soft);
+  max-width: 30em;
+}
+.m-long__soon {
+  margin-top: 1.5rem;
+  font-size: 0.8125rem;
+  color: var(--ink-mute);
+}
+
+/* ------------------------------------------------------------ 新着 */
+.m-latest {
+  padding-top: clamp(2rem, 4vw, 3rem);
+}
+.m-latest__list {
+  margin: 1.25rem 0 0;
+  border-top: 1px solid var(--ink);
+}
+.m-latest__item {
+  display: grid;
+  grid-template-columns: 3.5rem 1fr;
+  gap: 0.2rem 1rem;
+  padding: 1.15rem 0;
+  border-bottom: 1px solid var(--rule);
+  text-decoration: none;
+}
+.m-latest__date {
+  grid-row: span 2;
+  padding-top: 0.25rem;
+  font-size: 0.8125rem;
+  color: var(--ink-mute);
+}
+.m-latest__title {
+  font-size: 1.0625rem;
+  font-weight: 500;
+  line-height: 1.55;
+}
+.m-latest__cat {
+  font-size: 0.75rem;
+  color: var(--ink-mute);
+}
+@media (min-width: 840px) {
+  .m-latest__item {
+    grid-template-columns: 5rem 1fr 14rem;
+    align-items: baseline;
+  }
+  .m-latest__date {
+    grid-row: auto;
+  }
+  .m-latest__cat {
+    text-align: right;
+  }
+}
+.m-latest__item:hover .m-latest__title {
+  text-decoration: underline;
+  text-underline-offset: 0.3em;
+  text-decoration-thickness: 1px;
+}
+
+/* ------------------------------------------------------------ 運営者 */
+.m-about {
+  padding-block: var(--section);
+  max-width: 760px;
+}
+.m-about__text {
+  margin: 1.25rem 0 1rem;
+  font-size: clamp(1.125rem, 1rem + 0.6vw, 1.5rem);
+  font-weight: 300;
+  line-height: 1.9;
+  letter-spacing: -0.01em;
+}
+
+/* ------------------------------------------------------------ 下層ページへの反映 */
+.page-head {
+  padding-top: clamp(2.5rem, 5vw, 4.5rem);
+  max-width: 900px;
+}
+.page-title {
+  margin-top: 0.75rem;
+  font-size: var(--t-statement);
+  line-height: 1.22;
+}
+.page-section {
+  padding-top: clamp(2.5rem, 5vw, 4rem);
+  max-width: 900px;
+}
+.empty-state {
+  padding: 2rem 0;
+  border-top: 1px solid var(--ink);
+  display: grid;
+  gap: 0.75rem;
+  max-width: 34em;
+  color: var(--ink-soft);
+}
+.empty-state__title {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--ink);
+}
+.read__date {
+  font-size: 0.75rem;
+  color: var(--ink-mute);
+}
+.read__desc {
+  font-size: 0.875rem;
+  color: var(--ink-soft);
+}
+
+/* ボタン類を墨色に統一 */
+.btn--solid,
+.button--primary {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+}
+.btn--solid:hover,
+.button--primary:hover {
+  background: var(--ink-soft);
+  border-color: var(--ink-soft);
+}
+.finder-invite,
+.finder-band {
+  background: #1b1b1a;
+}
+.finder-band__opt {
+  color: #1b1b1a;
+}
+.finder-invite .button--primary {
+  background: #fff;
+  border-color: #fff;
+  color: #1b1b1a;
+}
+.life,
+.site-footer {
+  background: #161616;
+}
+.tabbar a[aria-current="page"] {
+  box-shadow: inset 0 2px 0 var(--ink);
+}
+.option.is-selected {
+  border-color: var(--ink);
+  background: var(--paper-deep);
+}
+.segmented button[aria-checked="true"] {
+  background: var(--ink);
+  color: var(--paper);
+}
+.chip input:checked + span {
+  border-color: var(--ink);
+  background: var(--paper-deep);
+}
+.check input:checked + .check__box {
+  border-color: var(--ink);
+  background-color: var(--ink);
+}
+.cg-profile path,
+.route__line {
+  stroke: var(--ink);
+}
+.cg-profile path {
+  fill: color-mix(in srgb, var(--ink) 12%, transparent);
+}
+.cg-list li::before {
+  background: var(--ink);
+}
+.callout--experience {
+  border-left-color: var(--ink);
+}
+.prose__flow a,
+.more__link,
+.text-link {
+  color: var(--ink);
+}
+.more__link {
+  text-decoration: underline;
+  text-underline-offset: 0.45em;
+  text-decoration-thickness: 1px;
+  text-decoration-color: var(--rule-strong);
+}
+.research-list__ok {
+  color: var(--ink-soft);
+}
+.rating__bar span.on {
+  background: var(--ink);
+}
+.badge--verified {
+  color: var(--ink-soft);
+}
+
+/* ---- レビュー1回目の修正 ---- */
+/* 宣言は三行の詩のように */
+.m-manifesto__lead .wb {
+  display: block;
+  margin-right: 0;
+}
+/* 特集：写真の主役（走る人）に文字を重ねない。文字は写真の下へ */
+.m-feature {
+  color: var(--ink);
+}
+.m-feature__photo .photo__frame::after {
+  display: none;
+}
+.m-feature__text {
+  position: static;
+  padding-top: clamp(1.5rem, 3vw, 2.25rem);
+  padding-bottom: 0;
+}
+.m-feature__lede {
+  color: var(--ink-soft);
+}
+.m-feature:hover .m-feature__title {
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+  text-decoration-thickness: 1px;
+}
+@media (min-width: 960px) {
+  .m-feature__text {
+    grid-template-columns: 7fr 5fr;
+    align-items: end;
+    column-gap: 4rem;
+  }
+}
+.m-feature__title {
+  max-width: 16em;
+  word-break: auto-phrase;
+  text-wrap: balance;
+}
