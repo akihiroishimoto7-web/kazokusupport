@@ -24,7 +24,7 @@ export const tools: ToolInfo[] = [
   {
     id: "pace",
     title: "マラソンペース計算機",
-    description: "目標タイムから1kmあたりのペースと通過タイムを、ペースからゴールタイムを計算します。",
+    description: "目標タイムと配分（イーブン・後半上げ・前半貯金）から、1kmごとのペースと5kmごとの通過タイムをグラフで。",
     href: "/tools/pace",
     status: "live",
     meta: "5km・10km・ハーフ・フル",
@@ -36,6 +36,22 @@ export const tools: ToolInfo[] = [
     href: "/tools/race-checklist",
     status: "live",
     meta: "前日・当日朝・ゴール後",
+  },
+  {
+    id: "shoe-compare",
+    title: "シューズ比較",
+    description: "最大3足を並べて、得意な用途・公式の数値・特徴をくらべます。",
+    href: "/shoes/compare",
+    status: "live",
+    meta: "最大3足",
+  },
+  {
+    id: "log",
+    title: "ランニング記録ノート",
+    description: "距離とタイムを入れるだけで、週ごとの距離・ペース・VO2maxをグラフに。記録はこの端末にだけ保存されます。",
+    href: "/tools/log",
+    status: "live",
+    meta: "手入力・端末に保存",
   },
   {
     id: "watch-finder",

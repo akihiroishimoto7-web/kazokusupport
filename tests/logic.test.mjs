@@ -90,3 +90,35 @@ test("Markdown: 囲み・埋め込み・目次・HTMLの無害化", () => {
   const html = segments.filter((s) => s.type === "html").map((s) => s.html).join("");
   assert.ok(!html.includes("<script>"));
 });
+
+import { buildPlan, timeAt } from "../lib/pace-plan.ts";
+test("ペース配分: どの配分でもゴールタイムは目標どおり", () => {
+  for (const s of ["even", "negative", "positive"]) {
+    const { rows } = buildPlan(4 * 3600, 42.195, s, 12);
+    assert.ok(Math.abs(rows.at(-1).elapsed - 14400) < 0.01, s);
+    assert.equal(rows.length, 43);
+  }
+});
+test("ペース配分: 後半上げは前半が遅く、中間点はイーブンより後", () => {
+  const n = buildPlan(14400, 42.195, "negative", 12).rows;
+  const e = buildPlan(14400, 42.195, "even", 12).rows;
+  assert.ok(n[0].pace > n.at(-2).pace);
+  assert.ok(timeAt(n, 21.0975) > timeAt(e, 21.0975));
+  assert.ok(Math.abs(timeAt(e, 21.0975) - 7200) < 0.01);
+});
+
+import { weekStart, weekly, loadChange } from "../lib/runlog.ts";
+test("記録: 週の区切りは月曜、週ごとの合計と増え方", () => {
+  assert.equal(weekStart("2026-11-22"), "2026-11-16"); // 日曜 → その週の月曜
+  assert.equal(weekStart("2026-11-23"), "2026-11-23");
+  const runs = [
+    { id: "a", date: "2026-11-03", km: 10, sec: 3600 },
+    { id: "b", date: "2026-11-10", km: 10, sec: 3600 },
+    { id: "c", date: "2026-11-17", km: 10, sec: 3600 },
+    { id: "d", date: "2026-11-24", km: 6, sec: 2000 },
+    { id: "e", date: "2026-11-26", km: 7, sec: 2400 },
+  ];
+  const w = weekly(runs, 4, "2026-11-26");
+  assert.deepEqual(w.map((x) => x.km), [10, 10, 10, 13]);
+  assert.equal(loadChange(w), 30);
+});

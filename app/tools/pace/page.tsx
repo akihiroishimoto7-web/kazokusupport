@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { PaceCalculator } from "@/components/tools/PaceCalculator";
+import { PaceSimulator } from "@/components/tools/PaceSimulator";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
@@ -28,7 +29,20 @@ export default function PacePage() {
             完走が目標なら、前半は計算したペースより少しゆっくり入るくらいでちょうどいいことが多いです。上り坂や給水でペースが落ちるのは自然なこと。数字は目安として使ってください。
           </p>
         </header>
-        <PaceCalculator />
+        <section aria-labelledby="sim" className="ps-section">
+          <h2 className="sc-h2" id="sim">
+            ペース配分シミュレーター
+          </h2>
+          <p className="sc-note">目標タイムと配分を選ぶと、1kmごとのペースと5kmごとの通過タイムが変わります。</p>
+          <PaceSimulator />
+        </section>
+        <section aria-labelledby="calc" className="ps-section">
+          <h2 className="sc-h2" id="calc">
+            かんたん計算
+          </h2>
+          <p className="sc-note">タイムからペース、ペースからタイムを、いろいろな距離で。</p>
+          <PaceCalculator />
+        </section>
         <p className="tool-page__foot">
           <Link href="/race" className="text-link">
             はじめてのマラソン大会へ

@@ -50,9 +50,14 @@ export default async function ShoesPage() {
             <p className="finder-invite__title">迷ったら、ここから。</p>
             <p className="finder-invite__text">6つの質問に答えるだけ。合うシューズのタイプと、その理由、候補のシリーズを表示します。</p>
           </div>
-          <Link href="/tools/shoe-finder" className="button button--primary">
-            ランニングシューズ診断 <Arrow />
-          </Link>
+          <div className="finder-invite__actions">
+            <Link href="/tools/shoe-finder" className="button button--primary">
+              ランニングシューズ診断 <Arrow />
+            </Link>
+            <Link href="/shoes/compare" className="button button--light">
+              3足まで並べてくらべる <Arrow />
+            </Link>
+          </div>
         </div>
       </section>
 
