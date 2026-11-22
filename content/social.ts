@@ -20,7 +20,7 @@ export const social = {
     limit: 6,
   },
   instagram: {
-    username: null as string | null,
+    username: "akihiroishimoto" as string | null,
     /**
      * 自動取得（公式API）を使う場合は、Vercel の環境変数に
      *   INSTAGRAM_ACCESS_TOKEN（長期アクセストークン）

@@ -979,3 +979,8 @@ h3,
   height: min(92svh, 960px);
   min-height: 480px;
 }
+.m-about__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 2rem;
+}
