@@ -7,6 +7,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { ArticleIndex } from "@/components/ArticleList";
 import { Arrow } from "@/components/Arrow";
 import { categories } from "@/content/categories";
+import { author } from "@/content/site";
 import { getArticle, getArticles, getSeries, relatedArticles } from "@/lib/articles";
 import { renderArticleBody } from "@/lib/markdown";
 import { formatDate } from "@/lib/format";
@@ -75,6 +76,9 @@ export default async function ArticlePage({ params }: Params) {
             更新 <time dateTime={article.updatedAt}>{formatDate(article.updatedAt)}</time>
           </span>
           <span>約{article.readingMinutes}分で読めます</span>
+          <span>
+            文：<Link href="/about">{author.displayName ?? "RUN LIFE HIROSHIMA"}（{author.role}）</Link>
+          </span>
           {article.status === "draft" ? <span className="badge badge--planned">下書き</span> : null}
         </p>
         {affiliateActive && hasShopEmbeds ? (

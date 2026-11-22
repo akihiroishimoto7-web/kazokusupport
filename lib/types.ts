@@ -249,6 +249,18 @@ export type GearScene = {
 
 export type CourseArea = "中区" | "南区" | "東区" | "西区" | "安佐南区" | "安佐北区" | "西区・中区";
 
+export type CourseRoute = {
+  /** public/gpx/ のファイル名 */
+  gpx: string;
+  /** public/maps/ の地図画像 */
+  map: { src: string; width: number; height: number };
+  kind: "loop" | "out-and-back" | "one-way";
+  /** ルートの説明（どこからどこまで） */
+  summary: string;
+  /** ルートの作り方の注記 */
+  note: string;
+};
+
 export type Course = {
   slug: string;
   name: string;
@@ -259,12 +271,28 @@ export type Course = {
   catch: string;
   /** 場所の性格を説明する文章（推測で設備や距離を書かない） */
   description: string;
-  status: "outline" | "surveyed" | "draft";
+  /**
+   * outline  … 場所の紹介のみ
+   * routed   … 地図データから想定ルートを作成（現地未走）
+   * surveyed … 運営者が実際に走って確認
+   * draft    … 非公開
+   */
+  status: "outline" | "routed" | "surveyed" | "draft";
   photo?: string;
+  route?: CourseRoute;
+  /** コースの特徴・魅力 */
+  features: string[];
+  /** 夏場・夜間などの注意点 */
+  cautions: string[];
+  /** おすすめのシューズ（用途ID と理由） */
+  shoes: { purpose?: ShoePurposeId; text: string }[];
+  /** 周辺の立ち寄りスポット（地図上で確認できるもの） */
+  nearby: string[];
   facts: {
     start: Fact<string>;
     distanceKm: Fact<number>;
     elevationGainM: Fact<number>;
+    hills: Fact<string>;
     surface: Fact<string>;
     signals: Fact<"なし" | "少ない" | "ふつう" | "多い">;
     toilets: Fact<string>;
@@ -278,8 +306,6 @@ export type Course = {
   beginnerScore: Fact<1 | 2 | 3 | 4 | 5>;
   /** 地図検索に使う語（Googleマップで開く） */
   mapQuery: string;
-  /** public/gpx/ に置いた GPX ファイル名（任意） */
-  gpx?: string;
   /** 実際に走った感想（まだ走っていなければ null） */
   runReport: null | { date: ISODate; text: string; distanceKm?: number };
   tags: string[];

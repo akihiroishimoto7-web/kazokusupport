@@ -92,7 +92,11 @@ export default async function ShoePage({ params }: Params) {
           </h1>
           <p className="shoe__catch serif">{shoe.catch}</p>
           <p className="shoe__status">
-            {isOutline ? <Badge tone="planned">シリーズ概要・スペック調査中</Badge> : <Badge tone="verified">レビュー</Badge>}
+            {isOutline ? (
+              <Badge tone="planned">{shoe.model && shoe.checkedAt ? "公式情報の一部を確認" : "シリーズ概要・スペック調査中"}</Badge>
+            ) : (
+              <Badge tone="verified">レビュー</Badge>
+            )}
             <span>更新 {formatDate(shoe.updatedAt)}</span>
           </p>
         </div>
@@ -105,7 +109,9 @@ export default async function ShoePage({ params }: Params) {
           {isOutline ? (
             <aside className="state-note">
               <p>
-                このページは、シリーズの位置づけと、向いている人・向いていない人をまとめた段階です。現行モデルの価格・重量・厚さなどは、メーカー公式で確認できしだい掲載します。実際に履いた感想は、履いてから書きます。
+                {shoe.model && shoe.checkedAt
+                  ? `メーカー公式サイトで確認できた情報を中心にまとめています（${formatDate(shoe.checkedAt)}確認）。「要確認」の数値は、公式ページで改めて確認してください。実際に履いた感想は、履いてから書きます。`
+                  : "このページは、シリーズの位置づけと、向いている人・向いていない人をまとめた段階です。現行モデルの価格・重量・厚さなどは、メーカー公式で確認できしだい掲載します。実際に履いた感想は、履いてから書きます。"}
               </p>
             </aside>
           ) : null}

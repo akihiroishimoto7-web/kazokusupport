@@ -415,6 +415,111 @@ export const shoes: Shoe[] = [
     reasonsNotToBuy: ["速い練習をしていないなら、必要ありません。", "プレート入りのシューズは、脚の使い方によっては合わない人もいます。"],
     similar: ["adidas-adizero-boston"],
   }),
+  outline({
+    slug: "nb-rebel",
+    brand: "newbalance",
+    series: "FuelCell Rebel",
+    purposes: ["speed", "easy"],
+    traits: ["neutral", "light", "bouncy"],
+    catch: "軽さと弾みで、少し速く走る日に",
+    positioning: "ニューバランスの FuelCell シリーズの中で、軽さと反発を持たせたトレーニングシューズとして知られています。",
+    bestFor: ["少し速めのジョグ", "テンポ走"],
+    recommendFor: ["ジョグ用とは別に、軽快に走れる一足がほしい人"],
+    notFor: ["走り始めたばかりで、まず安定感を求める人"],
+    reasonsNotToBuy: [NOT_NEEDED_IF_FINE, "速い練習をまだしていないなら、急いで買う必要はありません。"],
+    similar: ["adidas-adizero-boston", "saucony-endorphin-speed", "asics-novablast"],
+  }),
+  outline({
+    slug: "adidas-adizero-evo-sl",
+    brand: "adidas",
+    series: "ADIZERO EVO SL",
+    purposes: ["speed", "marathon"],
+    traits: ["neutral", "light", "bouncy"],
+    catch: "レースの技術を、毎日の練習へ",
+    positioning: "アディダスの ADIZERO シリーズの中で、軽さを重視したトレーニング向けのモデルとして展開されています。",
+    bestFor: ["テンポ走", "レースに向けた練習"],
+    recommendFor: ["軽いシューズで速めのペースの練習をしたい中級者"],
+    notFor: ["走り始めたばかりの人の最初の一足"],
+    reasonsNotToBuy: ["速い練習をしていないなら、必要ありません。", "まずはジョグ用の一足を履きつぶしてから検討しても遅くありません。"],
+    similar: ["adidas-adizero-boston", "nb-rebel", "saucony-endorphin-speed"],
+  }),
+];
+
+/* ------------------------------------------------------------------
+ * メーカー公式サイトで確認した情報（2026年11月22日）
+ * 価格は公式商品ページの表示をそのまま記載。
+ * 重量・ドロップ・厚さは公式ページを自動で読み取った要約から得た値のため「要確認」としています。
+ * ------------------------------------------------------------------ */
+const NIKE_PEGASUS_41 = {
+  title: "ナイキ ペガサス 41 メンズ ロード ランニングシューズ（FD2722-016）",
+  url: "https://www.nike.com/jp/t/%E3%83%8A%E3%82%A4%E3%82%AD-%E3%83%9A%E3%82%AC%E3%82%B5%E3%82%B9-41-%E3%83%A1%E3%83%B3%E3%82%BA-%E3%83%AD%E3%83%BC%E3%83%89-%E3%83%A9%E3%83%B3%E3%83%8B%E3%83%B3%E3%82%B0%E3%82%B7%E3%83%A5%E3%83%BC%E3%82%BA-fCM7Mn/FD2722-016",
+  publisher: "ナイキ公式サイト",
+  checkedAt: "2026-11-22",
+};
+const NIKE_VOMERO_18 = {
+  title: "ナイキ ボメロ 18 メンズ ロード ランニングシューズ（ワイド／IF0514-002）",
+  url: "https://www.nike.com/jp/t/%E3%83%8A%E3%82%A4%E3%82%AD-%E3%83%9C%E3%83%A1%E3%83%AD-18-%E3%83%A1%E3%83%B3%E3%82%BA-%E3%83%AD%E3%83%BC%E3%83%89-%E3%83%A9%E3%83%B3%E3%83%8B%E3%83%B3%E3%82%B0%E3%82%B7%E3%83%A5%E3%83%BC%E3%82%BA-%E3%83%AF%E3%82%A4%E3%83%89-6IUGLPEF/IF0514-002",
+  publisher: "ナイキ公式サイト",
+  checkedAt: "2026-11-22",
+};
+const SUMMARY_NOTE = "公式ページの記載を自動で読み取った値です。公式サイトで要確認";
+
+function applyOfficial(slug: string, patch: Partial<Shoe>) {
+  const i = shoes.findIndex((x) => x.slug === slug);
+  if (i >= 0) shoes[i] = { ...shoes[i]!, ...patch };
+}
+
+applyOfficial("nike-pegasus", {
+  model: "Pegasus 41",
+  checkedAt: "2026-11-22",
+  updatedAt: "2026-11-22",
+  specs: {
+    priceJpy: { value: 16500, verified: true, source: NIKE_PEGASUS_41, note: "メンズ（FD2722-016）の公式サイト表示価格。セール時は変わります" },
+    weightG: { value: 297, verified: false, size: "メンズ28cm", source: NIKE_PEGASUS_41, note: SUMMARY_NOTE },
+    stackHeelMm: { value: null, verified: false, note: "公式ページで確認できませんでした" },
+    stackForefootMm: { value: null, verified: false, note: "公式ページで確認できませんでした" },
+    dropMm: { value: 10, verified: false, source: NIKE_PEGASUS_41, note: SUMMARY_NOTE },
+  },
+  research: {
+    summary:
+      "ナイキ公式サイトでは、用途を「ロードランニング」としています。メンズのほか、ウィメンズ、ジュニア、GORE-TEX モデルも展開されています（2026年11月22日、公式サイトで確認）。",
+  },
+  sources: [NIKE_PEGASUS_41],
+  links: { rakuten: "ナイキ ペガサス 41", amazon: "ナイキ ペガサス 41", yahoo: "ナイキ ペガサス 41", official: NIKE_PEGASUS_41.url },
+});
+
+applyOfficial("nike-vomero", {
+  model: "Vomero 18",
+  checkedAt: "2026-11-22",
+  updatedAt: "2026-11-22",
+  specs: {
+    priceJpy: { value: 17600, verified: true, source: NIKE_VOMERO_18, note: "メンズ・ワイド（IF0514-002）の公式サイト通常価格。確認時はセール価格も表示されていました" },
+    weightG: { value: 325, verified: false, size: "メンズ28cm（ワイド）", source: NIKE_VOMERO_18, note: SUMMARY_NOTE },
+    stackHeelMm: { value: 46, verified: false, source: NIKE_VOMERO_18, note: SUMMARY_NOTE },
+    stackForefootMm: { value: 36, verified: false, source: NIKE_VOMERO_18, note: SUMMARY_NOTE },
+    dropMm: { value: 10, verified: false, source: NIKE_VOMERO_18, note: SUMMARY_NOTE },
+  },
+  research: {
+    summary:
+      "ナイキ公式サイトでは、用途を「ロードランニング」、特徴を「クッション」としています。通常幅とワイドが展開されています（2026年11月22日、公式サイトで確認）。",
+  },
+  sources: [NIKE_VOMERO_18],
+  links: { rakuten: "ナイキ ボメロ 18", amazon: "ナイキ ボメロ 18", yahoo: "ナイキ ボメロ 18", official: NIKE_VOMERO_18.url },
+});
+
+/**
+ * 公式仕様を調査中のモデル（シューズ研究所のページに表示）。
+ * status: confirmed … 一部の公式情報を確認済み / pending … 公式サイトを自動で読めず未確認
+ */
+export const modelsInResearch: { name: string; shoe: string; status: "confirmed" | "pending"; note: string }[] = [
+  { name: "Nike Pegasus 41", shoe: "nike-pegasus", status: "confirmed", note: "公式価格を確認。重量・ドロップは要確認" },
+  { name: "Nike Vomero 18", shoe: "nike-vomero", status: "confirmed", note: "公式価格を確認。重量・厚さ・ドロップは要確認" },
+  { name: "HOKA Clifton 10", shoe: "hoka-clifton", status: "pending", note: "公式仕様を確認中" },
+  { name: "New Balance Fresh Foam X 1080 v14", shoe: "nb-1080", status: "pending", note: "公式仕様を確認中" },
+  { name: "New Balance FuelCell Rebel v5", shoe: "nb-rebel", status: "pending", note: "公式仕様を確認中" },
+  { name: "ASICS GEL-KAYANO 32", shoe: "asics-gel-kayano", status: "pending", note: "公式仕様を確認中" },
+  { name: "adidas ADIZERO EVO SL", shoe: "adidas-adizero-evo-sl", status: "pending", note: "公式仕様を確認中" },
+  { name: "On Cloudmonster 2", shoe: "on-cloudmonster", status: "pending", note: "公式仕様を確認中" },
 ];
 
 export const publicShoes = () => shoes.filter((s) => s.status !== "draft");

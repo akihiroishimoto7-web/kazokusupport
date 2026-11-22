@@ -1,392 +1,348 @@
 import Link from "next/link";
 import { Photo, creditText } from "@/components/Photo";
 import { Arrow } from "@/components/Arrow";
-import { startQuestions, featuredEssay } from "@/content/home";
 import { courses } from "@/content/courses";
 import { shoePurposes } from "@/content/brands";
 import { gearCategories, gearScenes } from "@/content/gear";
-import { author } from "@/content/site";
+import { modelsInResearch, getShoe } from "@/content/shoes";
 import { sales } from "@/content/sales";
 import { getPhoto } from "@/content/photos";
-import { QUESTIONS } from "@/lib/shoe-finder";
-import { getArticle, isPublished, seasonalPicks } from "@/lib/articles";
 import { categories } from "@/content/categories";
-import { labPromises as PROMISES } from "@/content/lab";
-import { formatDate } from "@/lib/format";
+import { featuredEssay } from "@/content/home";
+import { getArticle, getArticles } from "@/lib/articles";
+import { courseStats, ROUTE_KIND_LABEL } from "@/lib/course-stats";
+import { formatDate, formatYen } from "@/lib/format";
 import { buildMetadata } from "@/lib/seo";
+import type { Photo as PhotoT } from "@/lib/types";
 
-export const metadata = buildMetadata({ path: "/", photo: "motomachi-riverside-path" });
+export const metadata = buildMetadata({ path: "/", photo: "runner-levee-dusk" });
 
-// 季節のおすすめを更新するため、1日に1回つくり直します
+// 新着とセールを更新するため、1日に1回つくり直します
 export const revalidate = 86400;
 
-const HERO = "motomachi-riverside-path";
-const CITY = "ota-floodway-embankment";
-
-/** はじめる人のための、3つの段階 */
-const STEPS = [
-  { when: "最初の1週間", title: "まず、歩く。", text: "外に出て、20分。走らなくていい。", href: "/articles/start-first-week" },
-  { when: "2週目から", title: "歩いて、少し走る。", text: "1分走って、2分歩く。その繰り返し。", href: "/articles/start-first-month" },
-  { when: "1か月後", title: "暮らしの一部に。", text: "曜日と時間を決めて、気楽に続ける。", href: "/articles/start-make-it-habit" },
-];
-
+function Credit({ p, className = "" }: { p?: PhotoT; className?: string }) {
+  if (!p || p.credit.kind !== "licensed") return null;
+  return (
+    <p className={`credit ${className}`}>
+      {p.isHiroshima ? p.caption : p.place.replace("（広島ではありません）", "")}
+      {p.isHiroshima ? null : "（イメージ写真）"}
+      <a href={p.credit.sourceUrl} target="_blank" rel="noopener noreferrer">
+        {creditText(p)}
+      </a>
+    </p>
+  );
+}
 
 export default function HomePage() {
-  const now = new Date();
-  const month = new Date(now.toLocaleString("en-US", { timeZone: "Asia/Tokyo" })).getMonth() + 1;
-  const picks = seasonalPicks(now, 4);
-  const [lead, ...rest] = picks;
+  const today = new Date().toISOString().slice(0, 10);
+  const cover = getPhoto("runner-levee-dusk");
+  const story = getPhoto("runner-riverside-mukogawa");
+  const city = getPhoto("castle-west-moat");
+  const everyday = getPhoto("runner-city-morning");
   const essay = getArticle(featuredEssay);
-  const heroPhoto = getPhoto(HERO);
-  const cityPhoto = getPhoto(CITY);
-  const activeSales = sales.filter((s) => s.endsAt >= now.toISOString().slice(0, 10));
-  const courseList = courses.filter((c) => c.status !== "draft");
-  const firstQ = QUESTIONS[0]!;
+  const latest = getArticles().slice(0, 5);
+  const routed = courses.filter((c) => c.route);
+  const [bigCourse, ...restCourses] = routed;
+  const activeSales = sales.filter((s) => s.endsAt >= today);
+  const confirmed = modelsInResearch.filter((m) => m.status === "confirmed");
   const knee = getArticle("care-knee-pain");
-  const careTopics = categories.care.topics.slice(1, 7).map((t) => t.title);
+  const firstWeek = getArticle("start-first-week");
+  const habit = getArticle("start-make-it-habit");
 
   return (
-    <div className="home">
-      {/* ------------------------------------------------ 表紙 */}
-      <section className="cover" aria-labelledby="cover-title">
-        <div className="cover__media">
-          <Photo id={HERO} ratio="4/5" sizes="100vw" priority caption={false} className="cover__photo" />
-          <div className="cover__text">
-            <p className="cover__kicker">広島から、走る暮らしを。</p>
-            <h1 className="cover__title" id="cover-title">
-              <span>走ると、</span>
-              <span>日常が少し変わる。</span>
-            </h1>
-          </div>
+    <div className="mag">
+      {/* ================================================ 表紙 */}
+      <section className="m-cover" aria-labelledby="cover-title">
+        <Photo id="runner-levee-dusk" ratio="4/5" sizes="100vw" priority caption={false} className="m-cover__photo" />
+        <div className="m-cover__text">
+          <h1 className="m-cover__title" id="cover-title">
+            ただ、走る。
+          </h1>
+          <p className="m-cover__sub">広島の、いつもの道で。</p>
         </div>
-        <div className="cover__below">
-          <p className="cover__sub">
-            <span className="wb">速くなくていい。</span>
-            <span className="wb">遠くまで走れなくてもいい。</span>
-            <br />
-            <span className="wb">あなたの最初の一歩を、</span>
-            <span className="wb">サポートします。</span>
+      </section>
+      <Credit p={cover} className="wrap" />
+
+      {/* ================================================ 宣言 */}
+      <section className="m-manifesto wrap" aria-label="このメディアについて" data-reveal>
+        <p className="m-manifesto__lead">
+          <span className="wb">飾らない。</span>
+          <span className="wb">気取らない。</span>
+          <span className="wb">力まない。</span>
+        </p>
+        <p className="m-manifesto__body">
+          高価なウェアも、最新のシューズも、速いタイムも、なくていい。普通の街、いつもの道、使い慣れたシューズ。そこにある美しさを、走りながら見つけにいく。
+        </p>
+        <p className="m-manifesto__links">
+          <Link href="/start" className="m-link">
+            はじめてのランニング <Arrow />
+          </Link>
+          <Link href="/tools/shoe-finder" className="m-link">
+            合う一足を探す <Arrow />
+          </Link>
+        </p>
+      </section>
+
+      {/* ================================================ 走るということ */}
+      <section className="m-stories" aria-labelledby="stories-title">
+        <div className="wrap">
+          <p className="m-kicker" id="stories-title">
+            走るということ
           </p>
-          <div className="cover__actions">
-            <Link href="/start" className="btn btn--solid">
-              はじめてのランニング
+        </div>
+        <Link href={essay ? `/articles/${essay.slug}` : "/essays"} className="m-feature" data-reveal>
+          <Photo id="runner-riverside-mukogawa" ratio="3/2" sizes="100vw" caption={false} className="m-feature__photo" />
+          <span className="m-feature__text wrap">
+            <span className="m-feature__title">{essay?.title ?? "走ること、生きること"}</span>
+            <span className="m-feature__lede">{essay?.description}</span>
+          </span>
+        </Link>
+        <Credit p={story} className="wrap" />
+        <div className="wrap m-pair" data-reveal>
+          {[firstWeek, habit].filter(Boolean).map((a) => (
+            <Link key={a!.slug} href={`/articles/${a!.slug}`} className="m-story">
+              <span className="m-story__cat">{categories[a!.category].name}</span>
+              <span className="m-story__title">{a!.title}</span>
+              <span className="m-story__desc">{a!.lede ?? a!.description}</span>
             </Link>
-            <Link href="/tools/shoe-finder" className="btn btn--line">
-              自分に合ったシューズを探す
-            </Link>
-          </div>
-          {heroPhoto?.credit.kind === "licensed" ? (
-            <p className="credit">
-              {heroPhoto.place}
-              <a href={heroPhoto.credit.sourceUrl} target="_blank" rel="noopener noreferrer">
-                {creditText(heroPhoto)}
-              </a>
-            </p>
-          ) : null}
+          ))}
         </div>
       </section>
 
-      {/* ------------------------------------------------ はじめる人へ */}
-      <section className="spread spread--start" aria-labelledby="start-title">
-        <div className="wrap">
-          <p className="eyebrow">これから走り始める人へ</p>
-          <h2 className="statement" id="start-title">
-            <span className="wb">最初の一歩は、</span>
-            <span className="wb">歩くことから。</span>
-          </h2>
-          <ol role="list" className="steps">
-            {STEPS.map((s) => (
-              <li key={s.title}>
-                <Link href={s.href} className="step">
-                  <span className="step__when">{s.when}</span>
-                  <span className="step__title">{s.title}</span>
-                  <span className="step__text">{s.text}</span>
+      {/* ================================================ 広島 */}
+      <section className="m-city" aria-labelledby="city-title">
+        <div className="m-city__media">
+          <Photo id="castle-west-moat" ratio="4/5" sizes="100vw" caption={false} className="m-city__photo" />
+          <div className="m-city__text wrap">
+            <p className="m-kicker m-kicker--light">広島を走る</p>
+            <h2 className="m-city__title" id="city-title">
+              <span className="wb">川の街の、</span>
+              <span className="wb">いつもの道。</span>
+            </h2>
+          </div>
+        </div>
+        <Credit p={city} className="wrap" />
+        <div className="wrap m-courses" data-reveal>
+          {bigCourse ? (
+            <Link href={`/courses/${bigCourse.slug}`} className="m-course m-course--big">
+              <Photo id={bigCourse.photo} ratio="4/3" sizes="(min-width: 960px) 55vw, 100vw" caption={false} />
+              <CourseLine c={bigCourse} />
+            </Link>
+          ) : null}
+          <ul role="list" className="m-course-list">
+            {restCourses.map((c) => (
+              <li key={c.slug}>
+                <Link href={`/courses/${c.slug}`} className="m-course">
+                  <CourseLine c={c} />
                 </Link>
               </li>
             ))}
-          </ol>
+          </ul>
+        </div>
+        <p className="wrap m-more">
+          <Link href="/courses" className="m-link">
+            広島ランニングコース図鑑 <Arrow />
+          </Link>
+        </p>
+      </section>
 
-          <div className="asks">
-            <h3 className="asks__title">よくある、最初の疑問</h3>
-            <ul role="list" className="asks__list">
-              {startQuestions.map((item) => {
-                const slug = item.href.startsWith("/articles/") ? item.href.slice(10) : undefined;
-                const live = !slug || isPublished(slug);
+      {/* ================================================ シューズ */}
+      <section className="m-shoes wrap" aria-labelledby="shoes-title" data-reveal>
+        <p className="m-kicker">シューズ</p>
+        <h2 className="m-statement" id="shoes-title">
+          <span className="wb">高い一足より、</span>
+          <span className="wb">合う一足。</span>
+        </h2>
+        <div className="m-shoes__grid">
+          <div className="m-finder">
+            <p className="m-finder__title">6つの質問で、合うタイプがわかる。</p>
+            <p className="m-finder__text">紹介料で順位を変えることはありません。</p>
+            <Link href="/tools/shoe-finder" className="m-button">
+              シューズ診断をはじめる
+            </Link>
+          </div>
+          <ul role="list" className="m-worries">
+            {shoePurposes.slice(0, 6).map((p) => (
+              <li key={p.id}>
+                <Link href={`/shoes/purpose/${p.id}`}>
+                  <span className="m-worries__q">{p.question}</span>
+                  <span className="m-worries__t">{p.title}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+        {confirmed.length ? (
+          <div className="m-models">
+            <p className="m-small-head">公式情報を確認したモデル</p>
+            <ul role="list">
+              {confirmed.map((m) => {
+                const s = getShoe(m.shoe);
                 return (
-                  <li key={item.q}>
-                    {live ? (
-                      <Link href={item.href} className="ask">
-                        <span className="ask__q">{item.q}</span>
-                        <span className="ask__a">{item.a}</span>
-                        <Arrow className="ask__arrow" />
-                      </Link>
-                    ) : (
-                      <div className="ask ask--soon">
-                        <span className="ask__q">{item.q}</span>
-                        <span className="ask__a">準備中です</span>
-                      </div>
-                    )}
+                  <li key={m.name}>
+                    <Link href={`/shoes/${m.shoe}`} className="m-model">
+                      <span className="m-model__name latin">{m.name}</span>
+                      <span className="m-model__price">
+                        {s?.specs.priceJpy.value ? `公式価格 ${formatYen(s.specs.priceJpy.value)}` : "価格は確認中"}
+                      </span>
+                    </Link>
                   </li>
                 );
               })}
             </ul>
           </div>
-        </div>
+        ) : null}
+        <p className="m-more">
+          <Link href="/shoes" className="m-link">
+            ランニングシューズ研究所 <Arrow />
+          </Link>
+        </p>
       </section>
 
-      {/* ------------------------------------------------ シューズ診断 */}
-      <section className="finder-band" aria-labelledby="finder-title">
-        <div className="wrap finder-band__inner">
-          <div>
-            <p className="eyebrow eyebrow--light">ランニングシューズ診断</p>
-            <h2 className="finder-band__title" id="finder-title">
-              <span className="wb">6つの質問で、</span>
-              <span className="wb">合う一足の</span>
-              <span className="wb">タイプがわかる。</span>
-            </h2>
-            <p className="finder-band__text">答えに合わせて、理由といっしょに候補を示します。紹介料で順位を変えることはありません。</p>
+      {/* ================================================ セール */}
+      <section className="m-deals wrap" aria-labelledby="deals-title" data-reveal>
+        <div className="m-deals__head">
+          <p className="m-kicker" id="deals-title">
+            セール
+          </p>
+          <p className="m-deals__text">
+            {activeSales.length
+              ? "運営者が確認したセールを、確認日とともに。"
+              : "いま、お知らせできるセールはありません。確認できたものだけを、確認日とともに載せます。"}
+          </p>
+        </div>
+        {activeSales.length ? (
+          <ul role="list" className="reads">
+            {activeSales.slice(0, 3).map((s) => (
+              <li key={s.id}>
+                <a href={s.url} target="_blank" rel="noopener noreferrer" className="read">
+                  <span className="read__cat">
+                    {s.shop}・{formatDate(s.endsAt)}まで
+                  </span>
+                  <span className="read__title">{s.title}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        ) : null}
+        <Link href="/deals" className="m-link">
+          セール情報 <Arrow />
+        </Link>
+      </section>
+
+      {/* ================================================ 補給と道具 */}
+      <section className="m-gear" aria-labelledby="gear-title">
+        <div className="wrap m-gear__grid">
+          <div className="m-gear__media" data-reveal>
+            <Photo id="runner-city-morning" ratio="3/4" sizes="(min-width: 960px) 40vw, 100vw" caption={false} />
+            <Credit p={everyday} />
           </div>
-          <div className="finder-band__q">
-            <p className="finder-band__qtitle">{firstQ.title}</p>
-            <ul role="list">
-              {firstQ.options.map((o) => (
-                <li key={String(o.value)}>
-                  <Link href={`/tools/shoe-finder?${firstQ.key}=${o.value}`} className="finder-band__opt">
-                    <span>{o.label}</span>
-                    <Arrow />
+          <div data-reveal>
+            <p className="m-kicker">補給と道具</p>
+            <h2 className="m-statement" id="gear-title">
+              <span className="wb">持ち物は、</span>
+              <span className="wb">少なくていい。</span>
+            </h2>
+            <ul role="list" className="m-scenes">
+              {gearScenes.map((s) => (
+                <li key={s.slug}>
+                  <Link href={`/gear/scene/${s.slug}`}>
+                    <span className="m-scenes__q">{s.title}</span>
+                    <span className="m-scenes__g">
+                      {s.picks
+                        .map((p) => gearCategories.find((g) => g.slug === p.gear)?.name)
+                        .filter(Boolean)
+                        .join("・")}
+                    </span>
                   </Link>
                 </li>
               ))}
             </ul>
+            <p className="m-more">
+              <Link href="/gear" className="m-link">
+                補給と道具 <Arrow />
+              </Link>
+            </p>
           </div>
         </div>
       </section>
 
-      {/* ------------------------------------------------ シューズ研究所 */}
-      <section className="spread spread--lab" aria-labelledby="lab-title">
-        <div className="wrap">
-          <div className="lab-head">
-            <p className="eyebrow">ランニングシューズ研究所</p>
-            <h2 className="statement" id="lab-title">
-              <span className="wb">高い一足より、</span>
-              <span className="wb">合う一足。</span>
-            </h2>
-            <p className="lede">メーカーの名前からではなく、あなたの悩みから。用途ごとに、選び方と候補のシリーズをまとめています。</p>
-          </div>
-          <ul role="list" className="worries">
-            {shoePurposes.map((p) => (
-              <li key={p.id}>
-                <Link href={`/shoes/purpose/${p.id}`} className="worry">
-                  <span className="worry__q">{p.question}</span>
-                  <span className="worry__t">{p.title}</span>
-                </Link>
-              </li>
-            ))}
-          </ul>
-          <div className="promises">
-            <p className="promises__label">研究所の約束</p>
-            <ul role="list">
-              {PROMISES.map((p) => (
-                <li key={p.title}>
-                  <p className="promises__title">{p.title}</p>
-                  <p className="promises__text">{p.text}</p>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <p className="more">
-            <Link href="/shoes" className="more__link">
-              ランニングシューズ研究所へ <Arrow />
-            </Link>
+      {/* ================================================ 長く走る */}
+      <section className="m-long wrap" aria-labelledby="long-title" data-reveal>
+        <p className="m-kicker">長く走る</p>
+        <h2 className="m-quote" id="long-title">
+          <span className="wb">痛みは、</span>
+          <span className="wb">止まる合図。</span>
+        </h2>
+        <div className="m-long__grid">
+          <p className="m-long__text">
+            VO2max、健康寿命、からだのケア。速くなるためではなく、何年先も走っているための知識です。医学的な根拠と個人の経験を分けて書き、診断や治療の代わりにはしません。
           </p>
-          {activeSales.length ? (
-            <div className="sale-note">
-              <p className="promises__label">確認できているセール</p>
-              <ul role="list">
-                {activeSales.map((s) => (
-                  <li key={s.id}>
-                    <a href={s.url} target="_blank" rel="noopener noreferrer">
-                      {s.shop}「{s.title}」
-                    </a>
-                    <span className="sale-note__date">
-                      {formatDate(s.endsAt)}まで（{formatDate(s.checkedAt)}確認）
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ) : null}
-        </div>
-      </section>
-
-      {/* ------------------------------------------------ 道具 */}
-      <section className="spread spread--gear" aria-labelledby="gear-title">
-        <div className="wrap gear-spread">
           <div>
-            <p className="eyebrow">アイテム選び</p>
-            <h2 className="statement" id="gear-title">
-              <span className="wb">持ち物は、</span>
-              <span className="wb">暮らしに合わせて。</span>
-            </h2>
-            <p className="lede">ポーチ、リュック、ウェア。最初に買うべきものは、実はほとんどありません。場面から、必要なものだけを。</p>
+            {knee ? (
+              <Link href={`/articles/${knee.slug}`} className="m-story">
+                <span className="m-story__cat">からだ</span>
+                <span className="m-story__title">{knee.title}</span>
+                <span className="m-story__desc">{knee.description}</span>
+              </Link>
+            ) : null}
+            <p className="m-long__soon">準備中：VO2max と健康寿命、睡眠、栄養、筋力トレーニング</p>
           </div>
-          <ul role="list" className="scenes">
-            {gearScenes.map((s) => (
-              <li key={s.slug}>
-                <Link href={`/gear/scene/${s.slug}`} className="scene">
-                  <span className="scene__q">{s.title}</span>
-                  <span className="scene__g">
-                    {s.picks
-                      .map((p) => gearCategories.find((g) => g.slug === p.gear)?.name)
-                      .filter(Boolean)
-                      .join("・")}
-                  </span>
-                </Link>
-              </li>
-            ))}
-          </ul>
         </div>
+        <p className="m-more">
+          <Link href="/care" className="m-link">
+            長く走るための記事 <Arrow />
+          </Link>
+        </p>
       </section>
 
-      {/* ------------------------------------------------ 広島を走る */}
-      <section className="city" aria-labelledby="city-title">
-        <div className="city__media">
-          <Photo id={CITY} ratio="4/5" sizes="100vw" caption={false} className="city__photo" />
-          <div className="city__text">
-            <p className="eyebrow eyebrow--light">広島のランニングコース</p>
-            <h2 className="city__title" id="city-title">
-              <span className="wb">川の街を、</span>
-              <span className="wb">走る。</span>
-            </h2>
-            <p className="city__lede">六つの川が流れるデルタの街。川沿いの道、公園、港、街を見下ろす山。</p>
-          </div>
-        </div>
-        {cityPhoto?.credit.kind === "licensed" ? (
-          <p className="credit wrap">
-            {cityPhoto.place}
-            <a href={cityPhoto.credit.sourceUrl} target="_blank" rel="noopener noreferrer">
-              {creditText(cityPhoto)}
-            </a>
-          </p>
-        ) : null}
-        <ul role="list" className="rail" aria-label="広島のランニングコース">
-          {courseList.map((c) => (
-            <li key={c.slug} className="rail__item">
-              <Link href={`/courses/${c.slug}`} className="place">
-                <Photo id={c.photo} ratio="3/4" sizes="(min-width: 960px) 24vw, 62vw" caption={false} fallback={{ title: c.name, sub: c.area }} />
-                <span className="place__area">{c.area}</span>
-                <span className="place__name">{c.name}</span>
+      {/* ================================================ 新着 */}
+      <section className="m-latest wrap" aria-labelledby="latest-title" data-reveal>
+        <p className="m-kicker" id="latest-title">
+          新しい記事
+        </p>
+        <ol role="list" className="m-latest__list">
+          {latest.map((a) => (
+            <li key={a.slug}>
+              <Link href={`/articles/${a.slug}`} className="m-latest__item">
+                <time dateTime={a.updatedAt} className="m-latest__date num">
+                  {a.updatedAt.slice(5).replace("-", ".")}
+                </time>
+                <span className="m-latest__title">{a.title}</span>
+                <span className="m-latest__cat">{categories[a.category].name}</span>
               </Link>
             </li>
           ))}
-        </ul>
-        <div className="wrap">
-          <p className="more">
-            <Link href="/courses" className="more__link">
-              広島ランニングコース図鑑へ <Arrow />
-            </Link>
-          </p>
-        </div>
+        </ol>
       </section>
 
-      {/* ------------------------------------------------ 長く走るために */}
-      <section className="spread spread--care" aria-labelledby="care-title">
-        <div className="wrap care">
-          <p className="eyebrow">壊れず、強くなる</p>
-          <h2 className="care__quote" id="care-title">
-            <span className="wb">痛みは、</span>
-            <span className="wb">止まる合図。</span>
-          </h2>
-          <div className="care__body">
-            <p className="lede">
-              痛みは、がんばりのしるしではありません。長く走り続けるための、からだの話。医学的な根拠と、市民ランナーとしての経験を分けて書きます。診断や治療の代わりにはなりません。
-            </p>
-            {knee ? (
-              <Link href={`/articles/${knee.slug}`} className="care__feature">
-                <span className="care__feature-t">{knee.title}</span>
-                <span className="care__feature-d">{knee.description}</span>
-                <span className="more__link">
-                  読む <Arrow />
-                </span>
-              </Link>
-            ) : null}
-            <p className="care__next">
-              これから：{careTopics.join("、")}
-              <Link href="/care" className="more__link">
-                すべて見る <Arrow />
-              </Link>
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* ------------------------------------------------ 今月の読みもの */}
-      {lead ? (
-        <section className="spread spread--picks" aria-labelledby="picks-title">
-          <div className="wrap picks">
-            <div className="picks__head">
-              <p className="eyebrow">編集部のおすすめ</p>
-              <h2 className="headline" id="picks-title">
-                {month}月に、読んでほしいこと。
-              </h2>
-            </div>
-            <Link href={`/articles/${lead.slug}`} className="feature">
-              <Photo id={lead.hero} ratio="3/2" sizes="(min-width: 960px) 56vw, 100vw" caption={false} fallback={{ title: lead.title }} />
-              <span className="feature__cat">{categories[lead.category].name}</span>
-              <span className="feature__title">{lead.title}</span>
-              <span className="feature__desc">{lead.description}</span>
-            </Link>
-            <ul role="list" className="reads">
-              {rest.map((a) => (
-                <li key={a.slug}>
-                  <Link href={`/articles/${a.slug}`} className="read">
-                    <span className="read__cat">{categories[a.category].name}</span>
-                    <span className="read__title">{a.title}</span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </section>
-      ) : null}
-
-      {/* ------------------------------------------------ ランニングのある暮らし */}
-      {essay ? (
-        <section className="life" aria-labelledby="life-title">
-          <div className="wrap life__inner">
-            <Photo id={essay.hero} ratio="4/5" sizes="(min-width: 960px) 40vw, 100vw" caption="credit-only" className="life__photo" />
-            <div className="life__text">
-              <p className="eyebrow eyebrow--light">ランニングのある暮らし</p>
-              <h2 className="life__title" id="life-title">
-                走ること、生きること
-              </h2>
-              <blockquote className="life__quote">
-                <p>{essay.lede ?? essay.description}</p>
-              </blockquote>
-              <Link href={`/articles/${essay.slug}`} className="more__link more__link--light">
-                エッセイを読む <Arrow />
-              </Link>
-            </div>
-          </div>
-        </section>
-      ) : null}
-
-      {/* ------------------------------------------------ このメディアについて */}
-      <section className="spread spread--about" aria-labelledby="about-title">
-        <div className="wrap about-note">
-          <p className="eyebrow">このメディアについて</p>
-          <h2 className="headline" id="about-title">
-            <span className="wb">ふつうの市民ランナーが、</span>
-            <span className="wb">つくっています。</span>
-          </h2>
-          <p className="lede">
-            {author.role}、{author.ageGroup}。トップアスリートではありません。膝の痛みや、続かない時期や、限られた予算。同じ悩みを持つ人のために、確かめた情報だけを書きます。わからないことは、わからないと書きます。
-          </p>
-          <Link href="/about" className="more__link">
-            運営者と編集方針 <Arrow />
-          </Link>
-        </div>
+      {/* ================================================ 運営者 */}
+      <section className="m-about wrap" aria-labelledby="about-title" data-reveal>
+        <p className="m-kicker" id="about-title">
+          つくっている人
+        </p>
+        <p className="m-about__text">
+          広島在住、40代の市民ランナー。トップアスリートではありません。膝の痛みも、続かない時期も、限られた予算も知っています。わからないことは、わからないと書きます。
+        </p>
+        <Link href="/about" className="m-link">
+          運営者と編集方針 <Arrow />
+        </Link>
       </section>
     </div>
+  );
+}
+
+function CourseLine({ c }: { c: (typeof courses)[number] }) {
+  const s = courseStats(c);
+  return (
+    <span className="m-course__line">
+      <span className="m-course__name">{c.name}</span>
+      {s && c.route ? (
+        <span className="m-course__nums">
+          {s.distanceKm.toFixed(1)}km・{ROUTE_KIND_LABEL[c.route.kind]}
+          {s.elevationGainM ? `・上り${s.elevationGainM}m` : "・ほぼ平ら"}
+        </span>
+      ) : null}
+    </span>
   );
 }

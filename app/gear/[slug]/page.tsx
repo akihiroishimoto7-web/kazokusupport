@@ -30,7 +30,7 @@ export default async function GearCategoryPage({ params }: Params) {
       <div className="wrap">
         <Breadcrumbs
           items={[
-            { name: "ランニングの道具箱", path: "/gear" },
+            { name: "補給と道具", path: "/gear" },
             { name: g.name, path: `/gear/${g.slug}` },
           ]}
         />

@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { site } from "@/content/site";
 import { getArticles } from "@/lib/articles";
 import { publicShoes } from "@/content/shoes";
-import { publicCourses } from "@/content/courses";
+import { indexableCourse, publicCourses } from "@/content/courses";
 import { brands, shoePurposes } from "@/content/brands";
 import { gearCategories, gearScenes } from "@/content/gear";
 import { tools } from "@/content/tools";
@@ -11,7 +11,7 @@ import { tools } from "@/content/tools";
 export default function sitemap(): MetadataRoute.Sitemap {
   const u = (p: string) => `${site.url}${p}`;
   const now = new Date().toISOString().slice(0, 10);
-  const statics = ["/", "/start", "/shoes", "/gear", "/courses", "/care", "/race", "/essays", "/tools", "/about", "/policy", "/credits"];
+  const statics = ["/", "/start", "/shoes", "/gear", "/courses", "/care", "/race", "/essays", "/tools", "/deals", "/about", "/policy", "/credits"];
   return [
     ...statics.map((p) => ({ url: u(p), lastModified: now })),
     ...getArticles()
@@ -23,7 +23,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       .filter((s) => s.status === "review")
       .map((s) => ({ url: u(`/shoes/${s.slug}`), lastModified: s.updatedAt })),
     ...publicCourses()
-      .filter((c) => c.status === "surveyed")
+      .filter(indexableCourse)
       .map((c) => ({ url: u(`/courses/${c.slug}`), lastModified: c.updatedAt })),
     ...gearCategories.map((g) => ({ url: u(`/gear/${g.slug}`) })),
     ...gearScenes.map((g) => ({ url: u(`/gear/scene/${g.slug}`) })),

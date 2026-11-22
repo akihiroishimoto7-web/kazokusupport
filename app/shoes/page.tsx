@@ -5,7 +5,7 @@ import { ArticleIndex } from "@/components/ArticleList";
 import { ShoeList } from "@/components/ShoeList";
 import { categories } from "@/content/categories";
 import { brands, shoePurposes } from "@/content/brands";
-import { publicShoes } from "@/content/shoes";
+import { modelsInResearch, publicShoes } from "@/content/shoes";
 import { sales } from "@/content/sales";
 import { labPromises } from "@/content/lab";
 import { getArticlesByCategory } from "@/lib/articles";
@@ -59,6 +59,25 @@ export default function ShoesPage() {
             <li key={p.title}>
               <p className="promises__title">{p.title}</p>
               <p className="promises__text">{p.text}</p>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section className="wrap hub__section" aria-labelledby="research">
+        <h2 className="hub__h2" id="research">
+          いま調べているモデル
+        </h2>
+        <p className="hub__note">
+          メーカー公式サイトの仕様を確認できたものから掲載しています。運営者が実際に履いたものは、レビューとして別に書きます。
+        </p>
+        <ul role="list" className="reads research-list">
+          {modelsInResearch.map((m) => (
+            <li key={m.name}>
+              <Link href={`/shoes/${m.shoe}`} className="read">
+                <span className="read__title latin">{m.name}</span>
+                <span className={m.status === "confirmed" ? "research-list__ok" : "research-list__wait"}>{m.note}</span>
+              </Link>
             </li>
           ))}
         </ul>
