@@ -340,9 +340,16 @@ export default async function HomePage() {
         <p className="m-about__text">
           広島在住、40代の市民ランナー。トップアスリートではありません。膝の痛みも、続かない時期も、限られた予算も知っています。わからないことは、わからないと書きます。
         </p>
-        <Link href="/about" className="m-link">
-          運営者と編集方針 <Arrow />
-        </Link>
+        <p className="m-about__links">
+          <Link href="/about" className="m-link">
+            運営者と編集方針 <Arrow />
+          </Link>
+          {instagramUrl() ? (
+            <a href={instagramUrl()!} target="_blank" rel="noopener noreferrer" className="m-link">
+              Instagram @{social.instagram.username}
+            </a>
+          ) : null}
+        </p>
       </section>
     </div>
   );
