@@ -450,7 +450,7 @@ export const courses: Course[] = [
     description:
       "中央公園の一角にあるサッカースタジアムの周辺です。すぐそばを川が流れ、川沿いの道とあわせて走ることができます。広島城・中央公園の周回や、太田川の川沿いのルートと組み合わせるのもおすすめです。試合やイベントのある日は人が多くなります。",
     status: "outline",
-    photo: "own-peace-wing",
+    photo: "own-stadium-lawn",
     features: ["広島城・中央公園、太田川の川沿いのルートと組み合わせやすい"],
     cautions: ["試合・イベント開催日は混雑します。開催日程は公式情報で確認してください。"],
     shoes: [],

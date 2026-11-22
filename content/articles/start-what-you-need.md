@@ -7,7 +7,7 @@ tags: [初心者, 道具, 節約]
 status: published
 publishedAt: 2026-11-18
 updatedAt: 2026-11-18
-hero: motomachi-riverside-trees
+hero: own-river-dappled
 seasons: [spring, summer, autumn, winter]
 levels: [first]
 series: { id: start-guide, order: 1 }

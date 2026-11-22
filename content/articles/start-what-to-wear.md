@@ -7,7 +7,7 @@ tags: [初心者, ウェア, 季節, 夏, 冬]
 status: published
 publishedAt: 2026-11-16
 updatedAt: 2026-11-18
-hero: kyobashi-river-shukkeien
+hero: own-riverside-flowers
 seasons: [autumn, winter]
 levels: [first, beginner]
 series: { id: start-guide, order: 5 }

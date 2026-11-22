@@ -7,7 +7,7 @@ tags: [初心者, 練習, ウォーキング]
 status: published
 publishedAt: 2026-11-18
 updatedAt: 2026-11-18
-hero: ota-floodway-embankment
+hero: own-levee-path
 seasons: [spring, summer, autumn, winter]
 levels: [first, beginner]
 series: { id: start-guide, order: 3 }
