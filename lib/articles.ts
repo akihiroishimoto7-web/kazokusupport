@@ -2,7 +2,7 @@ import "server-only";
 import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
-import type { Article, ArticleMeta, CategoryId, Level, Season } from "./types";
+import type { Article, ArticleMeta, CategoryId, ChannelPlan, Level, Season } from "./types";
 
 /**
  * 記事は content/articles/*.md に、1記事1ファイルで置きます。
@@ -44,6 +44,20 @@ function estimateMinutes(body: string): number {
     .replace(/\s+/g, "");
   return Math.max(1, Math.round(text.length / 500));
 }
+
+/**
+ * カテゴリーごとの媒体の初期値（frontmatter の channels で上書きできます）
+ * 商品に関わるカテゴリー（shoes / gear）は Instagram に出しません。
+ */
+export const DEFAULT_CHANNELS: Record<CategoryId, ChannelPlan> = {
+  start: { site: true, ameblo: "link", instagram: false },
+  shoes: { site: true, ameblo: "publish", instagram: false },
+  gear: { site: true, ameblo: "publish", instagram: false },
+  hiroshima: { site: true, ameblo: "none", instagram: true },
+  care: { site: true, ameblo: "publish", instagram: false },
+  race: { site: true, ameblo: "publish", instagram: false },
+  essay: { site: true, ameblo: "none", instagram: true },
+};
 
 function parseFile(file: string): Article {
   const raw = fs.readFileSync(path.join(ARTICLES_DIR, file), "utf8");
@@ -100,7 +114,13 @@ function parseFile(file: string): Article {
     medical: data.medical === true,
     answers: typeof data.answers === "string" ? data.answers : undefined,
     readingMinutes: estimateMinutes(content),
+    channels: {
+      ...DEFAULT_CHANNELS[data.category as CategoryId],
+      ...(data.channels && typeof data.channels === "object" ? data.channels : {}),
+    },
   };
+  // 商品の埋め込みがある記事は、設定にかかわらず Instagram には出さない
+  if (/^@(shoe|gear)\(/m.test(content)) meta.channels.instagram = false;
   return { ...meta, body: content.trim() };
 }
 

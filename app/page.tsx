@@ -14,11 +14,15 @@ import { courseStats, ROUTE_KIND_LABEL } from "@/lib/course-stats";
 import { formatDate, formatYen } from "@/lib/format";
 import { buildMetadata } from "@/lib/seo";
 import type { Photo as PhotoT } from "@/lib/types";
+import { InstagramGallery, AmebloList } from "@/components/SocialSections";
+import { getInstagramPosts } from "@/lib/instagram";
+import { getAmebloEntries } from "@/lib/ameblo";
+import { social, amebloUrl, instagramUrl } from "@/content/social";
 
 export const metadata = buildMetadata({ path: "/" });
 
-// 新着とセールを更新するため、1日に1回つくり直します
-export const revalidate = 86400;
+// Instagram・アメブロの新着を反映するため、1時間ごとにつくり直します
+export const revalidate = 3600;
 
 function Credit({ p, className = "" }: { p?: PhotoT; className?: string }) {
   if (!p || p.credit.kind !== "licensed") return null;
@@ -33,7 +37,8 @@ function Credit({ p, className = "" }: { p?: PhotoT; className?: string }) {
   );
 }
 
-export default function HomePage() {
+export default async function HomePage() {
+  const [igPosts, amebloEntries] = await Promise.all([getInstagramPosts(), getAmebloEntries()]);
   const today = new Date().toISOString().slice(0, 10);
   const cover = getPhoto("runner-levee-dusk");
   const story = getPhoto("runner-riverside-mukogawa");
@@ -108,6 +113,9 @@ export default function HomePage() {
           ))}
         </div>
       </section>
+
+      {/* ================================================ Instagram（写真だけ。売らない） */}
+      <InstagramGallery posts={igPosts} profileUrl={instagramUrl()} username={social.instagram.username} />
 
       {/* ================================================ 広島 */}
       <section className="m-city" aria-labelledby="city-title">
@@ -192,6 +200,7 @@ export default function HomePage() {
             </ul>
           </div>
         ) : null}
+        <AmebloList entries={amebloEntries.slice(0, 3)} blogUrl={amebloUrl()} blogTitle={social.ameblo.title} compact />
         <p className="m-more">
           <Link href="/shoes" className="m-link">
             ランニングシューズ研究所 <Arrow />

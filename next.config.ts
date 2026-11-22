@@ -37,6 +37,12 @@ const nextConfig: NextConfig = {
     deviceSizes: [390, 640, 828, 1080, 1280, 1600, 1920],
     imageSizes: [96, 160, 256, 384],
     minimumCacheTTL: 60 * 60 * 24 * 30,
+    // Instagram 公式APIの画像と、アメブロの画像サーバー（RSS本文の画像）だけを許可
+    remotePatterns: [
+      { protocol: "https", hostname: "*.cdninstagram.com" },
+      { protocol: "https", hostname: "*.fbcdn.net" },
+      { protocol: "https", hostname: "stat.ameba.jp" },
+    ],
   },
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];

@@ -20,6 +20,7 @@ import { courses } from "../content/courses.ts";
 import { tools } from "../content/tools.ts";
 import { categories } from "../content/categories.ts";
 import { startQuestions, featuredEssay } from "../content/home.ts";
+import { editorialPlan } from "../content/editorial.ts";
 
 const root = path.resolve(import.meta.dirname, "..");
 const errors = [];
@@ -66,6 +67,10 @@ for (const [slug, { data, content, file }] of articles) {
     if (kind === "article" && articles.get(ref)?.data.status !== "published" && data.status === "published")
       warn(`${where}: @article(${ref}) は下書きのため表示されません`);
   }
+  // Instagram では売らない：商品カテゴリー・商品埋め込みのある記事は instagram: true にできない
+  const commercial = ["shoes", "gear"].includes(data.category) || /^@(shoe|gear)\(/m.test(content);
+  if (commercial && data.channels?.instagram === true) err(`${where}: 商品に関わる記事は Instagram に出せません（channels.instagram を false に）`);
+  if (data.channels?.ameblo && !["publish", "link", "none"].includes(data.channels.ameblo)) err(`${where}: channels.ameblo は publish / link / none のいずれかです`);
   const opens = (content.match(/^:::\w+/gm) ?? []).length;
   const closes = (content.match(/^:::\s*$/gm) ?? []).length;
   if (opens !== closes) err(`${where}: ::: の開始と終了の数が合いません`);
@@ -128,6 +133,11 @@ for (const q of startQuestions) {
   if (q.href.startsWith("/articles/") && !published(slug)) warn(`home: 「${q.q}」のリンク先 ${slug} が未公開です（準備中と表示されます）`);
 }
 if (!published(featuredEssay)) warn(`home: featuredEssay "${featuredEssay}" が未公開です`);
+
+/* 企画台帳：商品に関わる企画は Instagram に出さない */
+for (const p of editorialPlan) {
+  if (p.commercial && p.instagram !== "none") err(`editorial: 「${p.title}」は商品に関わる企画のため Instagram は "none" にしてください`);
+}
 
 for (const w of warnings) console.log(`注意  ${w}`);
 for (const e of errors) console.log(`エラー ${e}`);

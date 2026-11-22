@@ -102,6 +102,20 @@ export type ArticleMeta = {
   /** トップの「何から始めよう？」で答える質問 */
   answers?: string;
   readingMinutes: number;
+  /** 媒体ごとの公開可否（docs/EDITORIAL.md） */
+  channels: ChannelPlan;
+};
+
+/**
+ * 媒体ごとの公開可否
+ *   site      … ホームページに掲載するか
+ *   ameblo    … "publish"=アメブロにも掲載 / "link"=アメブロからHPの記事を紹介 / "none"=載せない
+ *   instagram … Instagram で扱ってよいか（商品・セール・アフィリエイト関連は常に false）
+ */
+export type ChannelPlan = {
+  site: boolean;
+  ameblo: "publish" | "link" | "none";
+  instagram: boolean;
 };
 
 export type Article = ArticleMeta & { body: string };
