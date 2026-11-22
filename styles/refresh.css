@@ -1505,3 +1505,18 @@ a.scene:hover .scene__q {
 .cg-facts-note {
   margin: -0.5rem 0 1rem;
 }
+/* 表紙のアートディレクション：縦長の画面と横長の画面で写真を変える */
+.cover__photo--wide,
+.credit--wide {
+  display: none;
+}
+@media (min-width: 840px) {
+  .cover__photo--mobile,
+  .credit--mobile {
+    display: none;
+  }
+  .cover__photo--wide,
+  .credit--wide {
+    display: block;
+  }
+}

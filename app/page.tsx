@@ -22,6 +22,7 @@ export const metadata = buildMetadata({ path: "/", photo: "ota-floodway-embankme
 export const revalidate = 86400;
 
 const HERO = "ota-floodway-embankment";
+const HERO_MOBILE = "motomachi-riverside-path";
 const CITY = "castle-west-moat";
 
 /** はじめる人のための、3つの段階 */
@@ -39,6 +40,7 @@ export default function HomePage() {
   const [lead, ...rest] = picks;
   const essay = getArticle(featuredEssay);
   const heroPhoto = getPhoto(HERO);
+  const heroMobile = getPhoto(HERO_MOBILE);
   const cityPhoto = getPhoto(CITY);
   const activeSales = sales.filter((s) => s.endsAt >= now.toISOString().slice(0, 10));
   const courseList = courses.filter((c) => c.status !== "draft");
@@ -51,7 +53,9 @@ export default function HomePage() {
       {/* ------------------------------------------------ 表紙 */}
       <section className="cover" aria-labelledby="cover-title">
         <div className="cover__media">
-          <Photo id={HERO} ratio="4/5" sizes="100vw" priority caption={false} className="cover__photo" />
+          {/* 縦長の画面では道が奥へ続く写真、横長の画面では人が小さく写る川の写真（アートディレクション） */}
+          <Photo id={HERO_MOBILE} ratio="4/5" sizes="100vw" priority caption={false} className="cover__photo cover__photo--mobile" />
+          <Photo id={HERO} ratio="4/5" sizes="(min-width: 840px) 100vw, 1px" caption={false} className="cover__photo cover__photo--wide" />
           <div className="cover__text">
             <p className="cover__kicker">広島から、走る暮らしを。</p>
             <h1 className="cover__title" id="cover-title">
@@ -76,14 +80,16 @@ export default function HomePage() {
               自分に合ったシューズを探す
             </Link>
           </div>
-          {heroPhoto?.credit.kind === "licensed" ? (
-            <p className="credit">
-              {heroPhoto.place}
-              <a href={heroPhoto.credit.sourceUrl} target="_blank" rel="noopener noreferrer">
-                {creditText(heroPhoto)}
-              </a>
-            </p>
-          ) : null}
+          {[heroMobile, heroPhoto].map((ph, i) =>
+            ph?.credit.kind === "licensed" ? (
+              <p key={ph.id} className={`credit ${i === 0 ? "credit--mobile" : "credit--wide"}`}>
+                {ph.place}　
+                <a href={ph.credit.sourceUrl} target="_blank" rel="noopener noreferrer">
+                  {creditText(ph)}
+                </a>
+              </p>
+            ) : null,
+          )}
         </div>
       </section>
 
