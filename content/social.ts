@@ -13,9 +13,9 @@
  */
 export const social = {
   ameblo: {
-    amebaId: null as string | null,
+    amebaId: "tougyou-0111" as string | null,
     /** ブログ名（表示用） */
-    title: "壊れず強くなるランニングシューズ研究所",
+    title: "ランニングシューズ研究所",
     /** 何件表示するか */
     limit: 6,
   },

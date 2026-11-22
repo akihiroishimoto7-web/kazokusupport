@@ -43,8 +43,8 @@ export const channels: {
 }[] = [
   {
     id: "ameblo",
-    name: "壊れず強くなるランニングシューズ研究所",
-    description: "アメブロで続けているシューズ研究のブログ",
+    name: "アメブロ「ランニングシューズ研究所」",
+    description: "シューズのセール・値下げ情報と本音レビュー",
     url: null,
   },
   {
