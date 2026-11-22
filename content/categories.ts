@@ -55,7 +55,10 @@ export const categories: Record<CategoryId, CategoryInfo> = {
     intro:
       "六つの川が流れるデルタの街、広島。川沿い、公園、港、そして街を見下ろす山。運営者が実際に走って確かめた情報から順に、距離や設備を掲載していきます。未確認の情報は、未確認と書いています。",
     photo: "ota-floodway-embankment",
-    topics: [{ title: "広島で、どこから走りはじめる？", article: "hiroshima-where-to-start" }],
+    topics: [
+      { title: "広島で、どこから走りはじめる？", article: "hiroshima-where-to-start" },
+      { title: "7つのコースを距離と坂でくらべる", article: "hiroshima-courses-compared" },
+    ],
   },
   care: {
     id: "care",

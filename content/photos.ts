@@ -2,6 +2,7 @@ import type { Photo } from "@/lib/types";
 
 /**
  * 写真の台帳。
+ * Wikimedia Commons の写真は、サイズと色調（シネマティックな色補正・粒子）を調整して掲載しています。
  *
  * 写真を差し替えるときは、public/photos/ に画像を置き、ここの src・width・height・alt・credit を書き換えます。
  * 自分で撮影した写真は credit を { kind: "self" } にしてください。
@@ -55,6 +56,7 @@ export const photos: Record<string, Photo> = {
     caption: "太田川放水路の河川敷",
     place: "太田川放水路（広島市）",
     isHiroshima: true,
+    focus: "70% 70%",
     credit: {
       kind: "licensed",
       author: "Ujinaport",
@@ -188,6 +190,42 @@ export const photos: Record<string, Photo> = {
       licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/deed.ja",
       sourceUrl: "https://commons.wikimedia.org/wiki/File:Kyobashigawa_River_from_Shukkei_Garden_2.jpg",
       sourceTitle: "Kyobashigawa River from Shukkei Garden 2.jpg",
+    },
+  },
+  "castle-moat-dusk": {
+    id: "castle-moat-dusk",
+    src: "/photos/castle-moat-dusk.jpg",
+    width: 1920,
+    height: 1440,
+    alt: "夕暮れの広島城の堀。水面に木々の影が映り、水鳥が浮かんでいる",
+    caption: "夕暮れの広島城の堀",
+    place: "広島城（広島市中区）",
+    isHiroshima: true,
+    credit: {
+      kind: "licensed",
+      author: "そらみみ",
+      license: "CC BY-SA 3.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/deed.ja",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:Moat_of_Hiroshima_Castle_2.JPG",
+      sourceTitle: "Moat of Hiroshima Castle 2.JPG",
+    },
+  },
+  "castle-west-moat": {
+    id: "castle-west-moat",
+    src: "/photos/castle-west-moat.jpg",
+    width: 1920,
+    height: 1183,
+    alt: "西側の堀越しに見る広島城の石垣と天守。水面に石垣が映っている",
+    caption: "西側の堀から見た広島城",
+    place: "広島城（広島市中区）",
+    isHiroshima: true,
+    credit: {
+      kind: "licensed",
+      author: "DXR",
+      license: "CC BY-SA 4.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/deed.ja",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:Hiroshima_Castle,_West_view_20190417_1.jpg",
+      sourceTitle: "Hiroshima Castle, West view 20190417 1.jpg",
     },
   },
 };

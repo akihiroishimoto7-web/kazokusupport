@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="RUN LIFE HIROSHIMA" xmlns="http://www.topografix.com/GPX/1/1">
+<metadata><name>寺山公園</name><desc>OpenStreetMap の徒歩ルートと国土地理院の標高データから作成した想定ルート（現地未走）。© OpenStreetMap contributors</desc></metadata>
+<trk><name>寺山公園</name><trkseg>
+<trkpt lat="34.512625" lon="132.510305"><ele>21.7</ele></trkpt>
+<trkpt lat="34.512552" lon="132.510144"><ele>21.6</ele></trkpt>
+<trkpt lat="34.512334" lon="132.510211"><ele>21.7</ele></trkpt>
+<trkpt lat="34.512116" lon="132.510277"><ele>21.7</ele></trkpt>
+<trkpt lat="34.511899" lon="132.510328"><ele>21.6</ele></trkpt>
+<trkpt lat="34.511686" lon="132.510384"><ele>21.6</ele></trkpt>
+<trkpt lat="34.511472" lon="132.510468"><ele>21.5</ele></trkpt>
+<trkpt lat="34.511258" lon="132.510551"><ele>21.5</ele></trkpt>
+<trkpt lat="34.511187" lon="132.510714"><ele>21.8</ele></trkpt>
+<trkpt lat="34.511262" lon="132.510971"><ele>21.9</ele></trkpt>
+<trkpt lat="34.511359" lon="132.511159"><ele>21.6</ele></trkpt>
+<trkpt lat="34.511581" lon="132.511117"><ele>21.2</ele></trkpt>
+<trkpt lat="34.511803" lon="132.511074"><ele>21.0</ele></trkpt>
+<trkpt lat="34.511988" lon="132.511073"><ele>21.1</ele></trkpt>
+<trkpt lat="34.511964" lon="132.511344"><ele>21.2</ele></trkpt>
+<trkpt lat="34.511980" lon="132.511570"><ele>21.1</ele></trkpt>
+<trkpt lat="34.512186" lon="132.511679"><ele>21.1</ele></trkpt>
+<trkpt lat="34.512390" lon="132.511793"><ele>21.2</ele></trkpt>
+<trkpt lat="34.512595" lon="132.511907"><ele>21.5</ele></trkpt>
+<trkpt lat="34.512688" lon="132.512064"><ele>22.0</ele></trkpt>
+<trkpt lat="34.512621" lon="132.512313"><ele>22.8</ele></trkpt>
+<trkpt lat="34.512475" lon="132.512515"><ele>25.9</ele></trkpt>
+<trkpt lat="34.512363" lon="132.512750"><ele>22.0</ele></trkpt>
+<trkpt lat="34.512267" lon="132.512997"><ele>21.0</ele></trkpt>
+<trkpt lat="34.512172" lon="132.513244"><ele>20.4</ele></trkpt>
+<trkpt lat="34.512180" lon="132.513425"><ele>26.2</ele></trkpt>
+<trkpt lat="34.512395" lon="132.513504"><ele>26.1</ele></trkpt>
+<trkpt lat="34.512607" lon="132.513593"><ele>26.2</ele></trkpt>
+<trkpt lat="34.512814" lon="132.513700"><ele>26.3</ele></trkpt>
+<trkpt lat="34.513021" lon="132.513806"><ele>26.4</ele></trkpt>
+<trkpt lat="34.513226" lon="132.513919"><ele>26.5</ele></trkpt>
+<trkpt lat="34.513430" lon="132.514033"><ele>26.6</ele></trkpt>
+<trkpt lat="34.513634" lon="132.514148"><ele>26.8</ele></trkpt>
+<trkpt lat="34.513839" lon="132.514261"><ele>26.9</ele></trkpt>
+<trkpt lat="34.514043" lon="132.514374"><ele>27.0</ele></trkpt>
+<trkpt lat="34.514245" lon="132.514495"><ele>27.2</ele></trkpt>
+<trkpt lat="34.514445" lon="132.514619"><ele>27.3</ele></trkpt>
+<trkpt lat="34.514642" lon="132.514752"><ele>27.4</ele></trkpt>
+<trkpt lat="34.514837" lon="132.514886"><ele>27.6</ele></trkpt>
+<trkpt lat="34.515031" lon="132.515026"><ele>27.7</ele></trkpt>
+<trkpt lat="34.515085" lon="132.515272"><ele>33.4</ele></trkpt>
+<trkpt lat="34.515107" lon="132.515543"><ele>42.7</ele></trkpt>
+<trkpt lat="34.515160" lon="132.515796"><ele>50.2</ele></trkpt>
+<trkpt lat="34.515212" lon="132.516052"><ele>57.6</ele></trkpt>
+<trkpt lat="34.515243" lon="132.516321"><ele>67.3</ele></trkpt>
+<trkpt lat="34.515301" lon="132.516542"><ele>70.6</ele></trkpt>
+<trkpt lat="34.515475" lon="132.516714"><ele>71.2</ele></trkpt>
+<trkpt lat="34.515363" lon="132.516923"><ele>72.6</ele></trkpt>
+<trkpt lat="34.515222" lon="132.517134"><ele>74.1</ele></trkpt>
+<trkpt lat="34.515061" lon="132.516944"><ele>74.2</ele></trkpt>
+<trkpt lat="34.514927" lon="132.516785"><ele>74.3</ele></trkpt>
+</trkseg></trk></gpx>

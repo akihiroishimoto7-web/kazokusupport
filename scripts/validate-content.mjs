@@ -108,7 +108,12 @@ for (const c of courses) {
     if (!photos[c.photo]) err(`${where}: 写真ID "${c.photo}" がありません`);
     else if (!photos[c.photo].isHiroshima) err(`${where}: 広島で撮影されていない写真がコースに使われています`);
   }
-  if (c.gpx && !fs.existsSync(path.join(root, "public", "gpx", c.gpx))) err(`${where}: GPX "${c.gpx}" がありません`);
+  if (c.route) {
+    if (!fs.existsSync(path.join(root, "public", "gpx", c.route.gpx))) err(`${where}: GPX "${c.route.gpx}" がありません`);
+    if (!fs.existsSync(path.join(root, "public", c.route.map.src))) err(`${where}: 地図 "${c.route.map.src}" がありません`);
+  }
+  if (c.status === "routed" && !c.route) err(`${where}: routed なのに route がありません`);
+  for (const s of c.shoes) if (s.purpose && !purposeIds.includes(s.purpose)) err(`${where}: shoes の用途 "${s.purpose}" がありません`);
   if (c.status === "surveyed" && !c.runReport) warn(`${where}: 走って確認済みなのに runReport が空です`);
   for (const a of c.relatedArticles) if (!articles.has(a)) err(`${where}: 記事 "${a}" がありません`);
 }

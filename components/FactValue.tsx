@@ -7,16 +7,18 @@ type Props<T> = {
   format?: (v: T) => string;
   /** 未確認のときに出す説明（任意） */
   emptyText?: string;
+  /** 出典と注記を省いた、一覧向けの短い表示（出典はページ下部にまとめて表示する場合） */
+  compact?: boolean;
 };
 
 /** 確認状態つきの値を表示します。未確認の値は推測で埋めず、そのまま「未確認」と表示します */
-export function FactValue<T>({ fact, format, emptyText }: Props<T>) {
+export function FactValue<T>({ fact, format, emptyText, compact }: Props<T>) {
   const state = factState(fact);
   if (state === "unknown") {
     return (
       <span className="fact fact--unknown">
         <Badge tone="unknown">{FACT_LABEL.unknown}</Badge>
-        {fact.note || emptyText ? <span className="fact__note">{fact.note ?? emptyText}</span> : null}
+        {!compact && (fact.note || emptyText) ? <span className="fact__note">{fact.note ?? emptyText}</span> : null}
       </span>
     );
   }
@@ -25,7 +27,7 @@ export function FactValue<T>({ fact, format, emptyText }: Props<T>) {
     <span className={`fact fact--${state}`}>
       <span className="fact__value">{text}</span>
       {state === "unverified" ? <Badge tone="unverified">{FACT_LABEL.unverified}</Badge> : null}
-      {fact.source ? (
+      {fact.source && !compact ? (
         <span className="fact__source">
           出典：
           {fact.source.url ? (
@@ -38,7 +40,7 @@ export function FactValue<T>({ fact, format, emptyText }: Props<T>) {
           {fact.source.checkedAt ? `（${formatDate(fact.source.checkedAt)}確認）` : null}
         </span>
       ) : null}
-      {fact.note ? <span className="fact__note">{fact.note}</span> : null}
+      {fact.note && !compact ? <span className="fact__note">{fact.note}</span> : null}
     </span>
   );
 }

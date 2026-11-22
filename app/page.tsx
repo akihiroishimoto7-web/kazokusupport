@@ -13,15 +13,16 @@ import { getArticle, isPublished, seasonalPicks } from "@/lib/articles";
 import { categories } from "@/content/categories";
 import { labPromises as PROMISES } from "@/content/lab";
 import { formatDate } from "@/lib/format";
+import { courseStats, ROUTE_KIND_LABEL } from "@/lib/course-stats";
 import { buildMetadata } from "@/lib/seo";
 
-export const metadata = buildMetadata({ path: "/", photo: "motomachi-riverside-path" });
+export const metadata = buildMetadata({ path: "/", photo: "ota-floodway-embankment" });
 
 // 季節のおすすめを更新するため、1日に1回つくり直します
 export const revalidate = 86400;
 
-const HERO = "motomachi-riverside-path";
-const CITY = "ota-floodway-embankment";
+const HERO = "ota-floodway-embankment";
+const CITY = "castle-west-moat";
 
 /** はじめる人のための、3つの段階 */
 const STEPS = [
@@ -162,6 +163,64 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ------------------------------------------------ 広島を走る */}
+      <section className="city" aria-labelledby="city-title">
+        <div className="city__media">
+          <Photo id={CITY} ratio="4/5" sizes="100vw" caption={false} className="city__photo" />
+          <div className="city__text">
+            <p className="eyebrow eyebrow--light">広島のランニングコース</p>
+            <h2 className="city__title" id="city-title">
+              <span className="wb">川の街を、</span>
+              <span className="wb">走る。</span>
+            </h2>
+            <p className="city__lede">六つの川が流れるデルタの街。川沿いの道、お城のお堀、海辺、街を見下ろす山。地図データから計算した距離と高低差つきで。</p>
+          </div>
+        </div>
+        {cityPhoto?.credit.kind === "licensed" ? (
+          <p className="credit wrap">
+            {cityPhoto.place}
+            <a href={cityPhoto.credit.sourceUrl} target="_blank" rel="noopener noreferrer">
+              {creditText(cityPhoto)}
+            </a>
+          </p>
+        ) : null}
+        <ul role="list" className="rail" aria-label="広島のランニングコース">
+          {courseList.map((c) => (
+            <li key={c.slug} className="rail__item">
+              <Link href={`/courses/${c.slug}`} className="place">
+                {c.photo || !c.route ? (
+                  <Photo id={c.photo} ratio="3/4" sizes="(min-width: 960px) 24vw, 62vw" caption={false} fallback={{ title: c.name, sub: c.area }} />
+                ) : (
+                  <figure className="photo">
+                    <div className="photo__frame" style={{ aspectRatio: "3/4" }}>
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src={c.route.map.src} alt={`${c.name}のルート地図`} loading="lazy" className="cx-item__map" />
+                    </div>
+                  </figure>
+                )}
+                <span className="place__area">{c.area}</span>
+                <span className="place__name">{c.name}</span>
+                {(() => {
+                  const st = courseStats(c);
+                  return st && c.route ? (
+                    <span className="place__nums">
+                      {st.distanceKm.toFixed(1)}km・{ROUTE_KIND_LABEL[c.route.kind]}　累積標高{st.elevationGainM}m
+                    </span>
+                  ) : null;
+                })()}
+              </Link>
+            </li>
+          ))}
+        </ul>
+        <div className="wrap">
+          <p className="more">
+            <Link href="/courses" className="more__link">
+              広島ランニングコース図鑑へ <Arrow />
+            </Link>
+          </p>
+        </div>
+      </section>
+
       {/* ------------------------------------------------ シューズ研究所 */}
       <section className="spread spread--lab" aria-labelledby="lab-title">
         <div className="wrap">
@@ -219,106 +278,26 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ------------------------------------------------ 道具 */}
-      <section className="spread spread--gear" aria-labelledby="gear-title">
-        <div className="wrap gear-spread">
-          <div>
-            <p className="eyebrow">アイテム選び</p>
-            <h2 className="statement" id="gear-title">
-              <span className="wb">持ち物は、</span>
-              <span className="wb">暮らしに合わせて。</span>
-            </h2>
-            <p className="lede">ポーチ、リュック、ウェア。最初に買うべきものは、実はほとんどありません。場面から、必要なものだけを。</p>
-          </div>
-          <ul role="list" className="scenes">
-            {gearScenes.map((s) => (
-              <li key={s.slug}>
-                <Link href={`/gear/scene/${s.slug}`} className="scene">
-                  <span className="scene__q">{s.title}</span>
-                  <span className="scene__g">
-                    {s.picks
-                      .map((p) => gearCategories.find((g) => g.slug === p.gear)?.name)
-                      .filter(Boolean)
-                      .join("・")}
-                  </span>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      {/* ------------------------------------------------ 広島を走る */}
-      <section className="city" aria-labelledby="city-title">
-        <div className="city__media">
-          <Photo id={CITY} ratio="4/5" sizes="100vw" caption={false} className="city__photo" />
-          <div className="city__text">
-            <p className="eyebrow eyebrow--light">広島のランニングコース</p>
-            <h2 className="city__title" id="city-title">
-              <span className="wb">川の街を、</span>
-              <span className="wb">走る。</span>
-            </h2>
-            <p className="city__lede">六つの川が流れるデルタの街。川沿いの道、公園、港、街を見下ろす山。</p>
-          </div>
-        </div>
-        {cityPhoto?.credit.kind === "licensed" ? (
-          <p className="credit wrap">
-            {cityPhoto.place}
-            <a href={cityPhoto.credit.sourceUrl} target="_blank" rel="noopener noreferrer">
-              {creditText(cityPhoto)}
-            </a>
-          </p>
-        ) : null}
-        <ul role="list" className="rail" aria-label="広島のランニングコース">
-          {courseList.map((c) => (
-            <li key={c.slug} className="rail__item">
-              <Link href={`/courses/${c.slug}`} className="place">
-                <Photo id={c.photo} ratio="3/4" sizes="(min-width: 960px) 24vw, 62vw" caption={false} fallback={{ title: c.name, sub: c.area }} />
-                <span className="place__area">{c.area}</span>
-                <span className="place__name">{c.name}</span>
+      {/* ------------------------------------------------ ランニングのある暮らし */}
+      {essay ? (
+        <section className="life" aria-labelledby="life-title">
+          <div className="wrap life__inner">
+            <Photo id={essay.hero} ratio="4/5" sizes="(min-width: 960px) 40vw, 100vw" caption="credit-only" className="life__photo" />
+            <div className="life__text">
+              <p className="eyebrow eyebrow--light">ランニングのある暮らし</p>
+              <h2 className="life__title" id="life-title">
+                走ること、生きること
+              </h2>
+              <blockquote className="life__quote">
+                <p>{essay.lede ?? essay.description}</p>
+              </blockquote>
+              <Link href={`/articles/${essay.slug}`} className="more__link more__link--light">
+                エッセイを読む <Arrow />
               </Link>
-            </li>
-          ))}
-        </ul>
-        <div className="wrap">
-          <p className="more">
-            <Link href="/courses" className="more__link">
-              広島ランニングコース図鑑へ <Arrow />
-            </Link>
-          </p>
-        </div>
-      </section>
-
-      {/* ------------------------------------------------ 長く走るために */}
-      <section className="spread spread--care" aria-labelledby="care-title">
-        <div className="wrap care">
-          <p className="eyebrow">壊れず、強くなる</p>
-          <h2 className="care__quote" id="care-title">
-            <span className="wb">痛みは、</span>
-            <span className="wb">止まる合図。</span>
-          </h2>
-          <div className="care__body">
-            <p className="lede">
-              痛みは、がんばりのしるしではありません。長く走り続けるための、からだの話。医学的な根拠と、市民ランナーとしての経験を分けて書きます。診断や治療の代わりにはなりません。
-            </p>
-            {knee ? (
-              <Link href={`/articles/${knee.slug}`} className="care__feature">
-                <span className="care__feature-t">{knee.title}</span>
-                <span className="care__feature-d">{knee.description}</span>
-                <span className="more__link">
-                  読む <Arrow />
-                </span>
-              </Link>
-            ) : null}
-            <p className="care__next">
-              これから：{careTopics.join("、")}
-              <Link href="/care" className="more__link">
-                すべて見る <Arrow />
-              </Link>
-            </p>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      ) : null}
 
       {/* ------------------------------------------------ 今月の読みもの */}
       {lead ? (
@@ -346,27 +325,6 @@ export default function HomePage() {
                 </li>
               ))}
             </ul>
-          </div>
-        </section>
-      ) : null}
-
-      {/* ------------------------------------------------ ランニングのある暮らし */}
-      {essay ? (
-        <section className="life" aria-labelledby="life-title">
-          <div className="wrap life__inner">
-            <Photo id={essay.hero} ratio="4/5" sizes="(min-width: 960px) 40vw, 100vw" caption="credit-only" className="life__photo" />
-            <div className="life__text">
-              <p className="eyebrow eyebrow--light">ランニングのある暮らし</p>
-              <h2 className="life__title" id="life-title">
-                走ること、生きること
-              </h2>
-              <blockquote className="life__quote">
-                <p>{essay.lede ?? essay.description}</p>
-              </blockquote>
-              <Link href={`/articles/${essay.slug}`} className="more__link more__link--light">
-                エッセイを読む <Arrow />
-              </Link>
-            </div>
           </div>
         </section>
       ) : null}
