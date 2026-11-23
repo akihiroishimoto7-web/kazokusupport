@@ -21,7 +21,7 @@ export const metadata = buildMetadata({ title: cat.name, description: cat.intro,
 export const revalidate = 3600;
 
 export default async function ShoesPage() {
-  const amebloEntries = await getAmebloEntries();
+  const amebloEntries = await getAmebloEntries(social.ameblo.limit);
   const all = publicShoes();
   const reviews = all.filter((s) => s.status === "review");
   const articles = getArticlesByCategory("shoes");

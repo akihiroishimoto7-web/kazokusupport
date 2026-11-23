@@ -11,10 +11,14 @@ import { getBrand, getPurpose } from "@/content/brands";
 import { getShoe, publicShoes } from "@/content/shoes";
 import { formatDate, formatYen } from "@/lib/format";
 import { articleJsonLd, buildMetadata } from "@/lib/seo";
+import { getAmebloEntries } from "@/lib/ameblo";
+import { linkEntries } from "@/lib/ameblo-match";
+import { amebloUrl, social } from "@/content/social";
 import type { Rating, Shoe } from "@/lib/types";
 
 type Params = { params: Promise<{ slug: string }> };
 export const dynamicParams = false;
+export const revalidate = 3600;
 export const generateStaticParams = () => publicShoes().map((s) => ({ slug: s.slug }));
 
 const fullName = (s: Shoe) => `${getBrand(s.brand).name} ${s.model ?? s.series}`;
@@ -65,6 +69,7 @@ export default async function ShoePage({ params }: Params) {
   const similar = shoe.similar.map(getShoe).filter((s): s is Shoe => Boolean(s && s.status !== "draft"));
   const isOutline = shoe.status === "outline";
   const name = shoe.model ?? shoe.series;
+  const blog = linkEntries(await getAmebloEntries()).filter((e) => e.shoes.includes(shoe.slug)).slice(0, 4);
 
   return (
     <article className="shoe">
@@ -301,6 +306,34 @@ export default async function ShoePage({ params }: Params) {
                   </tbody>
                 </table>
               </div>
+            </section>
+          ) : null}
+
+          {blog.length ? (
+            <section className="shoe__section" aria-labelledby="blog">
+              <h2 id="blog">研究所ブログの関連記事</h2>
+              <p className="spec-help" style={{ marginTop: 0, marginBottom: "0.75rem" }}>
+                運営者のアメブロ「{social.ameblo.title}」の記事です。セール情報や広告（Ameba Pick）を含む記事があります。
+              </p>
+              <ul role="list" className="ameblo__list">
+                {blog.map((e) => (
+                  <li key={e.url}>
+                    <a href={e.url} target="_blank" rel="noopener noreferrer" className="ameblo__item">
+                      <span className="ameblo__body">
+                        <span className="ameblo__date">{e.date.replaceAll("-", ".")}</span>
+                        <span className="ameblo__title">{e.title}</span>
+                      </span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+              {amebloUrl() ? (
+                <p className="ameblo__more">
+                  <a href={amebloUrl()!} target="_blank" rel="noopener noreferrer" className="m-link">
+                    アメブロで読む
+                  </a>
+                </p>
+              ) : null}
             </section>
           ) : null}
 

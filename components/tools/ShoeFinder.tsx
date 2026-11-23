@@ -16,10 +16,13 @@ import {
   type Answers,
 } from "@/lib/shoe-finder";
 import { Arrow } from "../Arrow";
+import { pickForResult, type LinkedEntry } from "@/lib/ameblo-match";
 
-type Props = { shoes: Shoe[]; brandNames: Record<string, string> };
+type AmebloProps = { entries: LinkedEntry[]; blogUrl: string | null; title: string };
 
-export function ShoeFinder({ shoes, brandNames }: Props) {
+type Props = { shoes: Shoe[]; brandNames: Record<string, string>; ameblo?: AmebloProps };
+
+export function ShoeFinder({ shoes, brandNames, ameblo }: Props) {
   const params = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
@@ -64,7 +67,7 @@ export function ShoeFinder({ shoes, brandNames }: Props) {
   };
 
   if (done) {
-    return <Result answers={answers as Answers} shoes={shoes} brandNames={brandNames} onRestart={restart} headingRef={headingRef} onEdit={(i) => setStep(i)} />;
+    return <Result answers={answers as Answers} shoes={shoes} brandNames={brandNames} ameblo={ameblo} onRestart={restart} headingRef={headingRef} onEdit={(i) => setStep(i)} />;
   }
 
   const q = QUESTIONS[step]!;
@@ -121,6 +124,7 @@ function Result({
   answers,
   shoes,
   brandNames,
+  ameblo,
   onRestart,
   onEdit,
   headingRef,
@@ -128,6 +132,7 @@ function Result({
   answers: Answers;
   shoes: Shoe[];
   brandNames: Record<string, string>;
+  ameblo?: AmebloProps;
   onRestart: () => void;
   onEdit: (step: number) => void;
   headingRef: React.RefObject<HTMLHeadingElement | null>;
@@ -135,6 +140,7 @@ function Result({
   const purpose = primaryPurpose(answers);
   const ranked = scoreShoes(shoes, answers).slice(0, 4);
   const advice = adviceFor(answers);
+  const blog = ameblo ? pickForResult(ameblo.entries, ranked.map((r) => r.shoe.slug), purpose, 3) : [];
   const [copied, setCopied] = useState(false);
 
   const share = async () => {
@@ -213,6 +219,39 @@ function Result({
           <p>条件に合うシリーズが見つかりませんでした。回答を変えてみてください。</p>
         )}
       </div>
+
+      {blog.length && ameblo ? (
+        <div className="result__blog">
+          <h2>もっとくわしく：研究所ブログ</h2>
+          <p className="result__note">
+            運営者のアメブロ「{ameblo.title}」から、候補のシューズや「{PURPOSE_LABEL[purpose]}」に関係する記事です。セール情報や広告（Ameba Pick）を含む記事があります。診断の順位には影響しません。
+          </p>
+          <ul role="list" className="ameblo__list">
+            {blog.map((e) => (
+              <li key={e.url}>
+                <a href={e.url} target="_blank" rel="noopener noreferrer" className="ameblo__item">
+                  <span className="ameblo__body">
+                    <span className="ameblo__date">{e.date.replaceAll("-", ".")}</span>
+                    <span className="ameblo__title">{e.title}</span>
+                    <span className="result__blog-why">
+                      {e.shoes.some((s) => ranked.some((r) => r.shoe.slug === s))
+                        ? `候補の「${ranked.find((r) => e.shoes.includes(r.shoe.slug))!.shoe.series}」の記事`
+                        : `「${PURPOSE_LABEL[purpose]}」に関係する記事`}
+                    </span>
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+          {ameblo.blogUrl ? (
+            <p className="ameblo__more">
+              <a href={ameblo.blogUrl} target="_blank" rel="noopener noreferrer" className="m-link">
+                アメブロで、ほかの記事も読む
+              </a>
+            </p>
+          ) : null}
+        </div>
+      ) : null}
 
       <div className="result__advice">
         <h2>選ぶ前に</h2>

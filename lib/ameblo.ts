@@ -6,7 +6,7 @@ import { parseAmebloRss, type AmebloEntry } from "./ameblo-parse";
 export type { AmebloEntry };
 
 /** アメブロ公式のRSSから最新記事を取得（1時間ごとに更新）。失敗しても空配列を返すだけ */
-export async function getAmebloEntries(): Promise<AmebloEntry[]> {
+export async function getAmebloEntries(limit = 20): Promise<AmebloEntry[]> {
   if (process.env.SOCIAL_SAMPLE === "1") return sampleAmeblo();
   const id = social.ameblo.amebaId;
   if (!id || !/^[a-zA-Z0-9_-]+$/.test(id)) return [];
@@ -16,7 +16,7 @@ export async function getAmebloEntries(): Promise<AmebloEntry[]> {
       signal: AbortSignal.timeout(8000),
     });
     if (!res.ok) return [];
-    return parseAmebloRss(await res.text(), id).slice(0, social.ameblo.limit);
+    return parseAmebloRss(await res.text(), id).slice(0, limit);
   } catch {
     return [];
   }

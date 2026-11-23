@@ -596,3 +596,10 @@
   line-height: 1.85;
   color: var(--ink-soft);
 }
+.result__blog {
+  margin-top: var(--space-7);
+}
+.result__blog-why {
+  font-size: 0.75rem;
+  color: var(--navy-soft);
+}

@@ -22,3 +22,19 @@ test("アメブロRSS: 自分の記事だけ・日付つき・HTMLを除いた�
   assert.equal(e[1].image, undefined);
   assert.equal(e[1].date, "2026-11-21");
 });
+
+import { linkEntries, pickForResult } from "../lib/ameblo-match.ts";
+test("アメブロ×診断: タイトルからシューズと用途を結びつける", () => {
+  const l = linkEntries([
+    { title: "【約41％OFF】ニューバランス Rebel v5が9,999円！", url: "u1", date: "2026-11-10" },
+    { title: "【50%OFF】New Balance「1080 v15」が11,000円！", url: "u2", date: "2026-10-01" },
+    { title: "【50%OFF】New Balance「10800」は存在しない", url: "u3", date: "2026-10-01" },
+    { title: "【半額以下】Nike「Structure Plus」が10,499円！", url: "u4", date: "2026-10-02" },
+  ]);
+  assert.deepEqual(l[0].shoes, ["nb-rebel"]);
+  assert.deepEqual(l[1].shoes, ["nb-1080"]);
+  assert.deepEqual(l[2].shoes, []);
+  assert.ok(l[3].purposes.includes("stability"));
+  const r = pickForResult(l, ["nb-1080", "asics-gel-kayano"], "stability");
+  assert.deepEqual(r.map((e) => e.url), ["u2", "u4"]);
+});
