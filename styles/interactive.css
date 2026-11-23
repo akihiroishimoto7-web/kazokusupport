@@ -603,3 +603,16 @@
   font-size: 0.75rem;
   color: var(--navy-soft);
 }
+
+/* 濃紺の面の上のボタンは、ダークモードでも白地に濃紺の文字 */
+.m-finder .m-button {
+  background: #ffffff;
+  color: #1b2a4a;
+}
+.m-finder,
+.m-finder__title {
+  color: #ffffff;
+}
+.m-finder__text {
+  color: rgb(255 255 255 / 0.78);
+}

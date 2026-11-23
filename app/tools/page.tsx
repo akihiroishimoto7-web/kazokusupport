@@ -22,7 +22,7 @@ export default function ToolsPage() {
           <p className="hub__catch">迷ったときの、道しるべ。</p>
           <h1 className="hub__title">診断とツール</h1>
           <p className="hub__intro">
-            ブラウザの中だけで動く、小さな道具です。入力した内容をサーバーに送ることはありません。結果の順位を、紹介料や価格で変えることもしません。
+            ブラウザの中だけで動く、小さな道具です。入力した内容をサーバーに送ることはありません。結果の順番を、広告やお店の都合で変えることもしません。
           </p>
         </div>
       </header>
