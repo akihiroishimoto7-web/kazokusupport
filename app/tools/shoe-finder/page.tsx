@@ -4,6 +4,9 @@ import { ShoeFinder } from "@/components/tools/ShoeFinder";
 import { publicShoes } from "@/content/shoes";
 import { brands } from "@/content/brands";
 import { buildMetadata } from "@/lib/seo";
+import { getAmebloEntries } from "@/lib/ameblo";
+import { linkEntries } from "@/lib/ameblo-match";
+import { amebloUrl, social } from "@/content/social";
 
 export const metadata = buildMetadata({
   title: "ランニングシューズ診断",
@@ -11,7 +14,11 @@ export const metadata = buildMetadata({
   path: "/tools/shoe-finder",
 });
 
-export default function ShoeFinderPage() {
+// アメブロの新着を反映するため、1時間ごとにつくり直します
+export const revalidate = 3600;
+
+export default async function ShoeFinderPage() {
+  const linked = linkEntries(await getAmebloEntries()).filter((e) => e.shoes.length || e.purposes.length);
   const shoes = publicShoes();
   const brandNames = Object.fromEntries(brands.map((b) => [b.id, b.name]));
   return (
@@ -25,7 +32,7 @@ export default function ShoeFinderPage() {
         />
       </div>
       <Suspense fallback={<div className="wrap finder finder--loading">読み込んでいます…</div>}>
-        <ShoeFinder shoes={shoes} brandNames={brandNames} />
+        <ShoeFinder shoes={shoes} brandNames={brandNames} ameblo={{ entries: linked, blogUrl: amebloUrl(), title: social.ameblo.title }} />
       </Suspense>
     </div>
   );
