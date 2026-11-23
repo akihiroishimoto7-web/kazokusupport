@@ -267,7 +267,8 @@ export type CourseRoute = {
   /** public/gpx/ のファイル名 */
   gpx: string;
   /** public/maps/ の地図画像 */
-  map: { src: string; width: number; height: number };
+  /** zoom と bbox は地図画像の投影（ルートと地図を正確に重ねるため） */
+  map: { src: string; width: number; height: number; zoom: number; bbox: [number, number, number, number] };
   kind: "loop" | "out-and-back" | "one-way";
   /** ルートの説明（どこからどこまで） */
   summary: string;

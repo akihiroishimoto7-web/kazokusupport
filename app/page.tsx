@@ -209,6 +209,31 @@ export default async function HomePage() {
         </p>
       </section>
 
+      {/* ================================================ さわって発見する */}
+      <section className="m-tools wrap" aria-labelledby="tools-title" data-reveal>
+        <p className="m-kicker">さわってみる</p>
+        <h2 className="m-statement" id="tools-title">
+          <span className="wb">数字で、</span>
+          <span className="wb">走りが見えてくる。</span>
+        </h2>
+        <ul role="list" className="m-tools__list">
+          {[
+            { href: "/shoes/compare", t: "シューズをくらべる", d: "3足まで並べて、用途と公式の数値を" },
+            { href: "/tools/pace", t: "ペース配分を試す", d: "後半上げ・イーブン・前半貯金を、グラフで" },
+            { href: "/courses/ushitayama", t: "コースの坂を、指でなぞる", d: "地図と高低図が連動する、広島のコース" },
+            { href: "/tools/log", t: "走った記録を、グラフに", d: "週ごとの距離とペース。端末にだけ保存" },
+          ].map((x) => (
+            <li key={x.href}>
+              <Link href={x.href} className="m-tool">
+                <span className="m-tool__t">{x.t}</span>
+                <span className="m-tool__d">{x.d}</span>
+                <Arrow className="m-tool__a" />
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </section>
+
       {/* ================================================ セール */}
       <section className="m-deals wrap" aria-labelledby="deals-title" data-reveal>
         <div className="m-deals__head">

@@ -1,0 +1,598 @@
+/* =====================================================================
+   Interactive — 触って発見する部品（コース、シューズ比較、ペース、記録）
+   濃紺をアクセントに。グラフは線と面だけで、数値は大きく。
+   ===================================================================== */
+:root {
+  --navy: #1b2a4a;
+  --navy-soft: #4a5b7d;
+  --navy-tint: #e7ebf3;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --navy: #a9bbe0;
+    --navy-soft: #8193b8;
+    --navy-tint: #1b2233;
+  }
+}
+.m-kicker,
+.eyebrow,
+.hub__catch,
+.m-small-head {
+  color: var(--navy-soft);
+}
+.m-finder,
+.finder-invite {
+  background: var(--navy) !important;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .m-finder,
+  :root:not([data-theme="light"]) .finder-invite {
+    background: #1b2a4a !important;
+  }
+}
+.m-finder .m-button {
+  color: #1b2a4a;
+}
+.m-link:hover,
+.more__link:hover {
+  text-decoration-color: var(--navy);
+}
+
+/* ---------------------------------------------------------- コース：地図×高低図 */
+.cx-explorer {
+  margin: 0;
+}
+.cx-explorer__map {
+  position: relative;
+  border-radius: 4px;
+  overflow: hidden;
+  background: var(--paper-deep);
+}
+.cx-explorer__map img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.cx-explorer__overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.cx-explorer__done {
+  fill: none;
+  stroke: transparent;
+}
+.cx-explorer__dot {
+  fill: #e4572e;
+  stroke: #fff;
+  stroke-width: 0.5;
+  transition: cx 0.08s linear, cy 0.08s linear;
+}
+.cx-explorer__profile {
+  margin-top: 0.75rem;
+  height: 96px;
+  touch-action: none;
+  cursor: ew-resize;
+}
+.cx-explorer__profile svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.cx-explorer__area {
+  fill: color-mix(in srgb, var(--navy) 14%, transparent);
+}
+.cx-explorer__line {
+  fill: none;
+  stroke: var(--navy);
+  stroke-width: 1.5;
+  vector-effect: non-scaling-stroke;
+}
+.cx-explorer__cursor {
+  stroke: #e4572e;
+  stroke-width: 1.5;
+  vector-effect: non-scaling-stroke;
+}
+.cx-explorer__range {
+  width: 100%;
+  margin: 0.5rem 0 0;
+  accent-color: var(--navy);
+  min-height: 32px;
+}
+.cx-explorer__readout {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.25rem 1.5rem;
+  margin-top: 0.25rem;
+}
+.cx-explorer__readout .num {
+  font-size: 1.75rem;
+  font-weight: 500;
+  margin-right: 0.15rem;
+}
+.cx-explorer__readout small {
+  font-size: 0.8125rem;
+  color: var(--ink-mute);
+}
+.cx-explorer__range-label {
+  margin-left: auto;
+  font-size: 0.75rem;
+  color: var(--ink-mute);
+}
+.cx-explorer__hint,
+.cg-map__note {
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  line-height: 1.75;
+  color: var(--ink-mute);
+}
+.cg-map__note a {
+  color: inherit;
+}
+
+/* ---------------------------------------------------------- シューズ比較 */
+.sc-wrap {
+  max-width: 980px;
+}
+.sc-pick {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+.sc-pick__slot {
+  display: grid;
+  gap: 0.25rem;
+  padding-top: 0.6rem;
+  border-top: 3px solid var(--rule);
+}
+.sc-pick__n {
+  font-size: 0.6875rem;
+  color: var(--ink-mute);
+}
+.sc-pick select {
+  width: 100%;
+  min-height: 48px;
+  padding: 0 0.5rem;
+  border: 1px solid var(--rule-strong);
+  border-radius: 4px;
+  background: var(--paper-raised);
+  font-size: 1rem; /* iOSの拡大防止 */
+  font-weight: 600;
+}
+.sc-heads {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.5rem;
+  margin: 1.5rem 0 0;
+}
+.sc-heads li {
+  display: grid;
+  align-content: start;
+  gap: 0.25rem;
+  padding-top: 0.75rem;
+  border-top: 3px solid var(--rule);
+}
+.sc-heads__brand {
+  font-size: 0.6875rem;
+  color: var(--ink-mute);
+}
+.sc-heads__name {
+  font-size: clamp(1rem, 0.8rem + 1.6vw, 1.75rem);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  overflow-wrap: anywhere;
+}
+.sc-heads__catch {
+  font-size: 0.75rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+.sc-heads .m-link {
+  min-height: 36px;
+  font-size: 0.8125rem;
+}
+.sc-section {
+  margin-top: clamp(3rem, 6vw, 4.5rem);
+}
+.sc-h2 {
+  font-size: var(--t-headline);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+.sc-note {
+  margin: 0.5rem 0 1rem;
+  font-size: 0.8125rem;
+  line-height: 1.75;
+  color: var(--ink-mute);
+}
+.sc-row {
+  padding: 1rem 0;
+  border-top: 1px solid var(--rule);
+}
+.sc-row__label {
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+.sc-row__label small {
+  margin-left: 0.6rem;
+  font-weight: 400;
+  font-size: 0.75rem;
+  color: var(--ink-mute);
+}
+.sc-row__vals {
+  display: grid;
+  gap: 0.6rem;
+  margin: 0.6rem 0 0;
+}
+@media (min-width: 840px) {
+  .sc-row {
+    display: grid;
+    grid-template-columns: 11rem 1fr;
+    gap: 1.5rem;
+  }
+  .sc-row__vals {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin: 0;
+  }
+}
+.sc-row__vals li {
+  display: grid;
+  grid-template-columns: 7.5rem 1fr;
+  gap: 0.75rem;
+  align-items: baseline;
+}
+@media (min-width: 840px) {
+  .sc-row__vals li {
+    grid-template-columns: 1fr;
+    gap: 0.15rem;
+  }
+}
+.sc-who {
+  font-size: 0.75rem;
+  font-weight: 700;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.sc-val {
+  font-size: 0.9375rem;
+  line-height: 1.7;
+}
+.sc-num {
+  display: grid;
+  gap: 0.25rem;
+}
+.sc-num__v {
+  font-size: 1.375rem;
+  font-weight: 500;
+}
+.sc-num__v small {
+  margin-left: 0.15rem;
+  font-size: 0.75rem;
+  color: var(--ink-mute);
+}
+.sc-bar {
+  display: block;
+  height: 4px;
+  background: var(--rule);
+}
+.sc-bar span {
+  display: block;
+  height: 100%;
+  background: var(--navy);
+  transition: width 0.6s cubic-bezier(0.2, 0.6, 0.2, 1);
+}
+.sc-src {
+  font-size: 0.6875rem;
+  color: var(--ink-mute);
+}
+.sc-src--ok {
+  color: var(--navy-soft);
+}
+.sc-unknown {
+  font-size: 0.8125rem;
+  color: var(--ink-mute);
+}
+.sc-rating__dots {
+  display: inline-flex;
+  gap: 3px;
+  margin-right: 0.5rem;
+}
+.sc-rating__dots i {
+  width: 18px;
+  height: 6px;
+  background: var(--rule);
+}
+.sc-rating__dots i.on {
+  background: var(--navy);
+}
+.sc-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
+.sc-chips span {
+  padding: 0.1rem 0.5rem;
+  border-radius: 999px;
+  background: var(--navy-tint);
+  font-size: 0.75rem;
+}
+.sc-matrix {
+  border-top: 1px solid var(--rule);
+}
+.sc-matrix__row {
+  display: grid;
+  grid-template-columns: minmax(7rem, 1.4fr) repeat(3, minmax(0, 1fr));
+  align-items: center;
+  min-height: 44px;
+  border-bottom: 1px solid var(--rule);
+  font-size: 0.875rem;
+}
+.sc-matrix__row > span:not(:first-child) {
+  text-align: center;
+}
+.sc-matrix__head {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  overflow: hidden;
+}
+.sc-matrix__head span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 0 0.15rem;
+}
+.sc-dot {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+.sc-dot--off {
+  width: 6px;
+  height: 6px;
+  background: var(--rule-strong);
+}
+.sc-foot {
+  margin-top: 3rem;
+  font-size: 0.9375rem;
+}
+.finder-invite__actions {
+  display: grid;
+  gap: 0.6rem;
+}
+.button--light {
+  background: transparent;
+  border-color: rgb(255 255 255 / 0.6);
+  color: #fff;
+}
+
+/* ---------------------------------------------------------- ペース配分 */
+.ps-section + .ps-section {
+  margin-top: clamp(3.5rem, 7vw, 5rem);
+  padding-top: 2rem;
+  border-top: 1px solid var(--rule);
+}
+.segmented--3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+.segmented--3 button + button {
+  border-left: 1px solid var(--rule-strong);
+}
+.segmented button[aria-checked="true"] {
+  background: var(--navy);
+  color: #fff;
+}
+.ps-main {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin: 1.75rem 0 0;
+  border-top: 1px solid var(--ink);
+}
+.ps-main > div {
+  padding: 0.9rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+.ps-main dt {
+  font-size: 0.75rem;
+  color: var(--ink-mute);
+}
+.ps-main dd {
+  font-size: clamp(1.625rem, 1.2rem + 2vw, 2.25rem);
+  font-weight: 500;
+  line-height: 1.2;
+}
+.ps-chart {
+  margin: 1.5rem 0 0;
+}
+.ps-chart svg {
+  display: block;
+  width: 100%;
+  height: 150px;
+}
+.ps-chart__bar {
+  fill: var(--navy);
+  opacity: 0.85;
+  transition: y 0.4s cubic-bezier(0.2, 0.6, 0.2, 1), height 0.4s cubic-bezier(0.2, 0.6, 0.2, 1);
+}
+.ps-chart__avg {
+  stroke: #e4572e;
+  stroke-width: 1.5;
+  vector-effect: non-scaling-stroke;
+}
+.ps-chart__half {
+  stroke: var(--ink-mute);
+  stroke-dasharray: 3 4;
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+.ps-chart__cap {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.6875rem;
+  color: var(--ink-mute);
+}
+.ps-chart__note,
+.ps-note {
+  margin-top: 0.6rem;
+  font-size: 0.75rem;
+  line-height: 1.8;
+  color: var(--ink-mute);
+}
+
+/* ---------------------------------------------------------- 記録ノート */
+.rl-form {
+  display: grid;
+  gap: 0.25rem;
+}
+.rl-form__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+.rl-form .btn {
+  margin-top: 1rem;
+}
+.rl-more {
+  margin-top: 1rem;
+}
+.rl-more summary {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  font-size: 0.875rem;
+  color: var(--navy-soft);
+  cursor: pointer;
+}
+.rl-privacy,
+.rl-empty {
+  margin-top: 0.75rem;
+  font-size: 0.75rem;
+  color: var(--ink-mute);
+}
+.rl-empty {
+  margin-top: 2rem;
+  font-size: 0.9375rem;
+}
+.ps-main dd small {
+  margin-left: 0.2rem;
+  font-size: 0.875rem;
+  color: var(--ink-mute);
+}
+.rl-flag {
+  margin-top: 1rem;
+  padding: 0.9rem 1rem;
+  border-left: 2px solid #c2662d;
+  background: var(--paper-deep);
+  font-size: 0.875rem;
+  line-height: 1.8;
+}
+.rl-chart {
+  margin: 2rem 0 0;
+}
+.rl-chart__title {
+  margin-bottom: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--ink-mute);
+}
+.rl-chart svg {
+  display: block;
+  width: 100%;
+  height: 130px;
+}
+.rl-bar {
+  fill: color-mix(in srgb, var(--navy) 35%, transparent);
+}
+.rl-bar--now {
+  fill: var(--navy);
+}
+.rl-line {
+  fill: none;
+  stroke: var(--navy);
+  stroke-width: 2;
+  vector-effect: non-scaling-stroke;
+}
+.rl-chart__axis {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.6875rem;
+  color: var(--ink-mute);
+}
+.rl-list {
+  margin: 2rem 0 0;
+  border-top: 1px solid var(--ink);
+}
+.rl-list li {
+  display: grid;
+  grid-template-columns: 3.25rem 1fr 1fr 1fr auto;
+  gap: 0.5rem;
+  align-items: center;
+  min-height: 48px;
+  border-bottom: 1px solid var(--rule);
+  font-size: 0.875rem;
+}
+.rl-list__date,
+.rl-list__pace {
+  color: var(--ink-mute);
+}
+
+/* ---------------------------------------------------------- トップ：さわってみる */
+.m-tools {
+  padding-top: var(--section);
+}
+.m-tools__list {
+  display: grid;
+  margin: clamp(2rem, 4vw, 3rem) 0 0;
+  border-top: 1px solid var(--ink);
+}
+@media (min-width: 840px) {
+  .m-tools__list {
+    grid-template-columns: 1fr 1fr;
+    column-gap: 3rem;
+  }
+}
+.m-tool {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.2rem 1rem;
+  align-items: center;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--rule);
+  text-decoration: none;
+}
+.m-tool__t {
+  font-size: clamp(1.1875rem, 1.05rem + 0.6vw, 1.5rem);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+.m-tool__d {
+  grid-row: 2;
+  font-size: 0.8125rem;
+  color: var(--ink-mute);
+}
+.m-tool__a {
+  grid-row: 1 / span 2;
+  grid-column: 2;
+  color: var(--navy);
+}
+.m-tool:hover .m-tool__t {
+  color: var(--navy);
+}
+.sc-heads__name {
+  font-size: clamp(0.9375rem, 0.7rem + 1.4vw, 1.75rem);
+  overflow-wrap: normal;
+  word-break: keep-all;
+  hyphens: none;
+}
+.sc-empty {
+  padding: 1rem 0;
+  border-top: 1px solid var(--rule);
+  font-size: 0.875rem;
+  line-height: 1.85;
+  color: var(--ink-soft);
+}

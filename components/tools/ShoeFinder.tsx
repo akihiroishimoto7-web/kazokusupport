@@ -228,6 +228,11 @@ function Result({
         <Link href={`/shoes/purpose/${purpose}`} className="button button--primary">
           「{PURPOSE_LABEL[purpose]}」の選び方を読む <Arrow />
         </Link>
+        {ranked.length >= 2 ? (
+          <Link href={`/shoes/compare?s=${ranked.slice(0, 3).map((r) => r.shoe.slug).join(",")}`} className="button button--quiet">
+            候補を並べてくらべる <Arrow />
+          </Link>
+        ) : null}
         <Link href="/articles/shoes-first-pair" className="button button--quiet">
           はじめての一足の選び方 <Arrow />
         </Link>

@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 import { notFound } from "next/navigation";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Photo, creditText } from "@/components/Photo";
@@ -10,7 +9,8 @@ import { courses, getCourse, indexableCourse, publicCourses } from "@/content/co
 import { getPurpose } from "@/content/brands";
 import { getPhoto } from "@/content/photos";
 import { getArticle } from "@/lib/articles";
-import { courseStats, hikeMinutes, jogMinutes, ROUTE_KIND_LABEL } from "@/lib/course-stats";
+import { courseStats, hikeMinutes, jogMinutes, routeOnMap, ROUTE_KIND_LABEL } from "@/lib/course-stats";
+import { CourseExplorer } from "@/components/CourseExplorer";
 import { formatDate } from "@/lib/format";
 import { buildMetadata, placeJsonLd } from "@/lib/seo";
 import type { Course } from "@/lib/types";
@@ -53,6 +53,7 @@ export default async function CoursePage({ params }: Params) {
   const c = getCourse(slug);
   if (!c || c.status === "draft") notFound();
   const stats = courseStats(c);
+  const points = routeOnMap(c);
   const photo = getPhoto(c.photo);
   const mapUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(c.mapQuery)}`;
   const related = c.relatedArticles.map((s) => getArticle(s)).filter(Boolean);
@@ -141,31 +142,16 @@ export default async function CoursePage({ params }: Params) {
             <h2 className="cg-h2" id="map">
               {c.route.summary}
             </h2>
-            <figure className="cg-map">
-              <a href={mapUrl} target="_blank" rel="noopener noreferrer" aria-label="地図アプリで場所を開く">
-                <Image src={c.route.map.src} alt={`${c.name}の想定ルートの地図。${c.route.summary}`} width={c.route.map.width} height={c.route.map.height} sizes="(min-width: 960px) 760px, 100vw" />
+            {points ? (
+              <CourseExplorer name={c.name} map={c.route.map} points={points} summary={c.route.summary} />
+            ) : null}
+            <p className="cg-map__note">
+              白い丸が出発点です。{c.route.note} 地図：
+              <a href="https://maps.gsi.go.jp/development/ichiran.html" target="_blank" rel="noopener noreferrer">
+                地理院タイル（淡色地図）
               </a>
-              {stats.profilePath ? (
-                <div className="cg-profile">
-                  <svg viewBox="0 0 1000 200" preserveAspectRatio="none" role="img" aria-label={`高低図。最も低い地点${stats.minEle?.toFixed(0)}m、最も高い地点${stats.maxEle?.toFixed(0)}m`}>
-                    <path d={stats.profilePath} />
-                  </svg>
-                  <p className="cg-profile__label">
-                    <span>高低図</span>
-                    <span className="num">
-                      {stats.minEle?.toFixed(0)}m 〜 {stats.maxEle?.toFixed(0)}m
-                    </span>
-                  </p>
-                </div>
-              ) : null}
-              <figcaption>
-                出発点は白い丸。{c.route.note} 地図：
-                <a href="https://maps.gsi.go.jp/development/ichiran.html" target="_blank" rel="noopener noreferrer">
-                  地理院タイル（淡色地図）
-                </a>
-                を加工して作成。ルート：© OpenStreetMap contributors
-              </figcaption>
-            </figure>
+              を加工して作成。ルート：© OpenStreetMap contributors。標高：国土地理院
+            </p>
             <div className="cg-map__actions">
               <a href={mapUrl} target="_blank" rel="noopener noreferrer" className="btn btn--line">
                 地図アプリで開く
