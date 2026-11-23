@@ -57,7 +57,7 @@ export const categories: Record<CategoryId, CategoryInfo> = {
     photo: "ota-floodway-embankment",
     topics: [
       { title: "広島で、どこから走りはじめる？", article: "hiroshima-where-to-start" },
-      { title: "7つのコースを距離と坂でくらべる", article: "hiroshima-courses-compared" },
+      { title: "8つのコースを距離と坂でくらべる", article: "hiroshima-courses-compared" },
     ],
   },
   care: {

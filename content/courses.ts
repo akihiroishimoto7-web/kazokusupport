@@ -11,7 +11,7 @@ import type { Course, Fact, Source } from "@/lib/types";
  * 想定ルートの作り方（scripts/README-routes.md も参照）
  *   ルート … OpenStreetMap の道路データを使った徒歩ルート検索（routing.openstreetmap.de）
  *   標高   … 国土地理院 標高API（主に1mメッシュ・レーザ測量）を約25mごとに取得
- *   地図   … 地理院タイル（淡色地図）を加工し、ルートを重ねて作成
+ *   地図   … 地理院タイル（淡色地図）の配色を置き換え、ルート・距離・方位・縮尺を描いて作成（scripts/routes/render_modern.py）
  *   距離・累積標高は public/gpx/ のGPXから画面表示時に自動計算されます（3m未満の上下は数えません）
  *
  * トイレ・駅や電停は OpenStreetMap に登録されている情報です（2026年11月22日確認）。
@@ -62,18 +62,77 @@ const ROUTE_NOTE =
   "OpenStreetMap の道路データで作った想定ルートです。運営者はまだこのルートを走っていません。工事や通行止めで通れないことがあります。";
 
 /** 地図画像の作成条件（scripts/routes/routes.py の出力）。ルートを地図に正確に重ねるために使います */
-const MAPS: Record<string, { zoom: number; bbox: [number, number, number, number] }> = {
-  "chuo-park": { zoom: 17, bbox: [34.39923, 132.455774, 34.405146, 132.462123] },
-  hijiyama: { zoom: 17, bbox: [34.382004, 132.470365, 34.387027, 132.473389] },
-  "otagawa-riverside": { zoom: 16, bbox: [34.396248, 132.450838, 34.40774, 132.458268] },
-  "peace-park": { zoom: 17, bbox: [34.390227, 132.448608, 34.396298, 132.454882] },
-  "terayama-park": { zoom: 17, bbox: [34.511146, 132.510123, 34.515491, 132.517135] },
-  "ujina-minato-park": { zoom: 17, bbox: [34.351842, 132.45346, 34.35434, 132.460358] },
-  ushitayama: { zoom: 16, bbox: [34.416448, 132.464507, 34.423217, 132.48553] },
+const MAPS: Record<string, { zoom: number; bbox: [number, number, number, number]; width: number; height: number }> = {
+  "chuo-park": { zoom: 17, bbox: [34.399236, 132.456911, 34.405146, 132.462114], width: 1600, height: 1200 },
+  hijiyama: { zoom: 17, bbox: [34.382034, 132.47043, 34.386982, 132.473386], width: 1600, height: 1200 },
+  "otagawa-riverside": { zoom: 16, bbox: [34.396248, 132.450921, 34.407724, 132.458223], width: 1600, height: 1200 },
+  "peace-park": { zoom: 17, bbox: [34.390235, 132.448648, 34.396293, 132.454865], width: 1600, height: 1200 },
+  "riverside-run": { zoom: 15, bbox: [34.37527, 132.451883, 34.40699, 132.471173], width: 1200, height: 1600 },
+  "terayama-park": { zoom: 17, bbox: [34.511187, 132.510144, 34.515475, 132.517134], width: 1600, height: 1200 },
+  "ujina-minato-park": { zoom: 17, bbox: [34.351847, 132.453463, 34.354336, 132.460358], width: 1600, height: 1200 },
+  ushitayama: { zoom: 16, bbox: [34.416482, 132.464507, 34.423202, 132.48553], width: 1600, height: 1200 },
 };
-const map = (slug: string) => ({ src: `/maps/${slug}.webp`, width: 1600, height: 1200, ...MAPS[slug]! });
+const map = (slug: string) => ({ src: `/maps/${slug}.webp`, ...MAPS[slug]! });
 
 export const courses: Course[] = [
+  /* ------------------------------------------------------------ 0. リバーサイドラン */
+  {
+    slug: "riverside-run",
+    name: "広島リバーサイドラン",
+    kana: "ひろしま りばーさいどらん",
+    area: "中区・南区・東区",
+    catch: "川をつないで、街をひとめぐり",
+    description:
+      "原爆ドームのそばの相生橋から、元安川を南へ。京橋川を北へさかのぼり、白島のあたりから太田川（本川）沿いを下って戻ってくる、約10kmの周回です。デルタの街・広島の川を、ぐるりとつないで走ります。地図データ上の高低差はほとんどありません。長い距離に慣れてきた人の、週末のロング走に。",
+    status: "routed",
+    photo: "own-dome-night",
+    route: {
+      gpx: "riverside-run.gpx",
+      map: map("riverside-run"),
+      kind: "loop",
+      summary: "相生橋 → 元安川 → 京橋川 → 太田川（本川）→ 相生橋",
+      note: `${ROUTE_NOTE} 川と川のあいだは一般の道路を通ります。信号や交通量に注意してください。`,
+    },
+    features: [
+      "元安川・京橋川・太田川、三つの川をつなぐ周回",
+      "原爆ドーム、平和記念公園、広島城の近くを通ります",
+      "ほぼ平らで、長い距離を一定のペースで走る練習に",
+      "途中の橋で曲がれば、距離を短くすることもできます",
+    ],
+    cautions: [
+      SUMMER,
+      NIGHT_RIVER,
+      "川と川をつなぐ区間は一般の道路です。信号と車に注意してください。",
+      "約10kmあります。水分を持つか、途中で買える場所を確かめておきましょう。",
+    ],
+    shoes: [
+      { purpose: "long", text: "10km前後を走るなら、後半も脚を守ってくれるクッションのあるシューズを。" },
+      { purpose: "easy", text: "ゆっくり一周するなら、毎日のジョグ用で十分です。" },
+    ],
+    nearby: ["原爆ドーム", "平和記念公園", "京橋川沿いのオープンカフェ", "広島城"],
+    facts: {
+      start: fromRoute("相生橋（原爆ドームのそば）"),
+      distanceKm: fromRoute(10.1),
+      elevationGainM: fromRoute(4),
+      hills: fromRoute("ほぼ平ら"),
+      surface: onSite(),
+      signals: { value: "ふつう", verified: false, source: ROUTER, note: "川と川をつなぐ区間で信号を渡ります（地図データからの判断。現地確認が必要です）" },
+      toilets: fromOsm("ルート周辺に複数の登録あり"),
+      water: onSite(),
+      shade: onSite(),
+      access: fromOsm("広島電鉄「原爆ドーム前」電停など"),
+      nightSafety: onSite(),
+      bestTime: { value: "早朝", verified: false, note: "人や車の少ない時間帯がおすすめです" },
+    },
+    difficulty: fromRoute<1 | 2 | 3 | 4 | 5>(3),
+    beginnerScore: fromRoute<1 | 2 | 3 | 4 | 5>(3),
+    mapQuery: "相生橋 広島市中区",
+    runReport: null,
+    tags: ["川沿い", "平坦", "周回", "ロング"],
+    relatedArticles: ["hiroshima-courses-compared"],
+    sources: ROUTE_SOURCES,
+    updatedAt: "2026-11-23",
+  },
   /* ------------------------------------------------------------ 1. 太田川 */
   {
     slug: "otagawa-riverside",
@@ -232,7 +291,7 @@ export const courses: Course[] = [
     area: "中区",
     catch: "お堀の水面に、石垣が映る",
     description:
-      "広島城のお堀の外側をぐるりと一周し、西側は中央公園の中を通るルートです。1周約2km、地図データ上は高低差がほとんどありません。石垣と水面、季節の木々。街の中心とは思えない静けさのなかを走れます。",
+      "広島城のお堀の外側をぐるりと一周し、西側は中央公園の中を通るルートです。1周約1.9km、地図データ上は高低差がほとんどありません。石垣と水面、季節の木々。街の中心とは思えない静けさのなかを走れます。",
     status: "routed",
     photo: "castle-west-moat",
     route: {
@@ -242,7 +301,7 @@ export const courses: Course[] = [
       summary: "広島城のお堀の外周（西側は中央公園内）を1周",
       note: ROUTE_NOTE,
     },
-    features: ["1周約2kmの、わかりやすい周回", "お堀と石垣を眺めながら走れる", "周回数で距離を調整しやすい"],
+    features: ["1周約1.9kmの、わかりやすい周回", "お堀と石垣を眺めながら走れる", "周回数で距離を調整しやすい"],
     cautions: [SUMMER, "観光の人も多い場所です。お城の周辺では歩く人を優先して。", "試合やイベントの日は中央公園周辺が混み合います。"],
     shoes: [
       { purpose: "first", text: "平らな周回なので、はじめての一足で十分です。" },
@@ -251,7 +310,7 @@ export const courses: Course[] = [
     nearby: ["広島城", "広島護国神社", "中央公園", "エディオンピースウイング広島"],
     facts: {
       start: fromRoute("広島城の北側（城北付近）"),
-      distanceKm: fromRoute(2.1),
+      distanceKm: fromRoute(1.9),
       elevationGainM: fromRoute(0, "3m以上の上り下りはルートデータ上ありません（現地未走）"),
       hills: fromRoute("ほぼ平ら"),
       surface: onSite(),
