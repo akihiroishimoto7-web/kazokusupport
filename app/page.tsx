@@ -165,7 +165,7 @@ export default async function HomePage() {
         <div className="m-shoes__grid">
           <div className="m-finder">
             <p className="m-finder__title">6つの質問で、合うタイプがわかる。</p>
-            <p className="m-finder__text">紹介料で順位を変えることはありません。</p>
+            <p className="m-finder__text">無料・登録なし。おすすめの順番は、あなたの答えだけで決まります。</p>
             <Link href="/tools/shoe-finder" className="m-button">
               シューズ診断をはじめる
             </Link>

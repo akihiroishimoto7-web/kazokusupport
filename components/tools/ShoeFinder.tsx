@@ -187,7 +187,7 @@ function Result({
       <div className="result__picks">
         <h2>候補になるシリーズ</h2>
         <p className="result__note">
-          用途と特徴だけで並べています。紹介料や価格の高さで順位を変えることはありません。現行モデルのスペックは確認中のものがあります。
+          あなたの答えと、シューズの用途・特徴だけで並べています。広告やお店の都合で順番を変えることはありません。現行モデルのスペックは確認中のものがあります。
         </p>
         {ranked.length ? (
           <ol role="list" className="result__list">

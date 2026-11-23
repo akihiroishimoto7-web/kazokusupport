@@ -66,7 +66,7 @@ export default async function PurposePage({ params }: Params) {
         <h2 className="hub__h2" id="list">
           候補になるシリーズ
         </h2>
-        <p className="hub__note">並び順はメーカー順です。紹介料や価格の高さで並べ替えることはしていません。</p>
+        <p className="hub__note">並び順はメーカー順です。広告やお店の都合、価格の高さで順番を変えることはしていません。</p>
         <ShoeList shoes={list} />
         <p className="section__more">
           <Link href="/tools/shoe-finder" className="text-link">
