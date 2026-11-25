@@ -54,7 +54,11 @@ export default async function HomePage() {
   const knee = getArticle("care-knee-pain");
   const firstWeek = getArticle("start-first-week");
   const habit = getArticle("start-make-it-habit");
-  const column = getArticle("column-kipchoge-form");
+  // コラム枠：先頭を大きく、残りは小さな見出しで並べる
+  const columns = ["column-osako-style", "column-kipchoge-form"]
+    .map((slug) => getArticle(slug))
+    .filter((a): a is NonNullable<typeof a> => Boolean(a));
+  const [column, ...moreColumns] = columns;
 
   return (
     <div className="mag">
@@ -124,6 +128,19 @@ export default async function HomePage() {
                 読む <Arrow />
               </span>
             </Link>
+            {moreColumns.length ? (
+              <ul className="m-column__list">
+                {moreColumns.map((c) => (
+                  <li key={c.slug}>
+                    <Link href={`/articles/${c.slug}`}>
+                      <span className="m-column__label">コラム</span>
+                      <span className="m-column__sub">{c.title}</span>
+                      <Arrow />
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            ) : null}
           </aside>
         ) : null}
       </section>

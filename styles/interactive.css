@@ -674,3 +674,37 @@
   text-underline-offset: 0.25em;
   text-decoration-thickness: 1px;
 }
+
+/* コラム枠：2本目以降の小さな一覧 */
+.m-column__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.m-column__list a {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.1rem 0;
+  border-bottom: 1px solid var(--rule);
+  color: inherit;
+  text-decoration: none;
+}
+.m-column__sub {
+  font-size: 1rem;
+  line-height: 1.6;
+  word-break: auto-phrase;
+}
+.m-column__list a:hover .m-column__sub {
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+  text-decoration-thickness: 1px;
+}
+@media (min-width: 48rem) {
+  .m-column__list a {
+    grid-template-columns: 8rem 1fr auto;
+    column-gap: 3rem;
+    margin-left: 8.333%;
+  }
+}
