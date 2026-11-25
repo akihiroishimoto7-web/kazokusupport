@@ -1,0 +1,41 @@
+{
+  "id": "saucony-guide-19",
+  "series": "saucony-guide",
+  "brand": "saucony",
+  "name": "GUIDE 19",
+  "nameJa": "ガイド19",
+  "generation": 19,
+  "lifecycle": "current",
+  "officialUrl": "https://saucony.jp/products/mens-guide-19",
+  "pageTitle": "GUIDE 19 | ガイド19 – SAUCONY（サッカニー）公式オンラインストア",
+  "specs": {
+    "weightG": {
+      "value": 275,
+      "size": null,
+      "evidence": "重量: / 275g",
+      "checkedAt": "2026-11-25"
+    },
+    "dropMm": {
+      "value": 6,
+      "evidence": "オフセット: / 6mm（35mm/29mm)",
+      "checkedAt": "2026-11-25"
+    },
+    "stackHeelMm": {
+      "value": 35,
+      "evidence": "オフセット: / 6mm（35mm/29mm)",
+      "checkedAt": "2026-11-25"
+    },
+    "stackForefootMm": {
+      "value": 29,
+      "evidence": "オフセット: / 6mm（35mm/29mm)",
+      "checkedAt": "2026-11-25"
+    }
+  },
+  "checkedAt": "2026-11-25",
+  "officialPrice": {
+    "priceJpy": 20900,
+    "regularPriceJpy": 20900,
+    "onSale": false,
+    "checkedAt": "2026-11-25"
+  }
+}

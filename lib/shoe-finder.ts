@@ -29,9 +29,9 @@ export const QUESTIONS: Question[] = [
     key: "experience",
     title: "いま、どのくらい走っていますか？",
     options: [
-      { value: "none", label: "これから始める", detail: "または、始めたばかり" },
-      { value: "some", label: "ときどき走る", detail: "週に1〜2回ほど" },
-      { value: "regular", label: "習慣になっている", detail: "週に3回以上、大会に出ることも" },
+      { value: "none", label: "これから始める", detail: "または、始めたばかり。まだ続けて走るのは数分ほど" },
+      { value: "some", label: "ときどき走る", detail: "週に1〜2回、5kmくらいなら走れる" },
+      { value: "regular", label: "習慣になっている", detail: "週に3回以上、10km以上や大会に出ることも" },
     ],
   },
   {
@@ -74,10 +74,11 @@ export const QUESTIONS: Question[] = [
   },
   {
     key: "budget",
-    title: "予算の考え方は？",
+    title: "予算は？",
+    hint: "メーカー公式ストアの価格（税込）で確認できたモデルは、前の世代のセール価格も含めて判定します。",
     options: [
-      { value: "low", label: "できるだけ抑えたい" },
-      { value: "mid", label: "標準的な価格帯で" },
+      { value: "low", label: "1万2千円くらいまで", detail: "できるだけ抑えたい" },
+      { value: "mid", label: "2万円くらいまで", detail: "標準的な価格帯で" },
       { value: "any", label: "合うものなら、価格は問わない" },
     ],
   },
@@ -104,9 +105,27 @@ export function primaryPurpose(a: Answers): ShoePurposeId {
   return "easy";
 }
 
-export type Scored = { shoe: Shoe; score: number; reasons: string[] };
+export type Scored = { shoe: Shoe; score: number; reasons: string[]; deal?: PriceOption | null };
 
-export function scoreShoes(shoes: Shoe[], a: Answers): Scored[] {
+/** 予算の上限（円・税込）。any は上限なし */
+export const BUDGET_CAP: Record<Answers["budget"], number | null> = { low: 12000, mid: 20000, any: null };
+
+/** シリーズごとに、公式ストアで確認できた価格（現行モデルと前の世代） */
+export type PriceOption = { model: string; priceJpy: number; lifecycle: "current" | "previous"; onSale: boolean; checkedAt: string };
+export type PriceIndex = Record<string, PriceOption[]>;
+
+/**
+ * 予算内で買える、いちばん新しい世代の価格を返します。
+ * 確認できた価格がなければ undefined（判定しない）、すべて予算オーバーなら null。
+ */
+export function priceWithinBudget(options: PriceOption[] | undefined, cap: number | null): PriceOption | null | undefined {
+  if (!options?.length || cap == null) return undefined;
+  const ok = options.filter((o) => o.priceJpy <= cap);
+  if (!ok.length) return null;
+  return ok.sort((x, y) => (x.lifecycle === y.lifecycle ? x.priceJpy - y.priceJpy : x.lifecycle === "current" ? -1 : 1))[0]!;
+}
+
+export function scoreShoes(shoes: Shoe[], a: Answers, prices: PriceIndex = {}): Scored[] {
   const primary = primaryPurpose(a);
   const secondary = new Set<ShoePurposeId>();
   if (a.experience === "none") secondary.add("first");
@@ -159,11 +178,24 @@ export function scoreShoes(shoes: Shoe[], a: Answers): Scored[] {
       score += 1;
       reasons.push("幅広のモデルが用意されることが多いシリーズです（現行モデルで要確認）");
     }
+    // 公式ストアで確認できた価格で予算を判定（推測の価格は使わない）
+    const deal = priceWithinBudget(prices[shoe.slug], BUDGET_CAP[a.budget]);
+    if (deal) {
+      score += 2;
+      reasons.push(
+        deal.lifecycle === "current"
+          ? `公式ストアで${deal.priceJpy.toLocaleString("ja-JP")}円（${deal.model}）。予算内です`
+          : `一つ前の${deal.model}なら、公式ストアで${deal.priceJpy.toLocaleString("ja-JP")}円${deal.onSale ? "（セール）" : ""}。予算内です`,
+      );
+    } else if (deal === null) {
+      score -= 2;
+    }
+
     if (t.has("plate") && (a.experience === "none" || a.goal !== "speed")) score -= 4;
     if (p.has("speed") && !p.has("easy") && a.goal !== "speed") score -= 3;
     if (t.has("budget") && a.experience === "regular") score -= 2;
 
-    return { shoe, score, reasons };
+    return { shoe, score, reasons, deal };
   });
 
   return scored
@@ -190,7 +222,7 @@ export function adviceFor(a: Answers): string[] {
     out.push("膝の痛みが続く、腫れがあるといった場合は、シューズを替える前に医療機関に相談してください。");
   if (a.width === "wide" || a.width === "unknown")
     out.push("足の幅はメーカーやモデルで大きく違います。可能なら店頭で足を計測してもらい、幅（ワイズ）の選択肢があるかを確かめてください。");
-  if (a.budget === "low") out.push("一世代前のモデルは、価格が下がっていることがよくあります。最新でなくても十分に走れます。");
+  if (a.budget !== "any") out.push("一世代前のモデルは、価格が下がっていることがよくあります。最新でなくても十分に走れます。価格は確認した日のもので、セールの終了などで変わります。");
   if (a.goal === "speed" && a.experience === "none")
     out.push("走り始めの時期は、速く走るためのシューズはまだ必要ありません。まずはジョグ用の一足で、走る習慣をつくりましょう。");
   out.push("どのシューズも、最後は試し履きで決めてください。夕方、ランニング用の靴下を履いて、つま先に指一本ぶんの余裕があるかを確かめます。");

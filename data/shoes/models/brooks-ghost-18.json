@@ -1,0 +1,31 @@
+{
+  "id": "brooks-ghost-18",
+  "series": "brooks-ghost",
+  "brand": "brooks",
+  "name": "Ghost 18",
+  "nameJa": "ゴースト18",
+  "generation": 18,
+  "lifecycle": "current",
+  "officialUrl": "https://brooksrunning.co.jp/products/brm4933-blk",
+  "pageTitle": "Ghost18 (ゴースト18 ブラック)",
+  "specs": {
+    "weightG": {
+      "value": 290,
+      "size": "27cm",
+      "evidence": "重さ : 290g (27cm)",
+      "checkedAt": "2026-11-25"
+    },
+    "dropMm": {
+      "value": 10,
+      "evidence": "ミッドソールドロップ : 10mm",
+      "checkedAt": "2026-11-25"
+    }
+  },
+  "checkedAt": "2026-11-25",
+  "officialPrice": {
+    "priceJpy": 19800,
+    "regularPriceJpy": 19800,
+    "onSale": false,
+    "checkedAt": "2026-11-25"
+  }
+}

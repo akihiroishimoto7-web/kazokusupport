@@ -1,0 +1,31 @@
+{
+  "id": "on-cloudmonster-3",
+  "series": "on-cloudmonster",
+  "brand": "on",
+  "name": "Cloudmonster 3",
+  "nameJa": "クラウドモンスター 3",
+  "generation": 3,
+  "lifecycle": "current",
+  "officialUrl": "https://www.on.com/ja-jp/products/cloudmonster-3-m-3mg1005/mens/black-ivory-shoes-3MG10051430",
+  "pageTitle": "メンズ Cloudmonster 3 | ブラック & ベージュ | On 日本",
+  "specs": {
+    "weightG": {
+      "value": 295,
+      "size": null,
+      "evidence": "重さ / 295g",
+      "checkedAt": "2026-11-25"
+    },
+    "dropMm": {
+      "value": 6,
+      "evidence": "ドロップ / 6mm",
+      "checkedAt": "2026-11-25"
+    }
+  },
+  "checkedAt": "2026-11-25",
+  "officialPrice": {
+    "priceJpy": 24200,
+    "regularPriceJpy": 24200,
+    "onSale": false,
+    "checkedAt": "2026-11-25"
+  }
+}

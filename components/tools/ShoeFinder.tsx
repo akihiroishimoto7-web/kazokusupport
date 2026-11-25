@@ -14,15 +14,16 @@ import {
   primaryPurpose,
   scoreShoes,
   type Answers,
+  type PriceIndex,
 } from "@/lib/shoe-finder";
 import { Arrow } from "../Arrow";
 import { pickForResult, type LinkedEntry } from "@/lib/ameblo-match";
 
 type AmebloProps = { entries: LinkedEntry[]; blogUrl: string | null; title: string };
 
-type Props = { shoes: Shoe[]; brandNames: Record<string, string>; ameblo?: AmebloProps };
+type Props = { shoes: Shoe[]; brandNames: Record<string, string>; ameblo?: AmebloProps; prices?: PriceIndex };
 
-export function ShoeFinder({ shoes, brandNames, ameblo }: Props) {
+export function ShoeFinder({ shoes, brandNames, ameblo, prices }: Props) {
   const params = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
@@ -67,7 +68,7 @@ export function ShoeFinder({ shoes, brandNames, ameblo }: Props) {
   };
 
   if (done) {
-    return <Result answers={answers as Answers} shoes={shoes} brandNames={brandNames} ameblo={ameblo} onRestart={restart} headingRef={headingRef} onEdit={(i) => setStep(i)} />;
+    return <Result answers={answers as Answers} shoes={shoes} prices={prices} brandNames={brandNames} ameblo={ameblo} onRestart={restart} headingRef={headingRef} onEdit={(i) => setStep(i)} />;
   }
 
   const q = QUESTIONS[step]!;
@@ -123,6 +124,7 @@ export function ShoeFinder({ shoes, brandNames, ameblo }: Props) {
 function Result({
   answers,
   shoes,
+  prices,
   brandNames,
   ameblo,
   onRestart,
@@ -131,6 +133,7 @@ function Result({
 }: {
   answers: Answers;
   shoes: Shoe[];
+  prices?: PriceIndex;
   brandNames: Record<string, string>;
   ameblo?: AmebloProps;
   onRestart: () => void;
@@ -138,7 +141,7 @@ function Result({
   headingRef: React.RefObject<HTMLHeadingElement | null>;
 }) {
   const purpose = primaryPurpose(answers);
-  const ranked = scoreShoes(shoes, answers).slice(0, 4);
+  const ranked = scoreShoes(shoes, answers, prices).slice(0, 4);
   const advice = adviceFor(answers);
   const blog = ameblo ? pickForResult(ameblo.entries, ranked.map((r) => r.shoe.slug), purpose, 3) : [];
   const [copied, setCopied] = useState(false);
@@ -202,7 +205,8 @@ function Result({
                     <span className="result-shoe__catch">{r.shoe.catch}</span>
                     {r.reasons.length ? (
                       <ul className="result-shoe__reasons">
-                        {r.reasons.slice(0, 3).map((x) => (
+                        {/* 予算の判定（価格の理由）は必ず見えるように残す */}
+                        {[...r.reasons.filter((x) => !x.includes("予算内")).slice(0, 2), ...r.reasons.filter((x) => x.includes("予算内"))].map((x) => (
                           <li key={x}>{x}</li>
                         ))}
                       </ul>
@@ -218,6 +222,9 @@ function Result({
         ) : (
           <p>条件に合うシリーズが見つかりませんでした。回答を変えてみてください。</p>
         )}
+        {ranked.some((r) => r.deal) ? (
+          <p className="result__note">価格は、メーカー公式オンラインストアで確認した日のものです（{[...new Set(ranked.map((r) => r.deal?.checkedAt).filter(Boolean))].map((d) => d!.replaceAll("-", ".")).join("・")}確認）。セールの終了などで変わります。</p>
+        ) : null}
       </div>
 
       {blog.length && ameblo ? (

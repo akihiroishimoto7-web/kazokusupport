@@ -1,0 +1,31 @@
+{
+  "id": "nike-pegasus-42",
+  "series": "nike-pegasus",
+  "brand": "nike",
+  "name": "Pegasus 42",
+  "nameJa": "ペガサス 42",
+  "generation": 42,
+  "lifecycle": "current",
+  "officialUrl": "https://www.nike.com/jp/t/%E3%83%8A%E3%82%A4%E3%82%AD-%E3%83%9A%E3%82%AC%E3%82%B5%E3%82%B9-42-%E3%83%A1%E3%83%B3%E3%82%BA-%E3%83%AD%E3%83%BC%E3%83%89%E3%83%A9%E3%83%B3%E3%83%8B%E3%83%B3%E3%82%B0%E3%82%B7%E3%83%A5%E3%83%BC%E3%82%BA-WU8ab5K6/IB1873-001",
+  "pageTitle": "【NIKE公式】ナイキ ペガサス 42 メンズ ロードランニングシューズ.オンラインストア (通販サイト)",
+  "specs": {
+    "weightG": {
+      "value": 300,
+      "size": "メンズサイズ28cm",
+      "evidence": "重量：約300g（メンズサイズ28cm）",
+      "checkedAt": "2026-11-25"
+    },
+    "dropMm": {
+      "value": 10,
+      "evidence": "オフセット：10mm",
+      "checkedAt": "2026-11-25"
+    }
+  },
+  "checkedAt": "2026-11-25",
+  "officialPrice": {
+    "priceJpy": 17600,
+    "regularPriceJpy": 17600,
+    "onSale": false,
+    "checkedAt": "2026-11-25"
+  }
+}

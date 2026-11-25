@@ -1,0 +1,40 @@
+# 【PR】Nike Revolution 8の重量・ドロップ・価格と、買わなくていい人
+
+※この記事には広告（PR）を含みます。紹介する順番や評価は、紹介料の有無で変えていません。
+
+NikeのRevolutionシリーズの現行モデル、Revolution 8。メーカー公式ページに書かれている数値と、どんな人に向いているかをまとめました。運営者はまだ履いていないので、履き心地の感想は書いていません。
+
+## 公式の数値
+
+- 通常価格（税込）：7,700円
+- 重量：292g（メンズサイズ28cm）
+- ドロップ：10mm
+
+（2026.11.25、Nike公式ページで確認）
+
+## どんなシューズ？
+
+ナイキのランニングシューズの中で、手頃な価格帯の入門用として展開されているシリーズです。
+
+## 向いている人
+
+- まずは手頃な価格で始めたい人
+
+## 向いていない人
+
+- 週に何度も長い距離を走る人
+
+## 買わなくていい理由
+
+- 走る習慣が定着してから、クッションのあるモデルを選ぶ方法もあります。
+
+（ここに Ameba Pick の商品リンクを貼る）
+
+## もっとくわしく
+
+公式ストアの価格の記録や、似たシューズとの比較はHPに載せています → https://kazokusupport-u8zk.vercel.app/shoes/nike-revolution?utm_source=ameblo&utm_medium=blog&utm_campaign=model-nike-revolution-8
+
+自分に合うかどうかは、シューズ診断でも確かめられます → https://kazokusupport-u8zk.vercel.app/tools/shoe-finder?utm_source=ameblo&utm_medium=blog&utm_campaign=model-nike-revolution-8
+
+---
+出典：【NIKE公式】ナイキ レボリューション 8 メンズ ロード ランニングシューズ.オンラインストア (通販サイト)（https://www.nike.com/jp/t/%E3%83%8A%E3%82%A4%E3%82%AD-%E3%83%AC%E3%83%9C%E3%83%AA%E3%83%A5%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3-8-%E3%83%A1%E3%83%B3%E3%82%BA-%E3%83%AD%E3%83%BC%E3%83%89-%E3%83%A9%E3%83%B3%E3%83%8B%E3%83%B3%E3%82%B0%E3%82%B7%E3%83%A5%E3%83%BC%E3%82%BA-4P0ghJ/HJ9198-003、2026.11.25確認）

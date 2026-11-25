@@ -15,6 +15,9 @@ import { getAmebloEntries } from "@/lib/ameblo";
 import { linkEntries } from "@/lib/ameblo-match";
 import { amebloUrl, social } from "@/content/social";
 import type { Rating, Shoe } from "@/lib/types";
+import { currentModel, hasVerifiedSpecs, isIndexableShoe, previousModels, priceHistory } from "@/lib/shoe-db";
+import { PriceHistory, PreviousModels } from "@/components/ShoeModelData";
+import { comparablePairs, pairSlug } from "@/lib/shoe-pairs";
 
 type Params = { params: Promise<{ slug: string }> };
 export const dynamicParams = false;
@@ -28,12 +31,17 @@ export async function generateMetadata({ params }: Params) {
   const s = getShoe(slug);
   if (!s || s.status === "draft") return {};
   return buildMetadata({
-    title: s.status === "review" ? `${fullName(s)} レビュー` : `${fullName(s)}シリーズの特徴と向いている人`,
+    title:
+      s.status === "review"
+        ? `${fullName(s)} レビュー`
+        : hasVerifiedSpecs(s)
+          ? `${fullName(s)}の重量・ドロップ・価格と向いている人`
+          : `${fullName(s)}シリーズの特徴と向いている人`,
     description: `${s.catch}。${s.positioning}`,
     path: `/shoes/${s.slug}`,
     photo: s.photo,
-    // スペック未確認の概要ページは検索エンジンに登録しない
-    noindex: s.status !== "review",
+    // スペック未確認の概要ページは検索エンジンに登録しない（公式仕様を確認できたページは登録）
+    noindex: !isIndexableShoe(s),
   });
 }
 
@@ -69,6 +77,14 @@ export default async function ShoePage({ params }: Params) {
   const similar = shoe.similar.map(getShoe).filter((s): s is Shoe => Boolean(s && s.status !== "draft"));
   const isOutline = shoe.status === "outline";
   const name = shoe.model ?? shoe.series;
+  const pairs = comparablePairs(publicShoes(), isIndexableShoe).filter(([a, b]) => a.slug === shoe.slug || b.slug === shoe.slug);
+  const current = currentModel(shoe.slug);
+  const previous = previousModels(shoe.slug);
+  // 仕様がすべて現行モデルの公式ページ（同じ出典）なら、出典は表の下に1回だけ出す
+  const specCompact = Boolean(
+    current &&
+      Object.values(shoe.specs).every((f) => f.value == null || f.source?.url === current.officialUrl),
+  );
   const blog = linkEntries(await getAmebloEntries()).filter((e) => e.shoes.includes(shoe.slug)).slice(0, 4);
 
   return (
@@ -152,13 +168,14 @@ export default async function ShoePage({ params }: Params) {
               <div>
                 <dt>日本国内の公式価格（税込）</dt>
                 <dd>
-                  <FactValue fact={shoe.specs.priceJpy} format={formatYen} />
+                  <FactValue fact={shoe.specs.priceJpy} format={formatYen} compact={specCompact} />
                 </dd>
               </div>
               <div>
                 <dt>重量</dt>
                 <dd>
                   <FactValue
+                    compact={specCompact}
                     fact={shoe.specs.weightG}
                     format={(v) => `${v}g${shoe.specs.weightG.size ? `（${shoe.specs.weightG.size}）` : ""}`}
                   />
@@ -167,28 +184,50 @@ export default async function ShoePage({ params }: Params) {
               <div>
                 <dt>ヒールの厚さ</dt>
                 <dd>
-                  <FactValue fact={shoe.specs.stackHeelMm} format={(v) => `${v}mm`} />
+                  <FactValue fact={shoe.specs.stackHeelMm} format={(v) => `${v}mm`} compact={specCompact} />
                 </dd>
               </div>
               <div>
                 <dt>フォアフットの厚さ</dt>
                 <dd>
-                  <FactValue fact={shoe.specs.stackForefootMm} format={(v) => `${v}mm`} />
+                  <FactValue fact={shoe.specs.stackForefootMm} format={(v) => `${v}mm`} compact={specCompact} />
                 </dd>
               </div>
               <div>
                 <dt>ドロップ</dt>
                 <dd>
-                  <FactValue fact={shoe.specs.dropMm} format={(v) => `${v}mm`} />
+                  <FactValue fact={shoe.specs.dropMm} format={(v) => `${v}mm`} compact={specCompact} />
                 </dd>
               </div>
             </dl>
+            {specCompact && current ? (
+              <div className="spec-source">
+                <p>
+                  出典：
+                  <a href={current.officialUrl} target="_blank" rel="noopener noreferrer">
+                    {current.pageTitle}
+                  </a>
+                  （{formatDate(current.checkedAt)}確認）。価格は公式オンラインストアの通常価格（税込）で、セール時は変わります。「未確認」は公式ページに記載が見つからなかった項目です。
+                </p>
+                <details>
+                  <summary>公式ページの記載（原文）</summary>
+                  <ul>
+                    {Object.entries(current.specs).map(([k, v]) => (
+                      <li key={k}>「{v.evidence}」</li>
+                    ))}
+                  </ul>
+                </details>
+              </div>
+            ) : null}
             <p className="spec-help">
               厚さやドロップの意味は
               <Link href="/articles/shoes-glossary">「シューズの言葉」</Link>
               で解説しています。
             </p>
           </section>
+
+          {current ? <PriceHistory model={current} history={priceHistory(current.id)} /> : null}
+          {previous.length ? <PreviousModels current={current} previous={previous} brandName={brand.name} /> : null}
 
           <section className="shoe__section" aria-labelledby="ratings">
             <h2 id="ratings">履き心地の評価</h2>
@@ -309,6 +348,24 @@ export default async function ShoePage({ params }: Params) {
             </section>
           ) : null}
 
+          {pairs.length ? (
+            <section className="shoe__section" aria-labelledby="pairs">
+              <h2 id="pairs">2足でくらべる</h2>
+              <ul role="list" className="pair-links">
+                {pairs.map(([a, b]) => {
+                  const other = a.slug === shoe.slug ? b : a;
+                  return (
+                    <li key={other.slug}>
+                      <Link href={`/shoes/compare/${pairSlug(a.slug, b.slug)}`}>
+                        <span className="latin">{name}</span> と <span className="latin">{fullName(other)}</span> の違い
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+            </section>
+          ) : null}
+
           {blog.length ? (
             <section className="shoe__section" aria-labelledby="blog">
               <h2 id="blog">研究所ブログの関連記事</h2>
@@ -369,7 +426,7 @@ export default async function ShoePage({ params }: Params) {
 
         <aside className="shoe__aside">
           <div className="shoe__aside-inner">
-            <ShopLinks links={shoe.links} subject={`${brand.name} ${shoe.series}`} kind="search" />
+            <ShopLinks links={shoe.links} subject={`${brand.name} ${shoe.model ?? shoe.series}`} kind="search" />
             <p className="aside-note">
               最新モデルにこだわらなければ、一つ前の世代が安くなっていることもあります。
               <Link href="/tools/shoe-finder">

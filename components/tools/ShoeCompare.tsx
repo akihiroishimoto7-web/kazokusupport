@@ -46,7 +46,7 @@ export function ShoeCompare({ shoes, brandNames }: Props) {
   const selected = useMemo(() => {
     const slugs = (params.get("s") ?? "").split(",").filter(Boolean);
     const list = slugs.map((s) => shoes.find((x) => x.slug === s)).filter((x): x is Lite => Boolean(x));
-    return list.length ? list.slice(0, 3) : shoes.filter((s) => ["nike-pegasus", "nike-vomero", "asics-novablast"].includes(s.slug));
+    return list.length ? list.slice(0, 3) : shoes.filter((s) => ["nike-pegasus", "brooks-ghost", "saucony-ride"].includes(s.slug));
   }, [params, shoes]);
 
   const setSlot = (i: number, slug: string) => {

@@ -1,0 +1,30 @@
+{
+  "$comment": "公式サイトから仕様・価格を集めるモデルの一覧。scripts/shoes/collect.mjs が読みます。url はメーカー公式（または公式オンラインストア）のメンズ標準幅の商品ページだけを登録してください。series は content/shoes.ts の slug。lifecycle は current（現行）/ previous（旧モデル）。",
+  "targets": [
+    { "id": "nike-pegasus-42", "series": "nike-pegasus", "brand": "nike", "name": "Pegasus 42", "nameJa": "ペガサス 42", "generation": 42, "lifecycle": "current", "adapter": "nike", "url": "https://www.nike.com/jp/t/%E3%83%8A%E3%82%A4%E3%82%AD-%E3%83%9A%E3%82%AC%E3%82%B5%E3%82%B9-42-%E3%83%A1%E3%83%B3%E3%82%BA-%E3%83%AD%E3%83%BC%E3%83%89%E3%83%A9%E3%83%B3%E3%83%8B%E3%83%B3%E3%82%B0%E3%82%B7%E3%83%A5%E3%83%BC%E3%82%BA-WU8ab5K6/IB1873-001" },
+    { "id": "nike-vomero-18", "series": "nike-vomero", "brand": "nike", "name": "Vomero 18", "nameJa": "ボメロ 18", "generation": 18, "lifecycle": "current", "adapter": "nike", "url": "https://www.nike.com/jp/t/%E3%83%8A%E3%82%A4%E3%82%AD-%E3%83%9C%E3%83%A1%E3%83%AD-18-%E3%83%A1%E3%83%B3%E3%82%BA-%E3%83%AD%E3%83%BC%E3%83%89-%E3%83%A9%E3%83%B3%E3%83%8B%E3%83%B3%E3%82%B0%E3%82%B7%E3%83%A5%E3%83%BC%E3%82%BA-kWLvjHE5/HM6803-115" },
+    { "id": "nike-revolution-8", "series": "nike-revolution", "brand": "nike", "name": "Revolution 8", "nameJa": "レボリューション 8", "generation": 8, "lifecycle": "current", "adapter": "nike", "url": "https://www.nike.com/jp/t/%E3%83%8A%E3%82%A4%E3%82%AD-%E3%83%AC%E3%83%9C%E3%83%AA%E3%83%A5%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3-8-%E3%83%A1%E3%83%B3%E3%82%BA-%E3%83%AD%E3%83%BC%E3%83%89-%E3%83%A9%E3%83%B3%E3%83%8B%E3%83%B3%E3%82%B0%E3%82%B7%E3%83%A5%E3%83%BC%E3%82%BA-4P0ghJ/HJ9198-003" },
+    { "id": "on-cloudmonster-3", "series": "on-cloudmonster", "brand": "on", "name": "Cloudmonster 3", "nameJa": "クラウドモンスター 3", "generation": 3, "lifecycle": "current", "adapter": "on", "url": "https://www.on.com/ja-jp/products/cloudmonster-3-m-3mg1005/mens/black-ivory-shoes-3MG10051430" },
+    { "id": "mizuno-wave-rider-30", "series": "mizuno-wave-rider", "brand": "mizuno", "name": "WAVE RIDER 30", "nameJa": "ウエーブライダー30", "generation": 30, "lifecycle": "current", "adapter": "mizuno", "url": "https://jpn.mizuno.com/ec/g/gJ1GM262051245/" },
+    { "id": "mizuno-wave-inspire-22", "series": "mizuno-wave-inspire", "brand": "mizuno", "name": "WAVE INSPIRE 22", "nameJa": "ウエーブインスパイア22", "generation": 22, "lifecycle": "current", "adapter": "mizuno", "url": "https://jpn.mizuno.com/ec/g/gJ1GC264401260/" },
+    { "id": "saucony-ride-19", "series": "saucony-ride", "brand": "saucony", "name": "RIDE 19", "nameJa": "ライド19", "generation": 19, "lifecycle": "current", "adapter": "shopify", "url": "https://saucony.jp/products/mens-ride-19" },
+    { "id": "saucony-ride-18", "series": "saucony-ride", "brand": "saucony", "name": "RIDE 18", "nameJa": "ライド18", "generation": 18, "lifecycle": "previous", "adapter": "shopify", "url": "https://saucony.jp/products/mens-ride-18-n02" },
+    { "id": "saucony-guide-19", "series": "saucony-guide", "brand": "saucony", "name": "GUIDE 19", "nameJa": "ガイド19", "generation": 19, "lifecycle": "current", "adapter": "shopify", "url": "https://saucony.jp/products/mens-guide-19" },
+    { "id": "saucony-guide-18", "series": "saucony-guide", "brand": "saucony", "name": "GUIDE 18", "nameJa": "ガイド18", "generation": 18, "lifecycle": "previous", "adapter": "shopify", "url": "https://saucony.jp/products/mens-guide-18-n02" },
+    { "id": "saucony-endorphin-speed-6", "series": "saucony-endorphin-speed", "brand": "saucony", "name": "ENDORPHIN SPEED 6", "nameJa": "エンドルフィン スピード 6", "generation": 6, "lifecycle": "current", "adapter": "shopify", "url": "https://saucony.jp/products/mens-endorphin-speed-6" },
+    { "id": "saucony-endorphin-speed-5", "series": "saucony-endorphin-speed", "brand": "saucony", "name": "ENDORPHIN SPEED 5", "nameJa": "エンドルフィンスピード5", "generation": 5, "lifecycle": "previous", "adapter": "shopify", "url": "https://saucony.jp/products/mens-endorphin-speed-5-n02" },
+    { "id": "brooks-ghost-18", "series": "brooks-ghost", "brand": "brooks", "name": "Ghost 18", "nameJa": "ゴースト18", "generation": 18, "lifecycle": "current", "adapter": "shopify", "url": "https://brooksrunning.co.jp/products/brm4933-blk" },
+    { "id": "brooks-ghost-17", "series": "brooks-ghost", "brand": "brooks", "name": "Ghost 17", "nameJa": "ゴースト17", "generation": 17, "lifecycle": "previous", "adapter": "shopify", "url": "https://brooksrunning.co.jp/products/brm4423-blk" },
+    { "id": "brooks-adrenaline-gts-25", "series": "brooks-adrenaline", "brand": "brooks", "name": "Adrenaline GTS 25", "nameJa": "アドレナリンGTS25", "generation": 25, "lifecycle": "current", "adapter": "shopify", "url": "https://brooksrunning.co.jp/products/brm4543-gry" },
+    { "id": "brooks-adrenaline-gts-24", "series": "brooks-adrenaline", "brand": "brooks", "name": "Adrenaline GTS 24", "nameJa": "アドレナリンGTS24", "generation": 24, "lifecycle": "previous", "adapter": "shopify", "url": "https://brooksrunning.co.jp/products/brm4373-gry" },
+    { "id": "brooks-glycerin-23", "series": "brooks-glycerin", "brand": "brooks", "name": "Glycerin 23", "nameJa": "グリセリン23", "generation": 23, "lifecycle": "current", "adapter": "shopify", "url": "https://brooksrunning.co.jp/products/brm4763-blk" },
+    { "id": "brooks-glycerin-22", "series": "brooks-glycerin", "brand": "brooks", "name": "Glycerin 22", "nameJa": "グリセリン22", "generation": 22, "lifecycle": "previous", "adapter": "shopify", "url": "https://brooksrunning.co.jp/products/brm4453-nb" }
+  ],
+  "blocked": {
+    "$comment": "2026-11-25 時点で、自動取得が公式サイト側で拒否された（HTTP 403 など）メーカー。手作業で公式ページを確認するか、取得方法を見直すまで、仕様は「未確認」のままにします。",
+    "asics": "www.asics.com が 403（ボット対策）",
+    "adidas": "www.adidas.jp / shop.adidas.jp が 403",
+    "hoka": "www.hoka.com/jp が 403",
+    "newbalance": "www.newbalance.jp が 502（上流エラー）"
+  }
+}

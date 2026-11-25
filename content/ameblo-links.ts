@@ -34,7 +34,7 @@ export const shoeKeywords: Record<string, string[]> = {
   "brooks-glycerin": ["Glycerin", "グリセリン"],
   "mizuno-wave-rider": ["WAVE RIDER", "ウエーブライダー", "ウェーブライダー"],
   "mizuno-wave-inspire": ["WAVE INSPIRE", "インスパイア"],
-  "saucony-ride": ["Saucony RIDE", "サッカニー ライド"],
+  "saucony-ride": ["Saucony RIDE", "サッカニー ライド", "ライド18", "ライド19"],
   "saucony-guide": ["GUIDE", "ガイド"],
   "saucony-endorphin-speed": ["ENDORPHIN SPEED", "エンドルフィン スピード", "エンドルフィンスピード"],
 };

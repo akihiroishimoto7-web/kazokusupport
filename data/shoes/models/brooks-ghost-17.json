@@ -1,0 +1,31 @@
+{
+  "id": "brooks-ghost-17",
+  "series": "brooks-ghost",
+  "brand": "brooks",
+  "name": "Ghost 17",
+  "nameJa": "ゴースト17",
+  "generation": 17,
+  "lifecycle": "previous",
+  "officialUrl": "https://brooksrunning.co.jp/products/brm4423-blk",
+  "pageTitle": "Ghost17 (ゴースト17 ブラック)",
+  "specs": {
+    "weightG": {
+      "value": 285,
+      "size": "27cm",
+      "evidence": "重さ : 285g (27cm)",
+      "checkedAt": "2026-11-25"
+    },
+    "dropMm": {
+      "value": 10,
+      "evidence": "ミッドソールドロップ : 10mm",
+      "checkedAt": "2026-11-25"
+    }
+  },
+  "checkedAt": "2026-11-25",
+  "officialPrice": {
+    "priceJpy": 15840,
+    "regularPriceJpy": 19800,
+    "onSale": true,
+    "checkedAt": "2026-11-25"
+  }
+}
