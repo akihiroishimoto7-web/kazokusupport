@@ -122,3 +122,11 @@ test("記録: 週の区切りは月曜、週ごとの合計と増え方", () => 
   assert.deepEqual(w.map((x) => x.km), [10, 10, 10, 13]);
   assert.equal(loadChange(w), 30);
 });
+
+test("Markdown: 日本語の句読点の前後でも太字になる", () => {
+  const { segments } = renderArticleBody("**太田川河川敷（基町）**は、往復で約3.9km。\n\n- **肩を落とす。**走り出して");
+  const html = segments.map((s) => s.html ?? "").join("");
+  assert.ok(html.includes("<strong>太田川河川敷（基町）</strong>は"));
+  assert.ok(html.includes("<strong>肩を落とす。</strong>走り出して"));
+  assert.ok(!html.includes("**"));
+});
