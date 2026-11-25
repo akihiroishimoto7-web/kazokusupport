@@ -13,7 +13,7 @@
 const fromEnv = process.env.NEXT_PUBLIC_GA_ID?.trim() || null;
 
 export const analytics = {
-  gaMeasurementId: (fromEnv ?? null) as string | null,
+  gaMeasurementId: (fromEnv ?? "G-DMMCNRBP3E") as string | null,
 };
 
 export const gaId = (): string | null => {
