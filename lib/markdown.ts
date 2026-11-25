@@ -41,6 +41,27 @@ function escapeHtml(s: string): string {
 
 function createMarked(toc: TocItem[], counter: { n: number }) {
   const marked = new Marked({ gfm: true, breaks: false });
+  // 日本語の句読点・かっこの前後でも **太字** が効くようにする（標準の規則では「）**は」などが太字にならない）
+  marked.use({
+    extensions: [
+      {
+        name: "cjkStrong",
+        level: "inline",
+        start(src: string) {
+          const i = src.indexOf("**");
+          return i < 0 ? undefined : i;
+        },
+        tokenizer(this: { lexer: { inlineTokens: (s: string) => Tokens.Generic[] } }, src: string) {
+          const m = /^\*\*([^*\n]+?)\*\*/.exec(src);
+          if (m) return { type: "cjkStrong", raw: m[0], text: m[1]!, tokens: this.lexer.inlineTokens(m[1]!) };
+          return undefined;
+        },
+        renderer(this: { parser: { parseInline: (t: Tokens.Generic[]) => string } }, token: Tokens.Generic) {
+          return `<strong>${this.parser.parseInline(token.tokens ?? [])}</strong>`;
+        },
+      },
+    ],
+  });
   marked.use({
     renderer: {
       heading(this: { parser: { parseInline: (t: Tokens.Generic[]) => string } }, token: Tokens.Heading) {
