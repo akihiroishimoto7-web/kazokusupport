@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { site } from "@/content/site";
 import { getArticles } from "@/lib/articles";
 import { publicShoes } from "@/content/shoes";
+import { features } from "@/content/features";
 import { isIndexableShoe } from "@/lib/shoe-db";
 import { comparablePairs, pairSlug } from "@/lib/shoe-pairs";
 import { indexableCourse, publicCourses } from "@/content/courses";
@@ -19,6 +20,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...getArticles()
       .filter((a) => a.status === "published")
       .map((a) => ({ url: u(`/articles/${a.slug}`), lastModified: a.updatedAt })),
+    { url: u("/features") },
+    ...features.map((x) => ({ url: u(x.path), lastModified: x.updatedAt })),
     ...shoePurposes.map((p) => ({ url: u(`/shoes/purpose/${p.id}`) })),
     ...brands.map((b) => ({ url: u(`/shoes/brand/${b.id}`) })),
     ...publicShoes()

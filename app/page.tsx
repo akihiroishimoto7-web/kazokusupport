@@ -9,6 +9,7 @@ import { sales } from "@/content/sales";
 import { getPhoto } from "@/content/photos";
 import { categories } from "@/content/categories";
 import { featuredEssay } from "@/content/home";
+import { features } from "@/content/features";
 import { getArticle, getArticles } from "@/lib/articles";
 import { courseStats, ROUTE_KIND_LABEL } from "@/lib/course-stats";
 import { formatDate, formatYen } from "@/lib/format";
@@ -128,8 +129,19 @@ export default async function HomePage() {
                 読む <Arrow />
               </span>
             </Link>
-            {moreColumns.length ? (
+            {moreColumns.length || features.length ? (
               <ul className="m-column__list">
+                {features.map((x) => (
+                  <li key={x.path}>
+                    <Link href={x.path}>
+                      <span className="m-column__label">特集</span>
+                      <span className="m-column__sub">
+                        <span className="latin">{x.title}</span>｜{x.subtitle}
+                      </span>
+                      <Arrow />
+                    </Link>
+                  </li>
+                ))}
                 {moreColumns.map((c) => (
                   <li key={c.slug}>
                     <Link href={`/articles/${c.slug}`}>
