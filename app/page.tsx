@@ -54,6 +54,7 @@ export default async function HomePage() {
   const knee = getArticle("care-knee-pain");
   const firstWeek = getArticle("start-first-week");
   const habit = getArticle("start-make-it-habit");
+  const column = getArticle("column-kipchoge-form");
 
   return (
     <div className="mag">
@@ -113,6 +114,18 @@ export default async function HomePage() {
             </Link>
           ))}
         </div>
+        {column ? (
+          <aside className="wrap" aria-label="コラム" data-reveal>
+            <Link href={`/articles/${column.slug}`} className="m-column">
+              <span className="m-column__label">コラム</span>
+              <span className="m-column__title">{column.title}</span>
+              <span className="m-column__lede">{column.lede}</span>
+              <span className="m-column__more">
+                読む <Arrow />
+              </span>
+            </Link>
+          </aside>
+        ) : null}
       </section>
 
       {/* ================================================ Instagram（写真だけ。売らない） */}
