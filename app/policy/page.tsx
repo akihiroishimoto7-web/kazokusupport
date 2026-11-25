@@ -1,3 +1,4 @@
+import { gaId } from "@/content/analytics";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { site } from "@/content/site";
 import { affiliateActive } from "@/lib/shop";
@@ -49,9 +50,29 @@ export default function PolicyPage() {
             </p>
 
             <h2 id="privacy">プライバシーについて</h2>
-            <p>
-              このサイトは、現在アクセス解析ツールや広告配信のためのCookieを使用していません。診断ツールやチェックリストに入力した内容はサーバーに送信されず、チェックリストの状態はお使いの端末のブラウザにだけ保存されます。今後アクセス解析を導入する場合は、このページでお知らせします。
-            </p>
+            {gaId() ? (
+              <>
+                <p>
+                  このサイトでは、より読みやすいサイトにするため、Google LLC のアクセス解析ツール「Google アナリティクス」を使用しています。Google アナリティクスは Cookie を使用して、どのページが読まれたか、どのリンクから外部のサイト（アメブロ・ショップなど）へ移動したかといった情報を、個人を特定しない形で収集します。収集された情報は Google のプライバシーポリシーに基づいて管理されます。
+                </p>
+                <p>
+                  Cookie の使用を望まない場合は、ブラウザの設定で無効にするか、
+                  <a href="https://tools.google.com/dlpage/gaoptout?hl=ja" target="_blank" rel="noopener noreferrer">
+                    Google アナリティクス オプトアウト アドオン
+                  </a>
+                  をご利用ください。詳しくは
+                  <a href="https://policies.google.com/technologies/partner-sites?hl=ja" target="_blank" rel="noopener noreferrer">
+                    Google のサイトをご覧ください
+                  </a>
+                  。広告配信のための Cookie は使用していません。
+                </p>
+                <p>診断ツールやチェックリストに入力した内容はサーバーにも Google アナリティクスにも送信されず、チェックリストの状態はお使いの端末のブラウザにだけ保存されます。</p>
+              </>
+            ) : (
+              <p>
+                このサイトは、現在アクセス解析ツールや広告配信のためのCookieを使用していません。診断ツールやチェックリストに入力した内容はサーバーに送信されず、チェックリストの状態はお使いの端末のブラウザにだけ保存されます。今後アクセス解析を導入する場合は、このページでお知らせします。
+              </p>
+            )}
             <p>アフィリエイトリンク先のショップでは、各社のプライバシーポリシーに従ってCookie等が使用される場合があります。</p>
 
             <h2 id="disclaimer">免責事項</h2>

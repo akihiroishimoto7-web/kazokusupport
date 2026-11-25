@@ -427,6 +427,17 @@ export default async function ShoePage({ params }: Params) {
         <aside className="shoe__aside">
           <div className="shoe__aside-inner">
             <ShopLinks links={shoe.links} subject={`${brand.name} ${shoe.model ?? shoe.series}`} kind="search" />
+            {amebloUrl() ? (
+              <div className="aside-blog">
+                <p className="aside-blog__title">セール情報と、くわしい比較</p>
+                <p className="aside-blog__text">
+                  値下がりしたモデルや、実際の購入先は、運営者のアメブロ「{social.ameblo.title}」でまとめています（広告を含みます）。
+                </p>
+                <a href={blog[0]?.url ?? amebloUrl()!} target="_blank" rel="noopener noreferrer" className="m-link">
+                  {blog[0] ? "関連する記事を読む" : "アメブロを見る"} <Arrow />
+                </a>
+              </div>
+            ) : null}
             <p className="aside-note">
               最新モデルにこだわらなければ、一つ前の世代が安くなっていることもあります。
               <Link href="/tools/shoe-finder">

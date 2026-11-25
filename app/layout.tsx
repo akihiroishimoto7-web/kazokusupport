@@ -5,6 +5,8 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { JsonLd } from "@/components/JsonLd";
 import { RevealScript } from "@/components/RevealScript";
 import { site } from "@/content/site";
+import { gaId } from "@/content/analytics";
+import { Analytics } from "@/components/Analytics";
 import { buildMetadata, websiteJsonLd } from "@/lib/seo";
 
 import "@/styles/tokens.css";
@@ -65,6 +67,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <SiteFooter />
         <RevealScript />
         <JsonLd data={websiteJsonLd()} />
+        {gaId() ? <Analytics id={gaId()!} /> : null}
       </body>
     </html>
   );
