@@ -1,0 +1,41 @@
+{
+  "id": "saucony-ride-19",
+  "series": "saucony-ride",
+  "brand": "saucony",
+  "name": "RIDE 19",
+  "nameJa": "ライド19",
+  "generation": 19,
+  "lifecycle": "current",
+  "officialUrl": "https://saucony.jp/products/mens-ride-19",
+  "pageTitle": "RIDE 19 | ライド19 – SAUCONY（サッカニー）公式オンラインストア",
+  "specs": {
+    "weightG": {
+      "value": 255,
+      "size": null,
+      "evidence": "重量: / 255g",
+      "checkedAt": "2026-11-25"
+    },
+    "dropMm": {
+      "value": 8,
+      "evidence": "オフセット: / 8mm（36mm/28mm)",
+      "checkedAt": "2026-11-25"
+    },
+    "stackHeelMm": {
+      "value": 36,
+      "evidence": "オフセット: / 8mm（36mm/28mm)",
+      "checkedAt": "2026-11-25"
+    },
+    "stackForefootMm": {
+      "value": 28,
+      "evidence": "オフセット: / 8mm（36mm/28mm)",
+      "checkedAt": "2026-11-25"
+    }
+  },
+  "checkedAt": "2026-11-25",
+  "officialPrice": {
+    "priceJpy": 20900,
+    "regularPriceJpy": 20900,
+    "onSale": false,
+    "checkedAt": "2026-11-25"
+  }
+}

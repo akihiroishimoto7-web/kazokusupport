@@ -1,0 +1,41 @@
+{
+  "id": "saucony-endorphin-speed-6",
+  "series": "saucony-endorphin-speed",
+  "brand": "saucony",
+  "name": "ENDORPHIN SPEED 6",
+  "nameJa": "エンドルフィン スピード 6",
+  "generation": 6,
+  "lifecycle": "current",
+  "officialUrl": "https://saucony.jp/products/mens-endorphin-speed-6",
+  "pageTitle": "ENDORPHIN SPEED 6 | エンドルフィン スピード 6 – SAUCONY（サッカニー）公式オンラインストア",
+  "specs": {
+    "weightG": {
+      "value": 233,
+      "size": null,
+      "evidence": "重量: / 233g",
+      "checkedAt": "2026-11-25"
+    },
+    "dropMm": {
+      "value": 8,
+      "evidence": "オフセット: / 8mm（38mm/30mm）",
+      "checkedAt": "2026-11-25"
+    },
+    "stackHeelMm": {
+      "value": 38,
+      "evidence": "オフセット: / 8mm（38mm/30mm）",
+      "checkedAt": "2026-11-25"
+    },
+    "stackForefootMm": {
+      "value": 30,
+      "evidence": "オフセット: / 8mm（38mm/30mm）",
+      "checkedAt": "2026-11-25"
+    }
+  },
+  "checkedAt": "2026-11-25",
+  "officialPrice": {
+    "priceJpy": 27500,
+    "regularPriceJpy": 27500,
+    "onSale": false,
+    "checkedAt": "2026-11-25"
+  }
+}

@@ -5,6 +5,9 @@ import { ShoeCompare } from "@/components/tools/ShoeCompare";
 import { brands } from "@/content/brands";
 import { publicShoes } from "@/content/shoes";
 import { buildMetadata } from "@/lib/seo";
+import { getBrand } from "@/content/brands";
+import { isIndexableShoe } from "@/lib/shoe-db";
+import { comparablePairs, pairSlug } from "@/lib/shoe-pairs";
 
 export const metadata = buildMetadata({
   title: "ランニングシューズ比較｜最大3足を並べてくらべる",
@@ -20,6 +23,7 @@ export default function ComparePage() {
       slug, brand, series, model, catch: c, purposes, traits, recommendFor, notFor, reasonsNotToBuy, specs, ratings, checkedAt,
     }));
   const brandNames = Object.fromEntries(brands.map((b) => [b.id, b.name]));
+  const pairs = comparablePairs(publicShoes(), isIndexableShoe);
   return (
     <div className="page">
       <div className="wrap">
@@ -43,6 +47,29 @@ export default function ComparePage() {
           どれを選べばいいかわからないときは、<Link href="/tools/shoe-finder">シューズ診断</Link>から。
         </p>
       </div>
+      {pairs.length ? (
+        <section className="wrap page-section" aria-labelledby="pairs">
+          <h2 className="hub__h2" id="pairs">
+            よく比べられる組み合わせ
+          </h2>
+          <p className="hub__note">公式の数値を確認できたモデルのうち、用途が近いものどうしの比較です。</p>
+          <ul role="list" className="pair-links">
+            {pairs.map(([a, b]) => (
+              <li key={pairSlug(a.slug, b.slug)}>
+                <Link href={`/shoes/compare/${pairSlug(a.slug, b.slug)}`}>
+                  <span className="latin">
+                    {getBrand(a.brand).name} {a.model ?? a.series}
+                  </span>{" "}
+                  と{" "}
+                  <span className="latin">
+                    {getBrand(b.brand).name} {b.model ?? b.series}
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
     </div>
   );
 }

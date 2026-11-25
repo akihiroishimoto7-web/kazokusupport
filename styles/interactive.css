@@ -708,3 +708,108 @@
     margin-left: 8.333%;
   }
 }
+
+/* シューズDB：価格の記録・前の世代 */
+.price-spark {
+  display: block;
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+  margin: 0.5rem 0 1rem;
+  color: var(--navy);
+}
+.price-log__sale {
+  display: inline-block;
+  margin-left: 0.5em;
+  padding: 0.05em 0.5em;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--navy);
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  vertical-align: 0.1em;
+}
+.prev-links {
+  list-style: none;
+  margin: 1rem 0 0;
+  padding: 0;
+  font-size: 0.875rem;
+  line-height: 2;
+}
+.prev-links a {
+  margin-right: 0.9em;
+}
+
+/* 2足の比較ページ */
+.pair-notes {
+  list-style: none;
+  margin: 0 0 1.5rem;
+  padding: 0;
+  display: grid;
+  gap: 0.75rem;
+}
+.pair-notes li {
+  display: grid;
+  grid-template-columns: 5.5em 1fr;
+  gap: 0.75rem;
+  line-height: 1.8;
+}
+.pair-notes__label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--navy);
+  padding-top: 0.2em;
+}
+.pair-grid {
+  display: grid;
+  gap: 2rem;
+}
+@media (min-width: 48rem) {
+  .pair-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+.pair-col h3 {
+  font-size: 1.25rem;
+  margin: 0 0 0.5rem;
+}
+.pair-col__h {
+  margin: 1rem 0 0.25rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--ink-soft);
+}
+.pair-col ul {
+  margin: 0;
+  padding-left: 1.2em;
+  line-height: 1.8;
+}
+.pair-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.25rem;
+  line-height: 1.9;
+}
+.price-log__sale--block {
+  display: table;
+  margin: 0.25rem 0 0;
+}
+.spec-source {
+  margin-top: 1rem;
+  font-size: 0.8rem;
+  line-height: 1.8;
+  color: var(--ink-soft);
+}
+.spec-source p {
+  margin: 0 0 0.5rem;
+}
+.spec-source summary {
+  cursor: pointer;
+  color: var(--navy);
+}
+.spec-source ul {
+  margin: 0.5rem 0 0;
+  padding-left: 1.2em;
+}

@@ -1,0 +1,31 @@
+{
+  "id": "brooks-glycerin-23",
+  "series": "brooks-glycerin",
+  "brand": "brooks",
+  "name": "Glycerin 23",
+  "nameJa": "グリセリン23",
+  "generation": 23,
+  "lifecycle": "current",
+  "officialUrl": "https://brooksrunning.co.jp/products/brm4763-blk",
+  "pageTitle": "Glycerin 23 (グリセリン23 ブラック)",
+  "specs": {
+    "weightG": {
+      "value": 300,
+      "size": "27cm",
+      "evidence": "重さ : 300g (27cm)",
+      "checkedAt": "2026-11-25"
+    },
+    "dropMm": {
+      "value": 8,
+      "evidence": "ミッドソールドロップ : 8mm",
+      "checkedAt": "2026-11-25"
+    }
+  },
+  "checkedAt": "2026-11-25",
+  "officialPrice": {
+    "priceJpy": 18480,
+    "regularPriceJpy": 26400,
+    "onSale": true,
+    "checkedAt": "2026-11-25"
+  }
+}

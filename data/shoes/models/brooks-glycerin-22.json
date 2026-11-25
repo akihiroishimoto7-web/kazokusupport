@@ -1,0 +1,31 @@
+{
+  "id": "brooks-glycerin-22",
+  "series": "brooks-glycerin",
+  "brand": "brooks",
+  "name": "Glycerin 22",
+  "nameJa": "グリセリン22",
+  "generation": 22,
+  "lifecycle": "previous",
+  "officialUrl": "https://brooksrunning.co.jp/products/brm4453-nb",
+  "pageTitle": "Glycerin 22 (グリセリン22 ネイビー)",
+  "specs": {
+    "weightG": {
+      "value": 290,
+      "size": "27cm",
+      "evidence": "重さ : 290g (27cm)",
+      "checkedAt": "2026-11-25"
+    },
+    "dropMm": {
+      "value": 10,
+      "evidence": "ミッドソールドロップ : 10mm",
+      "checkedAt": "2026-11-25"
+    }
+  },
+  "checkedAt": "2026-11-25",
+  "officialPrice": {
+    "priceJpy": 15180,
+    "regularPriceJpy": 25300,
+    "onSale": true,
+    "checkedAt": "2026-11-25"
+  }
+}

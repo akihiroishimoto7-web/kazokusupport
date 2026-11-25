@@ -1,0 +1,26 @@
+{
+  "id": "mizuno-wave-inspire-22",
+  "series": "mizuno-wave-inspire",
+  "brand": "mizuno",
+  "name": "WAVE INSPIRE 22",
+  "nameJa": "ウエーブインスパイア22",
+  "generation": 22,
+  "lifecycle": "current",
+  "officialUrl": "https://jpn.mizuno.com/ec/g/gJ1GC264401260/",
+  "pageTitle": "ミズノ公式｜ウエーブインスパイア22(ジョグ／デイリーラン)｜ランニング｜J1GC2644（通販サイト）",
+  "specs": {
+    "weightG": {
+      "value": 293,
+      "size": "27.0cm",
+      "evidence": "質量\t約293g（27.0cm片方）",
+      "checkedAt": "2026-11-25"
+    }
+  },
+  "checkedAt": "2026-11-25",
+  "officialPrice": {
+    "priceJpy": 16500,
+    "regularPriceJpy": 16500,
+    "onSale": false,
+    "checkedAt": "2026-11-25"
+  }
+}

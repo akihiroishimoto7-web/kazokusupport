@@ -1,0 +1,41 @@
+{
+  "id": "nike-vomero-18",
+  "series": "nike-vomero",
+  "brand": "nike",
+  "name": "Vomero 18",
+  "nameJa": "ボメロ 18",
+  "generation": 18,
+  "lifecycle": "current",
+  "officialUrl": "https://www.nike.com/jp/t/%E3%83%8A%E3%82%A4%E3%82%AD-%E3%83%9C%E3%83%A1%E3%83%AD-18-%E3%83%A1%E3%83%B3%E3%82%BA-%E3%83%AD%E3%83%BC%E3%83%89-%E3%83%A9%E3%83%B3%E3%83%8B%E3%83%B3%E3%82%B0%E3%82%B7%E3%83%A5%E3%83%BC%E3%82%BA-kWLvjHE5/HM6803-115",
+  "pageTitle": "【NIKE公式】ナイキ ボメロ 18 メンズ ロード ランニングシューズ.オンラインストア (通販サイト)",
+  "specs": {
+    "weightG": {
+      "value": 325,
+      "size": "メンズサイズ28cm",
+      "evidence": "重量：約325g（メンズサイズ28cm）",
+      "checkedAt": "2026-11-25"
+    },
+    "dropMm": {
+      "value": 10,
+      "evidence": "オフセット：10mm",
+      "checkedAt": "2026-11-25"
+    },
+    "stackHeelMm": {
+      "value": 46,
+      "evidence": "前足部は36mm、かかとは46mmの厚みになっています",
+      "checkedAt": "2026-11-25"
+    },
+    "stackForefootMm": {
+      "value": 36,
+      "evidence": "前足部は36mm、かかとは46mmの厚みになっています",
+      "checkedAt": "2026-11-25"
+    }
+  },
+  "checkedAt": "2026-11-25",
+  "officialPrice": {
+    "priceJpy": 14999,
+    "regularPriceJpy": null,
+    "onSale": true,
+    "checkedAt": "2026-11-25"
+  }
+}

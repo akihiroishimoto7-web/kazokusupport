@@ -1,0 +1,26 @@
+{
+  "id": "mizuno-wave-rider-30",
+  "series": "mizuno-wave-rider",
+  "brand": "mizuno",
+  "name": "WAVE RIDER 30",
+  "nameJa": "ウエーブライダー30",
+  "generation": 30,
+  "lifecycle": "current",
+  "officialUrl": "https://jpn.mizuno.com/ec/g/gJ1GM262051245/",
+  "pageTitle": "ミズノ公式｜ウエーブライダー30(ジョグ／デイリーラン)｜ランニング｜J1GM2620（通販サイト）",
+  "specs": {
+    "weightG": {
+      "value": 265,
+      "size": "27.0cm",
+      "evidence": "質量\t約265g（27.0cm片方）",
+      "checkedAt": "2026-11-25"
+    }
+  },
+  "checkedAt": "2026-11-25",
+  "officialPrice": {
+    "priceJpy": 18700,
+    "regularPriceJpy": 18700,
+    "onSale": false,
+    "checkedAt": "2026-11-25"
+  }
+}

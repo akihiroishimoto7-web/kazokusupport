@@ -1,0 +1,31 @@
+{
+  "id": "brooks-adrenaline-gts-25",
+  "series": "brooks-adrenaline",
+  "brand": "brooks",
+  "name": "Adrenaline GTS 25",
+  "nameJa": "アドレナリンGTS25",
+  "generation": 25,
+  "lifecycle": "current",
+  "officialUrl": "https://brooksrunning.co.jp/products/brm4543-gry",
+  "pageTitle": "Adrenaline GTS 25 (アドレナリンGTS25 グレー)",
+  "specs": {
+    "weightG": {
+      "value": 300,
+      "size": "27cm",
+      "evidence": "重さ : 300g (27cm)",
+      "checkedAt": "2026-11-25"
+    },
+    "dropMm": {
+      "value": 10,
+      "evidence": "ミッドソールドロップ : 10mm",
+      "checkedAt": "2026-11-25"
+    }
+  },
+  "checkedAt": "2026-11-25",
+  "officialPrice": {
+    "priceJpy": 17600,
+    "regularPriceJpy": 22000,
+    "onSale": true,
+    "checkedAt": "2026-11-25"
+  }
+}

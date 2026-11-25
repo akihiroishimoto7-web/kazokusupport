@@ -1,4 +1,5 @@
 import type { BrandId, Fact, Rating, Shoe, ShoePurposeId, ShoeTrait, ShopLinks } from "@/lib/types";
+import { currentModel, withModelData } from "../lib/shoe-db.ts";
 
 /**
  * シューズ台帳
@@ -507,20 +508,39 @@ applyOfficial("nike-vomero", {
   links: { rakuten: "ナイキ ボメロ 18", amazon: "ナイキ ボメロ 18", yahoo: "ナイキ ボメロ 18", official: NIKE_VOMERO_18.url },
 });
 
+/* ------------------------------------------------------------ 公式データベースを重ねる */
+// data/shoes/（npm run shoes:collect で更新）の現行モデルの公式仕様・価格を、シリーズの情報に重ねます。
+for (let i = 0; i < shoes.length; i++) shoes[i] = withModelData(shoes[i]!);
+
+/** 自動取得が公式サイト側で拒否されているメーカー（data/shoes/targets.json の blocked と同じ） */
+const BLOCKED_BRANDS = new Set(["asics", "adidas", "hoka", "newbalance"]);
+
 /**
- * 公式仕様を調査中のモデル（シューズ研究所のページに表示）。
- * status: confirmed … 一部の公式情報を確認済み / pending … 公式サイトを自動で読めず未確認
+ * 公式仕様の確認状況（シューズ研究所のページに表示）。
+ * status: confirmed … 公式ページで仕様・価格を確認済み / pending … まだ確認できていない
  */
-export const modelsInResearch: { name: string; shoe: string; status: "confirmed" | "pending"; note: string }[] = [
-  { name: "Nike Pegasus 41", shoe: "nike-pegasus", status: "confirmed", note: "公式価格を確認。重量・ドロップは要確認" },
-  { name: "Nike Vomero 18", shoe: "nike-vomero", status: "confirmed", note: "公式価格を確認。重量・厚さ・ドロップは要確認" },
-  { name: "HOKA Clifton 10", shoe: "hoka-clifton", status: "pending", note: "公式仕様を確認中" },
-  { name: "New Balance Fresh Foam X 1080 v14", shoe: "nb-1080", status: "pending", note: "公式仕様を確認中" },
-  { name: "New Balance FuelCell Rebel v5", shoe: "nb-rebel", status: "pending", note: "公式仕様を確認中" },
-  { name: "ASICS GEL-KAYANO 32", shoe: "asics-gel-kayano", status: "pending", note: "公式仕様を確認中" },
-  { name: "adidas ADIZERO EVO SL", shoe: "adidas-adizero-evo-sl", status: "pending", note: "公式仕様を確認中" },
-  { name: "On Cloudmonster 2", shoe: "on-cloudmonster", status: "pending", note: "公式仕様を確認中" },
-];
+export const modelsInResearch: { name: string; shoe: string; status: "confirmed" | "pending"; note: string }[] = shoes
+  .filter((s) => s.status !== "draft")
+  .map((s) => {
+    const m = currentModel(s.slug);
+    const brandName = s.brand === "newbalance" ? "New Balance" : s.brand === "on" ? "On" : s.brand.charAt(0).toUpperCase() + s.brand.slice(1);
+    if (m) {
+      const missing = (["weightG", "dropMm"] as const).filter((k) => !m.specs[k]).map((k) => (k === "weightG" ? "重量" : "ドロップ"));
+      return {
+        name: `${brandName} ${m.name}`,
+        shoe: s.slug,
+        status: "confirmed" as const,
+        note: `公式の仕様・価格を確認（${m.checkedAt.replaceAll("-", ".")}）${missing.length ? `。${missing.join("・")}は公式に記載なし` : ""}`,
+      };
+    }
+    return {
+      name: `${brandName} ${s.series}`,
+      shoe: s.slug,
+      status: "pending" as const,
+      note: BLOCKED_BRANDS.has(s.brand) ? "公式サイトの自動確認ができず、手作業での確認待ち" : "現行モデルの公式仕様を確認中",
+    };
+  })
+  .sort((a, b) => (a.status === b.status ? a.name.localeCompare(b.name) : a.status === "confirmed" ? -1 : 1));
 
 export const publicShoes = () => shoes.filter((s) => s.status !== "draft");
 export const getShoe = (slug: string) => shoes.find((s) => s.slug === slug);

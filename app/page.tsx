@@ -50,7 +50,7 @@ export default async function HomePage() {
   const routed = courses.filter((c) => c.route);
   const [bigCourse, ...restCourses] = routed;
   const activeSales = sales.filter((s) => s.endsAt >= today);
-  const confirmed = modelsInResearch.filter((m) => m.status === "confirmed");
+  const confirmed = modelsInResearch.filter((m) => m.status === "confirmed").slice(0, 4);
   const knee = getArticle("care-knee-pain");
   const firstWeek = getArticle("start-first-week");
   const habit = getArticle("start-make-it-habit");
