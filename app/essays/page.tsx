@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Photo } from "@/components/Photo";
 import { categories } from "@/content/categories";
+import { features } from "@/content/features";
 import { getArticlesByCategory } from "@/lib/articles";
 import { formatDate } from "@/lib/format";
 import { buildMetadata } from "@/lib/seo";
@@ -20,6 +21,16 @@ export default function EssaysPage() {
         <h1 className="essays__title">{cat.name}</h1>
         <p className="essays__intro">{cat.intro}</p>
       </header>
+      <div className="wrap">
+        {features.map((x) => (
+          <Link key={x.path} href={x.path} className="fx-invite">
+            <span className="fx-invite__label">特集</span>
+            <span className="fx-invite__title">
+              <span className="latin">{x.title}</span>｜{x.subtitle}
+            </span>
+          </Link>
+        ))}
+      </div>
       <ol role="list" className="essays__list wrap">
         {essays.map((e) => (
           <li key={e.slug}>
