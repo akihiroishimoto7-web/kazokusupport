@@ -11,7 +11,7 @@ SauconyのRIDEシリーズの現行モデル、RIDE 19。メーカー公式ペ�
 - ドロップ：8mm
 - 厚さ：かかと36mm／前足部28mm
 
-（2026.11.25、Saucony公式ページで確認）
+（2026.11.28、RIDE 19 | ライド19 – SAUCONY（サッカニー）公式オンラインストアで確認）
 
 ## どんなシューズ？
 
@@ -32,7 +32,7 @@ SauconyのRIDEシリーズの現行モデル、RIDE 19。メーカー公式ペ�
 
 ## 一つ前のモデルという選択
 
-- RIDE 18：公式ストアで6,600円（通常価格から70%引き）、2026.11.25確認。重量259g、ドロップ8mm
+- RIDE 18：公式ストアで6,600円（通常価格から70%引き）、2026.11.28確認。重量259g、ドロップ8mm
 
 最新でなくても、走るための一足としては十分です。
 
@@ -45,4 +45,5 @@ SauconyのRIDEシリーズの現行モデル、RIDE 19。メーカー公式ペ�
 自分に合うかどうかは、シューズ診断でも確かめられます → https://kazokusupport-u8zk.vercel.app/tools/shoe-finder?utm_source=ameblo&utm_medium=blog&utm_campaign=model-saucony-ride-19
 
 ---
-出典：RIDE 19 | ライド19 – SAUCONY（サッカニー）公式オンラインストア（https://saucony.jp/products/mens-ride-19、2026.11.25確認）
+出典：RIDE 19 | ライド19 – SAUCONY（サッカニー）公式オンラインストア（https://saucony.jp/products/mens-ride-19、2026.11.28確認）
+価格の記録：2回

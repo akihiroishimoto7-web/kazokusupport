@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: Params) {
   const { slug } = await params;
   const s = getScene(slug);
   if (!s) return {};
-  return buildMetadata({ title: `${s.title}ときの道具`, description: s.summary, path: `/gear/scene/${s.slug}` });
+  return buildMetadata({ title: `${s.title}ときの道具`, description: `${s.summary}おすすめの道具と、買わなくてもいいものをまとめています。`, path: `/gear/scene/${s.slug}` });
 }
 
 export default async function ScenePage({ params }: Params) {

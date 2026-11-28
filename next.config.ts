@@ -13,12 +13,13 @@ const securityHeaders = [
     key: "Content-Security-Policy",
     value: [
       "default-src 'self'",
-      "img-src 'self' data: blob:",
+      // GA4（content/analytics.ts）の計測ビーコン用に Google のドメインだけを許可
+      "img-src 'self' data: blob: https://www.googletagmanager.com https://*.google-analytics.com",
       "font-src 'self'",
       "style-src 'self' 'unsafe-inline'",
-      // Next.js のインラインスクリプトのため 'unsafe-inline' を許可（外部スクリプトは読み込まない）
-      `script-src 'self' 'unsafe-inline'${process.env.NODE_ENV === "development" ? " 'unsafe-eval'" : ""}`,
-      "connect-src 'self'",
+      // Next.js のインラインスクリプトのため 'unsafe-inline' を許可。外部スクリプトは GA4（gtag.js）だけ
+      `script-src 'self' 'unsafe-inline' https://www.googletagmanager.com${process.env.NODE_ENV === "development" ? " 'unsafe-eval'" : ""}`,
+      "connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com",
       "frame-ancestors 'self'",
       "base-uri 'self'",
       "form-action 'self'",

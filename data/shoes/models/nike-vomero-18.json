@@ -13,29 +13,43 @@
       "value": 325,
       "size": "メンズサイズ28cm",
       "evidence": "重量：約325g（メンズサイズ28cm）",
-      "checkedAt": "2026-11-25"
+      "checkedAt": "2026-11-28"
     },
     "dropMm": {
       "value": 10,
       "evidence": "オフセット：10mm",
-      "checkedAt": "2026-11-25"
+      "checkedAt": "2026-11-28"
     },
     "stackHeelMm": {
       "value": 46,
       "evidence": "前足部は36mm、かかとは46mmの厚みになっています",
-      "checkedAt": "2026-11-25"
+      "checkedAt": "2026-11-28"
     },
     "stackForefootMm": {
       "value": 36,
       "evidence": "前足部は36mm、かかとは46mmの厚みになっています",
-      "checkedAt": "2026-11-25"
+      "checkedAt": "2026-11-28"
     }
   },
-  "checkedAt": "2026-11-25",
+  "checkedAt": "2026-11-28",
+  "changes": [
+    {
+      "text": "ボメロ 18にはボメロ 17よりも6mm高いミッドソールを採用し、レベルアップしたクッショニングを実現。",
+      "sourceUrl": "https://www.nike.com/jp/t/%E3%83%8A%E3%82%A4%E3%82%AD-%E3%83%9C%E3%83%A1%E3%83%AD-18-%E3%83%A1%E3%83%B3%E3%82%BA-%E3%83%AD%E3%83%BC%E3%83%89-%E3%83%A9%E3%83%B3%E3%83%8B%E3%83%B3%E3%82%B0%E3%82%B7%E3%83%A5%E3%83%BC%E3%82%BA-kWLvjHE5/HM6803-115",
+      "sourceTitle": "【NIKE公式】ナイキ ボメロ 18 メンズ ロード ランニングシューズ.オンラインストア (通販サイト)",
+      "checkedAt": "2026-11-28"
+    },
+    {
+      "text": "ボメロ 17よりも18％柔らかくなった履き心地を提供します。",
+      "sourceUrl": "https://www.nike.com/jp/t/%E3%83%8A%E3%82%A4%E3%82%AD-%E3%83%9C%E3%83%A1%E3%83%AD-18-%E3%83%A1%E3%83%B3%E3%82%BA-%E3%83%AD%E3%83%BC%E3%83%89-%E3%83%A9%E3%83%B3%E3%83%8B%E3%83%B3%E3%82%B0%E3%82%B7%E3%83%A5%E3%83%BC%E3%82%BA-kWLvjHE5/HM6803-115",
+      "sourceTitle": "【NIKE公式】ナイキ ボメロ 18 メンズ ロード ランニングシューズ.オンラインストア (通販サイト)",
+      "checkedAt": "2026-11-28"
+    }
+  ],
   "officialPrice": {
     "priceJpy": 14999,
     "regularPriceJpy": null,
     "onSale": true,
-    "checkedAt": "2026-11-25"
+    "checkedAt": "2026-11-28"
   }
 }

@@ -13,14 +13,28 @@
       "value": 265,
       "size": "27.0cm",
       "evidence": "質量\t約265g（27.0cm片方）",
-      "checkedAt": "2026-11-25"
+      "checkedAt": "2026-11-28"
     }
   },
-  "checkedAt": "2026-11-25",
+  "checkedAt": "2026-11-28",
+  "changes": [
+    {
+      "text": "前作と比較し、アウトソールの中側部からかかと部分の幅を広げたうえ、踏み付け部分にラバーを配置することによって安定性をサポート。",
+      "sourceUrl": "https://jpn.mizuno.com/ec/g/gJ1GM262051245/",
+      "sourceTitle": "ミズノ公式｜ウエーブライダー30(ジョグ／デイリーラン)｜ランニング｜J1GM2620（通販サイト）",
+      "checkedAt": "2026-11-28"
+    },
+    {
+      "text": "ミッドソールの厚みを増やしたうえにフルプレートを搭載しているにもかかわらず、ラバー領域を最適化することによって重量は前作同等（約265g/27.0cm片足）をキープ。",
+      "sourceUrl": "https://jpn.mizuno.com/ec/g/gJ1GM262051245/",
+      "sourceTitle": "ミズノ公式｜ウエーブライダー30(ジョグ／デイリーラン)｜ランニング｜J1GM2620（通販サイト）",
+      "checkedAt": "2026-11-28"
+    }
+  ],
   "officialPrice": {
     "priceJpy": 18700,
     "regularPriceJpy": 18700,
     "onSale": false,
-    "checkedAt": "2026-11-25"
+    "checkedAt": "2026-11-28"
   }
 }

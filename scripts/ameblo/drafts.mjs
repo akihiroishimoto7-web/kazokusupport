@@ -101,10 +101,10 @@ function modelDraft(s) {
   if (!m) return null;
   const prev = ms.filter((x) => x.lifecycle === "previous");
   const b = brandName(s.brand);
-  const spec = (k, unit) => (m.specs[k] ? `${m.specs[k].value}${unit}${k === "weightG" && m.specs[k].size ? `（${m.specs[k].size}）` : ""}` : "公式に記載なし");
+  const spec = (k, unit) => (m.specs[k] ? `${m.specs[k].value}${unit}${k === "weightG" && m.specs[k].size ? `（${m.specs[k].size}）` : ""}` : "未確認（公式資料で確認できていません）");
   const hist = priceHistory(m.id);
   const lines = [
-    `# 【PR】${b} ${m.name}の重量・ドロップ・価格と、買わなくていい人`,
+    m.specs.weightG ? `# 【PR】${b} ${m.name}の重量・ドロップ・価格と、買わなくていい人` : `# 【PR】${b} ${m.name}は何が変わった？価格と、買わなくていい人`,
     "",
     PR,
     "",
@@ -117,8 +117,11 @@ function modelDraft(s) {
     `- ドロップ：${spec("dropMm", "mm")}`,
     m.specs.stackHeelMm && m.specs.stackForefootMm ? `- 厚さ：かかと${m.specs.stackHeelMm.value}mm／前足部${m.specs.stackForefootMm.value}mm` : null,
     "",
-    `（${jdate(m.checkedAt)}、${b}公式ページで確認）`,
+    `（${jdate(m.checkedAt)}、${m.pageTitle}で確認）`,
     "",
+    ...(m.changes?.length
+      ? ["## 前のモデルから変わったこと（公式の記載）", "", ...m.changes.flatMap((c) => [`> ${c.text}`, ""]), `（出典：${m.changes[0].sourceTitle}）`, ""]
+      : []),
     "## どんなシューズ？",
     "",
     s.positioning,

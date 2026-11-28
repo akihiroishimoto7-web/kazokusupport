@@ -13,19 +13,27 @@
       "value": 295,
       "size": null,
       "evidence": "重さ / 295g",
-      "checkedAt": "2026-11-25"
+      "checkedAt": "2026-11-28"
     },
     "dropMm": {
       "value": 6,
       "evidence": "ドロップ / 6mm",
-      "checkedAt": "2026-11-25"
+      "checkedAt": "2026-11-28"
     }
   },
-  "checkedAt": "2026-11-25",
+  "checkedAt": "2026-11-28",
+  "changes": [
+    {
+      "text": "​アップデートされた​シュータンは​足入れから​快適で、​足を​しっかり​ホールドします。",
+      "sourceUrl": "https://www.on.com/ja-jp/products/cloudmonster-3-m-3mg1005/mens/black-ivory-shoes-3MG10051430",
+      "sourceTitle": "メンズ Cloudmonster 3 | ブラック & ベージュ | On 日本",
+      "checkedAt": "2026-11-28"
+    }
+  ],
   "officialPrice": {
     "priceJpy": 24200,
     "regularPriceJpy": 24200,
     "onSale": false,
-    "checkedAt": "2026-11-25"
+    "checkedAt": "2026-11-28"
   }
 }

@@ -6,7 +6,13 @@ export type SpecValue = {
   /** 公式ページ上の該当行（そのまま） */
   evidence: string;
   checkedAt: string;
+  /** 商品ページ以外（プレスリリース・海外の公式サイトなど）で確認した場合の出典 */
+  sourceUrl?: string;
+  sourceTitle?: string;
 };
+
+/** 公式資料の原文をそのまま記録したもの */
+export type QuotedFact = { text: string; sourceUrl: string; sourceTitle: string; checkedAt: string };
 
 export type ShoeModel = {
   id: string;
@@ -20,7 +26,20 @@ export type ShoeModel = {
   officialUrl: string;
   pageTitle: string;
   specs: Partial<Record<"weightG" | "dropMm" | "stackHeelMm" | "stackForefootMm", SpecValue>>;
-  officialPrice?: PriceObservationCore & { checkedAt: string };
+  officialPrice?: PriceObservationCore & {
+    checkedAt: string;
+    /** store: 公式ストアの販売価格 / msrp: プレスリリース等のメーカー希望小売価格 */
+    kind?: "store" | "msrp";
+    evidence?: string;
+    sourceUrl?: string;
+    sourceTitle?: string;
+  };
+  /** 日本での発売日（公式資料の原文つき） */
+  releaseJp?: { value: string; evidence: string; sourceUrl: string; sourceTitle: string; checkedAt: string };
+  /** 品番など */
+  styleCode?: string;
+  /** 前作からの変更（公式の原文。要約・言い換えはしない） */
+  changes?: QuotedFact[];
   checkedAt: string;
 };
 

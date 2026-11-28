@@ -11,7 +11,7 @@ SauconyのENDORPHIN SPEEDシリーズの現行モデル、ENDORPHIN SPEED 6。�
 - ドロップ：8mm
 - 厚さ：かかと38mm／前足部30mm
 
-（2026.11.25、Saucony公式ページで確認）
+（2026.11.28、ENDORPHIN SPEED 6 | エンドルフィン スピード 6 – SAUCONY（サッカニー）公式オンラインストアで確認）
 
 ## どんなシューズ？
 
@@ -32,7 +32,7 @@ SauconyのENDORPHIN SPEEDシリーズの現行モデル、ENDORPHIN SPEED 6。�
 
 ## 一つ前のモデルという選択
 
-- ENDORPHIN SPEED 5：公式ストアで17,820円（通常価格から40%引き）、2026.11.25確認。重量237g、ドロップ8mm
+- ENDORPHIN SPEED 5：公式ストアで17,820円（通常価格から40%引き）、2026.11.28確認。重量237g、ドロップ8mm
 
 最新でなくても、走るための一足としては十分です。
 
@@ -45,4 +45,5 @@ SauconyのENDORPHIN SPEEDシリーズの現行モデル、ENDORPHIN SPEED 6。�
 自分に合うかどうかは、シューズ診断でも確かめられます → https://kazokusupport-u8zk.vercel.app/tools/shoe-finder?utm_source=ameblo&utm_medium=blog&utm_campaign=model-saucony-endorphin-speed-6
 
 ---
-出典：ENDORPHIN SPEED 6 | エンドルフィン スピード 6 – SAUCONY（サッカニー）公式オンラインストア（https://saucony.jp/products/mens-endorphin-speed-6、2026.11.25確認）
+出典：ENDORPHIN SPEED 6 | エンドルフィン スピード 6 – SAUCONY（サッカニー）公式オンラインストア（https://saucony.jp/products/mens-endorphin-speed-6、2026.11.28確認）
+価格の記録：2回

@@ -523,3 +523,20 @@
   gap: 0 1.5rem;
   margin-top: var(--space-5);
 }
+
+/* 診断結果：価格帯・注意点・比較への導線 */
+.result-shoe__facts {
+  display: grid;
+  gap: 0.2rem;
+  margin-top: 0.5rem;
+  font-size: 0.8125rem;
+  line-height: 1.7;
+  color: var(--ink-soft);
+}
+.result-shoe__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.25rem;
+  margin: -0.5rem 0 1rem 2.75rem;
+  font-size: 0.8125rem;
+}

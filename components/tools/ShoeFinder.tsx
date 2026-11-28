@@ -18,12 +18,20 @@ import {
 } from "@/lib/shoe-finder";
 import { Arrow } from "../Arrow";
 import { pickForResult, type LinkedEntry } from "@/lib/ameblo-match";
+import { track } from "@/lib/track";
 
 type AmebloProps = { entries: LinkedEntry[]; blogUrl: string | null; title: string };
 
-type Props = { shoes: Shoe[]; brandNames: Record<string, string>; ameblo?: AmebloProps; prices?: PriceIndex };
+type Props = {
+  shoes: Shoe[];
+  brandNames: Record<string, string>;
+  ameblo?: AmebloProps;
+  prices?: PriceIndex;
+  /** シリーズごとの世代比較ページ（例: /shoes/models/nike-pegasus-41-vs-nike-pegasus-42） */
+  generationLinks?: Record<string, { path: string; label: string }>;
+};
 
-export function ShoeFinder({ shoes, brandNames, ameblo, prices }: Props) {
+export function ShoeFinder({ shoes, brandNames, ameblo, prices, generationLinks }: Props) {
   const params = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
@@ -50,6 +58,7 @@ export function ShoeFinder({ shoes, brandNames, ameblo, prices }: Props) {
   const done = step >= QUESTIONS.length && isComplete(answers);
 
   const choose = (key: keyof Answers, value: string) => {
+    if (step === 0 && !isComplete(answers)) track("finder_start", { first_question: key });
     const next = { ...answers, [key]: value } as Partial<Answers>;
     setAnswers(next);
     // 結果画面から「変更」した場合は、答え直したらすぐ結果に戻る
@@ -68,7 +77,7 @@ export function ShoeFinder({ shoes, brandNames, ameblo, prices }: Props) {
   };
 
   if (done) {
-    return <Result answers={answers as Answers} shoes={shoes} prices={prices} brandNames={brandNames} ameblo={ameblo} onRestart={restart} headingRef={headingRef} onEdit={(i) => setStep(i)} />;
+    return <Result answers={answers as Answers} shoes={shoes} prices={prices} generationLinks={generationLinks} brandNames={brandNames} ameblo={ameblo} onRestart={restart} headingRef={headingRef} onEdit={(i) => setStep(i)} />;
   }
 
   const q = QUESTIONS[step]!;
@@ -125,6 +134,7 @@ function Result({
   answers,
   shoes,
   prices,
+  generationLinks,
   brandNames,
   ameblo,
   onRestart,
@@ -134,6 +144,7 @@ function Result({
   answers: Answers;
   shoes: Shoe[];
   prices?: PriceIndex;
+  generationLinks?: Record<string, { path: string; label: string }>;
   brandNames: Record<string, string>;
   ameblo?: AmebloProps;
   onRestart: () => void;
@@ -143,6 +154,13 @@ function Result({
   const purpose = primaryPurpose(answers);
   const ranked = scoreShoes(shoes, answers, prices).slice(0, 4);
   const advice = adviceFor(answers);
+  // 結果を表示したことを1回だけ記録（主な用途だけ。回答の中身は送らない）
+  const sent = useRef(false);
+  useEffect(() => {
+    if (sent.current) return;
+    sent.current = true;
+    track("finder_complete", { purpose, candidates: ranked.length });
+  }, [purpose, ranked.length]);
   const blog = ameblo ? pickForResult(ameblo.entries, ranked.map((r) => r.shoe.slug), purpose, 3) : [];
   const [copied, setCopied] = useState(false);
 
@@ -196,7 +214,11 @@ function Result({
           <ol role="list" className="result__list">
             {ranked.map((r, i) => (
               <li key={r.shoe.slug}>
-                <Link href={`/shoes/${r.shoe.slug}`} className="result-shoe">
+                <Link
+                  href={`/shoes/${r.shoe.slug}`}
+                  className="result-shoe"
+                  onClick={() => track("finder_result_click", { shoe: r.shoe.slug, rank: i + 1, link_type: "detail" })}
+                >
                   <span className="result-shoe__no num">{String(i + 1).padStart(2, "0")}</span>
                   <span className="result-shoe__body">
                     <span className="result-shoe__name latin">
@@ -211,11 +233,34 @@ function Result({
                         ))}
                       </ul>
                     ) : null}
+                    <span className="result-shoe__facts">
+                      <span>
+                        価格帯：
+                        {priceLine(prices?.[r.shoe.slug]) ?? <span className="muted">公式価格は未確認</span>}
+                      </span>
+                      {r.shoe.notFor[0] ? <span>注意：{r.shoe.notFor[0]}には向きません</span> : null}
+                    </span>
                     <span className="result-shoe__more">
-                      詳しく見る <Arrow />
+                      詳しく見る・購入先 <Arrow />
                     </span>
                   </span>
                 </Link>
+                <p className="result-shoe__links">
+                  <Link
+                    href={`/shoes/compare?s=${r.shoe.slug}`}
+                    onClick={() => track("finder_result_click", { shoe: r.shoe.slug, rank: i + 1, link_type: "compare" })}
+                  >
+                    ほかの候補とくらべる
+                  </Link>
+                  {generationLinks?.[r.shoe.slug] ? (
+                    <Link
+                      href={generationLinks[r.shoe.slug]!.path}
+                      onClick={() => track("finder_result_click", { shoe: r.shoe.slug, rank: i + 1, link_type: "generation" })}
+                    >
+                      {generationLinks[r.shoe.slug]!.label}
+                    </Link>
+                  ) : null}
+                </p>
               </li>
             ))}
           </ol>
@@ -223,7 +268,7 @@ function Result({
           <p>条件に合うシリーズが見つかりませんでした。回答を変えてみてください。</p>
         )}
         {ranked.some((r) => r.deal) ? (
-          <p className="result__note">価格は、メーカー公式オンラインストアで確認した日のものです（{[...new Set(ranked.map((r) => r.deal?.checkedAt).filter(Boolean))].map((d) => d!.replaceAll("-", ".")).join("・")}確認）。セールの終了などで変わります。</p>
+          <p className="result__note">価格は、メーカー公式オンラインストアの販売価格、またはメーカーが発表した希望小売価格で、確認した日のものです（{[...new Set(ranked.map((r) => r.deal?.checkedAt).filter(Boolean))].map((d) => d!.replaceAll("-", ".")).join("・")}確認）。セールの終了などで変わります。</p>
         ) : null}
       </div>
 
@@ -293,4 +338,15 @@ function Result({
       </div>
     </section>
   );
+}
+
+/** 公式ストア・メーカー希望小売価格で確認できた価格の幅（例: 6,600〜20,900円） */
+function priceLine(opts: PriceIndex[string] | undefined): string | null {
+  if (!opts?.length) return null;
+  const ps = opts.map((o) => o.priceJpy);
+  const min = Math.min(...ps);
+  const max = Math.max(...ps);
+  const y = (n: number) => n.toLocaleString("ja-JP");
+  const prev = opts.some((o) => o.lifecycle === "previous" && o.priceJpy === min && min !== max);
+  return min === max ? `${y(min)}円` : `${y(min)}〜${y(max)}円${prev ? "（安いほうは前の世代）" : ""}`;
 }

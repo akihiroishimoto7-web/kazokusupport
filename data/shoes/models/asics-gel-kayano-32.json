@@ -1,0 +1,39 @@
+{
+  "id": "asics-gel-kayano-32",
+  "series": "asics-gel-kayano",
+  "brand": "asics",
+  "name": "GEL-KAYANO 32",
+  "nameJa": "ゲルカヤノ32",
+  "generation": 32,
+  "lifecycle": "previous",
+  "officialUrl": "https://prtimes.jp/main/html/rd/p/000000256.000020802.html",
+  "pageTitle": "アシックスジャパン株式会社 プレスリリース（PR TIMES）",
+  "styleCode": "1011C052（スタンダード）",
+  "specs": {},
+  "checkedAt": "2026-11-28",
+  "officialPrice": {
+    "priceJpy": 22000,
+    "regularPriceJpy": 22000,
+    "onSale": false,
+    "kind": "msrp",
+    "evidence": "メーカー希望小売価格は、すべて22,000円（税込）です。",
+    "sourceUrl": "https://prtimes.jp/main/html/rd/p/000000256.000020802.html",
+    "sourceTitle": "アシックスジャパン株式会社 プレスリリース（PR TIMES）",
+    "checkedAt": "2026-11-28"
+  },
+  "releaseJp": {
+    "value": "2025年6月12日（先行発売）",
+    "evidence": "6月12日からアシックスオンライン、アシックス直営店各店（ファクトリーアウトレットを除く）、一部のスポーツ用品店で先行発売し、6月26日から全国のスポーツ用品店で順次発売します。",
+    "sourceUrl": "https://prtimes.jp/main/html/rd/p/000000256.000020802.html",
+    "sourceTitle": "アシックスジャパン株式会社 プレスリリース（PR TIMES）",
+    "checkedAt": "2026-11-28"
+  },
+  "changes": [
+    {
+      "text": "ミッドソール前部を前モデルより約2mm厚くしながら、全面にクッションフォーム材「FF BLAST PLUS （エフエフブラストプラス）」を採用し、軽量でやわらかなクッション性を実現しています。",
+      "sourceUrl": "https://prtimes.jp/main/html/rd/p/000000256.000020802.html",
+      "sourceTitle": "アシックスジャパン株式会社 プレスリリース（PR TIMES）",
+      "checkedAt": "2026-11-28"
+    }
+  ]
+}

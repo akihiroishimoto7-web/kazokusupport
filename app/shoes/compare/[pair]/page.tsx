@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: Params) {
   if (!ab) return {};
   const [a, b] = ab;
   return buildMetadata({
-    title: `${name(a)}と${name(b)}の違い｜重量・ドロップ・価格をくらべる`,
+    title: `${a.model ?? a.series}と${b.model ?? b.series}の違い`,
     description: `${name(a)}と${name(b)}を、メーカー公式の重量・ドロップ・価格と、向いている人・向いていない人でくらべます。数値は公式ページで確認したものだけを載せています。`,
     path: `/shoes/compare/${pair}`,
   });

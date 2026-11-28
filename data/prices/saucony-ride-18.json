@@ -8,6 +8,14 @@
       "priceJpy": 6600,
       "regularPriceJpy": 22000,
       "onSale": true
+    },
+    {
+      "date": "2026-11-28",
+      "store": "official",
+      "url": "https://saucony.jp/products/mens-ride-18-n02",
+      "priceJpy": 6600,
+      "regularPriceJpy": 22000,
+      "onSale": true
     }
   ]
 }

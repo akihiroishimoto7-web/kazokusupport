@@ -7,7 +7,7 @@ import { buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
   title: "セール情報",
-  description: "ランニングシューズや道具のセール情報。運営者が実際に確認したものだけを、確認日とともに掲載します。",
+  description: "ランニングシューズや道具のセール情報。運営者が実際に確認したものだけを、確認日とともに掲載します。割引率や価格を推測で書くことはしません。",
   path: "/deals",
 });
 

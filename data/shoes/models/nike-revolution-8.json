@@ -13,19 +13,33 @@
       "value": 292,
       "size": "メンズサイズ28cm",
       "evidence": "重量：約292g（メンズサイズ28cm）",
-      "checkedAt": "2026-11-25"
+      "checkedAt": "2026-11-28"
     },
     "dropMm": {
       "value": 10,
       "evidence": "オフセット：10mm",
-      "checkedAt": "2026-11-25"
+      "checkedAt": "2026-11-28"
     }
   },
-  "checkedAt": "2026-11-25",
+  "checkedAt": "2026-11-28",
+  "changes": [
+    {
+      "text": "さらに、メッシュのアッパーは従来のバージョンよりも通気性が向上。",
+      "sourceUrl": "https://www.nike.com/jp/t/%E3%83%8A%E3%82%A4%E3%82%AD-%E3%83%AC%E3%83%9C%E3%83%AA%E3%83%A5%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3-8-%E3%83%A1%E3%83%B3%E3%82%BA-%E3%83%AD%E3%83%BC%E3%83%89-%E3%83%A9%E3%83%B3%E3%83%8B%E3%83%B3%E3%82%B0%E3%82%B7%E3%83%A5%E3%83%BC%E3%82%BA-4P0ghJ/HJ9198-003",
+      "sourceTitle": "【NIKE公式】ナイキ レボリューション 8 メンズ ロード ランニングシューズ.オンラインストア (通販サイト)",
+      "checkedAt": "2026-11-28"
+    },
+    {
+      "text": "メッシュのアッパーはレボリューション 7よりも通気性が高く、涼しい状態をキープ。",
+      "sourceUrl": "https://www.nike.com/jp/t/%E3%83%8A%E3%82%A4%E3%82%AD-%E3%83%AC%E3%83%9C%E3%83%AA%E3%83%A5%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3-8-%E3%83%A1%E3%83%B3%E3%82%BA-%E3%83%AD%E3%83%BC%E3%83%89-%E3%83%A9%E3%83%B3%E3%83%8B%E3%83%B3%E3%82%B0%E3%82%B7%E3%83%A5%E3%83%BC%E3%82%BA-4P0ghJ/HJ9198-003",
+      "sourceTitle": "【NIKE公式】ナイキ レボリューション 8 メンズ ロード ランニングシューズ.オンラインストア (通販サイト)",
+      "checkedAt": "2026-11-28"
+    }
+  ],
   "officialPrice": {
     "priceJpy": 7700,
     "regularPriceJpy": 7700,
     "onSale": false,
-    "checkedAt": "2026-11-25"
+    "checkedAt": "2026-11-28"
   }
 }

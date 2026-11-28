@@ -15,7 +15,7 @@
   --paper-raised: #ffffff;
   --ink: #161616;
   --ink-soft: #3c3c3a;
-  --ink-mute: #77776f;
+  --ink-mute: #6c6c65; /* 背景 #f7f6f3 に対してコントラスト比 4.5 以上 */
   --rule: #dddcd6;
   --rule-strong: #bdbcb5;
   /* 旧来の「緑」は墨に近い深い色へ。ラベルとリンクの下線にだけ */

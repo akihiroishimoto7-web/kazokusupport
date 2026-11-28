@@ -101,3 +101,32 @@ export function shopifyYen(v) {
   // .js は「銭」単位（×100）、products.json は文字列の円
   return typeof v === "number" ? Math.round(n / 100) : Math.round(n);
 }
+
+/**
+ * 「前作からの変更」についての公式の記載を、原文の一文のまま取り出す。
+ * 前の世代の名前・「前作」「前モデル」「従来」「〜と比較」などを含む文だけを拾い、要約や言い換えはしない。
+ */
+export function extractChanges(rawText, prevNames = []) {
+  const text = norm(rawText);
+  const keys = ["前作", "前モデル", "従来モデル", "旧モデル", "と比較し", "と比べて", "よりも", "アップデート", ...prevNames];
+  const out = [];
+  const seen = new Set();
+  for (const line of text.split(/\r?\n/)) {
+    for (let s of line.split(/(?<=。)/)) {
+      s = s.trim();
+      if (s.length < 12 || s.length > 160) continue;
+      if (!keys.some((k) => k && s.includes(k))) continue;
+      // 一般的な説明（サイズ表・配送・レビュー投稿など）や、ほかの商品の文を避ける
+      if (/送料|返品|ポイント|クーポン|レビュー|サイズ表|お気に入り|カート|ログイン|※|\?$/.test(s)) continue;
+      if (!/(mm|%|％|g|ミッドソール|クッション|アッパー|プレート|フォーム|ドロップ|フィット|反発|軽|厚|幅|ラバー|インソール|タン)/.test(s)) continue;
+      const key = s.replace(/\s+/g, "");
+      // 書き出しが同じ文（同じ内容の言い回し違い）は1つだけ残す
+      const head = key.slice(0, 12);
+      if (seen.has(key) || seen.has(head)) continue;
+      seen.add(key);
+      seen.add(head);
+      out.push(s);
+    }
+  }
+  return out.slice(0, 6);
+}

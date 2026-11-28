@@ -18,6 +18,8 @@ import type { Rating, Shoe } from "@/lib/types";
 import { currentModel, hasVerifiedSpecs, isIndexableShoe, previousModels, priceHistory } from "@/lib/shoe-db";
 import { PriceHistory, PreviousModels } from "@/components/ShoeModelData";
 import { comparablePairs, pairSlug } from "@/lib/shoe-pairs";
+import { generationPairs, modelPairSlug } from "@/lib/model-pairs";
+import { allModels } from "@/lib/shoe-db";
 
 type Params = { params: Promise<{ slug: string }> };
 export const dynamicParams = false;
@@ -78,6 +80,7 @@ export default async function ShoePage({ params }: Params) {
   const isOutline = shoe.status === "outline";
   const name = shoe.model ?? shoe.series;
   const pairs = comparablePairs(publicShoes(), isIndexableShoe).filter(([a, b]) => a.slug === shoe.slug || b.slug === shoe.slug);
+  const genPair = generationPairs(allModels()).find((p) => p.newer.series === shoe.slug) ?? null;
   const current = currentModel(shoe.slug);
   const previous = previousModels(shoe.slug);
   // 仕様がすべて現行モデルの公式ページ（同じ出典）なら、出典は表の下に1回だけ出す
@@ -348,10 +351,17 @@ export default async function ShoePage({ params }: Params) {
             </section>
           ) : null}
 
-          {pairs.length ? (
+          {pairs.length || genPair ? (
             <section className="shoe__section" aria-labelledby="pairs">
-              <h2 id="pairs">2足でくらべる</h2>
+              <h2 id="pairs">くらべる</h2>
               <ul role="list" className="pair-links">
+                {genPair ? (
+                  <li>
+                    <Link href={`/shoes/models/${modelPairSlug(genPair.newer, genPair.older)}`}>
+                      <span className="latin">{genPair.older.name}</span> と <span className="latin">{genPair.newer.name}</span> の違い（前のモデルとの比較）
+                    </Link>
+                  </li>
+                ) : null}
                 {pairs.map(([a, b]) => {
                   const other = a.slug === shoe.slug ? b : a;
                   return (

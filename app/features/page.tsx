@@ -6,7 +6,7 @@ import { buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
   title: "特集",
-  description: "RUN LIFE HIROSHIMA の編集特集。走る道具やカルチャーを、ランナーの目で読みます。",
+  description: "RUN LIFE HIROSHIMA の編集特集。走る道具やカルチャーを、色・素材・シルエットなど、ランナーの目で読みます。出典を確認できる情報だけで書いています。",
   path: "/features",
 });
 

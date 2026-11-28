@@ -8,6 +8,14 @@
       "priceJpy": 19800,
       "regularPriceJpy": 19800,
       "onSale": false
+    },
+    {
+      "date": "2026-11-28",
+      "store": "official",
+      "url": "https://brooksrunning.co.jp/products/brm4933-blk",
+      "priceJpy": 15840,
+      "regularPriceJpy": 19800,
+      "onSale": true
     }
   ]
 }

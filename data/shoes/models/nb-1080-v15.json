@@ -1,0 +1,39 @@
+{
+  "id": "nb-1080-v15",
+  "series": "nb-1080",
+  "brand": "newbalance",
+  "name": "1080v15",
+  "nameJa": "1080v15",
+  "generation": 15,
+  "lifecycle": "current",
+  "officialUrl": "https://prtimes.jp/main/html/rd/p/000001430.000029460.html",
+  "pageTitle": "株式会社ニューバランス ジャパン プレスリリース（PR TIMES）",
+  "styleCode": "M1080",
+  "specs": {},
+  "checkedAt": "2026-11-28",
+  "officialPrice": {
+    "priceJpy": 22000,
+    "regularPriceJpy": 22000,
+    "onSale": false,
+    "kind": "msrp",
+    "evidence": "価格：22,000円（税込）",
+    "sourceUrl": "https://prtimes.jp/main/html/rd/p/000001430.000029460.html",
+    "sourceTitle": "株式会社ニューバランス ジャパン プレスリリース（PR TIMES）",
+    "checkedAt": "2026-11-28"
+  },
+  "releaseJp": {
+    "value": "2026年1月15日（先行発売）",
+    "evidence": "2026年1月15日（木）より先行発売開始",
+    "sourceUrl": "https://prtimes.jp/main/html/rd/p/000001430.000029460.html",
+    "sourceTitle": "株式会社ニューバランス ジャパン プレスリリース（PR TIMES）",
+    "checkedAt": "2026-11-28"
+  },
+  "changes": [
+    {
+      "text": "全く新しいミッドソール「INFINION（インフィニオン）」フォームを搭載し、従来モデルに比べてより快適に、そしてより長い期間においてパフォーマンスを維持することができるようになりました。",
+      "sourceUrl": "https://prtimes.jp/main/html/rd/p/000001430.000029460.html",
+      "sourceTitle": "株式会社ニューバランス ジャパン プレスリリース（PR TIMES）",
+      "checkedAt": "2026-11-28"
+    }
+  ]
+}
