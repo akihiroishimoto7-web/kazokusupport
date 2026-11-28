@@ -1,6 +1,7 @@
 import { db } from "../data/shoes/db.ts";
 import type { PriceObservation, ShoeModel } from "./shoe-db-types.ts";
 import type { Fact, Shoe, Source } from "./types";
+import { SOURCE_TYPE_LABEL } from "./trusted-sources.ts";
 
 /**
  * シューズデータベース（公式サイトから集めたモデル世代ごとの仕様と価格）
@@ -49,7 +50,6 @@ export function modelSource(m: ShoeModel): Source {
   return { title: `${m.pageTitle}`, url: m.officialUrl, publisher: BRAND_STORE[m.brand] ?? "メーカー公式サイト", checkedAt: m.checkedAt };
 }
 
-const NOTE = "メーカー公式ページの記載";
 
 function specFact(m: ShoeModel, key: keyof ShoeModel["specs"], prev: Fact<number>): Fact<number> & { size?: string } {
   const v = m.specs[key];
@@ -58,7 +58,7 @@ function specFact(m: ShoeModel, key: keyof ShoeModel["specs"], prev: Fact<number
     value: v.value,
     verified: true,
     source: v.sourceUrl ? { title: v.sourceTitle ?? m.pageTitle, url: v.sourceUrl, checkedAt: v.checkedAt } : { ...modelSource(m), checkedAt: v.checkedAt },
-    note: `${NOTE}「${v.evidence}」`,
+    note: `${SOURCE_TYPE_LABEL[v.sourceType ?? "official"]}「${v.evidence}」`,
     ...(v.size ? { size: v.size.replace(/^メンズサイズ/, "メンズ") } : {}),
   };
 }
