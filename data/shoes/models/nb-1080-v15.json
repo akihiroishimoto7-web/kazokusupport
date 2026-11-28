@@ -9,7 +9,25 @@
   "officialUrl": "https://prtimes.jp/main/html/rd/p/000001430.000029460.html",
   "pageTitle": "株式会社ニューバランス ジャパン プレスリリース（PR TIMES）",
   "styleCode": "M1080",
-  "specs": {},
+  "specs": {
+    "weightG": {
+      "value": 261,
+      "evidence": "■片足重量:261g／■片足重量代表サイズ:27.5cm／■ワイズ:2E",
+      "checkedAt": "2026-11-28",
+      "sourceUrl": "https://item.rakuten.co.jp/alpen/4304640316/",
+      "sourceTitle": "アルペン（楽天市場店）商品ページ",
+      "sourceType": "retailer",
+      "size": "27.5cm・2E"
+    },
+    "dropMm": {
+      "value": 6,
+      "evidence": "ニューバランス｜1080v15／・ドロップ：6mm",
+      "checkedAt": "2026-11-28",
+      "sourceUrl": "https://mg.runtrip.jp/archives/108703",
+      "sourceTitle": "ラントリップマガジン（1080v15）",
+      "sourceType": "media"
+    }
+  },
   "checkedAt": "2026-11-28",
   "officialPrice": {
     "priceJpy": 22000,

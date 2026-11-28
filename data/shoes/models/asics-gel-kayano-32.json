@@ -9,7 +9,32 @@
   "officialUrl": "https://prtimes.jp/main/html/rd/p/000000256.000020802.html",
   "pageTitle": "アシックスジャパン株式会社 プレスリリース（PR TIMES）",
   "styleCode": "1011C052（スタンダード）",
-  "specs": {},
+  "specs": {
+    "stackHeelMm": {
+      "value": 40,
+      "evidence": "かかと部が40mm、前足部が32mm",
+      "checkedAt": "2026-11-28",
+      "sourceUrl": "https://mg.runtrip.jp/archives/100133",
+      "sourceTitle": "ラントリップマガジン（GEL-KAYANO 32）",
+      "sourceType": "media"
+    },
+    "stackForefootMm": {
+      "value": 32,
+      "evidence": "かかと部が40mm、前足部が32mm",
+      "checkedAt": "2026-11-28",
+      "sourceUrl": "https://mg.runtrip.jp/archives/100133",
+      "sourceTitle": "ラントリップマガジン（GEL-KAYANO 32）",
+      "sourceType": "media"
+    },
+    "dropMm": {
+      "value": 8,
+      "evidence": "前作からドロップ（シューズ前後の高低差）が10mmから8mmに変更されたこと",
+      "checkedAt": "2026-11-28",
+      "sourceUrl": "https://mg.runtrip.jp/archives/100133",
+      "sourceTitle": "ラントリップマガジン（GEL-KAYANO 32）",
+      "sourceType": "media"
+    }
+  },
   "checkedAt": "2026-11-28",
   "officialPrice": {
     "priceJpy": 22000,

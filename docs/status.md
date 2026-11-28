@@ -18,6 +18,7 @@
 
 | 日付 | 内容 | 状態 |
 | --- | --- | --- |
+| 2026-11-28 | 運営者の指示で、承認済みの情報源（ステップスポーツ・アルペン・ヒマラヤ・ラントリップ、`lib/trusted-sources.ts`）を使えるように。画面では「販売店／メディアの記載」と公式を区別。HOKA CLIFTON 10（前の世代。後継の CLIFTON 11 をアルペン・ヒマラヤで確認）・adidas ADIZERO EVO SL を追加。KAYANO 32/33・1080 v14/v15・Rebel v5 の重量・厚さ・ドロップを補完。比較「CLIFTON 10 vs Cloudmonster 3」「EVO SL vs Rebel v5」を公開（優先比較7本すべて完了） | 本番公開 |
 | 2026-11-28 | 全体監査（Lighthouse・SEO・計測）。**GA がCSPで止まっていた問題を修正**。favicon.ico・コントラスト・アクセシブル名を修正。モデルDBを拡張（発売日・品番・前作からの変更の原文・項目ごとの出典、手作業確認モデル）。ASICS GEL-KAYANO 32/33、NB 1080 v14/v15・Rebel v5 をプレスリリースで確認、Pegasus 41 を追加。世代比較ページ（/shoes/models、9組）。記事「CW-X vs 2XU」「アミノサウルス vs アミノバイタル」。診断結果に価格帯・注意点・比較導線・計測イベント。SEO点検・週次レポート・GitHub Actions（check / weekly-data）。運営文書（strategy・status・backlog・docs/ops） | 本番公開 |
 | 2026-11-25 | 特集「GYAKUSOU｜走る服に、なぜこんなに惹かれるのか」（/features/gyakusou）と特集一覧（/features）。第1弾 Nike × Gyakusou ズーム フライ SP。写真は0枚で成立、掲載条件を確認した実物写真を content/features/gyakusou.ts と public/features/gyakusou/ に追加できる | 本番公開（PR #17） |
 | 2026-11-25 | Google アナリティクス 4 の組み込み（測定IDの設定待ち・未設定の間は読み込まない）、外部リンクのクリック計測、プライバシーの記載の自動切り替え、シューズページにアメブロへの導線 | 本番公開（運営者の指示） |
@@ -32,7 +33,6 @@
 - [ ] GA4 のカスタム定義と Search Console の登録（各10分。手順 `docs/ops/analytics.md`）
 - [ ] アメブロへの投稿（`drafts/ameblo/`。値下がりまとめは週1が目安）
 - [ ] 毎月の報酬を `data/revenue/log.csv` に（または数字をエージェントへ）
-- [ ] HOKA Clifton 10・adidas EVO SL・ASICS/NB の重量などを、ブラウザで公式ページを開いて確認（自動取得は拒否される）
 - [ ] 有料・外部登録が必要なもの：GA4/Search Console API 連携（Google Cloud）、独自ドメイン、Claude の定期実行
 - 決定（2026-11-25）：アフィリエイトは当面アメブロ経由。HP の `content/affiliate.ts` は未設定のまま
 
@@ -40,7 +40,7 @@
 
 1. 週1回：`npm run shoes:collect` → `npm run shoes:audit -- --write` → `npm run seo:audit -- --write` → `npm run ameblo:drafts` → `npm run weekly:report` → 確認 → PR → マージ → 本番確認（GitHub Actions が動けば自動）
 2. 前の世代の追加：Nike Vomero 17、On Cloudmonster 2、ミズノ WAVE RIDER 29・WAVE INSPIRE 21 が公式ストアに残っていれば targets.json に previous で追加 → 世代比較が自動で増える
-3. 運営者から公式の数値を受け取ったら：Clifton 10 vs Cloudmonster 3、EVO SL vs Rebel v5 の比較（優先比較の残り2本）
+3. HOKA CLIFTON 11 の仕様を承認済み情報源で確認して登録 → CLIFTON 10 と 11 の世代比較が自動でできる
 4. GA4 の数字が共有されたら、週次レポートの「改善の提案」を書き、`docs/backlog.md` を並べ替える
 5. SEO 点検の P3（title の長さなど）を少しずつ
 
@@ -55,3 +55,4 @@
 - **CSP**：外部スクリプトは GA4（googletagmanager.com）だけを許可。それ以外を足すときは next.config.ts を見直す
 - **HOKA・adidas**：第三者サイトの数字しか取れなかったため、掲載しない（公式で確認できるまで）
 - **アミノサウルス**：エネルギー・価格・機能性表示の有無は公式で確認できず、記事では未確認と明記
+- **情報源が食い違ったとき**：計測サイズの書かれた値を優先し、型番・世代の説明が合っている記事を優先する。例：GEL-KAYANO 33 のドロップは、ラントリップマガジン 8mm を採用（ラントリップストアの商品ページは 10mm だが、本文が前世代の技術の説明で、古い情報の流用とみられる）。1080v14 の重量は、サイズの明記されたアルペン（300g／27.5cm・2E）を採用（ラントリップマガジンの「約283g」はサイズの記載なし）

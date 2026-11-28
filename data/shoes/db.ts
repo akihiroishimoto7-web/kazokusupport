@@ -79,7 +79,25 @@ export const db: ShoeDb = {
       "officialUrl": "https://prtimes.jp/main/html/rd/p/000000308.000020802.html",
       "pageTitle": "アシックスジャパン株式会社 プレスリリース（PR TIMES）",
       "styleCode": "1011C167（スタンダード）",
-      "specs": {},
+      "specs": {
+        "weightG": {
+          "value": 298,
+          "evidence": "■片足重量:298g／■片足重量代表サイズ:27.0",
+          "checkedAt": "2026-11-28",
+          "sourceUrl": "https://item.rakuten.co.jp/alpen/4303616316/",
+          "sourceTitle": "アルペン（楽天市場店）商品ページ",
+          "sourceType": "retailer",
+          "size": "27.0cm"
+        },
+        "dropMm": {
+          "value": 8,
+          "evidence": "・ドロップ：8mm",
+          "checkedAt": "2026-11-28",
+          "sourceUrl": "https://mg.runtrip.jp/archives/111559",
+          "sourceTitle": "ラントリップマガジン（GEL-KAYANO 33）",
+          "sourceType": "media"
+        }
+      },
       "checkedAt": "2026-11-28",
       "officialPrice": {
         "priceJpy": 22000,
@@ -124,7 +142,32 @@ export const db: ShoeDb = {
       "officialUrl": "https://prtimes.jp/main/html/rd/p/000000256.000020802.html",
       "pageTitle": "アシックスジャパン株式会社 プレスリリース（PR TIMES）",
       "styleCode": "1011C052（スタンダード）",
-      "specs": {},
+      "specs": {
+        "stackHeelMm": {
+          "value": 40,
+          "evidence": "かかと部が40mm、前足部が32mm",
+          "checkedAt": "2026-11-28",
+          "sourceUrl": "https://mg.runtrip.jp/archives/100133",
+          "sourceTitle": "ラントリップマガジン（GEL-KAYANO 32）",
+          "sourceType": "media"
+        },
+        "stackForefootMm": {
+          "value": 32,
+          "evidence": "かかと部が40mm、前足部が32mm",
+          "checkedAt": "2026-11-28",
+          "sourceUrl": "https://mg.runtrip.jp/archives/100133",
+          "sourceTitle": "ラントリップマガジン（GEL-KAYANO 32）",
+          "sourceType": "media"
+        },
+        "dropMm": {
+          "value": 8,
+          "evidence": "前作からドロップ（シューズ前後の高低差）が10mmから8mmに変更されたこと",
+          "checkedAt": "2026-11-28",
+          "sourceUrl": "https://mg.runtrip.jp/archives/100133",
+          "sourceTitle": "ラントリップマガジン（GEL-KAYANO 32）",
+          "sourceType": "media"
+        }
+      },
       "checkedAt": "2026-11-28",
       "officialPrice": {
         "priceJpy": 22000,
@@ -496,7 +539,25 @@ export const db: ShoeDb = {
       "officialUrl": "https://prtimes.jp/main/html/rd/p/000001430.000029460.html",
       "pageTitle": "株式会社ニューバランス ジャパン プレスリリース（PR TIMES）",
       "styleCode": "M1080",
-      "specs": {},
+      "specs": {
+        "weightG": {
+          "value": 261,
+          "evidence": "■片足重量:261g／■片足重量代表サイズ:27.5cm／■ワイズ:2E",
+          "checkedAt": "2026-11-28",
+          "sourceUrl": "https://item.rakuten.co.jp/alpen/4304640316/",
+          "sourceTitle": "アルペン（楽天市場店）商品ページ",
+          "sourceType": "retailer",
+          "size": "27.5cm・2E"
+        },
+        "dropMm": {
+          "value": 6,
+          "evidence": "ニューバランス｜1080v15／・ドロップ：6mm",
+          "checkedAt": "2026-11-28",
+          "sourceUrl": "https://mg.runtrip.jp/archives/108703",
+          "sourceTitle": "ラントリップマガジン（1080v15）",
+          "sourceType": "media"
+        }
+      },
       "checkedAt": "2026-11-28",
       "officialPrice": {
         "priceJpy": 22000,
@@ -535,7 +596,17 @@ export const db: ShoeDb = {
       "officialUrl": "https://prtimes.jp/main/html/rd/p/000001254.000029460.html",
       "pageTitle": "株式会社ニューバランス ジャパン プレスリリース（PR TIMES）",
       "styleCode": "M1080",
-      "specs": {},
+      "specs": {
+        "weightG": {
+          "value": 300,
+          "evidence": "■片足重量:300g／■片足重量代表サイズ:27.5cm",
+          "checkedAt": "2026-11-28",
+          "sourceUrl": "https://item.rakuten.co.jp/alpen/4304640215/",
+          "sourceTitle": "アルペン（楽天市場店）商品ページ",
+          "sourceType": "retailer",
+          "size": "27.5cm・2E"
+        }
+      },
       "checkedAt": "2026-11-28",
       "officialPrice": {
         "priceJpy": 19800,
@@ -574,7 +645,41 @@ export const db: ShoeDb = {
       "officialUrl": "https://prtimes.jp/main/html/rd/p/000001367.000029460.html",
       "pageTitle": "株式会社ニューバランス ジャパン プレスリリース（PR TIMES）",
       "styleCode": "MFCX",
-      "specs": {},
+      "specs": {
+        "weightG": {
+          "value": 223,
+          "evidence": "■片足重量:223g／■片足重量代表サイズ:27.5cm／■ワイズ:2E",
+          "checkedAt": "2026-11-28",
+          "sourceUrl": "https://item.rakuten.co.jp/alpen/4303640516/",
+          "sourceTitle": "アルペン（楽天市場店）商品ページ",
+          "sourceType": "retailer",
+          "size": "27.5cm・2E"
+        },
+        "stackHeelMm": {
+          "value": 35,
+          "evidence": "今回は前足部29mm、後足部35mm。",
+          "checkedAt": "2026-11-28",
+          "sourceUrl": "https://mg.runtrip.jp/archives/101898",
+          "sourceTitle": "ラントリップマガジン（FuelCell Rebel v5）",
+          "sourceType": "media"
+        },
+        "stackForefootMm": {
+          "value": 29,
+          "evidence": "今回は前足部29mm、後足部35mm。",
+          "checkedAt": "2026-11-28",
+          "sourceUrl": "https://mg.runtrip.jp/archives/101898",
+          "sourceTitle": "ラントリップマガジン（FuelCell Rebel v5）",
+          "sourceType": "media"
+        },
+        "dropMm": {
+          "value": 6,
+          "evidence": "ニューバランス｜FuelCell Rebel v5／・ドロップ：6mm",
+          "checkedAt": "2026-11-28",
+          "sourceUrl": "https://mg.runtrip.jp/archives/108703",
+          "sourceTitle": "ラントリップマガジン（FuelCell Rebel v5）",
+          "sourceType": "media"
+        }
+      },
       "checkedAt": "2026-11-28",
       "officialPrice": {
         "priceJpy": 16940,
