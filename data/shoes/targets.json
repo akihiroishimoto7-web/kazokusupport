@@ -264,6 +264,28 @@
       "lifecycle": "current",
       "adapter": "manual",
       "url": "https://prtimes.jp/main/html/rd/p/000001367.000029460.html"
+    },
+    {
+      "id": "hoka-clifton-10",
+      "series": "hoka-clifton",
+      "brand": "hoka",
+      "name": "CLIFTON 10",
+      "nameJa": "クリフトン 10",
+      "generation": 10,
+      "lifecycle": "previous",
+      "adapter": "manual",
+      "url": "https://mg.runtrip.jp/archives/98465"
+    },
+    {
+      "id": "adidas-adizero-evo-sl",
+      "series": "adidas-adizero-evo-sl",
+      "brand": "adidas",
+      "name": "ADIZERO EVO SL",
+      "nameJa": "アディゼロ EVO SL",
+      "generation": 1,
+      "lifecycle": "current",
+      "adapter": "manual",
+      "url": "https://mg.runtrip.jp/archives/94259"
     }
   ],
   "blocked": {

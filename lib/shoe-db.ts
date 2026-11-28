@@ -82,7 +82,7 @@ export function withModelData(shoe: Shoe): Shoe {
             : { ...modelSource(m), checkedAt: m.officialPrice!.checkedAt },
           note:
             m.officialPrice!.kind === "msrp"
-              ? `メーカー希望小売価格（税込）。公式資料の記載「${m.officialPrice!.evidence ?? ""}」`
+              ? `メーカー希望小売価格（税込）。${SOURCE_TYPE_LABEL[m.officialPrice!.sourceType ?? "official"]}「${m.officialPrice!.evidence ?? ""}」`
               : "メーカー公式オンラインストアの通常価格（税込）。セール時は変わります",
         }
       : shoe.specs.priceJpy;
@@ -134,4 +134,12 @@ export function priceIndex(): Record<string, { model: string; priceJpy: number; 
     });
   }
   return out;
+}
+
+/** モデルの値に、公式以外（販売店・メディア）の情報源が含まれるか */
+export function usesNonOfficial(m: ShoeModel): boolean {
+  return (
+    Object.values(m.specs).some((v) => (v.sourceType ?? "official") !== "official") ||
+    (m.officialPrice?.sourceType ?? "official") !== "official"
+  );
 }

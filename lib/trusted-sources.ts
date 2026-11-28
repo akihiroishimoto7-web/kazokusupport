@@ -11,7 +11,9 @@ export const TRUSTED_SOURCES: { name: string; type: Exclude<SourceType, "officia
   { name: "アルペン", type: "retailer", hosts: ["store.alpen-group.jp", "alpen-group.jp", "www.alpen-group.jp"] },
   { name: "アルペン（楽天市場店）", type: "retailer", hosts: ["item.rakuten.co.jp"], pathPrefix: "/alpen/" },
   { name: "ヒマラヤ", type: "retailer", hosts: ["himaraya.co.jp", "www.himaraya.co.jp", "store.himaraya.co.jp"] },
-  { name: "ラントリップ", type: "media", hosts: ["runtrip.jp", "www.runtrip.jp", "store.runtrip.jp"] },
+  { name: "ヒマラヤ（楽天市場店）", type: "retailer", hosts: ["item.rakuten.co.jp"], pathPrefix: "/himaraya/" },
+  { name: "ヒマラヤ ランニング専門店（楽天市場）", type: "retailer", hosts: ["item.rakuten.co.jp"], pathPrefix: "/himarayarunningpro/" },
+  { name: "ラントリップ", type: "media", hosts: ["runtrip.jp", "www.runtrip.jp", "store.runtrip.jp", "mg.runtrip.jp"] },
 ];
 
 /** URL が承認済みの情報源なら、その名前と種類を返す */

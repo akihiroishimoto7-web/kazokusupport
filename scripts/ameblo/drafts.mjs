@@ -19,7 +19,7 @@ import path from "node:path";
 import { shoes } from "../../content/shoes.ts";
 import { brands } from "../../content/brands.ts";
 import { site } from "../../content/site.ts";
-import { modelsOf, discountRate, priceHistory } from "../../lib/shoe-db.ts";
+import { modelsOf, discountRate, priceHistory, usesNonOfficial } from "../../lib/shoe-db.ts";
 
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), "../..");
 const args = Object.fromEntries(process.argv.slice(2).map((a) => a.replace(/^--/, "").split("=")).map(([k, v]) => [k, v ?? true]));
@@ -108,9 +108,9 @@ function modelDraft(s) {
     "",
     PR,
     "",
-    `${b}の${s.series}シリーズの現行モデル、${m.name}。メーカー公式ページに書かれている数値と、どんな人に向いているかをまとめました。運営者はまだ履いていないので、履き心地の感想は書いていません。`,
+    `${b}の${s.series}シリーズの現行モデル、${m.name}。${usesNonOfficial(m) ? "メーカー公式や、信頼できる販売店・ランニングメディアに書かれている数値" : "メーカー公式ページに書かれている数値"}と、どんな人に向いているかをまとめました。運営者はまだ履いていないので、履き心地の感想は書いていません。`,
     "",
-    "## 公式の数値",
+    usesNonOfficial(m) ? "## 数値（出典つき）" : "## 公式の数値",
     "",
     `- 通常価格（税込）：${m.officialPrice?.regularPriceJpy ? yen(m.officialPrice.regularPriceJpy) : "確認できず"}`,
     `- 重量：${spec("weightG", "g")}`,

@@ -327,6 +327,11 @@ function CrossPage({ pair, a, b, why }: { pair: string; a: ShoeModel; b: ShoeMod
         <p className="lede">
           {why}。確認できた数字と、それぞれに向いている人・向いていない人でくらべます。（{formatDate(updated)}確認）
         </p>
+        {[a, b].filter((m) => m.lifecycle === "previous").map((m) => (
+          <p key={m.id} className="spec-help">
+            {m.name}は、後継モデルがすでに発売されている「前の世代」のモデルです。在庫や価格は店舗によって異なります。
+          </p>
+        ))}
       </header>
 
       <section className="wrap page-section" aria-labelledby="summary">

@@ -15,7 +15,7 @@ import { getAmebloEntries } from "@/lib/ameblo";
 import { linkEntries } from "@/lib/ameblo-match";
 import { amebloUrl, social } from "@/content/social";
 import type { Rating, Shoe } from "@/lib/types";
-import { currentModel, hasVerifiedSpecs, isIndexableShoe, previousModels, priceHistory } from "@/lib/shoe-db";
+import { currentModel, hasVerifiedSpecs, isIndexableShoe, previousModels, priceHistory, usesNonOfficial } from "@/lib/shoe-db";
 import { PriceHistory, PreviousModels } from "@/components/ShoeModelData";
 import { comparablePairs, pairSlug } from "@/lib/shoe-pairs";
 import { generationPairs, modelPairSlug } from "@/lib/model-pairs";
@@ -117,7 +117,7 @@ export default async function ShoePage({ params }: Params) {
           <p className="shoe__catch serif">{shoe.catch}</p>
           <p className="shoe__status">
             {isOutline ? (
-              <Badge tone="planned">{shoe.model && shoe.checkedAt ? "公式情報の一部を確認" : "シリーズ概要・スペック調査中"}</Badge>
+              <Badge tone="planned">{shoe.model && shoe.checkedAt ? (current && usesNonOfficial(current) ? "販売店・メディアの情報を確認" : "公式情報の一部を確認") : "シリーズ概要・スペック調査中"}</Badge>
             ) : (
               <Badge tone="verified">レビュー</Badge>
             )}
@@ -134,7 +134,9 @@ export default async function ShoePage({ params }: Params) {
             <aside className="state-note">
               <p>
                 {shoe.model && shoe.checkedAt
-                  ? `メーカー公式サイトで確認できた情報を中心にまとめています（${formatDate(shoe.checkedAt)}確認）。「要確認」の数値は、公式ページで改めて確認してください。実際に履いた感想は、履いてから書きます。`
+                  ? current && usesNonOfficial(current)
+                    ? `メーカー公式で確認できなかった数値は、運営者が信頼できると判断した販売店・ランニングメディアの記載で補っています（${formatDate(shoe.checkedAt)}確認）。どの数値がどこの記載かは、各項目の出典に書いています。実際に履いた感想は、履いてから書きます。`
+                    : `メーカー公式サイトで確認できた情報を中心にまとめています（${formatDate(shoe.checkedAt)}確認）。「要確認」の数値は、公式ページで改めて確認してください。実際に履いた感想は、履いてから書きます。`
                   : "このページは、シリーズの位置づけと、向いている人・向いていない人をまとめた段階です。現行モデルの価格・重量・厚さなどは、メーカー公式で確認できしだい掲載します。実際に履いた感想は、履いてから書きます。"}
               </p>
             </aside>
@@ -213,7 +215,7 @@ export default async function ShoePage({ params }: Params) {
                   （{formatDate(current.checkedAt)}確認）。価格は公式オンラインストアの通常価格（税込）で、セール時は変わります。「未確認」は公式ページに記載が見つからなかった項目です。
                 </p>
                 <details>
-                  <summary>公式ページの記載（原文）</summary>
+                  <summary>{usesNonOfficial(current) ? "出典の記載（原文）" : "公式ページの記載（原文）"}</summary>
                   <ul>
                     {Object.entries(current.specs).map(([k, v]) => (
                       <li key={k}>「{v.evidence}」</li>

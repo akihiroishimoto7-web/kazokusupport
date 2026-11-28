@@ -4,6 +4,71 @@ import type { ShoeDb } from "../../lib/shoe-db-types.ts";
 export const db: ShoeDb = {
   "models": [
     {
+      "id": "adidas-adizero-evo-sl",
+      "series": "adidas-adizero-evo-sl",
+      "brand": "adidas",
+      "name": "ADIZERO EVO SL",
+      "nameJa": "アディゼロ EVO SL",
+      "generation": 1,
+      "lifecycle": "current",
+      "officialUrl": "https://mg.runtrip.jp/archives/94259",
+      "pageTitle": "ラントリップマガジン「ADIZERO EVO SL」発売記事",
+      "specs": {
+        "weightG": {
+          "value": 224,
+          "evidence": "・重量：224g （27.0cm時／片足）",
+          "checkedAt": "2026-11-28",
+          "sourceUrl": "https://mg.runtrip.jp/archives/94259",
+          "sourceTitle": "ラントリップマガジン「ADIZERO EVO SL」発売記事",
+          "sourceType": "media",
+          "size": "27.0cm"
+        },
+        "stackHeelMm": {
+          "value": 38.5,
+          "evidence": "ヒール：38.5 mm / 前足部：32.0 mm",
+          "checkedAt": "2026-11-28",
+          "sourceUrl": "https://mg.runtrip.jp/archives/94259",
+          "sourceTitle": "ラントリップマガジン「ADIZERO EVO SL」発売記事",
+          "sourceType": "media"
+        },
+        "stackForefootMm": {
+          "value": 32,
+          "evidence": "ヒール：38.5 mm / 前足部：32.0 mm",
+          "checkedAt": "2026-11-28",
+          "sourceUrl": "https://mg.runtrip.jp/archives/94259",
+          "sourceTitle": "ラントリップマガジン「ADIZERO EVO SL」発売記事",
+          "sourceType": "media"
+        },
+        "dropMm": {
+          "value": 6.5,
+          "evidence": "ドロップ：6.5 mm",
+          "checkedAt": "2026-11-28",
+          "sourceUrl": "https://mg.runtrip.jp/archives/94259",
+          "sourceTitle": "ラントリップマガジン「ADIZERO EVO SL」発売記事",
+          "sourceType": "media"
+        }
+      },
+      "checkedAt": "2026-11-28",
+      "officialPrice": {
+        "priceJpy": 19800,
+        "regularPriceJpy": 19800,
+        "onSale": false,
+        "kind": "msrp",
+        "evidence": "・価格：¥19,800（税込）",
+        "sourceUrl": "https://mg.runtrip.jp/archives/94259",
+        "sourceTitle": "ラントリップマガジン「ADIZERO EVO SL」発売記事",
+        "sourceType": "media",
+        "checkedAt": "2026-11-28"
+      },
+      "releaseJp": {
+        "value": "2024年10月15日（先行限定発売）",
+        "evidence": "2024年10月15日（火）先行限定発売",
+        "sourceUrl": "https://mg.runtrip.jp/archives/94259",
+        "sourceTitle": "ラントリップマガジン「ADIZERO EVO SL」発売記事",
+        "checkedAt": "2026-11-28"
+      }
+    },
+    {
       "id": "asics-gel-kayano-33",
       "series": "asics-gel-kayano",
       "brand": "asics",
@@ -272,6 +337,87 @@ export const db: ShoeDb = {
         "onSale": true,
         "checkedAt": "2026-11-28"
       }
+    },
+    {
+      "id": "hoka-clifton-10",
+      "series": "hoka-clifton",
+      "brand": "hoka",
+      "name": "CLIFTON 10",
+      "nameJa": "クリフトン 10",
+      "generation": 10,
+      "lifecycle": "previous",
+      "officialUrl": "https://mg.runtrip.jp/archives/98465",
+      "pageTitle": "ラントリップマガジン「HOKA CLIFTON 10」発売記事",
+      "specs": {
+        "weightG": {
+          "value": 278,
+          "evidence": "・重量：278g（28cm）",
+          "checkedAt": "2026-11-28",
+          "sourceUrl": "https://mg.runtrip.jp/archives/98465",
+          "sourceTitle": "ラントリップマガジン「HOKA CLIFTON 10」発売記事",
+          "sourceType": "media",
+          "size": "28cm"
+        },
+        "stackHeelMm": {
+          "value": 42,
+          "evidence": "・ソール厚：ヒール 42mm / フォアフット 34mm",
+          "checkedAt": "2026-11-28",
+          "sourceUrl": "https://mg.runtrip.jp/archives/98465",
+          "sourceTitle": "ラントリップマガジン「HOKA CLIFTON 10」発売記事",
+          "sourceType": "media"
+        },
+        "stackForefootMm": {
+          "value": 34,
+          "evidence": "・ソール厚：ヒール 42mm / フォアフット 34mm",
+          "checkedAt": "2026-11-28",
+          "sourceUrl": "https://mg.runtrip.jp/archives/98465",
+          "sourceTitle": "ラントリップマガジン「HOKA CLIFTON 10」発売記事",
+          "sourceType": "media"
+        },
+        "dropMm": {
+          "value": 8,
+          "evidence": "・オフセット：8mm",
+          "checkedAt": "2026-11-28",
+          "sourceUrl": "https://mg.runtrip.jp/archives/98465",
+          "sourceTitle": "ラントリップマガジン「HOKA CLIFTON 10」発売記事",
+          "sourceType": "media"
+        }
+      },
+      "checkedAt": "2026-11-28",
+      "officialPrice": {
+        "priceJpy": 19800,
+        "regularPriceJpy": 19800,
+        "onSale": false,
+        "kind": "msrp",
+        "evidence": "・価格：¥19,800（税込）",
+        "sourceUrl": "https://mg.runtrip.jp/archives/98465",
+        "sourceTitle": "ラントリップマガジン「HOKA CLIFTON 10」発売記事",
+        "sourceType": "media",
+        "checkedAt": "2026-11-28"
+      },
+      "releaseJp": {
+        "value": "2025年4月1日",
+        "evidence": "・発売日：2025年4月1日（火）より順次発売",
+        "sourceUrl": "https://mg.runtrip.jp/archives/98465",
+        "sourceTitle": "ラントリップマガジン「HOKA CLIFTON 10」発売記事",
+        "checkedAt": "2026-11-28"
+      },
+      "changes": [
+        {
+          "text": "特にミッドソールは形状が見直され、厚みが増したことで着地時の衝撃吸収力が向上。",
+          "sourceUrl": "https://mg.runtrip.jp/archives/98465",
+          "sourceTitle": "ラントリップマガジン「HOKA CLIFTON 10」発売記事",
+          "checkedAt": "2026-11-28",
+          "sourceType": "media"
+        },
+        {
+          "text": "かかとからつま先へのドロップ（オフセット）を3mm高めた構造",
+          "sourceUrl": "https://mg.runtrip.jp/archives/98465",
+          "sourceTitle": "ラントリップマガジン「HOKA CLIFTON 10」発売記事",
+          "checkedAt": "2026-11-28",
+          "sourceType": "media"
+        }
+      ]
     },
     {
       "id": "mizuno-wave-inspire-22",

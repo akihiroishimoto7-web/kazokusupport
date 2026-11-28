@@ -1,0 +1,81 @@
+{
+  "id": "hoka-clifton-10",
+  "series": "hoka-clifton",
+  "brand": "hoka",
+  "name": "CLIFTON 10",
+  "nameJa": "クリフトン 10",
+  "generation": 10,
+  "lifecycle": "previous",
+  "officialUrl": "https://mg.runtrip.jp/archives/98465",
+  "pageTitle": "ラントリップマガジン「HOKA CLIFTON 10」発売記事",
+  "specs": {
+    "weightG": {
+      "value": 278,
+      "evidence": "・重量：278g（28cm）",
+      "checkedAt": "2026-11-28",
+      "sourceUrl": "https://mg.runtrip.jp/archives/98465",
+      "sourceTitle": "ラントリップマガジン「HOKA CLIFTON 10」発売記事",
+      "sourceType": "media",
+      "size": "28cm"
+    },
+    "stackHeelMm": {
+      "value": 42,
+      "evidence": "・ソール厚：ヒール 42mm / フォアフット 34mm",
+      "checkedAt": "2026-11-28",
+      "sourceUrl": "https://mg.runtrip.jp/archives/98465",
+      "sourceTitle": "ラントリップマガジン「HOKA CLIFTON 10」発売記事",
+      "sourceType": "media"
+    },
+    "stackForefootMm": {
+      "value": 34,
+      "evidence": "・ソール厚：ヒール 42mm / フォアフット 34mm",
+      "checkedAt": "2026-11-28",
+      "sourceUrl": "https://mg.runtrip.jp/archives/98465",
+      "sourceTitle": "ラントリップマガジン「HOKA CLIFTON 10」発売記事",
+      "sourceType": "media"
+    },
+    "dropMm": {
+      "value": 8,
+      "evidence": "・オフセット：8mm",
+      "checkedAt": "2026-11-28",
+      "sourceUrl": "https://mg.runtrip.jp/archives/98465",
+      "sourceTitle": "ラントリップマガジン「HOKA CLIFTON 10」発売記事",
+      "sourceType": "media"
+    }
+  },
+  "checkedAt": "2026-11-28",
+  "officialPrice": {
+    "priceJpy": 19800,
+    "regularPriceJpy": 19800,
+    "onSale": false,
+    "kind": "msrp",
+    "evidence": "・価格：¥19,800（税込）",
+    "sourceUrl": "https://mg.runtrip.jp/archives/98465",
+    "sourceTitle": "ラントリップマガジン「HOKA CLIFTON 10」発売記事",
+    "sourceType": "media",
+    "checkedAt": "2026-11-28"
+  },
+  "releaseJp": {
+    "value": "2025年4月1日",
+    "evidence": "・発売日：2025年4月1日（火）より順次発売",
+    "sourceUrl": "https://mg.runtrip.jp/archives/98465",
+    "sourceTitle": "ラントリップマガジン「HOKA CLIFTON 10」発売記事",
+    "checkedAt": "2026-11-28"
+  },
+  "changes": [
+    {
+      "text": "特にミッドソールは形状が見直され、厚みが増したことで着地時の衝撃吸収力が向上。",
+      "sourceUrl": "https://mg.runtrip.jp/archives/98465",
+      "sourceTitle": "ラントリップマガジン「HOKA CLIFTON 10」発売記事",
+      "checkedAt": "2026-11-28",
+      "sourceType": "media"
+    },
+    {
+      "text": "かかとからつま先へのドロップ（オフセット）を3mm高めた構造",
+      "sourceUrl": "https://mg.runtrip.jp/archives/98465",
+      "sourceTitle": "ラントリップマガジン「HOKA CLIFTON 10」発売記事",
+      "checkedAt": "2026-11-28",
+      "sourceType": "media"
+    }
+  ]
+}
