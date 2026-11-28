@@ -15,7 +15,9 @@
     "shoes:collect": "node scripts/shoes/collect.mjs && node scripts/shoes/build-db.mjs",
     "shoes:db": "node scripts/shoes/build-db.mjs",
     "shoes:audit": "node scripts/shoes/audit.mjs",
-    "ameblo:drafts": "node scripts/ameblo/drafts.mjs"
+    "ameblo:drafts": "node scripts/ameblo/drafts.mjs",
+    "seo:audit": "node scripts/seo/audit.mjs",
+    "weekly:report": "node scripts/ops/weekly-report.mjs"
   },
   "engines": {
     "node": ">=20.9"

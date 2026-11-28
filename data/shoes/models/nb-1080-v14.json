@@ -1,0 +1,39 @@
+{
+  "id": "nb-1080-v14",
+  "series": "nb-1080",
+  "brand": "newbalance",
+  "name": "Fresh Foam X 1080v14",
+  "nameJa": "フレッシュフォーム X 1080v14",
+  "generation": 14,
+  "lifecycle": "previous",
+  "officialUrl": "https://prtimes.jp/main/html/rd/p/000001254.000029460.html",
+  "pageTitle": "株式会社ニューバランス ジャパン プレスリリース（PR TIMES）",
+  "styleCode": "M1080",
+  "specs": {},
+  "checkedAt": "2026-11-28",
+  "officialPrice": {
+    "priceJpy": 19800,
+    "regularPriceJpy": 19800,
+    "onSale": false,
+    "kind": "msrp",
+    "evidence": "価格：19,800円（税込）",
+    "sourceUrl": "https://prtimes.jp/main/html/rd/p/000001254.000029460.html",
+    "sourceTitle": "株式会社ニューバランス ジャパン プレスリリース（PR TIMES）",
+    "checkedAt": "2026-11-28"
+  },
+  "releaseJp": {
+    "value": "2024年10月10日",
+    "evidence": "10月10日（木）よりニューバランス公式オンラインストア、一部のニューバランスオフィシャルストアにて販売いたします。",
+    "sourceUrl": "https://prtimes.jp/main/html/rd/p/000001254.000029460.html",
+    "sourceTitle": "株式会社ニューバランス ジャパン プレスリリース（PR TIMES）",
+    "checkedAt": "2026-11-28"
+  },
+  "changes": [
+    {
+      "text": "衝撃吸収性に優れたFresh Foam Xミッドソールに、走行安定性に重点を置いてサイドウォールを改良し、アウトソール構造を一新してぶれない重心移動と屈曲を提供します。",
+      "sourceUrl": "https://prtimes.jp/main/html/rd/p/000001254.000029460.html",
+      "sourceTitle": "株式会社ニューバランス ジャパン プレスリリース（PR TIMES）",
+      "checkedAt": "2026-11-28"
+    }
+  ]
+}

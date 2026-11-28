@@ -57,7 +57,7 @@ function specFact(m: ShoeModel, key: keyof ShoeModel["specs"], prev: Fact<number
   return {
     value: v.value,
     verified: true,
-    source: { ...modelSource(m), checkedAt: v.checkedAt },
+    source: v.sourceUrl ? { title: v.sourceTitle ?? m.pageTitle, url: v.sourceUrl, checkedAt: v.checkedAt } : { ...modelSource(m), checkedAt: v.checkedAt },
     note: `${NOTE}「${v.evidence}」`,
     ...(v.size ? { size: v.size.replace(/^メンズサイズ/, "メンズ") } : {}),
   };
@@ -77,8 +77,13 @@ export function withModelData(shoe: Shoe): Shoe {
       ? {
           value: regular,
           verified: true,
-          source: { ...modelSource(m), checkedAt: m.officialPrice!.checkedAt },
-          note: "メーカー公式オンラインストアの通常価格（税込）。セール時は変わります",
+          source: m.officialPrice!.sourceUrl
+            ? { title: m.officialPrice!.sourceTitle ?? m.pageTitle, url: m.officialPrice!.sourceUrl, checkedAt: m.officialPrice!.checkedAt }
+            : { ...modelSource(m), checkedAt: m.officialPrice!.checkedAt },
+          note:
+            m.officialPrice!.kind === "msrp"
+              ? `メーカー希望小売価格（税込）。公式資料の記載「${m.officialPrice!.evidence ?? ""}」`
+              : "メーカー公式オンラインストアの通常価格（税込）。セール時は変わります",
         }
       : shoe.specs.priceJpy;
   const source = modelSource(m);

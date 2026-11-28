@@ -56,7 +56,7 @@ export function SiteHeader() {
     <>
       <header className="site-header" data-scrolled={scrolled || undefined}>
         <div className="site-header__inner">
-          <Link href="/" className="site-header__home" aria-label="RUN LIFE HIROSHIMA ホーム">
+          <Link href="/" className="site-header__home" aria-label="RUN LIFE HIROSHIMA">
             <Wordmark />
           </Link>
           <nav className="site-nav" aria-label="主なカテゴリー">

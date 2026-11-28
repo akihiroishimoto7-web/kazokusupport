@@ -11,7 +11,7 @@ SauconyのGUIDEシリーズの現行モデル、GUIDE 19。メーカー公式ペ
 - ドロップ：6mm
 - 厚さ：かかと35mm／前足部29mm
 
-（2026.11.25、Saucony公式ページで確認）
+（2026.11.28、GUIDE 19 | ガイド19 – SAUCONY（サッカニー）公式オンラインストアで確認）
 
 ## どんなシューズ？
 
@@ -31,7 +31,7 @@ SauconyのGUIDEシリーズの現行モデル、GUIDE 19。メーカー公式ペ
 
 ## 一つ前のモデルという選択
 
-- GUIDE 18：公式ストアで8,580円（通常価格から60%引き）、2026.11.25確認。重量272g、ドロップ6mm
+- GUIDE 18：公式ストアで8,580円（通常価格から60%引き）、2026.11.28確認。重量272g、ドロップ6mm
 
 最新でなくても、走るための一足としては十分です。
 
@@ -44,4 +44,5 @@ SauconyのGUIDEシリーズの現行モデル、GUIDE 19。メーカー公式ペ
 自分に合うかどうかは、シューズ診断でも確かめられます → https://kazokusupport-u8zk.vercel.app/tools/shoe-finder?utm_source=ameblo&utm_medium=blog&utm_campaign=model-saucony-guide-19
 
 ---
-出典：GUIDE 19 | ガイド19 – SAUCONY（サッカニー）公式オンラインストア（https://saucony.jp/products/mens-guide-19、2026.11.25確認）
+出典：GUIDE 19 | ガイド19 – SAUCONY（サッカニー）公式オンラインストア（https://saucony.jp/products/mens-guide-19、2026.11.28確認）
+価格の記録：2回

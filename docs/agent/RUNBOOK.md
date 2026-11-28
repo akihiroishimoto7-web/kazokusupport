@@ -14,9 +14,9 @@
 
 ## 1. はじめに読む
 
-1. `docs/agent/STATE.md` … これまでの作業、未完了、次にやること
+1. `docs/status.md` … これまでの作業、未完了、次にやること／`docs/backlog.md` … 優先課題
 2. `docs/agent/QUEUE.md` … データの点検結果（`npm run shoes:audit -- --write` で再生成）
-3. `docs/business/ANALYSIS.md` … 収益の考え方と優先順位
+3. `docs/strategy.md` … 収益の考え方／`docs/ops/` … 各手順
 
 ## 2. 週1回：価格と仕様の収集
 
@@ -60,4 +60,4 @@ npm run ameblo:drafts -- --series=brooks-ghost   # 1シリーズを作り直す
 
 ## 6. 作業の終わりに
 
-`docs/agent/STATE.md` の「作業履歴」に1行追加し、「未完了」「次にやること」を更新してください。次のエージェントは、そこから再開します。
+`docs/status.md` の「作業履歴」に1行追加し、「未完了」「次にやること」を更新してください。次のエージェントは、そこから再開します。

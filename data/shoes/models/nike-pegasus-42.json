@@ -13,19 +13,45 @@
       "value": 300,
       "size": "メンズサイズ28cm",
       "evidence": "重量：約300g（メンズサイズ28cm）",
-      "checkedAt": "2026-11-25"
+      "checkedAt": "2026-11-28"
     },
     "dropMm": {
       "value": 10,
       "evidence": "オフセット：10mm",
-      "checkedAt": "2026-11-25"
+      "checkedAt": "2026-11-28"
     }
   },
-  "checkedAt": "2026-11-25",
+  "checkedAt": "2026-11-28",
+  "changes": [
+    {
+      "text": "フィット感をアップデートし、前足部とつま先部分に余裕を持たせました。",
+      "sourceUrl": "https://www.nike.com/jp/t/%E3%83%8A%E3%82%A4%E3%82%AD-%E3%83%9A%E3%82%AC%E3%82%B5%E3%82%B9-42-%E3%83%A1%E3%83%B3%E3%82%BA-%E3%83%AD%E3%83%BC%E3%83%89%E3%83%A9%E3%83%B3%E3%83%8B%E3%83%B3%E3%82%B0%E3%82%B7%E3%83%A5%E3%83%BC%E3%82%BA-WU8ab5K6/IB1873-001",
+      "sourceTitle": "【NIKE公式】ナイキ ペガサス 42 メンズ ロードランニングシューズ.オンラインストア (通販サイト)",
+      "checkedAt": "2026-11-28"
+    },
+    {
+      "text": "ReactXフォームは、従来のReactテクノロジーよりも反発力が13％向上。",
+      "sourceUrl": "https://www.nike.com/jp/t/%E3%83%8A%E3%82%A4%E3%82%AD-%E3%83%9A%E3%82%AC%E3%82%B5%E3%82%B9-42-%E3%83%A1%E3%83%B3%E3%82%BA-%E3%83%AD%E3%83%BC%E3%83%89%E3%83%A9%E3%83%B3%E3%83%8B%E3%83%B3%E3%82%B0%E3%82%B7%E3%83%A5%E3%83%BC%E3%82%BA-WU8ab5K6/IB1873-001",
+      "sourceTitle": "【NIKE公式】ナイキ ペガサス 42 メンズ ロードランニングシューズ.オンラインストア (通販サイト)",
+      "checkedAt": "2026-11-28"
+    },
+    {
+      "text": "以前のバージョンよりも柔らかく通気性に優れた軽量メッシュで、足元を快適に保ちます。",
+      "sourceUrl": "https://www.nike.com/jp/t/%E3%83%8A%E3%82%A4%E3%82%AD-%E3%83%9A%E3%82%AC%E3%82%B5%E3%82%B9-42-%E3%83%A1%E3%83%B3%E3%82%BA-%E3%83%AD%E3%83%BC%E3%83%89%E3%83%A9%E3%83%B3%E3%83%8B%E3%83%B3%E3%82%B0%E3%82%B7%E3%83%A5%E3%83%BC%E3%82%BA-WU8ab5K6/IB1873-001",
+      "sourceTitle": "【NIKE公式】ナイキ ペガサス 42 メンズ ロードランニングシューズ.オンラインストア (通販サイト)",
+      "checkedAt": "2026-11-28"
+    },
+    {
+      "text": "また、フィット感も改良し、ペガサス 41と比べてつま先と前足部にゆとりを持たせました。",
+      "sourceUrl": "https://www.nike.com/jp/t/%E3%83%8A%E3%82%A4%E3%82%AD-%E3%83%9A%E3%82%AC%E3%82%B5%E3%82%B9-42-%E3%83%A1%E3%83%B3%E3%82%BA-%E3%83%AD%E3%83%BC%E3%83%89%E3%83%A9%E3%83%B3%E3%83%8B%E3%83%B3%E3%82%B0%E3%82%B7%E3%83%A5%E3%83%BC%E3%82%BA-WU8ab5K6/IB1873-001",
+      "sourceTitle": "【NIKE公式】ナイキ ペガサス 42 メンズ ロードランニングシューズ.オンラインストア (通販サイト)",
+      "checkedAt": "2026-11-28"
+    }
+  ],
   "officialPrice": {
     "priceJpy": 17600,
     "regularPriceJpy": 17600,
     "onSale": false,
-    "checkedAt": "2026-11-25"
+    "checkedAt": "2026-11-28"
   }
 }

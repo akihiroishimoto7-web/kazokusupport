@@ -21,7 +21,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { createRequire } from "node:module";
-import { extractSpecs, priceFromJsonLd, looksOnSale, shopifyYen } from "./extract.mjs";
+import { extractSpecs, extractChanges, priceFromJsonLd, looksOnSale, shopifyYen } from "./extract.mjs";
 
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), "../..");
 const args = Object.fromEntries(process.argv.slice(2).map((a) => a.replace(/^--/, "").split("=")).map(([k, v]) => [k, v ?? true]));
@@ -30,7 +30,8 @@ const UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
 
 const { targets } = JSON.parse(fs.readFileSync(path.join(ROOT, "data/shoes/targets.json"), "utf8"));
 const only = typeof args.only === "string" ? new Set(args.only.split(",")) : null;
-const list = targets.filter((t) => !only || only.has(t.id));
+// adapter: "manual" は手作業で確認したモデル（自動取得しない。data/shoes/models の値をそのまま使う）
+const list = targets.filter((t) => (!only || only.has(t.id)) && t.adapter !== "manual");
 
 const readJson = (p, fallback) => (fs.existsSync(p) ? JSON.parse(fs.readFileSync(p, "utf8")) : fallback);
 const writeJson = (p, v) => {
@@ -80,6 +81,11 @@ async function main() {
       const text = await page.evaluate(() => document.body.innerText);
       const ld = await page.evaluate(() => [...document.querySelectorAll('script[type="application/ld+json"]')].map((s) => s.textContent).join("\n"));
       const specs = extractSpecs(text);
+      // 前の世代の名前（例: Pegasus 41 / ペガサス 41）も手がかりにして、変更点の原文を拾う
+      const prevNames = targets
+        .filter((x) => x.series === t.series && x.generation < t.generation)
+        .flatMap((x) => [x.name, x.nameJa]);
+      const changes = t.lifecycle === "current" ? extractChanges(`${text}\n${ld.replace(/\\n/g, "\n")}`, prevNames) : [];
 
       // 価格
       let price = null;
@@ -110,7 +116,15 @@ async function main() {
         pageTitle: title,
         specs: {},
         checkedAt: today,
+        // 手で追記した項目（発売日・商品番号など）は残す
+        ...(prev?.releaseJp ? { releaseJp: prev.releaseJp } : {}),
+        ...(prev?.styleCode ? { styleCode: prev.styleCode } : {}),
       };
+      // 前作からの変更（公式の原文）。今回取れなければ前回の記録を残す
+      const changeList = changes.length
+        ? changes.map((c) => ({ text: c, sourceUrl: t.url, sourceTitle: title, checkedAt: today }))
+        : prev?.changes ?? [];
+      if (changeList.length) merged.changes = changeList;
       for (const key of ["weightG", "dropMm", "stackHeelMm", "stackForefootMm"]) {
         const v = specs[key];
         if (v) merged.specs[key] = { ...v, checkedAt: today };

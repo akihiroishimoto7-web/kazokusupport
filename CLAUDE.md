@@ -4,11 +4,18 @@
 
 ## 作業を始める前に
 
-1. `docs/agent/STATE.md` を読む（作業履歴・未完了・次にやること）
-2. `docs/agent/RUNBOOK.md` の手順に従う
-3. `docs/agent/QUEUE.md` でデータの点検結果を見る（古ければ `npm run shoes:audit -- --write`）
+1. `docs/status.md`（進捗・未完了・承認待ち）と `docs/backlog.md`（優先順位付きの課題）を読む
+2. `docs/strategy.md`（事業戦略）と `docs/agent/RUNBOOK.md`（定常業務の手順）に従う
+3. 自動生成の点検結果：`docs/agent/QUEUE.md`（データ）、`docs/seo/report.md`（SEO）、`docs/reports/`（週次）
+4. 手順書：`docs/ops/` — 商品情報の更新（product-data）、記事と事実確認（editorial）、SEO（seo）、週次分析（weekly）、計測（analytics）、自動化（automation）
 
-作業の終わりに `docs/agent/STATE.md` を更新すること。
+作業の終わりに `docs/status.md` を更新すること。調べものは、可能ならサブエージェントで並列に（依頼の型は `docs/ops/editorial.md`）。受け取った値は公開前に自分で原文を確かめる。
+
+## 編集思想
+
+- 高い一足より、合う一足。購入する必要がない場合は、その理由も伝える
+- 実体験と調査情報を明確に区別する（体験は運営者から提供されたものだけ）
+- 上質で静かな誌面。Apple のような情報設計と、品のある美しさ。過剰な広告・煽り文句・派手な装飾はしない
 
 ## 運営者との約束
 
@@ -28,6 +35,8 @@ npx next build                   # 本番ビルド
 npm run shoes:collect            # 公式サイトから仕様・価格を収集（Playwright 必要）
 npm run shoes:audit -- --write   # データの点検 → docs/agent/QUEUE.md
 npm run ameblo:drafts            # アメブロ記事の下書き → drafts/ameblo/
+npm run seo:audit -- --write     # SEO の点検 → docs/seo/report.md
+npm run weekly:report            # 週次レポート → docs/reports/
 ```
 
 ## データの場所
@@ -37,3 +46,5 @@ npm run ameblo:drafts            # アメブロ記事の下書き → drafts/ame
 - 価格の記録：`data/prices/*.json`（追記のみ）
 - サイトが読むまとめ：`data/shoes/db.ts`（自動生成。`npm run shoes:db`）
 - 記事：`content/articles/*.md`
+- 収益の記録：`data/revenue/log.csv`（実績のみ）
+- 計測イベント：`lib/track.ts`（診断）、`components/Analytics.tsx`（外部リンク）

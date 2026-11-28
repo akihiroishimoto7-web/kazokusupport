@@ -171,6 +171,23 @@ export default async function ArticlePage({ params }: Params) {
         </nav>
       ) : null}
 
+      {article.category === "shoes" || article.category === "start" || article.category === "race" ? (
+        <aside className="wrap article-tools" aria-label="シューズ選びの道具">
+          <p className="article-tools__head">シューズ選びに迷ったら</p>
+          <ul role="list">
+            <li>
+              <Link href="/tools/shoe-finder">シューズ診断（走力・用途・予算から） <Arrow /></Link>
+            </li>
+            <li>
+              <Link href="/shoes/compare">2〜3足を並べてくらべる <Arrow /></Link>
+            </li>
+            <li>
+              <Link href="/shoes">ランニングシューズ研究所 <Arrow /></Link>
+            </li>
+          </ul>
+        </aside>
+      ) : null}
+
       {related.length ? (
         <aside className="related wrap" aria-labelledby="related-title">
           <h2 className="related__title" id="related-title">

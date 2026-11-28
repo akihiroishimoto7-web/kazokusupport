@@ -5,6 +5,8 @@ import { publicShoes } from "@/content/shoes";
 import { features } from "@/content/features";
 import { isIndexableShoe } from "@/lib/shoe-db";
 import { comparablePairs, pairSlug } from "@/lib/shoe-pairs";
+import { allModels } from "@/lib/shoe-db";
+import { generationPairs, modelPairSlug } from "@/lib/model-pairs";
 import { indexableCourse, publicCourses } from "@/content/courses";
 import { brands, shoePurposes } from "@/content/brands";
 import { gearCategories, gearScenes } from "@/content/gear";
@@ -27,6 +29,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...publicShoes()
       .filter(isIndexableShoe)
       .map((s) => ({ url: u(`/shoes/${s.slug}`), lastModified: s.updatedAt })),
+    ...generationPairs(allModels()).map(({ older, newer }) => ({
+      url: u(`/shoes/models/${modelPairSlug(newer, older)}`),
+      lastModified: newer.checkedAt > older.checkedAt ? newer.checkedAt : older.checkedAt,
+    })),
     ...comparablePairs(publicShoes(), isIndexableShoe).map(([a, b]) => ({
       url: u(`/shoes/compare/${pairSlug(a.slug, b.slug)}`),
       lastModified: a.updatedAt > b.updatedAt ? a.updatedAt : b.updatedAt,

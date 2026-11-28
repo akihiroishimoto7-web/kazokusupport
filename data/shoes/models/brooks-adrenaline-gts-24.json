@@ -13,19 +13,19 @@
       "value": 285,
       "size": "27cm",
       "evidence": "重さ : 285g (27cm)",
-      "checkedAt": "2026-11-25"
+      "checkedAt": "2026-11-28"
     },
     "dropMm": {
       "value": 12,
       "evidence": "ミッドソールドロップ : 12mm",
-      "checkedAt": "2026-11-25"
+      "checkedAt": "2026-11-28"
     }
   },
-  "checkedAt": "2026-11-25",
+  "checkedAt": "2026-11-28",
   "officialPrice": {
     "priceJpy": 11880,
     "regularPriceJpy": 19800,
     "onSale": true,
-    "checkedAt": "2026-11-25"
+    "checkedAt": "2026-11-28"
   }
 }

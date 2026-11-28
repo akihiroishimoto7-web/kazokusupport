@@ -1,0 +1,45 @@
+{
+  "id": "asics-gel-kayano-33",
+  "series": "asics-gel-kayano",
+  "brand": "asics",
+  "name": "GEL-KAYANO 33",
+  "nameJa": "ゲルカヤノ33",
+  "generation": 33,
+  "lifecycle": "current",
+  "officialUrl": "https://prtimes.jp/main/html/rd/p/000000308.000020802.html",
+  "pageTitle": "アシックスジャパン株式会社 プレスリリース（PR TIMES）",
+  "styleCode": "1011C167（スタンダード）",
+  "specs": {},
+  "checkedAt": "2026-11-28",
+  "officialPrice": {
+    "priceJpy": 22000,
+    "regularPriceJpy": 22000,
+    "onSale": false,
+    "kind": "msrp",
+    "evidence": "メーカー希望小売価格は、すべて22,000円（税込）です。",
+    "sourceUrl": "https://prtimes.jp/main/html/rd/p/000000308.000020802.html",
+    "sourceTitle": "アシックスジャパン株式会社 プレスリリース（PR TIMES）",
+    "checkedAt": "2026-11-28"
+  },
+  "releaseJp": {
+    "value": "2026年6月11日（アシックスオンライン先行）",
+    "evidence": "6月11日からアシックスオンラインで先行発売し、6月18日からアシックス直営店各店（ファクトリーアウトレットを除く）、全国のスポーツ用品店で順次発売します。",
+    "sourceUrl": "https://prtimes.jp/main/html/rd/p/000000308.000020802.html",
+    "sourceTitle": "アシックスジャパン株式会社 プレスリリース（PR TIMES）",
+    "checkedAt": "2026-11-28"
+  },
+  "changes": [
+    {
+      "text": "今回のモデルでは、長時間の走行によるランニングフォームの変化に適応した「4D GUIDANCE SYSTEM（フォーディガイダンスシステム）」の考え方を踏襲した「FLUIDSUPPORT（フルイドサポート）」を採用しています。",
+      "sourceUrl": "https://prtimes.jp/main/html/rd/p/000000308.000020802.html",
+      "sourceTitle": "アシックスジャパン株式会社 プレスリリース（PR TIMES）",
+      "checkedAt": "2026-11-28"
+    },
+    {
+      "text": "ミッドソールは、上層部にやわらかく反発性に優れたクッションフォーム材「FF BLAST MAX（エフエフブラストマックス）」を、下層部に上層部よりも硬いクッションフォーム材「FF BLAST PLUS（エフエフブラストプラス）」を採用しています。",
+      "sourceUrl": "https://prtimes.jp/main/html/rd/p/000000308.000020802.html",
+      "sourceTitle": "アシックスジャパン株式会社 プレスリリース（PR TIMES）",
+      "checkedAt": "2026-11-28"
+    }
+  ]
+}

@@ -4,7 +4,7 @@ import { buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
   title: "写真のクレジット",
-  description: "RUN LIFE HIROSHIMA で使用している写真の撮影者とライセンス。",
+  description: "RUN LIFE HIROSHIMA で使用している写真の撮影者とライセンスの一覧です。運営者が撮影した写真と、クリエイティブ・コモンズ等で公開されている写真を区別して記載しています。",
   path: "/credits",
 });
 

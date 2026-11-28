@@ -13,29 +13,29 @@
       "value": 237,
       "size": null,
       "evidence": "重量: / 237g",
-      "checkedAt": "2026-11-25"
+      "checkedAt": "2026-11-28"
     },
     "dropMm": {
       "value": 8,
       "evidence": "オフセット: / 8mm（36mm/28mm)",
-      "checkedAt": "2026-11-25"
+      "checkedAt": "2026-11-28"
     },
     "stackHeelMm": {
       "value": 36,
       "evidence": "オフセット: / 8mm（36mm/28mm)",
-      "checkedAt": "2026-11-25"
+      "checkedAt": "2026-11-28"
     },
     "stackForefootMm": {
       "value": 28,
       "evidence": "オフセット: / 8mm（36mm/28mm)",
-      "checkedAt": "2026-11-25"
+      "checkedAt": "2026-11-28"
     }
   },
-  "checkedAt": "2026-11-25",
+  "checkedAt": "2026-11-28",
   "officialPrice": {
     "priceJpy": 17820,
     "regularPriceJpy": 29700,
     "onSale": true,
-    "checkedAt": "2026-11-25"
+    "checkedAt": "2026-11-28"
   }
 }

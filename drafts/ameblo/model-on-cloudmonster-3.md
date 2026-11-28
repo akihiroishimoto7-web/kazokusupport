@@ -10,7 +10,13 @@ OnのCloudmonsterシリーズの現行モデル、Cloudmonster 3。メーカー�
 - 重量：295g
 - ドロップ：6mm
 
-（2026.11.25、On公式ページで確認）
+（2026.11.28、メンズ Cloudmonster 3 | ブラック & ベージュ | On 日本で確認）
+
+## 前のモデルから変わったこと（公式の記載）
+
+> ​アップデートされた​シュータンは​足入れから​快適で、​足を​しっかり​ホールドします。
+
+（出典：メンズ Cloudmonster 3 | ブラック & ベージュ | On 日本）
 
 ## どんなシューズ？
 
@@ -38,4 +44,5 @@ On のランニングシューズの中で、クッション性を重視した�
 自分に合うかどうかは、シューズ診断でも確かめられます → https://kazokusupport-u8zk.vercel.app/tools/shoe-finder?utm_source=ameblo&utm_medium=blog&utm_campaign=model-on-cloudmonster-3
 
 ---
-出典：メンズ Cloudmonster 3 | ブラック & ベージュ | On 日本（https://www.on.com/ja-jp/products/cloudmonster-3-m-3mg1005/mens/black-ivory-shoes-3MG10051430、2026.11.25確認）
+出典：メンズ Cloudmonster 3 | ブラック & ベージュ | On 日本（https://www.on.com/ja-jp/products/cloudmonster-3-m-3mg1005/mens/black-ivory-shoes-3MG10051430、2026.11.28確認）
+価格の記録：2回

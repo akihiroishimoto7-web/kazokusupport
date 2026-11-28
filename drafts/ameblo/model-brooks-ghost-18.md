@@ -10,7 +10,7 @@ BrooksのGhostシリーズの現行モデル、Ghost 18。メーカー公式ペ�
 - 重量：290g（27cm）
 - ドロップ：10mm
 
-（2026.11.25、Brooks公式ページで確認）
+（2026.11.28、Ghost18 (ゴースト18 ブラック)で確認）
 
 ## どんなシューズ？
 
@@ -31,7 +31,7 @@ BrooksのGhostシリーズの現行モデル、Ghost 18。メーカー公式ペ�
 
 ## 一つ前のモデルという選択
 
-- Ghost 17：公式ストアで15,840円（通常価格から20%引き）、2026.11.25確認。重量285g、ドロップ10mm
+- Ghost 17：公式ストアで15,840円（通常価格から20%引き）、2026.11.28確認。重量285g、ドロップ10mm
 
 最新でなくても、走るための一足としては十分です。
 
@@ -44,4 +44,5 @@ BrooksのGhostシリーズの現行モデル、Ghost 18。メーカー公式ペ�
 自分に合うかどうかは、シューズ診断でも確かめられます → https://kazokusupport-u8zk.vercel.app/tools/shoe-finder?utm_source=ameblo&utm_medium=blog&utm_campaign=model-brooks-ghost-18
 
 ---
-出典：Ghost18 (ゴースト18 ブラック)（https://brooksrunning.co.jp/products/brm4933-blk、2026.11.25確認）
+出典：Ghost18 (ゴースト18 ブラック)（https://brooksrunning.co.jp/products/brm4933-blk、2026.11.28確認）
+価格の記録：2回

@@ -1,0 +1,45 @@
+{
+  "id": "nb-rebel-v5",
+  "series": "nb-rebel",
+  "brand": "newbalance",
+  "name": "FuelCell Rebel v5",
+  "nameJa": "フューエルセル レベル v5",
+  "generation": 5,
+  "lifecycle": "current",
+  "officialUrl": "https://prtimes.jp/main/html/rd/p/000001367.000029460.html",
+  "pageTitle": "株式会社ニューバランス ジャパン プレスリリース（PR TIMES）",
+  "styleCode": "MFCX",
+  "specs": {},
+  "checkedAt": "2026-11-28",
+  "officialPrice": {
+    "priceJpy": 16940,
+    "regularPriceJpy": 16940,
+    "onSale": false,
+    "kind": "msrp",
+    "evidence": "価格：16,940円（税込）",
+    "sourceUrl": "https://prtimes.jp/main/html/rd/p/000001367.000029460.html",
+    "sourceTitle": "株式会社ニューバランス ジャパン プレスリリース（PR TIMES）",
+    "checkedAt": "2026-11-28"
+  },
+  "releaseJp": {
+    "value": "2025年7月1日",
+    "evidence": "2025年7月1日（火）より発売します。",
+    "sourceUrl": "https://prtimes.jp/main/html/rd/p/000001367.000029460.html",
+    "sourceTitle": "株式会社ニューバランス ジャパン プレスリリース（PR TIMES）",
+    "checkedAt": "2026-11-28"
+  },
+  "changes": [
+    {
+      "text": "PEBAとEVAフォームのブレンドで計算されて作られた形状は、驚くほど軽量で反発力とエネルギッシュな足元を実現。",
+      "sourceUrl": "https://prtimes.jp/main/html/rd/p/000001367.000029460.html",
+      "sourceTitle": "株式会社ニューバランス ジャパン プレスリリース（PR TIMES）",
+      "checkedAt": "2026-11-28"
+    },
+    {
+      "text": "1つ目はシュータンをネオプレーン調の素材にしたことでフィット感の向上と屈曲時のストレス軽減に。",
+      "sourceUrl": "https://prtimes.jp/main/html/rd/p/000001367.000029460.html",
+      "sourceTitle": "株式会社ニューバランス ジャパン プレスリリース（PR TIMES）",
+      "checkedAt": "2026-11-28"
+    }
+  ]
+}

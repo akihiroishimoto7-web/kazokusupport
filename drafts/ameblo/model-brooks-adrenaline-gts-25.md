@@ -10,7 +10,7 @@ BrooksのAdrenaline GTSシリーズの現行モデル、Adrenaline GTS 25。メ�
 - 重量：300g（27cm）
 - ドロップ：10mm
 
-（2026.11.25、Brooks公式ページで確認）
+（2026.11.28、Adrenaline GTS 25 (アドレナリンGTS25 グレー)で確認）
 
 ## どんなシューズ？
 
@@ -31,7 +31,7 @@ BrooksのAdrenaline GTSシリーズの現行モデル、Adrenaline GTS 25。メ�
 
 ## 一つ前のモデルという選択
 
-- Adrenaline GTS 24：公式ストアで11,880円（通常価格から40%引き）、2026.11.25確認。重量285g、ドロップ12mm
+- Adrenaline GTS 24：公式ストアで11,880円（通常価格から40%引き）、2026.11.28確認。重量285g、ドロップ12mm
 
 最新でなくても、走るための一足としては十分です。
 
@@ -44,4 +44,5 @@ BrooksのAdrenaline GTSシリーズの現行モデル、Adrenaline GTS 25。メ�
 自分に合うかどうかは、シューズ診断でも確かめられます → https://kazokusupport-u8zk.vercel.app/tools/shoe-finder?utm_source=ameblo&utm_medium=blog&utm_campaign=model-brooks-adrenaline-gts-25
 
 ---
-出典：Adrenaline GTS 25 (アドレナリンGTS25 グレー)（https://brooksrunning.co.jp/products/brm4543-gry、2026.11.25確認）
+出典：Adrenaline GTS 25 (アドレナリンGTS25 グレー)（https://brooksrunning.co.jp/products/brm4543-gry、2026.11.28確認）
+価格の記録：2回

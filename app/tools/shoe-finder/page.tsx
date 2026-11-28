@@ -7,7 +7,8 @@ import { buildMetadata } from "@/lib/seo";
 import { getAmebloEntries } from "@/lib/ameblo";
 import { linkEntries } from "@/lib/ameblo-match";
 import { amebloUrl, social } from "@/content/social";
-import { priceIndex } from "@/lib/shoe-db";
+import { allModels, priceIndex } from "@/lib/shoe-db";
+import { generationPairs, modelPairSlug } from "@/lib/model-pairs";
 
 export const metadata = buildMetadata({
   title: "ランニングシューズ診断",
@@ -22,6 +23,12 @@ export default async function ShoeFinderPage() {
   const linked = linkEntries(await getAmebloEntries()).filter((e) => e.shoes.length || e.purposes.length);
   const shoes = publicShoes();
   const brandNames = Object.fromEntries(brands.map((b) => [b.id, b.name]));
+  const generationLinks = Object.fromEntries(
+    generationPairs(allModels()).map(({ older, newer }) => [
+      newer.series,
+      { path: `/shoes/models/${modelPairSlug(newer, older)}`, label: `${older.name}と${newer.name}の違い` },
+    ]),
+  );
   return (
     <div className="tool-page">
       <div className="wrap">
@@ -33,7 +40,7 @@ export default async function ShoeFinderPage() {
         />
       </div>
       <Suspense fallback={<div className="wrap finder finder--loading">読み込んでいます…</div>}>
-        <ShoeFinder shoes={shoes} prices={priceIndex()} brandNames={brandNames} ameblo={{ entries: linked, blogUrl: amebloUrl(), title: social.ameblo.title }} />
+        <ShoeFinder shoes={shoes} prices={priceIndex()} generationLinks={generationLinks} brandNames={brandNames} ameblo={{ entries: linked, blogUrl: amebloUrl(), title: social.ameblo.title }} />
       </Suspense>
     </div>
   );

@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: Params) {
   const { slug } = await params;
   const g = getGear(slug);
   if (!g) return {};
-  return buildMetadata({ title: `${g.name}の選び方`, description: `${g.catch}。${g.whatFor}`, path: `/gear/${g.slug}` });
+  return buildMetadata({ title: `${g.name}の選び方`, description: `${g.catch}。${g.whatFor}必要な場面と、なくてもいい場面、選ぶときのポイントをまとめています。`, path: `/gear/${g.slug}` });
 }
 
 export default async function GearCategoryPage({ params }: Params) {

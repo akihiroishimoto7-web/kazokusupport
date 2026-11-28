@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: Params) {
   if (!b) return {};
   return buildMetadata({
     title: `${b.name}（${b.nameJa}）のランニングシューズ`,
-    description: `${b.nameJa}の主なランニングシューズのシリーズを、用途と向いている人から整理しています。`,
+    description: `${b.nameJa}の主なランニングシューズのシリーズを、用途と向いている人、買わなくていい理由から整理しています。公式の重量・ドロップ・価格を確認できたモデルは、出典つきで掲載しています。`,
     path: `/shoes/brand/${b.id}`,
   });
 }

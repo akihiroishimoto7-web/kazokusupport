@@ -10,7 +10,7 @@ BrooksのGlycerinシリーズの現行モデル、Glycerin 23。メーカー公�
 - 重量：300g（27cm）
 - ドロップ：8mm
 
-（2026.11.25、Brooks公式ページで確認）
+（2026.11.28、Glycerin 23 (グリセリン23 ブラック)で確認）
 
 ## どんなシューズ？
 
@@ -31,7 +31,7 @@ BrooksのGlycerinシリーズの現行モデル、Glycerin 23。メーカー公�
 
 ## 一つ前のモデルという選択
 
-- Glycerin 22：公式ストアで15,180円（通常価格から40%引き）、2026.11.25確認。重量290g、ドロップ10mm
+- Glycerin 22：公式ストアで15,180円（通常価格から40%引き）、2026.11.28確認。重量290g、ドロップ10mm
 
 最新でなくても、走るための一足としては十分です。
 
@@ -44,4 +44,5 @@ BrooksのGlycerinシリーズの現行モデル、Glycerin 23。メーカー公�
 自分に合うかどうかは、シューズ診断でも確かめられます → https://kazokusupport-u8zk.vercel.app/tools/shoe-finder?utm_source=ameblo&utm_medium=blog&utm_campaign=model-brooks-glycerin-23
 
 ---
-出典：Glycerin 23 (グリセリン23 ブラック)（https://brooksrunning.co.jp/products/brm4763-blk、2026.11.25確認）
+出典：Glycerin 23 (グリセリン23 ブラック)（https://brooksrunning.co.jp/products/brm4763-blk、2026.11.28確認）
+価格の記録：2回
