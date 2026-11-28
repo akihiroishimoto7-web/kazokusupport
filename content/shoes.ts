@@ -1,5 +1,5 @@
 import type { BrandId, Fact, Rating, Shoe, ShoePurposeId, ShoeTrait, ShopLinks } from "@/lib/types";
-import { currentModel, withModelData } from "../lib/shoe-db.ts";
+import { currentModel, usesNonOfficial, withModelData } from "../lib/shoe-db.ts";
 
 /**
  * シューズ台帳
@@ -530,7 +530,7 @@ export const modelsInResearch: { name: string; shoe: string; status: "confirmed"
         name: `${brandName} ${m.name}`,
         shoe: s.slug,
         status: "confirmed" as const,
-        note: `公式の仕様・価格を確認（${m.checkedAt.replaceAll("-", ".")}）${missing.length ? `。${missing.join("・")}は公式に記載なし` : ""}`,
+        note: `${usesNonOfficial(m) ? "販売店・メディアの記載で仕様・価格を確認" : "公式の仕様・価格を確認"}（${m.checkedAt.replaceAll("-", ".")}）${missing.length ? `。${missing.join("・")}は未確認` : ""}`,
       };
     }
     return {

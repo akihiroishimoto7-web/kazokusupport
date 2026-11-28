@@ -1,0 +1,65 @@
+{
+  "id": "adidas-adizero-evo-sl",
+  "series": "adidas-adizero-evo-sl",
+  "brand": "adidas",
+  "name": "ADIZERO EVO SL",
+  "nameJa": "アディゼロ EVO SL",
+  "generation": 1,
+  "lifecycle": "current",
+  "officialUrl": "https://mg.runtrip.jp/archives/94259",
+  "pageTitle": "ラントリップマガジン「ADIZERO EVO SL」発売記事",
+  "specs": {
+    "weightG": {
+      "value": 224,
+      "evidence": "・重量：224g （27.0cm時／片足）",
+      "checkedAt": "2026-11-28",
+      "sourceUrl": "https://mg.runtrip.jp/archives/94259",
+      "sourceTitle": "ラントリップマガジン「ADIZERO EVO SL」発売記事",
+      "sourceType": "media",
+      "size": "27.0cm"
+    },
+    "stackHeelMm": {
+      "value": 38.5,
+      "evidence": "ヒール：38.5 mm / 前足部：32.0 mm",
+      "checkedAt": "2026-11-28",
+      "sourceUrl": "https://mg.runtrip.jp/archives/94259",
+      "sourceTitle": "ラントリップマガジン「ADIZERO EVO SL」発売記事",
+      "sourceType": "media"
+    },
+    "stackForefootMm": {
+      "value": 32,
+      "evidence": "ヒール：38.5 mm / 前足部：32.0 mm",
+      "checkedAt": "2026-11-28",
+      "sourceUrl": "https://mg.runtrip.jp/archives/94259",
+      "sourceTitle": "ラントリップマガジン「ADIZERO EVO SL」発売記事",
+      "sourceType": "media"
+    },
+    "dropMm": {
+      "value": 6.5,
+      "evidence": "ドロップ：6.5 mm",
+      "checkedAt": "2026-11-28",
+      "sourceUrl": "https://mg.runtrip.jp/archives/94259",
+      "sourceTitle": "ラントリップマガジン「ADIZERO EVO SL」発売記事",
+      "sourceType": "media"
+    }
+  },
+  "checkedAt": "2026-11-28",
+  "officialPrice": {
+    "priceJpy": 19800,
+    "regularPriceJpy": 19800,
+    "onSale": false,
+    "kind": "msrp",
+    "evidence": "・価格：¥19,800（税込）",
+    "sourceUrl": "https://mg.runtrip.jp/archives/94259",
+    "sourceTitle": "ラントリップマガジン「ADIZERO EVO SL」発売記事",
+    "sourceType": "media",
+    "checkedAt": "2026-11-28"
+  },
+  "releaseJp": {
+    "value": "2024年10月15日（先行限定発売）",
+    "evidence": "2024年10月15日（火）先行限定発売",
+    "sourceUrl": "https://mg.runtrip.jp/archives/94259",
+    "sourceTitle": "ラントリップマガジン「ADIZERO EVO SL」発売記事",
+    "checkedAt": "2026-11-28"
+  }
+}

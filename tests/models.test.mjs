@@ -56,3 +56,28 @@ test("手作業で確認したモデル: 価格・発売日・変更点に原文
     }
   }
 });
+
+import { trustedSource } from "../lib/trusted-sources.ts";
+import { curatedPairs } from "../lib/model-pairs.ts";
+
+test("公式以外の値は、承認済みの情報源（ステップスポーツ・アルペン・ヒマラヤ・ラントリップ）だけ", () => {
+  for (const m of db.models) {
+    const facts = [...Object.entries(m.specs).map(([k, v]) => [k, v]), ["price", m.officialPrice], ...(m.changes ?? []).map((c) => ["change", c])];
+    for (const [k, v] of facts) {
+      if (!v || !v.sourceType || v.sourceType === "official") continue;
+      const t = trustedSource(v.sourceUrl ?? "");
+      assert.ok(t, `${m.id}.${k}: 承認されていない情報源 ${v.sourceUrl}`);
+      assert.equal(t.type, v.sourceType, `${m.id}.${k}: 情報源の種類が違う`);
+    }
+  }
+  assert.equal(trustedSource("https://item.rakuten.co.jp/alpen/4303618116/")?.name, "アルペン（楽天市場店）");
+  assert.equal(trustedSource("https://item.rakuten.co.jp/someshop/123/"), null);
+  assert.deepEqual(trustedSource("https://runtrip.jp/magazine/1"), { name: "ラントリップ", type: "media" });
+});
+
+test("シリーズをまたいだ比較は、両方のモデルがあるときだけ", () => {
+  for (const p of curatedPairs(db.models)) {
+    assert.notEqual(p.a.series, p.b.series);
+    assert.equal(p.slug, `${p.a.id}-vs-${p.b.id}`);
+  }
+});

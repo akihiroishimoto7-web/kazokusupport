@@ -4,6 +4,71 @@ import type { ShoeDb } from "../../lib/shoe-db-types.ts";
 export const db: ShoeDb = {
   "models": [
     {
+      "id": "adidas-adizero-evo-sl",
+      "series": "adidas-adizero-evo-sl",
+      "brand": "adidas",
+      "name": "ADIZERO EVO SL",
+      "nameJa": "アディゼロ EVO SL",
+      "generation": 1,
+      "lifecycle": "current",
+      "officialUrl": "https://mg.runtrip.jp/archives/94259",
+      "pageTitle": "ラントリップマガジン「ADIZERO EVO SL」発売記事",
+      "specs": {
+        "weightG": {
+          "value": 224,
+          "evidence": "・重量：224g （27.0cm時／片足）",
+          "checkedAt": "2026-11-28",
+          "sourceUrl": "https://mg.runtrip.jp/archives/94259",
+          "sourceTitle": "ラントリップマガジン「ADIZERO EVO SL」発売記事",
+          "sourceType": "media",
+          "size": "27.0cm"
+        },
+        "stackHeelMm": {
+          "value": 38.5,
+          "evidence": "ヒール：38.5 mm / 前足部：32.0 mm",
+          "checkedAt": "2026-11-28",
+          "sourceUrl": "https://mg.runtrip.jp/archives/94259",
+          "sourceTitle": "ラントリップマガジン「ADIZERO EVO SL」発売記事",
+          "sourceType": "media"
+        },
+        "stackForefootMm": {
+          "value": 32,
+          "evidence": "ヒール：38.5 mm / 前足部：32.0 mm",
+          "checkedAt": "2026-11-28",
+          "sourceUrl": "https://mg.runtrip.jp/archives/94259",
+          "sourceTitle": "ラントリップマガジン「ADIZERO EVO SL」発売記事",
+          "sourceType": "media"
+        },
+        "dropMm": {
+          "value": 6.5,
+          "evidence": "ドロップ：6.5 mm",
+          "checkedAt": "2026-11-28",
+          "sourceUrl": "https://mg.runtrip.jp/archives/94259",
+          "sourceTitle": "ラントリップマガジン「ADIZERO EVO SL」発売記事",
+          "sourceType": "media"
+        }
+      },
+      "checkedAt": "2026-11-28",
+      "officialPrice": {
+        "priceJpy": 19800,
+        "regularPriceJpy": 19800,
+        "onSale": false,
+        "kind": "msrp",
+        "evidence": "・価格：¥19,800（税込）",
+        "sourceUrl": "https://mg.runtrip.jp/archives/94259",
+        "sourceTitle": "ラントリップマガジン「ADIZERO EVO SL」発売記事",
+        "sourceType": "media",
+        "checkedAt": "2026-11-28"
+      },
+      "releaseJp": {
+        "value": "2024年10月15日（先行限定発売）",
+        "evidence": "2024年10月15日（火）先行限定発売",
+        "sourceUrl": "https://mg.runtrip.jp/archives/94259",
+        "sourceTitle": "ラントリップマガジン「ADIZERO EVO SL」発売記事",
+        "checkedAt": "2026-11-28"
+      }
+    },
+    {
       "id": "asics-gel-kayano-33",
       "series": "asics-gel-kayano",
       "brand": "asics",
@@ -14,7 +79,25 @@ export const db: ShoeDb = {
       "officialUrl": "https://prtimes.jp/main/html/rd/p/000000308.000020802.html",
       "pageTitle": "アシックスジャパン株式会社 プレスリリース（PR TIMES）",
       "styleCode": "1011C167（スタンダード）",
-      "specs": {},
+      "specs": {
+        "weightG": {
+          "value": 298,
+          "evidence": "■片足重量:298g／■片足重量代表サイズ:27.0",
+          "checkedAt": "2026-11-28",
+          "sourceUrl": "https://item.rakuten.co.jp/alpen/4303616316/",
+          "sourceTitle": "アルペン（楽天市場店）商品ページ",
+          "sourceType": "retailer",
+          "size": "27.0cm"
+        },
+        "dropMm": {
+          "value": 8,
+          "evidence": "・ドロップ：8mm",
+          "checkedAt": "2026-11-28",
+          "sourceUrl": "https://mg.runtrip.jp/archives/111559",
+          "sourceTitle": "ラントリップマガジン（GEL-KAYANO 33）",
+          "sourceType": "media"
+        }
+      },
       "checkedAt": "2026-11-28",
       "officialPrice": {
         "priceJpy": 22000,
@@ -59,7 +142,32 @@ export const db: ShoeDb = {
       "officialUrl": "https://prtimes.jp/main/html/rd/p/000000256.000020802.html",
       "pageTitle": "アシックスジャパン株式会社 プレスリリース（PR TIMES）",
       "styleCode": "1011C052（スタンダード）",
-      "specs": {},
+      "specs": {
+        "stackHeelMm": {
+          "value": 40,
+          "evidence": "かかと部が40mm、前足部が32mm",
+          "checkedAt": "2026-11-28",
+          "sourceUrl": "https://mg.runtrip.jp/archives/100133",
+          "sourceTitle": "ラントリップマガジン（GEL-KAYANO 32）",
+          "sourceType": "media"
+        },
+        "stackForefootMm": {
+          "value": 32,
+          "evidence": "かかと部が40mm、前足部が32mm",
+          "checkedAt": "2026-11-28",
+          "sourceUrl": "https://mg.runtrip.jp/archives/100133",
+          "sourceTitle": "ラントリップマガジン（GEL-KAYANO 32）",
+          "sourceType": "media"
+        },
+        "dropMm": {
+          "value": 8,
+          "evidence": "前作からドロップ（シューズ前後の高低差）が10mmから8mmに変更されたこと",
+          "checkedAt": "2026-11-28",
+          "sourceUrl": "https://mg.runtrip.jp/archives/100133",
+          "sourceTitle": "ラントリップマガジン（GEL-KAYANO 32）",
+          "sourceType": "media"
+        }
+      },
       "checkedAt": "2026-11-28",
       "officialPrice": {
         "priceJpy": 22000,
@@ -274,6 +382,87 @@ export const db: ShoeDb = {
       }
     },
     {
+      "id": "hoka-clifton-10",
+      "series": "hoka-clifton",
+      "brand": "hoka",
+      "name": "CLIFTON 10",
+      "nameJa": "クリフトン 10",
+      "generation": 10,
+      "lifecycle": "previous",
+      "officialUrl": "https://mg.runtrip.jp/archives/98465",
+      "pageTitle": "ラントリップマガジン「HOKA CLIFTON 10」発売記事",
+      "specs": {
+        "weightG": {
+          "value": 278,
+          "evidence": "・重量：278g（28cm）",
+          "checkedAt": "2026-11-28",
+          "sourceUrl": "https://mg.runtrip.jp/archives/98465",
+          "sourceTitle": "ラントリップマガジン「HOKA CLIFTON 10」発売記事",
+          "sourceType": "media",
+          "size": "28cm"
+        },
+        "stackHeelMm": {
+          "value": 42,
+          "evidence": "・ソール厚：ヒール 42mm / フォアフット 34mm",
+          "checkedAt": "2026-11-28",
+          "sourceUrl": "https://mg.runtrip.jp/archives/98465",
+          "sourceTitle": "ラントリップマガジン「HOKA CLIFTON 10」発売記事",
+          "sourceType": "media"
+        },
+        "stackForefootMm": {
+          "value": 34,
+          "evidence": "・ソール厚：ヒール 42mm / フォアフット 34mm",
+          "checkedAt": "2026-11-28",
+          "sourceUrl": "https://mg.runtrip.jp/archives/98465",
+          "sourceTitle": "ラントリップマガジン「HOKA CLIFTON 10」発売記事",
+          "sourceType": "media"
+        },
+        "dropMm": {
+          "value": 8,
+          "evidence": "・オフセット：8mm",
+          "checkedAt": "2026-11-28",
+          "sourceUrl": "https://mg.runtrip.jp/archives/98465",
+          "sourceTitle": "ラントリップマガジン「HOKA CLIFTON 10」発売記事",
+          "sourceType": "media"
+        }
+      },
+      "checkedAt": "2026-11-28",
+      "officialPrice": {
+        "priceJpy": 19800,
+        "regularPriceJpy": 19800,
+        "onSale": false,
+        "kind": "msrp",
+        "evidence": "・価格：¥19,800（税込）",
+        "sourceUrl": "https://mg.runtrip.jp/archives/98465",
+        "sourceTitle": "ラントリップマガジン「HOKA CLIFTON 10」発売記事",
+        "sourceType": "media",
+        "checkedAt": "2026-11-28"
+      },
+      "releaseJp": {
+        "value": "2025年4月1日",
+        "evidence": "・発売日：2025年4月1日（火）より順次発売",
+        "sourceUrl": "https://mg.runtrip.jp/archives/98465",
+        "sourceTitle": "ラントリップマガジン「HOKA CLIFTON 10」発売記事",
+        "checkedAt": "2026-11-28"
+      },
+      "changes": [
+        {
+          "text": "特にミッドソールは形状が見直され、厚みが増したことで着地時の衝撃吸収力が向上。",
+          "sourceUrl": "https://mg.runtrip.jp/archives/98465",
+          "sourceTitle": "ラントリップマガジン「HOKA CLIFTON 10」発売記事",
+          "checkedAt": "2026-11-28",
+          "sourceType": "media"
+        },
+        {
+          "text": "かかとからつま先へのドロップ（オフセット）を3mm高めた構造",
+          "sourceUrl": "https://mg.runtrip.jp/archives/98465",
+          "sourceTitle": "ラントリップマガジン「HOKA CLIFTON 10」発売記事",
+          "checkedAt": "2026-11-28",
+          "sourceType": "media"
+        }
+      ]
+    },
+    {
       "id": "mizuno-wave-inspire-22",
       "series": "mizuno-wave-inspire",
       "brand": "mizuno",
@@ -350,7 +539,25 @@ export const db: ShoeDb = {
       "officialUrl": "https://prtimes.jp/main/html/rd/p/000001430.000029460.html",
       "pageTitle": "株式会社ニューバランス ジャパン プレスリリース（PR TIMES）",
       "styleCode": "M1080",
-      "specs": {},
+      "specs": {
+        "weightG": {
+          "value": 261,
+          "evidence": "■片足重量:261g／■片足重量代表サイズ:27.5cm／■ワイズ:2E",
+          "checkedAt": "2026-11-28",
+          "sourceUrl": "https://item.rakuten.co.jp/alpen/4304640316/",
+          "sourceTitle": "アルペン（楽天市場店）商品ページ",
+          "sourceType": "retailer",
+          "size": "27.5cm・2E"
+        },
+        "dropMm": {
+          "value": 6,
+          "evidence": "ニューバランス｜1080v15／・ドロップ：6mm",
+          "checkedAt": "2026-11-28",
+          "sourceUrl": "https://mg.runtrip.jp/archives/108703",
+          "sourceTitle": "ラントリップマガジン（1080v15）",
+          "sourceType": "media"
+        }
+      },
       "checkedAt": "2026-11-28",
       "officialPrice": {
         "priceJpy": 22000,
@@ -389,7 +596,17 @@ export const db: ShoeDb = {
       "officialUrl": "https://prtimes.jp/main/html/rd/p/000001254.000029460.html",
       "pageTitle": "株式会社ニューバランス ジャパン プレスリリース（PR TIMES）",
       "styleCode": "M1080",
-      "specs": {},
+      "specs": {
+        "weightG": {
+          "value": 300,
+          "evidence": "■片足重量:300g／■片足重量代表サイズ:27.5cm",
+          "checkedAt": "2026-11-28",
+          "sourceUrl": "https://item.rakuten.co.jp/alpen/4304640215/",
+          "sourceTitle": "アルペン（楽天市場店）商品ページ",
+          "sourceType": "retailer",
+          "size": "27.5cm・2E"
+        }
+      },
       "checkedAt": "2026-11-28",
       "officialPrice": {
         "priceJpy": 19800,
@@ -428,7 +645,41 @@ export const db: ShoeDb = {
       "officialUrl": "https://prtimes.jp/main/html/rd/p/000001367.000029460.html",
       "pageTitle": "株式会社ニューバランス ジャパン プレスリリース（PR TIMES）",
       "styleCode": "MFCX",
-      "specs": {},
+      "specs": {
+        "weightG": {
+          "value": 223,
+          "evidence": "■片足重量:223g／■片足重量代表サイズ:27.5cm／■ワイズ:2E",
+          "checkedAt": "2026-11-28",
+          "sourceUrl": "https://item.rakuten.co.jp/alpen/4303640516/",
+          "sourceTitle": "アルペン（楽天市場店）商品ページ",
+          "sourceType": "retailer",
+          "size": "27.5cm・2E"
+        },
+        "stackHeelMm": {
+          "value": 35,
+          "evidence": "今回は前足部29mm、後足部35mm。",
+          "checkedAt": "2026-11-28",
+          "sourceUrl": "https://mg.runtrip.jp/archives/101898",
+          "sourceTitle": "ラントリップマガジン（FuelCell Rebel v5）",
+          "sourceType": "media"
+        },
+        "stackForefootMm": {
+          "value": 29,
+          "evidence": "今回は前足部29mm、後足部35mm。",
+          "checkedAt": "2026-11-28",
+          "sourceUrl": "https://mg.runtrip.jp/archives/101898",
+          "sourceTitle": "ラントリップマガジン（FuelCell Rebel v5）",
+          "sourceType": "media"
+        },
+        "dropMm": {
+          "value": 6,
+          "evidence": "ニューバランス｜FuelCell Rebel v5／・ドロップ：6mm",
+          "checkedAt": "2026-11-28",
+          "sourceUrl": "https://mg.runtrip.jp/archives/108703",
+          "sourceTitle": "ラントリップマガジン（FuelCell Rebel v5）",
+          "sourceType": "media"
+        }
+      },
       "checkedAt": "2026-11-28",
       "officialPrice": {
         "priceJpy": 16940,

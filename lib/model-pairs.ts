@@ -1,4 +1,5 @@
 import type { ShoeModel } from "./shoe-db-types";
+import { comparisons } from "../data/shoes/comparisons.ts";
 
 /**
  * 世代比較（例: Pegasus 41 と 42）の組み合わせ。
@@ -51,5 +52,44 @@ export function generationNotes(older: ShoeModel, newer: ShoeModel): string[] {
     const off = Math.round((1 - p0.priceJpy / p0.regularPriceJpy) * 100);
     out.push(`${older.name}は、公式ストアで${p0.priceJpy.toLocaleString("ja-JP")}円（通常価格から${off}%引き、${p0.checkedAt.replaceAll("-", ".")}確認）。`);
   }
+  return out;
+}
+
+
+/** シリーズをまたいだ比較（data/shoes/comparisons.json）。両方のモデルがあるものだけ */
+export function curatedPairs(models: ShoeModel[]): { a: ShoeModel; b: ShoeModel; why: string; slug: string }[] {
+  const out: { a: ShoeModel; b: ShoeModel; why: string; slug: string }[] = [];
+  for (const p of comparisons) {
+    const a = models.find((m) => m.id === p.a);
+    const b = models.find((m) => m.id === p.b);
+    if (a && b) out.push({ a, b, why: p.why, slug: `${a.id}-vs-${b.id}` });
+  }
+  return out;
+}
+
+/** 2つのモデル（シリーズ違い）の数値の違い。確認できた値だけ、計測サイズが違えば差を計算しない */
+export function crossNotes(a: ShoeModel, b: ShoeModel): string[] {
+  const out: string[] = [];
+  const norm = (s?: string | null) => (s ?? "").replace(/メンズ|サイズ|\.0|\s/g, "");
+  const wa = a.specs.weightG;
+  const wb = b.specs.weightG;
+  if (wa && wb) {
+    out.push(
+      wa.size && norm(wa.size) === norm(wb.size)
+        ? wa.value === wb.value
+          ? `重量はどちらも${wa.value}g（${wa.size}）。`
+          : `重量は${wa.value < wb.value ? a.name : b.name}のほうが${Math.abs(wa.value - wb.value)}g軽い（${wa.size}、${wa.value}g と ${wb.value}g）。`
+        : `重量は${a.name}が${wa.value}g${wa.size ? `（${wa.size}）` : ""}、${b.name}が${wb.value}g${wb.size ? `（${wb.size}）` : ""}。計測サイズが同じでないため、単純には比べられません。`,
+    );
+  } else out.push("重量は、どちらかが確認できていません（未確認）。");
+  const da = a.specs.dropMm;
+  const db = b.specs.dropMm;
+  if (da && db) out.push(da.value === db.value ? `ドロップはどちらも${da.value}mm。` : `ドロップは${a.name}が${da.value}mm、${b.name}が${db.value}mm。`);
+  const ha = a.specs.stackHeelMm;
+  const hb = b.specs.stackHeelMm;
+  if (ha && hb) out.push(`かかとの厚さは${a.name}が${ha.value}mm、${b.name}が${hb.value}mm。`);
+  const pa = a.officialPrice?.regularPriceJpy;
+  const pb = b.officialPrice?.regularPriceJpy;
+  if (pa && pb) out.push(pa === pb ? `定価（税込）はどちらも${pa.toLocaleString("ja-JP")}円。` : `定価（税込）は${a.name}が${pa.toLocaleString("ja-JP")}円、${b.name}が${pb.toLocaleString("ja-JP")}円。`);
   return out;
 }

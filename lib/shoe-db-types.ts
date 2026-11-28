@@ -9,10 +9,12 @@ export type SpecValue = {
   /** 商品ページ以外（プレスリリース・海外の公式サイトなど）で確認した場合の出典 */
   sourceUrl?: string;
   sourceTitle?: string;
+  /** 情報源の種類。省略時は official。retailer / media は lib/trusted-sources.ts の承認済みのものだけ */
+  sourceType?: "official" | "retailer" | "media";
 };
 
 /** 公式資料の原文をそのまま記録したもの */
-export type QuotedFact = { text: string; sourceUrl: string; sourceTitle: string; checkedAt: string };
+export type QuotedFact = { text: string; sourceUrl: string; sourceTitle: string; checkedAt: string; sourceType?: "official" | "retailer" | "media" };
 
 export type ShoeModel = {
   id: string;
@@ -33,6 +35,7 @@ export type ShoeModel = {
     evidence?: string;
     sourceUrl?: string;
     sourceTitle?: string;
+    sourceType?: "official" | "retailer" | "media";
   };
   /** 日本での発売日（公式資料の原文つき） */
   releaseJp?: { value: string; evidence: string; sourceUrl: string; sourceTitle: string; checkedAt: string };

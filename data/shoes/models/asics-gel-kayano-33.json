@@ -9,7 +9,25 @@
   "officialUrl": "https://prtimes.jp/main/html/rd/p/000000308.000020802.html",
   "pageTitle": "アシックスジャパン株式会社 プレスリリース（PR TIMES）",
   "styleCode": "1011C167（スタンダード）",
-  "specs": {},
+  "specs": {
+    "weightG": {
+      "value": 298,
+      "evidence": "■片足重量:298g／■片足重量代表サイズ:27.0",
+      "checkedAt": "2026-11-28",
+      "sourceUrl": "https://item.rakuten.co.jp/alpen/4303616316/",
+      "sourceTitle": "アルペン（楽天市場店）商品ページ",
+      "sourceType": "retailer",
+      "size": "27.0cm"
+    },
+    "dropMm": {
+      "value": 8,
+      "evidence": "・ドロップ：8mm",
+      "checkedAt": "2026-11-28",
+      "sourceUrl": "https://mg.runtrip.jp/archives/111559",
+      "sourceTitle": "ラントリップマガジン（GEL-KAYANO 33）",
+      "sourceType": "media"
+    }
+  },
   "checkedAt": "2026-11-28",
   "officialPrice": {
     "priceJpy": 22000,

@@ -9,7 +9,17 @@
   "officialUrl": "https://prtimes.jp/main/html/rd/p/000001254.000029460.html",
   "pageTitle": "株式会社ニューバランス ジャパン プレスリリース（PR TIMES）",
   "styleCode": "M1080",
-  "specs": {},
+  "specs": {
+    "weightG": {
+      "value": 300,
+      "evidence": "■片足重量:300g／■片足重量代表サイズ:27.5cm",
+      "checkedAt": "2026-11-28",
+      "sourceUrl": "https://item.rakuten.co.jp/alpen/4304640215/",
+      "sourceTitle": "アルペン（楽天市場店）商品ページ",
+      "sourceType": "retailer",
+      "size": "27.5cm・2E"
+    }
+  },
   "checkedAt": "2026-11-28",
   "officialPrice": {
     "priceJpy": 19800,

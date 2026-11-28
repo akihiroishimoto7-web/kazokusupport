@@ -1,6 +1,7 @@
 import { db } from "../data/shoes/db.ts";
 import type { PriceObservation, ShoeModel } from "./shoe-db-types.ts";
 import type { Fact, Shoe, Source } from "./types";
+import { SOURCE_TYPE_LABEL } from "./trusted-sources.ts";
 
 /**
  * シューズデータベース（公式サイトから集めたモデル世代ごとの仕様と価格）
@@ -49,7 +50,6 @@ export function modelSource(m: ShoeModel): Source {
   return { title: `${m.pageTitle}`, url: m.officialUrl, publisher: BRAND_STORE[m.brand] ?? "メーカー公式サイト", checkedAt: m.checkedAt };
 }
 
-const NOTE = "メーカー公式ページの記載";
 
 function specFact(m: ShoeModel, key: keyof ShoeModel["specs"], prev: Fact<number>): Fact<number> & { size?: string } {
   const v = m.specs[key];
@@ -58,7 +58,7 @@ function specFact(m: ShoeModel, key: keyof ShoeModel["specs"], prev: Fact<number
     value: v.value,
     verified: true,
     source: v.sourceUrl ? { title: v.sourceTitle ?? m.pageTitle, url: v.sourceUrl, checkedAt: v.checkedAt } : { ...modelSource(m), checkedAt: v.checkedAt },
-    note: `${NOTE}「${v.evidence}」`,
+    note: `${SOURCE_TYPE_LABEL[v.sourceType ?? "official"]}「${v.evidence}」`,
     ...(v.size ? { size: v.size.replace(/^メンズサイズ/, "メンズ") } : {}),
   };
 }
@@ -82,7 +82,7 @@ export function withModelData(shoe: Shoe): Shoe {
             : { ...modelSource(m), checkedAt: m.officialPrice!.checkedAt },
           note:
             m.officialPrice!.kind === "msrp"
-              ? `メーカー希望小売価格（税込）。公式資料の記載「${m.officialPrice!.evidence ?? ""}」`
+              ? `メーカー希望小売価格（税込）。${SOURCE_TYPE_LABEL[m.officialPrice!.sourceType ?? "official"]}「${m.officialPrice!.evidence ?? ""}」`
               : "メーカー公式オンラインストアの通常価格（税込）。セール時は変わります",
         }
       : shoe.specs.priceJpy;
@@ -134,4 +134,12 @@ export function priceIndex(): Record<string, { model: string; priceJpy: number; 
     });
   }
   return out;
+}
+
+/** モデルの値に、公式以外（販売店・メディア）の情報源が含まれるか */
+export function usesNonOfficial(m: ShoeModel): boolean {
+  return (
+    Object.values(m.specs).some((v) => (v.sourceType ?? "official") !== "official") ||
+    (m.officialPrice?.sourceType ?? "official") !== "official"
+  );
 }
